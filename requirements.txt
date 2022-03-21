@@ -13,6 +13,11 @@ tzfpy; platform_system != "Windows"
 timezonefinder; platform_system == "Windows"
 pyyaml
 aiofiles
+cloudscraper
+bs4
+pycrypto
+html.parser
+aiofiles
 cloudscraper==1.2.58
 git+https://github.com/alenrajsp/tcxreader.git
 rich
