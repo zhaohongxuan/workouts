@@ -47,6 +47,10 @@ GARMIN_CN_URL_DICT = {
 # default only sync last 20
 GET_ALL = False
 
+# set to True if you want to sync all time activities
+# default only sync last 20
+GET_ALL = False
+
 
 class Garmin:
     def __init__(self, secret_string, auth_domain, is_only_running=False):

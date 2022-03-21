@@ -30,6 +30,26 @@ BASE_TIMEZONE = "Asia/Shanghai"
 start_point = namedtuple("start_point", "lat lon")
 run_map = namedtuple("polyline", "summary_polyline")
 
+TYPE_DICT = {
+    "running": "Run",
+    "RUN": "Run",
+    "Run": "Run",
+    "cycling": "Ride",
+    "CYCLING": "Ride",
+    "Ride": "Ride",
+    "indoor_cycling": "Indoor Ride",
+    "walking": "Hike",
+    "hiking": "Hike",
+    "Walk": "Hike",
+    "Hike": "Hike",
+    "Swim": "Swim",
+    "rowing": "Rowing",
+    "flight": "Flight",
+}
+
+MAPPING_TYPE = ["Hike", "Ride", "Rowing", "Run", "Swim"]
+
+
 try:
     with open("config.yaml") as f:
         _config = yaml.safe_load(f)

@@ -3,16 +3,13 @@ import React, { useRef, useCallback } from 'react';
 import Map, { Layer, Source, FullscreenControl, MapRef } from 'react-map-gl';
 import useActivities from '@/hooks/useActivities';
 import {
-  MAP_LAYER_LIST,
   IS_CHINESE,
-  ROAD_LABEL_DISPLAY,
   MAIN_COLOR,
   MAPBOX_TOKEN,
   PROVINCE_FILL_COLOR,
   COUNTRY_FILL_COLOR,
   USE_DASH_LINE,
   LINE_OPACITY,
-  MAP_HEIGHT,
 } from '@/utils/const';
 import { Coordinate, IViewState, geoJsonForMap } from '@/utils/utils';
 import RunMarker from './RunMaker';
