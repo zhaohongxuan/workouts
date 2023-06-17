@@ -99,10 +99,8 @@ TYPE_DICT = {
 }
 
 MAPPING_TYPE = [
-    "Hike",
+    # "Hike",
     "Ride",
-    "VirtualRide",
-    "Rowing",
     "Run",
     "Trail Running",
     "Swim",

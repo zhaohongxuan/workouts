@@ -44,7 +44,7 @@ def login(session, mobile, passowrd):
 
 
 def get_to_download_runs_ids(session, headers):
-    last_date = 0
+    last_date = 1640966400000
     result = []
     while 1:
         r = session.get(RUN_DATA_API.format(last_date=last_date), headers=headers)
@@ -206,7 +206,7 @@ def parse_points_to_gpx(run_points_data, start_time):
 def download_keep_gpx(gpx_data, keep_id):
     try:
         print(f"downloading keep_id {str(keep_id)} gpx")
-        file_path = os.path.join(GPX_FOLDER, str(keep_id) + ".gpx")
+        file_path = os.path.join(GPX_FOLDER, str(keep_id) + "_run.gpx")
         with open(file_path, "w") as fb:
             fb.write(gpx_data)
     except:
