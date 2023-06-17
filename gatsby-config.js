@@ -8,8 +8,8 @@ module.exports = {
     keywords: 'workouts, running, cycling, riding, hiking',
     navLinks: [
       {
-        name: 'Blog',
-        url: 'https://zhaohongxuan.github.io',
+        name: 'Github',
+        url: 'https://github.com/zhaohongxuan',
       },
       {
         name: 'About',
