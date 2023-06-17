@@ -12,8 +12,8 @@ import bs4
 import gpxpy as mod_gpxpy
 import requests
 from config import GPX_FOLDER, JSON_FILE, SQL_FILE
-from Crypto.Cipher import PKCS1_v1_5
-from Crypto.PublicKey import RSA
+# from Crypto.Cipher import PKCS1_v1_5
+# from Crypto.PublicKey import RSA
 from generator import Generator
 
 from utils import make_activities_file
@@ -37,11 +37,11 @@ TYPE_DICT = {
 }
 
 
-def encrypt_password(public_key, password, salt):
-    enc = PKCS1_v1_5.new(RSA.importKey(public_key))
-    message = f"{password};{salt}".encode("utf8")
-    ciphertext = enc.encrypt(message)
-    return b64encode(ciphertext).decode("utf8")
+# def encrypt_password(public_key, password, salt):
+#     # enc = PKCS1_v1_5.new(RSA.importKey(public_key))
+#     message = f"{password};{salt}".encode("utf8")
+#     ciphertext = enc.encrypt(message)
+#     return b64encode(ciphertext).decode("utf8")
 
 
 def device_info_headers():
@@ -83,7 +83,8 @@ class Xingzhe:
 
         params = {
             "account": self.mobile,
-            "password": encrypt_password(pubkey, self.password, rd),
+            "password":"uBQOR6bACoVwDKLZETAnxzLRlRTfQm6OGKsgKMseidMxhBpjhVFk8MueWhenlPpf2fPMXMbMV9ZFp9CmTXz0Riw0vtcF+M8Q1ZUM8OlxkzVZRgrAWNTDKsurJa4Oewn/kIOX19wUz2T7laCuVmtdMYbMTGSZL7SwsCcurHT8XjU=",
+            # "password": encrypt_password(pubkey, self.password, rd),
             "source": "web",
         }
         r = self.session.post(
