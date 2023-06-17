@@ -12,6 +12,7 @@ import bs4
 import gpxpy as mod_gpxpy
 import requests
 from config import GPX_FOLDER, JSON_FILE, SQL_FILE
+
 # from Crypto.Cipher import PKCS1_v1_5
 # from Crypto.PublicKey import RSA
 from generator import Generator
@@ -83,7 +84,7 @@ class Xingzhe:
 
         params = {
             "account": self.mobile,
-            "password":"uBQOR6bACoVwDKLZETAnxzLRlRTfQm6OGKsgKMseidMxhBpjhVFk8MueWhenlPpf2fPMXMbMV9ZFp9CmTXz0Riw0vtcF+M8Q1ZUM8OlxkzVZRgrAWNTDKsurJa4Oewn/kIOX19wUz2T7laCuVmtdMYbMTGSZL7SwsCcurHT8XjU=",
+            "password": "uBQOR6bACoVwDKLZETAnxzLRlRTfQm6OGKsgKMseidMxhBpjhVFk8MueWhenlPpf2fPMXMbMV9ZFp9CmTXz0Riw0vtcF+M8Q1ZUM8OlxkzVZRgrAWNTDKsurJa4Oewn/kIOX19wUz2T7laCuVmtdMYbMTGSZL7SwsCcurHT8XjU=",
             # "password": encrypt_password(pubkey, self.password, rd),
             "source": "web",
         }
