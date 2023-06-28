@@ -32743,5 +32743,20 @@
 "average_speed": 2.952,
 "source": "strava",
 "streak": 1
+},
+{
+"run_id": 9349805101,
+"name": "Evening Run",
+"distance": 808.7,
+"moving_time": "0:10:15",
+"type": "Run",
+"start_date": "2023-06-28 11:45:17+00:00",
+"start_date_local": "2023-06-28 19:45:17",
+"location_country": "\u6148\u6eaa\u8def, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "qss}Dq_idVb@Sr@Ub@U^IVKRAXFhA_@",
+"average_heartrate": 89.4,
+"average_speed": 1.315,
+"source": "strava",
+"streak": 1
 }
 ]
