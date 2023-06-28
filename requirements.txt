@@ -29,3 +29,4 @@ html.parser
 aiofiles
 # if you need to import kml file
 #fastkml
+fit-tool
