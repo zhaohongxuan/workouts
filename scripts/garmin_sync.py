@@ -21,6 +21,7 @@ from io import BytesIO
 from tenacity import retry, stop_after_attempt, wait_fixed
 
 from utils import make_activities_file_only
+from modify_fit import add_device_info_to_fit_file
 
 # logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -232,7 +233,9 @@ class Garmin:
                 for chunk in data.content:
                     f.write(chunk)
             f = open(data.filename, "rb")
-            files = {"data": (data.filename, BytesIO(f.read()))}
+            # modify device to garmin device to support 数字心动 sync
+            modified_fit_bytes = add_device_info_to_fit_file(f)
+            files = {"data": (data.filename, BytesIO(modified_fit_bytes))}
 
             try:
                 res = await self.req.post(
