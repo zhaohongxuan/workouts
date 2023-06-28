@@ -234,7 +234,7 @@ class Garmin:
                     f.write(chunk)
             f = open(data.filename, "rb")
             # modify device to garmin device to support 数字心动 sync
-            modified_fit_bytes =  add_device_info_to_fit_file(f)
+            modified_fit_bytes = add_device_info_to_fit_file(f)
             files = {"data": (data.filename, BytesIO(modified_fit_bytes))}
 
             try:
