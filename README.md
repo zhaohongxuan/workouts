@@ -1,119 +1,34 @@
-## note1: use v2.0 need change vercel setting from Gatsby to Vite
+# [打造个人户外运动主页](http://zhaohongxuan.github.io/workouts)
 
-## note2: 2023.09.26 garmin need secret_string(and in Actions) get `python run_page/garmin_sync.py ${secret_string}` if cn `python run_page/garmin_sync.py ${secret_string} --is-cn`
+<img width="1484" alt="image" src="https://github.com/zhaohongxuan/workouts/assets/8613196/b9286fcd-f4c0-42c6-9561-9417096fec4c">
 
+本项目基于 [running_page](https://github.com/yihong0618/running_page/blob/master/README-CN.md) , 添加了支持多种运动类型。部署可参考原项目操作步骤
 
-# [Create a personal workouts home page](http://workouts.ben29.xyz) 
+## 新增特性
 
-[简体中文](README-CN.md) | English
+- 支持同步**Strava的跑步记录**到数字心动APP（获取上马积分，**通过注入设备信息到Garmin Connect中实现）**，设备信息通过在config.py中设置
 
-This project is based on [running_page](https://github.com/yihong0618/running_page), add support for multi sports type. Follow the steps in origin repo to deploy.
+## 同步数据
 
+- 跑步数据同步请参考[running_page](https://github.com/yihong0618/running_page/blob/master/README-CN.md) 项目
+- 骑行数据同步请参考[workouts_page](https://github.com/ben-29/workouts_page)项目
 
-## New Features
-1. support multi sports type, like Ride/Hike/Swim/Rowing
-1. support new apps
-    - **[Codoon（咕咚）](#codoon咕咚)** (Couldn't automate for its limitation from server side)
-    - **[Xingzhe（行者）](#xingzhe行者)**
-1. support [RoadTrip(GoogleMaps)](#roadtripgooglemaps) , show Road Trip in maps
+## 一些个性化选项
 
+### 自定义运动颜色
 
+- 修改骑行颜色: `src/utils/const.js` 里的 `RIDE_COLOR`
 
-## Custom your page
+### 新增运动类型
 
-### Change Sports Color
+- 修改 `scripts/config.py`, `TYPE_DICT` 增加类型映射关系, `MAPPING_TYPE` 里增加运动类型
+- 修改 `src/utils/const.js`, 增加类型标题，并加入到 `RUN_TITLES`
+- 修改 `src/utils/util.js` 里的 `colorFromType`, 增加 case 指定颜色; `titleForRun`  增加 case 指定类型标题
 
-* Modify Ride Color: `RIDE_COLOR` in `src/utils/const.js` 
-
-### Add Sports Type
-
-* Modify `TYPE_DICT` in  `scripts/config.py`
-* Modify `colorFromType` in  `src/utils/util.js` 
+- 参考这个 [commit](https://github.com/ben-29/workouts_page/commit/bfb6e9da4f72bdbdec669c42bdd10062558039cd)
 ---
-### Codoon（咕咚）
 
-<details>
-<summary>Get your <code>Codoon</code> data</summary>
-
-```python
-python3(python) scripts/codoon_sync.py ${your mobile or email} ${your password}
-```
-
-example：
-```python
-python3(python) scripts/codoon_sync.py 13333xxxx xxxx
-```
-
-> use `--with-gpx` flag to save your gpx data
->
-> use `--from-auth-token` flag to login by refresh_token&user_id
-
-![image](https://user-images.githubusercontent.com/6956444/105690972-9efaab00-5f37-11eb-905c-65a198ad2300.png)
-
-example：
-
-```python
-python3(python) scripts/codoon_sync.py 54bxxxxxxx fefxxxxx-xxxx-xxxx --from-auth-token
-```
-
-</details>
-
-### Xingzhe（行者）
-
-<details>
-<summary>Get your <code>Xingzhe</code> data</summary>
-
-```python
-python3(python) scripts/xingzhe_sync.py ${your mobile or email} ${your password}
-```
-
-example：
-```python
-python3(python) scripts/xingzhe_sync.py 13333xxxx xxxx
-```
-
-> use `--with-gpx` flag to save your gpx data
->
-> use `--from-auth-token` flag to login by refresh_token&user_id
-
-![image](https://user-images.githubusercontent.com/6956444/106879771-87c97380-6716-11eb-9c28-fbf70e15e1c3.png)
-
-example：
-
-```python
-python3(python) scripts/xingzhe_sync.py w0xxx 185000 --from-auth-token
-```
-
-</details>
-
-### RoadTrip(GoogleMaps)
-
-<details>
-<summary>Import KMl from Google Maps</summary>
-
-1. Create map in  [Google Maps](https://www.google.com/maps/d/) (keep route in one Layer)
-2. Export Layer to KML file
-3. Rename the file to `import.kml` and place it into `scripts`
-4. Modify `scripts/kml2polyline.py`, fill in the trip info
-  ```
-  # TODO modify here
-  # trip name
-  track.name = "2020-10 Tibet Road Trip"
-  # start/end time Year-Month-Day-Hour-Minute
-  track.start_time = datetime(2020, 9, 29, 10, 0)
-  track.end_time = datetime(2020, 10, 10, 18, 0)
-  # total distance
-  distance = 4000  # KM
-  # total days
-  days = 12
-  # average daily distacnce
-  hours_per_day = 6
-  ```
-5. Execute in Console
-  ```python
-  python3(python) scripts\kml2polyline.py
-  ```
-</details>
-
-# Special thanks
-- @[yihong0618](https://github.com/yihong0618) for Awesome [running_page](https://github.com/yihong0618/running_page) , Great Thanks
+# 致谢
+感谢@[yihong0618](https://github.com/yihong0618)和@[ben-29](https://github.com/ben-29)优秀的开源项目
+- [workouts_page](https://github.com/ben-29/workouts_page)
+- [running_page](https://github.com/yihong0618/running_page)
