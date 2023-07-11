@@ -27,24 +27,24 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-b216238887270a33a06a.js"
+    "url": "webpack-runtime-883360c0317b484a918b.js"
   },
   {
     "url": "framework-8607f902408769d27c99.js"
   },
   {
-    "url": "app-7f3f7dc18bafb3ace992.js"
+    "url": "app-c12cd38767784b62a380.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "c19dd5903c9c0c269cf7dd1482aacece"
+    "revision": "70e07ec44695d4cc54cce77bd6254451"
   },
   {
     "url": "polyfill-8485b94641e703707201.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "893aa26b669f775664403aa26689a89c"
+    "revision": "de0212ecce82be237e633c72662c32b5"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -149,12 +149,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/workouts`), ``)
+  pathname = pathname.replace(new RegExp(`^/workouts_page`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/workouts/app-7f3f7dc18bafb3ace992.js`))) {
+  if (!resources || !(await caches.match(`/workouts_page/app-c12cd38767784b62a380.js`))) {
     return await fetch(event.request)
   }
 
@@ -167,7 +167,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/workouts/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/workouts_page/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
