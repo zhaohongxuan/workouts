@@ -1,8 +1,8 @@
 {
-  "name": "workouts_page",
-  "description": "ben_29",
+  "name": "workouts",
+  "description": "zhaohongxuan",
   "version": "1.0.0",
-  "author": "Ben Bell <ben_29@live.com>",
+  "author": "Hank Zhao<hxzhenu@gmail.com>",
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.0",
     "@mapbox/polyline": "^1.1.1",
@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ben-29/workouts_page"
+    "url": "https://github.com/zhaohongxuan/workouts"
   },
   "devDependencies": {
     "@types/mapbox__polyline": "^1.0.2",
