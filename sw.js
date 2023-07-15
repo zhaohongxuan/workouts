@@ -27,24 +27,24 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-9d6932af9bb0c5a4ab91.js"
+    "url": "webpack-runtime-7faac864fe663c2eea32.js"
   },
   {
-    "url": "framework-8607f902408769d27c99.js"
+    "url": "framework-96adfc53ee7a9cb81a04.js"
   },
   {
-    "url": "app-c12cd38767784b62a380.js"
+    "url": "app-4dc496b3a6ff8ad7ab4b.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "3eb6eb6b03554d57eeb4320b5009019d"
+    "revision": "3c5c485f990c24e901baece8dba1969e"
   },
   {
-    "url": "polyfill-8485b94641e703707201.js"
+    "url": "polyfill-b78085323ea5e902934e.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "de0212ecce82be237e633c72662c32b5"
+    "revision": "893aa26b669f775664403aa26689a89c"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -149,12 +149,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/workouts_page`), ``)
+  pathname = pathname.replace(new RegExp(`^/workouts`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/workouts_page/app-c12cd38767784b62a380.js`))) {
+  if (!resources || !(await caches.match(`/workouts/app-4dc496b3a6ff8ad7ab4b.js`))) {
     return await fetch(event.request)
   }
 
@@ -167,7 +167,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/workouts_page/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/workouts/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
