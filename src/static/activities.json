@@ -33223,5 +33223,50 @@
 "average_speed": 2.877,
 "source": "strava",
 "streak": 1
+},
+{
+"run_id": 10022250048,
+"name": "Morning Run",
+"distance": 5275.0,
+"moving_time": "0:30:37",
+"type": "Run",
+"start_date": "2023-10-08 22:49:48+00:00",
+"start_date_local": "2023-10-09 06:49:48",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "_xd}DejebV?a@J_AEIgBu@gAu@[Mq@g@c@c@w@[c@EQ_@KGKEm@@c@Nu@d@c@RyBjAyAj@o@Ni@V]ZSX{@nBUVKDO@a@QK@CBc@v@Qd@Op@M|@K^IPQN[NYB_@Gu@[IAODIDOVWjAAb@BzEDfA?l@?~EEfCCfHCl@D~CEnD@NRd@F`@DJTVBRCLGDc@DKDENAj@D~@DNHH@HEb@BxAAHM`@?H`@jCALWt@Ah@@Nj@vAH\\?TAb@OrAZ`BGoAAeAGe@?u@E]g@qAESA_@B]Ro@Oy@KaA?_@Jk@DsBEUOYAe@BsAHIj@GHKEUUOGMIk@Oi@COFsDGqBFOF_FA_DB}GC}BFeBEqA@sAFi@VaALSHEPCPBd@RXHZ?ZMTUHULm@HeAJa@b@eAPWHCH@ZNF@RIXYfAuBj@i@TMdAUVOdBk@t@]~@k@bAa@nAOTBPNZ@f@N`@XTZr@x@jAt@hClAZJVB",
+"average_heartrate": 151.5,
+"average_speed": 2.872,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 10022250047,
+"name": "Morning Run",
+"distance": 5029.9,
+"moving_time": "0:32:10",
+"type": "Run",
+"start_date": "2023-10-10 23:03:36+00:00",
+"start_date_local": "2023-10-11 07:03:36",
+"location_country": "\u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "swd}DwkebV@YD[GGm@_@u@Uu@c@k@Ws@k@a@e@KKu@We@EOWSMc@IMBQH{@j@eB~@aDnA{@V_@RYTOTaAvBORUFK?YMK@GBWd@_@~@K`@SvAO^MPc@RWBa@Im@UUCOBKFMTYlACh@@d@HhAA|AHpBEvD@vAEnB?zAC~@@rAEnBB`BEbEBXL^Nr@DLRR@NAJEDi@BIFCJAr@Bp@Nn@Ez@BbAANIVAL\\tB@TQr@Cx@F^Zt@Rr@?b@QjBDd@Rt@@GC}ABk@Kc@CaAMe@c@aAEWAYD[Ro@?IAQQw@K_A@QJ[DY?mACa@M]CODaBDQFGj@IDICUUUGMGc@Qg@CWFqDCiCFcCAyDDoFAeAB{BGkADsAEw@?uADi@ZeANQVEL@j@VZHX@XGTUN[Lq@Du@Jk@Tq@\\o@NCb@PL@HCJGHOpAaCTYRQ`@Qz@I`@UzAi@bCmAh@S`@K\\Ep@JJD^@x@ZTP~@bAfAx@vAn@^Vn@R",
+"average_heartrate": 136.9,
+"average_speed": 2.606,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 10022250051,
+"name": "Morning Run",
+"distance": 5306.8,
+"moving_time": "0:31:11",
+"type": "Run",
+"start_date": "2023-10-11 23:16:09+00:00",
+"start_date_local": "2023-10-12 07:16:09",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "ixd}DshebV?e@PmBCGg@[s@Ww@g@w@[_BqA[K[QYCS]KIKA{@?IBeBdAcAj@sBr@]Ps@PYN]V]b@cAdCILMDI?MGOMMMMi@SeBQg@QSWSi@MWAW@QFa@ZS\\[xAMTUPYHS@WCOEKIMSIc@s@kCy@yB}@{FWuC@WCu@Hy@@_@C_@Mu@E_@JwA?]Gc@Og@CYd@kDFUL[@]E_ADKAq@DmAB]Pw@BY?g@IeAA}BIaBEcAD{APw@B]?[KmA?a@PoAj@mC`AmFm@bEAHKNAF{@zEA\\PtA@d@a@zACjAHdBJfA@dAEND~@Hj@?l@Cb@O~@Ez@MnAA`BQt@OjAMbAC`@@PR~@BZ?`@KvAPtAB`@A\\Kz@^jFx@dF@Nr@|At@bCPv@PRb@LZAVKRQLW^}AP_@XSVI^CX@TDv@n@LVZzBHXLNJJLDH?JCPMfAgCPW\\UZMv@QlCaAhDcBj@Kj@ENBTL`@Dz@^XTn@v@HJvAz@n@T",
+"average_heartrate": 150.6,
+"average_speed": 2.836,
+"source": "strava",
+"streak": 2
 }
 ]
