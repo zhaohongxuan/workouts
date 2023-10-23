@@ -54,7 +54,7 @@ dependencies:
     specifier: ^4.12.0
     version: 4.12.0
   tachyons-sass:
-    specifier: git+https://github.com/tachyons-css/tachyons-sass.git
+    specifier: https://github.com/tachyons-css/tachyons-sass.git
     version: github.com/tachyons-css/tachyons-sass/2dce89b83729bddb9f4498c7d6f82b73d60d6538
   viewport-mercator-project:
     specifier: ^7.0.4
