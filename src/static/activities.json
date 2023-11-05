@@ -33568,5 +33568,35 @@
 "average_speed": 3.006,
 "source": "strava",
 "streak": 6
+},
+{
+"run_id": 10156279024,
+"name": "Lunch Ride",
+"distance": 2440.3,
+"moving_time": "0:15:05",
+"type": "Ride",
+"start_date": "2023-11-04 03:05:13+00:00",
+"start_date_local": "2023-11-04 11:05:13",
+"location_country": "\u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "iod}DekebV{Ac@o@CkAU[K{BgAeAs@UIKIu@cAOK}@c@e@EOSW?gAPYHeAj@]f@eAViBn@oAn@c@`@Y`@u@nAy@zBg@lCU|B@REFKBw@COK[g@UUYGk@Iw@YKCM@MDIJKTS|@O|AJjB?dADpCElBB`BEvCB`FGnBD|BAtBIn@HZLRHHH?IF?ZFPVR@P?FCDIBYBKBEHCRAdBLX@b@Kd@DZ?`@K`@ALJt@Jb@Jv@AJUf@C\\",
+"average_heartrate": 101.3,
+"average_speed": 2.696,
+"source": "strava",
+"streak": 6
+},
+{
+"run_id": 10156679975,
+"name": "Lunch Ride",
+"distance": 1602.8,
+"moving_time": "0:07:32",
+"type": "Ride",
+"start_date": "2023-11-04 03:55:40+00:00",
+"start_date_local": "2023-11-04 11:55:40",
+"location_country": "\u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "aef}DeddbVBaLEkCFoACcBDoAViAJSHGJEL?L@z@^h@FTFTRZf@LJNB`@?RGDI@MLcBRaBJg@b@wAt@_B`@s@h@k@p@c@nAk@jCy@JKR[t@g@nAg@TCRDNFLRRCJ@bAb@NL|@dAr@b@",
+"average_heartrate": 96.5,
+"average_speed": 3.546,
+"source": "strava",
+"streak": 6
 }
 ]
