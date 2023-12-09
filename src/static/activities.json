@@ -33856,7 +33856,7 @@
 },
 {
 "run_id": 10341718805,
-"name": "Morning Ride",
+"name": "\u592a\u6e56\u897f\u5c71",
 "distance": 75509.7,
 "moving_time": "3:24:44",
 "type": "Ride",
@@ -33868,5 +33868,20 @@
 "average_speed": 6.147,
 "source": "strava",
 "streak": 1
+},
+{
+"run_id": 10346900873,
+"name": "Afternoon Run",
+"distance": 5098.1,
+"moving_time": "0:32:29",
+"type": "Run",
+"start_date": "2023-12-08 08:49:28+00:00",
+"start_date_local": "2023-12-08 16:49:28",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "ixd}DghebV?o@H{@Bi@AKEIc@Ym@U_Ak@m@UmA_Aq@_@[I]AGIEWIMGEMCi@Lg@TsDhBoAb@i@Xo@N_@Rk@f@Wd@o@xAIJMFM@OE_@WIMKi@MwAGYGIOSWSm@M[CSBOFYVWd@_@`BMROJ_@La@?_@MQUQy@y@uCo@yAaAsGWgCEcAN{ACg@QiA?YJaA@]C[Sq@CY@S`@uCJ[N[D]CsAOk@?YDuGDsBJy@GoA?cBBe@Ru@BY?UQ}A?YHk@l@}BFg@HiAJg@Dg@^sA?Nq@rE}@zEAVNhABj@E\\Uv@EXAbBH`BGr@EfEGrAAnAIbABNNd@@t@]pA[hCCh@DVTt@DXAZM~@?Z@TNp@D`@Ab@Kr@APZhEz@`GHVp@~Ax@nCHh@PRVF\\@ZIPONS\\{AXk@PQTKVE\\?TDTHXPPRP`@VpBHZJNPPLDJALGJQfAaCTYRQd@Sr@SfBo@lEqBj@QVCN?",
+"average_heartrate": 144.5,
+"average_speed": 2.616,
+"source": "strava",
+"streak": 2
 }
 ]
