@@ -20,11 +20,11 @@ const data: ISiteMetadataResult = {
   keywords: 'workouts, running, cycling, riding, roadtrip, hiking, swimming',
   navLinks: [
     {
-      name: 'Blog',
-      url: 'https://zhaohongxuan.github.io',
+      name: 'Strava',
+      url: 'https://www.strava.com/athletes/hank_zhao',
     },
     {
-      name: 'About',
+      name: 'Blog',
       url: 'https://zhaohongxuan.github.io',
     },
   ],
