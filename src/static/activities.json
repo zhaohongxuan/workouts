@@ -34678,5 +34678,20 @@
 "average_speed": 2.722,
 "source": "strava",
 "streak": 2
+},
+{
+"run_id": 11349286482,
+"name": "\ud83c\udf2b\ufe0f Morning Run",
+"distance": 5283.8,
+"moving_time": "0:32:37",
+"type": "Run",
+"start_date": "2024-05-06 23:35:42+00:00",
+"start_date_local": "2024-05-07 07:35:42",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "gxd}DsgebVHu@UwCgCwAa@]mAsAeAc@e@AYi@KGG?YHkBhAcB|@yBv@oBz@UPY^_A~BINKHKBKA_@SIASBKHOTOn@Mv@Q~AO^UTWHc@?SGm@YUEUDORYlAG`A?bAFt@CnADhBEvC@fDErB?hEEhBDxAEvEDRN`@Jh@HLNJBNALGH_@DMDEFCLDfB@FHVEr@Fz@?NKXAPHz@RrAAPSd@Ed@@XDPd@fANh@?f@S`AAXBXP~@FP@C@IC_BAm@G[Dc@AWI[o@{AE]Bm@Rm@BQIc@SgB@QHe@@gAAy@Oe@ByABWBEDATCREBEBKEOY]I_@Ws@C[DiECwADyB?aDC_BBeA?oD@iCCcADgAEiA@_BDc@R}@FMJKPEP?|@^PDP?ZGZWHMLc@RgBRy@j@wATQ@QEe@Mk@GOSYi@a@]QYG[AU@QDSJMJS`@QdAK\\KLSP_@LY?_@KQS_@{Ao@yB]s@Oc@{@sF]sE?_@JuAE_@Qy@ASL}A?[Ge@Uu@V|@Fh@?TMvA@ZF\\",
+"average_heartrate": 138.8,
+"average_speed": 2.7,
+"source": "strava",
+"streak": 3
 }
 ]
