@@ -35203,5 +35203,20 @@
 "average_speed": 3.309,
 "source": "strava",
 "streak": 9
+},
+{
+"run_id": 11617862464,
+"name": "\u2601\ufe0f Afternoon Run",
+"distance": 5990.8,
+"moving_time": "0:35:45",
+"type": "Run",
+"start_date": "2024-06-10 09:37:43+00:00",
+"start_date_local": "2024-06-10 17:37:43",
+"location_country": "\u76c8\u6e2f\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "k_e}DyrebVo@g@YIWOWEY?GKGg@KAy@Js@T{BtAkAj@qAd@q@Lk@ZURY\\Sh@Yf@Yr@MJQBOGSQUa@Mu@McAMa@SSUM{@SW@SHc@\\OX_@~AILSPULSBUAYIMMIMs@uCYw@k@iAGYo@kEc@iFAm@Jq@@]Ac@Q{@CQJ_B?SCSSy@CY@ST_ATmBN]Gm@CeAGWASHmCLiB@kDJu@GyA@cBBYR_A@[As@MgAFu@d@eDj@cDr@sCL[JKd@IHGCOCCQACI~@wEf@aD?wDRc@\\OFKAMIQYa@Qk@Mk@A]D{@GiCA_@W{A?_@Bg@ACCd@@Z\\fBLdC@d@En@@`@Pl@Jp@\\f@BN?LGH[NGHOb@FjCAd@{AlHO`A@NVF@B@HCDIDa@HKFa@r@}AvJ_@bB?l@NpA@XEZWbACr@@z@FlBGbAAhDGrAEtCDb@AjAJX?JW~@_@hCC\\BRNn@Hl@Aj@I`A@VLn@Fl@AZGj@A\\JvBN`Bd@~CRfAL`@d@bAd@xANp@LbAHJ`@L^@VGTOR[XyAJYPQXSVGd@?XDZN`@`@HLXvAJx@BTy@bB",
+"average_heartrate": 153.9,
+"average_speed": 2.793,
+"source": "strava",
+"streak": 10
 }
 ]
