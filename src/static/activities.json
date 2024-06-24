@@ -35353,5 +35353,20 @@
 "average_speed": 3.075,
 "source": "strava",
 "streak": 2
+},
+{
+"run_id": 11719817641,
+"name": "\u2601\ufe0f Evening Run",
+"distance": 5051.8,
+"moving_time": "0:28:39",
+"type": "Run",
+"start_date": "2024-06-23 11:36:40+00:00",
+"start_date_local": "2024-06-23 19:36:40",
+"location_country": "\u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "{wd}DalebVG]g@g@u@c@uCkB]]i@[WK]CCKJc@GAu@FaAVsDhBqAd@o@Zq@Ng@VSLUVkAlCSJQ?ICWUIOQm@UeBGS_@]YMWGYCYBODSN[f@Uz@Qj@KLUNa@H]A[OMQe@oBU}@y@uB_AyFO}AKmB?a@Ls@@a@E_@Qy@EW@WF_A?a@W}A@YNq@VuBPe@Em@AcAIq@?m@LmJJeAEqABkADg@Tw@D]OeCDgAXoBXiA`AsEQvA{@nEa@`CGd@@ZRlBAP[dAEZAjBFrAKr@A~BGrBC`CCl@Fd@ChAH\\@NSj@[dBOhA@RTz@DZAn@Gh@AZB\\P~@Bb@C^Kj@@l@^fEz@nFn@zA^bAj@`CRRVHTBPCVKRQFO^_BVe@JK\\QPAV?\\FTHVPTTNd@ZxBT\\HHJBTCPM\\{@f@eAV[RSXM`AUlBq@`Ac@dAg@",
+"average_heartrate": 146.3,
+"average_speed": 2.939,
+"source": "strava",
+"streak": 3
 }
 ]
