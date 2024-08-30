@@ -35758,5 +35758,20 @@
 "average_speed": 2.79,
 "source": "strava",
 "streak": 1
+},
+{
+"run_id": 12277004170,
+"name": "\ud83c\udf1e Morning Run",
+"distance": 5082.5,
+"moving_time": "0:32:45",
+"type": "Run",
+"start_date": "2024-08-29 22:29:52+00:00",
+"start_date_local": "2024-08-30 06:29:52",
+"location_country": "\u5b81\u6d1b\u9ad8\u901f, \u6c34\u5be8\u9547, \u4f0a\u5ddd\u53bf, \u6d1b\u9633\u5e02, \u6cb3\u5357\u7701, \u4e2d\u56fd",
+"summary_polyline": "gi`qEqewmTJkAVkAr@mBTcAb@eAp@uBJw@XcAA]FY?WTiAd@eDJ[Vg@NULMz@c@|@m@x@e@PG`@C^HbAFbALNFf@^R\\X`BFt@QlFQrBCfAGp@IjB?r@KpCF|B?xAHvKHfC@tDFhABrA@PJVPPz@h@VHN@VEn@O|Ai@xAa@n@W`Bg@TMV_AhA{FpA}FfAuF`@aBnAmGf@yBtCiNYpAIl@k@|BgBrIs@`D[~Ao@vCgDjPcAnESZe@T_ElA}Aj@eAVm@@MEo@c@UUIOIYWcPGcH@k@GiD",
+"average_heartrate": 134.3,
+"average_speed": 2.587,
+"source": "strava",
+"streak": 1
 }
 ]
