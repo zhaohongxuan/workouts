@@ -36778,5 +36778,20 @@
 "average_speed": 2.657,
 "source": "strava",
 "streak": 9
+},
+{
+"run_id": 13242401073,
+"name": "Morning Run",
+"distance": 5234.5,
+"moving_time": "0:33:14",
+"type": "Run",
+"start_date": "2025-01-01 01:21:30+00:00",
+"start_date_local": "2025-01-01 09:21:30",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 150.8,
+"average_speed": 2.625,
+"source": "strava",
+"streak": 1
 }
 ]
