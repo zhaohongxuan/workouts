@@ -36808,5 +36808,20 @@
 "average_speed": 2.805,
 "source": "strava",
 "streak": 1
+},
+{
+"run_id": 13297453723,
+"name": "Afternoon Run",
+"distance": 5142.6,
+"moving_time": "0:30:02",
+"type": "Run",
+"start_date": "2025-01-07 09:45:47+00:00",
+"start_date_local": "2025-01-07 17:45:47",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 149.3,
+"average_speed": 2.854,
+"source": "strava",
+"streak": 1
 }
 ]
