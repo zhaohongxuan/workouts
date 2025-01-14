@@ -36853,5 +36853,35 @@
 "average_speed": 2.69,
 "source": "strava",
 "streak": 1
+},
+{
+"run_id": 13348373780,
+"name": "Afternoon Run",
+"distance": 5109.7,
+"moving_time": "0:33:09",
+"type": "Run",
+"start_date": "2025-01-13 09:47:28+00:00",
+"start_date_local": "2025-01-13 17:47:28",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 140.1,
+"average_speed": 2.569,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 13348373825,
+"name": "\ud83c\udf2b\ufe0f Morning Run",
+"distance": 5275.2,
+"moving_time": "0:29:09",
+"type": "Run",
+"start_date": "2025-01-13 23:32:57+00:00",
+"start_date_local": "2025-01-14 07:32:57",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "mxd}DghebVPsA@qAwBgAyB{Ak@m@a@Mu@IKECIAMBKFIIQCAmBr@yEzBoAf@aAVa@Re@b@iA`CKNMFI@KCQMOSQo@WaBQa@OQSM]MUEU?WBSHWTS\\c@fBKNOJWLO@S?]MSSgA}Dy@kBw@mFQgBMyB?UHo@B]A_@M}@E_@LqBE_@Qw@CUBa@^aCV{@Go@KgBBmBFuBFiEDm@EiA@yADg@V{A?]MmA?[Hw@XiBJ{Af@}Af@{B{@bFc@rBYnB@`@LhADl@AP[hAEl@?hABzAEp@CbAAfBKnF?bBDx@Qr@QhAK`ACd@BXR|@BTKrBBTN~@@l@KxAFvAThCZbCX`BHTz@tBz@~CPPXHV?ZKVSNU`@}AHSLQPMVKTA^@PDXLVRPTN`@ZvBLVHHJHNBLEPOfAcCTWXSd@Ur@Q^QjBu@hD{Ap@OZ?T@\\P\\BNFj@\\Z^",
+"average_heartrate": 134.0,
+"average_speed": 3.016,
+"source": "strava",
+"streak": 3
 }
 ]
