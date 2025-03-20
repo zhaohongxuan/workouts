@@ -37513,5 +37513,20 @@
 "average_speed": 3.012,
 "source": "strava",
 "streak": 3
+},
+{
+"run_id": 13926613703,
+"name": "\ud83c\udf19 Evening Run",
+"distance": 7228.2,
+"moving_time": "0:43:02",
+"type": "Run",
+"start_date": "2025-03-19 10:09:55+00:00",
+"start_date_local": "2025-03-19 18:09:55",
+"location_country": "SKYBRIDGE HQ \u5929\u4f1a, 968, \u91d1\u949f\u8def, \u65b0\u6cfe\u9547, \u957f\u5b81\u533a, \u4e0a\u6d77\u5e02, 200335, \u4e2d\u56fd",
+"summary_polyline": "wcq}D}iscVpBy@dA[x@_@n@OJGH[LgECOEI]YGIEMAQFWLSRIV@FH@HFp@]hNUpFWlIE\\Op@Cr@Mb@A`@G^IRGFa@PWCIK@UPu@EcADcAEYMWEM@g@EK]W]c@Ik@NObAi@`Aa@x@O^?t@HTEZJNANC^Ob@YfAg@lA]lAs@jAc@l@[l@U`G{BXCh@FV?~Cq@TI^UNE|C]jCS|@M\\Ib@W^_@nAmCNWRQLGXGfAGXBj@LXDj@PNAJIXi@t@kBNSHELATHFDP\\NNZVTFP@n@K`A?VEBECAuBT]@MEi@g@Wc@KIUCOBOLcAlCW`@OFSAc@O{A[W?u@F[HSJIL{@tBe@v@_@\\[Nk@LiJx@OFc@XaCl@s@H}@AYDYHmAh@oDlAoCdA{Av@i@LqBx@OBG?[WMCO?IH[j@QLQByA@y@VaA^g@XGFCL@HFLTV^\\LX@t@Rl@Ax@F|@A\\Mp@@HBBJBLCNMTWFOJiAJc@FcAJi@J_BPuFDqCn@kQGm@GMEEOAWHMRG\\D^NTVVHZGxDI`@EFs@N[NOLW\\c@XsElB",
+"average_heartrate": 149.7,
+"average_speed": 2.799,
+"source": "strava",
+"streak": 4
 }
 ]
