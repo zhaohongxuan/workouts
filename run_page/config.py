@@ -19,13 +19,14 @@ FOLDER_DICT = {
 SQL_FILE = os.path.join(parent, "run_page", "data.db")
 JSON_FILE = os.path.join(parent, "src", "static", "activities.json")
 SYNCED_FILE = os.path.join(parent, "imported.json")
+SYNCED_ACTIVITY_FILE = os.path.join(parent, "synced_activity.json")
+NAME_MAPPING_FILE = os.path.join(FIT_FOLDER, "name_mapping.json")
 
-# TODO: Move into nike_sync
-BASE_URL = "https://api.nike.com/sport/v3/me"
-TOKEN_REFRESH_URL = "https://unite.nike.com/tokenRefresh"
-NIKE_CLIENT_ID = "HlHa2Cje3ctlaOqnxvgZXNaAs7T9nAuH"
+# TODO: Move into nike_sync NRC THINGS
+
+
 BASE_TIMEZONE = "Asia/Shanghai"
-
+UTC_TIMEZONE = "UTC"
 
 start_point = namedtuple("start_point", "lat lon")
 run_map = namedtuple("polyline", "summary_polyline")
@@ -76,18 +77,27 @@ TYPE_DICT = {
     "RUN": "Run",
     "Run": "Run",
     "track_running": "Run",
-    "trail_running": "Trail Running",
+    "trail_running": "Trail Run",
     "cycling": "Ride",
     "CYCLING": "Ride",
     "Ride": "Ride",
+    "EBikeRide": "Ride",
+    "E-Bike": "Ride",
     "road_biking": "Ride",
+    "Road Bike": "Ride",
+    "Mountain Bike": "Ride",
     "VirtualRide": "VirtualRide",
     "indoor_cycling": "Indoor Ride",
+    "Indoor Bike ": "Indoor Ride",
     "walking": "Hike",
+    "Walk": "Hike",
     "hiking": "Hike",
     "Walk": "Hike",
     "Hike": "Hike",
     "Swim": "Swim",
+    "swimming": "Swim",
+    "Pool Swim": "Swim",
+    "Open Water": "Swim",
     "rowing": "Rowing",
     "RoadTrip": "RoadTrip",
     "flight": "Flight",
@@ -96,13 +106,14 @@ TYPE_DICT = {
     "resort_skiing_snowboarding_ws": "Ski",  # garmin
     "AlpineSki": "Ski",  # strava
     "Ski": "Ski",
+    "Ski": "Ski",
 }
 
 MAPPING_TYPE = [
     # "Hike",
     "Ride",
     "Run",
-    "Trail Running",
+    "Trail Run",
     "Swim",
     "RoadTrip",
     "Kayaking",

@@ -1,4 +1,3 @@
-import React from 'react';
 import YearStat from '@/components/YearStat';
 import {
   CHINESE_LOCATION_INFO_MESSAGE_FIRST,
@@ -12,12 +11,18 @@ interface ILocationStatProps {
   changeYear: (_year: string) => void;
   changeCity: (_city: string) => void;
   changeType: (_type: string) => void;
+  onClickTypeInYear: (_year: string, _type: string) => void;
 }
 
-const LocationStat = ({ changeYear, changeCity, changeType }: ILocationStatProps) => (
-  <div className="w-100-l pb5 pr5-l">
-    <section className="pb4" style={{ paddingBottom: '0rem' }}>
-      <p style={{ lineHeight: 1.8 }}>
+const LocationStat = ({
+  changeYear,
+  changeCity,
+  changeType,
+  onClickTypeInYear
+}: ILocationStatProps) => (
+  <div className="w-full pb-16 lg:w-full lg:pr-16">
+    <section className="pb-0">
+      <p className="leading-relaxed">
         {CHINESE_LOCATION_INFO_MESSAGE_FIRST}
         .
         <br />
@@ -32,7 +37,7 @@ const LocationStat = ({ changeYear, changeCity, changeType }: ILocationStatProps
     <LocationSummary />
     <CitiesStat onClick={changeCity} />
     <PeriodStat onClick={changeType} />
-    <YearStat year="Total" onClick={changeYear} />
+    <YearStat year="Total" onClick={changeYear} onClickTypeInYear={onClickTypeInYear}/>
   </div>
 );
 

@@ -10,7 +10,10 @@ interface ISiteMetadataResult {
   }[];
 }
 
-
+const getBasePath = () => {
+  const baseUrl = import.meta.env.BASE_URL;
+  return baseUrl === '/' ? '' : baseUrl;
+};
 
 const data: ISiteMetadataResult = {
   siteTitle: 'Workouts Map',
@@ -22,6 +25,10 @@ const data: ISiteMetadataResult = {
     {
       name: 'Strava',
       url: 'https://www.strava.com/athletes/hank_zhao',
+    },
+    {
+      name: 'Summary',
+      url: `${getBasePath()}/summary`,
     },
     {
       name: 'Blog',
