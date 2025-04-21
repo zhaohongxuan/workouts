@@ -4,13 +4,16 @@ import {
   sortDateFuncReverse,
   convertMovingTime2Sec,
   Activity,
+  RunIds,
 } from '@/utils/utils';
+import { SHOW_ELEVATION_GAIN } from "@/utils/const";
+
 import RunRow from './RunRow';
-import styles from './style.module.scss';
+import styles from './style.module.css';
 
 interface IRunTableProperties {
   runs: Activity[];
-  locateActivity: (_date: string) => void;
+  locateActivity: (_runIds: RunIds) => void;
   setActivity: (_runs: Activity[]) => void;
   runIndex: number;
   setRunIndex: (_index: number) => void;
@@ -31,14 +34,18 @@ const RunTable = ({
     sortFuncInfo === 'Type' ? a.type > b.type ? 1:-1 : b.type < a.type ? -1:1;
   const sortKMFunc: SortFunc = (a, b) =>
     sortFuncInfo === 'KM' ? a.distance - b.distance : b.distance - a.distance;
+  const sortElevationGainFunc: SortFunc = (a, b) =>
+    sortFuncInfo === 'Elevation Gain'
+      ? (a.elevation_gain ?? 0) - (b.elevation_gain ?? 0)
+      : (b.elevation_gain ?? 0) - (a.elevation_gain ?? 0);
   const sortPaceFunc: SortFunc = (a, b) =>
     sortFuncInfo === 'Pace'
       ? a.average_speed - b.average_speed
       : b.average_speed - a.average_speed;
   const sortBPMFunc: SortFunc = (a, b) => {
     return sortFuncInfo === 'BPM'
-      ? a.average_heartrate ?? 0 - (b.average_heartrate ?? 0)
-      : b.average_heartrate ?? 0 - (a.average_heartrate ?? 0);
+      ? (a.average_heartrate ?? 0) - (b.average_heartrate ?? 0)
+      : (b.average_heartrate ?? 0) - (a.average_heartrate ?? 0);
   };
   const sortRunTimeFunc: SortFunc = (a, b) => {
     const aTotalSeconds = convertMovingTime2Sec(a.moving_time);
@@ -52,11 +59,15 @@ const RunTable = ({
   const sortFuncMap = new Map([
     ['Type', sortTypeFunc],
     ['KM', sortKMFunc],
+    ['Elevation Gain', sortElevationGainFunc],
     ['Pace', sortPaceFunc],
     ['BPM', sortBPMFunc],
     ['Time', sortRunTimeFunc],
     ['Date', sortDateFuncClick],
   ]);
+  if (!SHOW_ELEVATION_GAIN){
+    sortFuncMap.delete('Elevation Gain')
+  }
 
   const handleClick: React.MouseEventHandler<HTMLElement> = (e) => {
     const funcName = (e.target as HTMLElement).innerHTML;
