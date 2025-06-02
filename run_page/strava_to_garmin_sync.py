@@ -94,7 +94,8 @@ async def upload_to_activities(
     # strava rate limit
     for i in sorted(strava_activities, key=lambda i: int(i.id)):
         try:
-            data = strava_client.get_activity(i.id, fmt=format)
+            print("get strava data: id ", i.id)
+            data = strava_client.get_activity(i.id)
             files_list.append(data)
         except Exception as ex:
             print("get strava data error: ", ex)
