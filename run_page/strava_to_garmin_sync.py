@@ -5,6 +5,7 @@ from datetime import datetime, time, timedelta
 from xml.etree import ElementTree
 import io
 
+import time as time_module
 import gpxpy
 import gpxpy.gpx
 from garmin_sync import Garmin
@@ -90,10 +91,11 @@ def export_strava_activity_to_fit(access_token, activity_id):
         response = requests.get(download_url, headers=headers, stream=True)
 
         if response.status_code == 200:
-            data = response.content
-            file_obj = io.BytesIO(data)
+            file_obj = io.BytesIO()
+            file_obj.content = response.iter_content(chunk_size=8192)
             file_obj.filename = f"activity_{activity_id}.fit"
             print(f"Successfully downloaded activity {activity_id}")
+            return file_obj
             return file_obj
         else:
             print(f"Download failed. HTTP status code: {response.status_code}")
@@ -130,7 +132,7 @@ async def upload_to_activities(garmin_client, strava_client, use_fake_garmin_dev
             if data:
                 files_list.append(data)
             # sleep 2 seconds to avoid Strava server rate limit
-            time.sleep(2)
+            time_module.sleep(2)
 
         except Exception as ex:
             print("get strava data error: ", ex)
