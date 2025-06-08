@@ -92,10 +92,14 @@ def export_strava_activity_to_fit(access_token, activity_id):
 
         if response.status_code == 200:
             file_obj = io.BytesIO()
-            file_obj.content = response.iter_content(chunk_size=8192)
+            content = b''
+            for chunk in response.iter_content(chunk_size=8192):
+                content += chunk
+            file_obj.write(content)
+            file_obj.seek(0)  # 重置文件指针到开始位置
+            file_obj.content = [content]  # 使用完整的文件内容
             file_obj.filename = f"activity_{activity_id}.fit"
-            print(f"Successfully downloaded activity {activity_id}")
-            return file_obj
+            print(f"Successfully downloaded activity {activity_id}, file size: {file_obj.getbuffer().nbytes} bytes")
             return file_obj
         else:
             print(f"Download failed. HTTP status code: {response.status_code}")
