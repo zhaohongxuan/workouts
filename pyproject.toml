@@ -24,7 +24,6 @@ dependencies = [
   "rich",
   "lxml",
   "eviltransform",
-  "stravaweblib",
   "tenacity",
   "numpy",
   "tzlocal",
