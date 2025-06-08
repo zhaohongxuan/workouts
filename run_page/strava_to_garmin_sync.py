@@ -1,9 +1,11 @@
 import argparse
 import asyncio
+from collections import namedtuple
 import requests
 from datetime import datetime, time, timedelta
 from xml.etree import ElementTree
 import io
+import traceback
 
 import time as time_module
 import gpxpy
@@ -11,6 +13,9 @@ import gpxpy.gpx
 from garmin_sync import Garmin
 from strava_sync import run_strava_sync
 from utils import make_strava_client
+
+
+ActivityFile = namedtuple("ActivityFile", ("filename", "content"))
 
 
 def generate_strava_run_points(start_time, strava_streams):
@@ -75,8 +80,8 @@ def make_gpx_from_points(title, points_dict_list):
 
 def export_strava_activity_to_fit(access_token, activity_id):
     """
-    Download Strava activity data and return it in memory.
-    Returns a file-like object with filename attribute if successful, None if failed.
+    Download Strava activity data and return it as an ActivityFile.
+    Returns an ActivityFile object if successful, None if failed.
     """
     try:
         download_url = (
@@ -86,23 +91,32 @@ def export_strava_activity_to_fit(access_token, activity_id):
         headers = {
             "Authorization": f"Bearer {access_token}",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
+            "Accept": "*/*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Connection": "keep-alive",
+            "Referer": f"https://www.strava.com/activities/{activity_id}",
+            "Origin": "https://www.strava.com",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin",
+            "X-Requested-With": "XMLHttpRequest"
         }
         print(f"Downloading activity {activity_id} from: {download_url}")
         response = requests.get(download_url, headers=headers, stream=True)
 
         if response.status_code == 200:
-            file_obj = io.BytesIO()
-            content = b''
-            for chunk in response.iter_content(chunk_size=8192):
-                content += chunk
-            file_obj.write(content)
-            file_obj.seek(0)  # 重置文件指针到开始位置
-            file_obj.content = [content]  # 使用完整的文件内容
-            file_obj.filename = f"activity_{activity_id}.fit"
-            print(f"Successfully downloaded activity {activity_id}, file size: {file_obj.getbuffer().nbytes} bytes")
-            return file_obj
+            response.raise_for_status()
+            filename = f"activity_{activity_id}.fit"
+            
+            print(f"Successfully downloaded activity {activity_id}")
+            
+            return ActivityFile(
+                filename=filename,
+                content= response.iter_content(chunk_size=16*1024)
+            )
         else:
             print(f"Download failed. HTTP status code: {response.status_code}")
+            print(f"Response headers: {response.headers}")
             return None
 
     except Exception as e:
@@ -117,7 +131,9 @@ async def upload_to_activities(garmin_client, strava_client, use_fake_garmin_dev
         filters = {}
     else:
         # is this startTimeGMT must have ?
-        after_datetime_str = last_activity[0]["startTimeGMT"]
+        # after_datetime_str = last_activity[0]["startTimeGMT"]
+        after_datetime_str = "2025-06-07 00:00:00"
+
         after_datetime = datetime.strptime(after_datetime_str, "%Y-%m-%d %H:%M:%S")
         print("garmin last activity date: ", after_datetime)
         filters = {"after": after_datetime}
@@ -135,8 +151,8 @@ async def upload_to_activities(garmin_client, strava_client, use_fake_garmin_dev
             data = export_strava_activity_to_fit(strava_client.access_token, i.id)
             if data:
                 files_list.append(data)
-            # sleep 2 seconds to avoid Strava server rate limit
-            time_module.sleep(2)
+            # sleep 5 seconds to avoid Strava server rate limit
+            time_module.sleep(5)
 
         except Exception as ex:
             print("get strava data error: ", ex)
