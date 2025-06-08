@@ -148,6 +148,9 @@ class Garmin:
                 res = await self.req.post(
                     self.upload_url, files=files, headers=self.headers
                 )
+                if res.status_code != 200:
+                    print("garmin upload failed, status code: ", res.status_code, res.text)
+                    continue
                 os.remove(data.filename)
                 f.close()
             except Exception as e:
