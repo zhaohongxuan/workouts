@@ -1,8 +1,9 @@
 import argparse
 import asyncio
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from xml.etree import ElementTree
+import io
 
 import gpxpy
 import gpxpy.gpx
@@ -74,7 +75,7 @@ def make_gpx_from_points(title, points_dict_list):
 def export_strava_activity_to_fit(access_token, activity_id):
     """
     Download Strava activity data and return it in memory.
-    Returns the raw data bytes if successful, None if failed.
+    Returns a file-like object with filename attribute if successful, None if failed.
     """
     try:
         download_url = (
@@ -90,8 +91,10 @@ def export_strava_activity_to_fit(access_token, activity_id):
 
         if response.status_code == 200:
             data = response.content
+            file_obj = io.BytesIO(data)
+            file_obj.filename = f"activity_{activity_id}.fit"
             print(f"Successfully downloaded activity {activity_id}")
-            return data
+            return file_obj
         else:
             print(f"Download failed. HTTP status code: {response.status_code}")
             return None
@@ -126,6 +129,9 @@ async def upload_to_activities(garmin_client, strava_client, use_fake_garmin_dev
             data = export_strava_activity_to_fit(strava_client.access_token, i.id)
             if data:
                 files_list.append(data)
+            # sleep 2 seconds to avoid Strava server rate limit
+            time.sleep(2)
+
         except Exception as ex:
             print("get strava data error: ", ex)
     await garmin_client.upload_activities_original_from_strava(
@@ -142,8 +148,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "secret_string", nargs="?", help="secret_string fro get_garmin_secret.py"
     )
-    parser.add_argument("strava_email", nargs="?", help="email of strava")
-    parser.add_argument("strava_password", nargs="?", help="password of strava")
     parser.add_argument(
         "--is-cn",
         dest="is_cn",
