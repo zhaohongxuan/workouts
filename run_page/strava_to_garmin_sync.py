@@ -1,6 +1,5 @@
 import argparse
 import asyncio
-import requests
 from datetime import datetime, timedelta
 from xml.etree import ElementTree
 
@@ -8,6 +7,7 @@ import gpxpy
 import gpxpy.gpx
 from garmin_sync import Garmin
 from strava_sync import run_strava_sync
+from stravaweblib import DataFormat, WebClient
 from utils import make_strava_client
 
 
@@ -71,37 +71,9 @@ def make_gpx_from_points(title, points_dict_list):
     return gpx.to_xml()
 
 
-def export_strava_activity_to_fit(access_token, activity_id):
-    """
-    Download Strava activity data and return it in memory.
-    Returns the raw data bytes if successful, None if failed.
-    """
-    try:
-        download_url = (
-            f"https://www.strava.com/activities/{activity_id}/export_original"
-        )
-
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
-        }
-        print(f"Downloading activity {activity_id} from: {download_url}")
-        response = requests.get(download_url, headers=headers, stream=True)
-
-        if response.status_code == 200:
-            data = response.content
-            print(f"Successfully downloaded activity {activity_id}")
-            return data
-        else:
-            print(f"Download failed. HTTP status code: {response.status_code}")
-            return None
-
-    except Exception as e:
-        print(f"Error downloading activity {activity_id}: {e}")
-        return None
-
-
-async def upload_to_activities(garmin_client, strava_client, use_fake_garmin_device):
+async def upload_to_activities(
+    garmin_client, strava_client, strava_web_client, format, use_fake_garmin_device
+):
     last_activity = await garmin_client.get_activities(0, 1)
     if not last_activity:
         print("no garmin activity")
@@ -122,10 +94,8 @@ async def upload_to_activities(garmin_client, strava_client, use_fake_garmin_dev
     # strava rate limit
     for i in sorted(strava_activities, key=lambda i: int(i.id)):
         try:
-            # Use the new export_strava_activity_to_fit function instead of strava_web_client
-            data = export_strava_activity_to_fit(strava_client.access_token, i.id)
-            if data:
-                files_list.append(data)
+            data = strava_web_client.get_activity_data(i.id, fmt=format)
+            files_list.append(data)
         except Exception as ex:
             print("get strava data error: ", ex)
     await garmin_client.upload_activities_original_from_strava(
@@ -144,6 +114,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("strava_email", nargs="?", help="email of strava")
     parser.add_argument("strava_password", nargs="?", help="password of strava")
+    parser.add_argument("strava_jwt", nargs="?", help="jwt token of strava")
     parser.add_argument(
         "--is-cn",
         dest="is_cn",
@@ -162,6 +133,18 @@ if __name__ == "__main__":
         options.strava_client_secret,
         options.strava_refresh_token,
     )
+    if options.strava_jwt:
+        strava_web_client = WebClient(
+            access_token=strava_client.access_token,
+            jwt=options.strava_jwt,
+        )
+    elif options.strava_email and options.strava_password:
+        strava_web_client = WebClient(
+            access_token=strava_client.access_token,
+            email=options.strava_email,
+            password=options.strava_password,
+        )
+    
     garmin_auth_domain = "CN" if options.is_cn else ""
 
     try:
@@ -171,6 +154,8 @@ if __name__ == "__main__":
             upload_to_activities(
                 garmin_client,
                 strava_client,
+                strava_web_client,
+                DataFormat.ORIGINAL,
                 options.use_fake_garmin_device,
             )
         )
