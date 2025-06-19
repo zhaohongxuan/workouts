@@ -41134,5 +41134,21 @@
 "elevation_gain": 0.0,
 "source": "strava",
 "streak": 9
+},
+{
+"run_id": 14834908925,
+"name": "Lunch Run",
+"distance": 5100.5,
+"moving_time": "0:28:19",
+"type": "Run",
+"start_date": "2025-06-18 03:52:26+00:00",
+"start_date_local": "2025-06-18 11:52:26",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 139.6,
+"average_speed": 3.002,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 10
 }
 ]
