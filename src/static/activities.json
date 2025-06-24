@@ -41214,5 +41214,37 @@
 "elevation_gain": 10.6,
 "source": "strava",
 "streak": 13
+},
+{
+"run_id": 14886796848,
+"name": "Lunch Run",
+"distance": 5072.6,
+"moving_time": "0:29:08",
+"type": "Run",
+"start_date": "2025-06-23 03:50:17+00:00",
+"start_date_local": "2025-06-23 11:50:17",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 132.9,
+"average_speed": 2.902,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 14888652891,
+"name": "Afternoon Ride",
+"distance": 0.0,
+"moving_time": "0:21:52",
+"type": "Ride",
+"start_date": "2025-06-23 09:47:40+00:00",
+"start_date_local": "2025-06-23 17:47:40",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 88.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
 }
 ]
