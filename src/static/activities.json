@@ -43454,5 +43454,37 @@
 "elevation_gain": 25.8,
 "source": "strava",
 "streak": 3
+},
+{
+"run_id": 16849238108,
+"name": "Lunch Run",
+"distance": 3057.5,
+"moving_time": "0:19:23",
+"type": "Run",
+"start_date": "2025-12-25 04:36:37+00:00",
+"start_date_local": "2025-12-25 12:36:37",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 147.0,
+"average_speed": 2.629,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 4
+},
+{
+"run_id": 16849238273,
+"name": "\ud83c\udf1e\ud83e\udd76 Morning Run",
+"distance": 7315.4,
+"moving_time": "0:36:58",
+"type": "Run",
+"start_date": "2025-12-25 22:55:28+00:00",
+"start_date_local": "2025-12-26 06:55:28",
+"location_country": null,
+"summary_polyline": "wxd}D_hebVLgBJs@CQEIgB_A{B{Ak@e@q@[c@Ke@c@MGQCy@XuC`B}Bz@k@Vq@Ti@XSTMRgAbCKFM@o@OOFKJMXWx@a@dCGNOT]R[D[C}@WQAODMLGNe@~BAd@PrAA~@FnCExJBtCIfDBpAC`FBT^nAX`@BLAJKJe@FGFGP?bBBJLV@PCtBK\\AVXzAB`@CXQf@C`@Hh@h@tAH^@n@QzABXL|@DFIkB@K@GLE\\BFBDRx@~CVtCNlABn@x@nEj@fFN`AVfA?nBJfAF~A@bCQ|B?z@VbKNdDF\\JPVPVJTBpAOrCEpE[l@Cv@Kx@ERAl@FNETSHCRA~@@nASz@ArAHlB@vBInA[ZGp@?x@Fh@?hBMp@KVIh@Y^G^@x@R^D\\Cv@Ub@GJ@HD^\\J@l@G~@CnAKtACx@IjAAz@KjABfAE~AShA@KA}@B}BTgA@eAHg@J}AAyBH_AHaA?cAHQC[_@ICQBaA^e@Ha@Cw@W]Cc@Hk@X]JaDV]Ay@M_@Ca@DgA`@aCNmA?c@E_ACoA?yATw@AU@OFYPMB{@GiCFiD`@wDNs@H]?",
+"average_heartrate": 158.1,
+"average_speed": 3.298,
+"elevation_gain": 6.8,
+"source": "strava",
+"streak": 5
 }
 ]
