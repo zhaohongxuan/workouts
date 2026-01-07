@@ -43566,5 +43566,53 @@
 "elevation_gain": 22.8,
 "source": "strava",
 "streak": 2
+},
+{
+"run_id": 16954548772,
+"name": "Lunch Run",
+"distance": 5197.0,
+"moving_time": "0:29:28",
+"type": "Run",
+"start_date": "2026-01-04 03:52:13+00:00",
+"start_date_local": "2026-01-04 11:52:13",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 154.4,
+"average_speed": 2.939,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 16954548778,
+"name": "Lunch Run",
+"distance": 5168.2,
+"moving_time": "0:30:13",
+"type": "Run",
+"start_date": "2026-01-05 03:46:41+00:00",
+"start_date_local": "2026-01-05 11:46:41",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 151.5,
+"average_speed": 2.851,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 16954548781,
+"name": "Afternoon Run",
+"distance": 5172.1,
+"moving_time": "0:30:34",
+"type": "Run",
+"start_date": "2026-01-06 09:43:30+00:00",
+"start_date_local": "2026-01-06 17:43:30",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 129.2,
+"average_speed": 2.82,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 3
 }
 ]
