@@ -43662,5 +43662,53 @@
 "elevation_gain": 11.6,
 "source": "strava",
 "streak": 2
+},
+{
+"run_id": 17042910957,
+"name": "\ud83c\udf19 Afternoon Run",
+"distance": 5222.7,
+"moving_time": "0:28:57",
+"type": "Run",
+"start_date": "2026-01-11 09:48:04+00:00",
+"start_date_local": "2026-01-11 17:48:04",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "s{d}D_pebVsAu@mAgAw@_@]CMCk@q@y@@}Ax@gC`ByAh@cATe@TWTOV}@pBIJKFMBo@IIBKHS^]hAQzAIb@GRSTWNYBWEw@_@UCMBKFU^OhAEpADrACdABfBAfEAxABzAAhFIvDMfCA|ADf@\\fAFNRTFNAHGLa@HIDEFAVDpALf@@PCzAK~@\\lCARMh@Cl@F^l@pB@n@OlAAVTxABDGaCGe@@c@Ca@ESc@mAG_@?U@]TaAAQ]yB?KH{@?gBGm@BmBBIHGf@CFI@GGSSSEIc@}ACoDE_CF}ADmBCeEFaD?uDGeBB{ACqAJkA\\{ALUNIHAXBp@ZPDXAVMLMLYLa@L}@Je@n@uAFGLGF?d@JH?JGJOz@}Bf@m@b@Wv@M~B}@t@]nAq@p@Yh@I`AEH@TN^D|@f@`AfATPx@d@v@Z",
+"average_heartrate": 162.0,
+"average_speed": 3.007,
+"elevation_gain": 9.0,
+"source": "strava",
+"streak": 3
+},
+{
+"run_id": 17042911017,
+"name": "\ud83c\udf1e Lunch Run",
+"distance": 6033.7,
+"moving_time": "0:34:19",
+"type": "Run",
+"start_date": "2026-01-12 03:54:14+00:00",
+"start_date_local": "2026-01-12 11:54:14",
+"location_country": "\u7ee5\u5b81\u8def, \u65b0\u6cfe\u9547, \u957f\u5b81\u533a, 200335, \u4e2d\u56fd",
+"summary_polyline": "yhq}DuxrcVh@IFAFIECO?uCZS?_@CoBe@a@CY?eIhAiB\\sC^]Fi@RkAPYAo@Ui@Kc@EO?WHi@`@WJa@FeAFaAKoBa@q@Ia@Ao@FeACWBYHcBfAUHUFc@?eASU?YDiA`@YDg@BsA?cBRW@OCMGm@e@YCUDe@Pa@ZUHkAFm@?q@Kg@Um@]WIe@?_ALWA}As@aA[a@UYGW?OBa@N]Fa@BYASOGYFo@ViAL}@C]Qk@A]XeCJgBLu@f@aFb@uCb@qAd@eA@GCEKN[t@Wr@Ux@_@|B]pDGbCYvBK~A?RNj@?ZKjASz@EZ?XDPHJNF\\BZC~@Wf@BND`@Vp@RfAj@ZL\\Bx@GX?XFv@`@h@PfALpA?XC~@k@l@SJ?ND^VXLLB^@fBMr@?x@Ej@Kv@W\\GR?lAHb@CRCXMz@k@ZQZK\\EtADp@An@BnCh@x@Fl@Cv@QZKh@a@REP?z@Ht@T\\@l@CZEt@U|@QzEu@z@I\\KbAOnDe@V?\\DpA^d@J^BT?vA[rBUpAc@VENFl@x@",
+"average_heartrate": 159.9,
+"average_speed": 2.93,
+"elevation_gain": 83.2,
+"source": "strava",
+"streak": 4
+},
+{
+"run_id": 17042910969,
+"name": "Lunch Run",
+"distance": 5201.6,
+"moving_time": "0:28:26",
+"type": "Run",
+"start_date": "2026-01-13 03:45:46+00:00",
+"start_date_local": "2026-01-13 11:45:46",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 134.3,
+"average_speed": 3.049,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
 }
 ]
