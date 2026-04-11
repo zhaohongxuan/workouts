@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 from datetime import datetime, timedelta
+from io import BytesIO
 from xml.etree import ElementTree
 
 import gpxpy
@@ -8,7 +9,7 @@ import gpxpy.gpx
 from garmin_sync import Garmin
 from strava_sync import run_strava_sync
 from stravaweblib import DataFormat, WebClient
-from utils import make_strava_client
+from utils import make_strava_client, strava_streams_to_fit, STRAVA_STREAM_TYPES
 
 
 def generate_strava_run_points(start_time, strava_streams):
@@ -71,6 +72,13 @@ def make_gpx_from_points(title, points_dict_list):
     return gpx.to_xml()
 
 
+class ExportFile:
+    """Wrapper for activity data file to match stravaweblib's ExportFile interface."""
+    def __init__(self, filename: str, content: bytes):
+        self.filename = filename
+        self.content = content
+
+
 async def upload_to_activities(
     garmin_client, strava_client, strava_web_client, format, use_fake_garmin_device
 ):
@@ -104,6 +112,99 @@ async def upload_to_activities(
     return files_list
 
 
+async def upload_to_activities_via_streams(
+    garmin_client, strava_client, use_fake_garmin_device
+):
+    """
+    Alternative implementation using Strava API streams instead of stravaweblib.
+    This method doesn't require JWT authentication and works in CI/CD environments.
+    """
+    try:
+        from garmin_device_adaptor import wrap_device_info, is_fit_file
+    except ImportError:
+        def wrap_device_info(f):
+            return BytesIO(f.read())
+        def is_fit_file(f):
+            return False
+    
+    last_activity = await garmin_client.get_activities(0, 1)
+    if not last_activity:
+        print("no garmin activity")
+        filters = {}
+    else:
+        after_datetime_str = last_activity[0]["startTimeGMT"]
+        after_datetime = datetime.strptime(after_datetime_str, "%Y-%m-%d %H:%M:%S")
+        print("garmin last activity date: ", after_datetime)
+        filters = {"after": after_datetime}
+    
+    strava_activities = list(strava_client.get_activities(**filters))
+    print("strava activities size: ", len(strava_activities))
+    if not strava_activities:
+        print("no strava activity")
+        return []
+    
+    files_list = []
+    
+    for activity in sorted(strava_activities, key=lambda i: int(i.id)):
+        try:
+            print(f"Processing activity {activity.id}...")
+            
+            # Get streams via API (no JWT required!)
+            streams = strava_client.get_activity_streams(
+                activity_id=activity.id,
+                types=STRAVA_STREAM_TYPES,
+                resolution='high'
+            )
+            
+            if not streams or 'latlng' not in streams or not streams['latlng']:
+                print(f"Activity {activity.id} has no GPS data, skipping...")
+                continue
+            
+            # Get full activity details for metadata
+            detailed = strava_client.get_activity(activity.id)
+            
+            activity_info = {
+                'name': detailed.name or f"Activity {activity.id}",
+                'start_date': detailed.start_date,
+                'type': detailed.type or 'Run',
+            }
+            
+            # Convert streams to FIT
+            fit_data = strava_streams_to_fit(
+                activity_id=activity.id,
+                streams=dict(streams),
+                activity_info=activity_info
+            )
+            
+            # Create temp file
+            temp_filename = f"strava_{activity.id}.fit"
+            with open(temp_filename, 'wb') as f:
+                f.write(fit_data)
+            
+            # Wrap with Garmin device info if needed
+            if use_fake_garmin_device:
+                with open(temp_filename, 'rb') as f:
+                    if is_fit_file(f):
+                        wrapped = wrap_device_info(f)
+                        with open(temp_filename, 'wb') as out:
+                            out.write(wrapped.read())
+            
+            # Create ExportFile-like object
+            files_list.append(ExportFile(temp_filename, fit_data))
+            
+        except Exception as ex:
+            print(f"get strava data error: ", ex)
+            continue
+    
+    # Upload all files
+    if files_list:
+        await garmin_client.upload_activities_original_from_strava(
+            files_list, use_fake_garmin_device
+        )
+    
+    return files_list
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("strava_client_id", help="strava client id")
@@ -127,38 +228,64 @@ if __name__ == "__main__":
         default=False,
         help="whether to use a faked Garmin device",
     )
+    parser.add_argument(
+        "--use-streams",
+        dest="use_streams",
+        action="store_true",
+        default=False,
+        help="use Strava API streams instead of JWT (no JWT required, works in CI)",
+    )
     options = parser.parse_args()
     strava_client = make_strava_client(
         options.strava_client_id,
         options.strava_client_secret,
         options.strava_refresh_token,
     )
-    if options.strava_jwt:
-        strava_web_client = WebClient(
-            access_token=strava_client.access_token,
-            jwt=options.strava_jwt,
-        )
-    elif options.strava_email and options.strava_password:
-        strava_web_client = WebClient(
-            access_token=strava_client.access_token,
-            email=options.strava_email,
-            password=options.strava_password,
-        )
     
     garmin_auth_domain = "CN" if options.is_cn else ""
 
     try:
         garmin_client = Garmin(options.secret_string, garmin_auth_domain)
         loop = asyncio.get_event_loop()
-        future = asyncio.ensure_future(
-            upload_to_activities(
-                garmin_client,
-                strava_client,
-                strava_web_client,
-                DataFormat.ORIGINAL,
-                options.use_fake_garmin_device,
+        
+        if options.use_streams:
+            # Use new streams-based method (no JWT required!)
+            print("Using Strava API streams method (no JWT required)...")
+            future = asyncio.ensure_future(
+                upload_to_activities_via_streams(
+                    garmin_client,
+                    strava_client,
+                    options.use_fake_garmin_device,
+                )
             )
-        )
+        else:
+            # Use traditional JWT-based method
+            if options.strava_jwt:
+                strava_web_client = WebClient(
+                    access_token=strava_client.access_token,
+                    jwt=options.strava_jwt,
+                )
+            elif options.strava_email and options.strava_password:
+                strava_web_client = WebClient(
+                    access_token=strava_client.access_token,
+                    email=options.strava_email,
+                    password=options.strava_password,
+                )
+            else:
+                print("Error: JWT or email/password required for non-streams mode")
+                sys.exit(1)
+            
+            print("Using traditional JWT method...")
+            future = asyncio.ensure_future(
+                upload_to_activities(
+                    garmin_client,
+                    strava_client,
+                    strava_web_client,
+                    DataFormat.ORIGINAL,
+                    options.use_fake_garmin_device,
+                )
+            )
+        
         loop.run_until_complete(future)
     except Exception as err:
         print(err)
