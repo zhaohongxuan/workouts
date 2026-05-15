@@ -75,8 +75,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Enable corepack
-        run: npm install -g corepack@latest && corepack enable pnpm 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Get pnpm store directory
         shell: bash
