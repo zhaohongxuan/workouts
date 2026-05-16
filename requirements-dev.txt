@@ -1,4 +1,4 @@
 -r requirements.txt
 # Ci
-black
+black==23.3.0
 
