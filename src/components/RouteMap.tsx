@@ -172,7 +172,7 @@ export function RouteMap({ activities, selectedActivity, dark, onClearSelection 
   }
 
   return (
-    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl overflow-hidden h-[350px] relative">
+    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl overflow-hidden h-[280px] relative">
       {selectedActivity && (
         <button
           onClick={onClearSelection}

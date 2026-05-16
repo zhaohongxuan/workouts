@@ -13,12 +13,12 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
   const now = new Date()
   const [viewYear, setViewYear] = useState(now.getFullYear())
   const [viewMonth, setViewMonth] = useState(now.getMonth())
+  const [hoveredDay, setHoveredDay] = useState<number | null>(null)
 
   const { days, monthDistance, monthCount } = useMemo(() => {
     const firstDay = new Date(viewYear, viewMonth, 1).getDay()
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate()
 
-    // Get activities by day
     const dayActivities = new Map<number, Activity[]>()
     for (const a of activities) {
       const d = new Date(a.start_date_local)
@@ -38,7 +38,6 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
     }
 
     const days: { day: number; activities: Activity[]; distance: number }[] = []
-    // Empty slots
     for (let i = 0; i < firstDay; i++) {
       days.push({ day: 0, activities: [], distance: 0 })
     }
@@ -60,11 +59,21 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
     else setViewMonth(viewMonth + 1)
   }
 
+  // 4 tiers: returns px size of circle
+  const getCircleSize = (dist: number): number => {
+    if (!dist) return 0
+    const km = dist / 1000
+    if (km < 5) return 20
+    if (km < 10) return 26
+    if (km < 20) return 32
+    return 38
+  }
+
   const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   const monthStr = `${String(viewMonth + 1).padStart(2, '0')}/${viewYear}`
 
   return (
-    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5">
+    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-4 w-full min-w-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -82,45 +91,53 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
       {/* Day headers */}
       <div className="grid grid-cols-7 gap-1 mb-1">
         {dayNames.map((d, i) => (
-          <div key={i} className="text-center text-xs text-[var(--color-muted)] py-1">
-            {d}
-          </div>
+          <div key={i} className="text-center text-xs text-[var(--color-muted)] py-1">{d}</div>
         ))}
       </div>
 
-      {/* Calendar grid */}
-      <div className="grid grid-cols-7 gap-1">
-        {days.map((d, i) => (
-          <div
-            key={i}
-            onClick={() => {
-              if (d.activities.length > 0) onSelectActivity(d.activities[0])
-            }}
-            className={`aspect-square flex flex-col items-center justify-center text-xs relative transition-all ${
-              d.day === 0
-                ? ''
-                : d.activities.length > 0
-                  ? 'cursor-pointer hover:opacity-80'
-                  : 'text-[var(--color-muted)]'
-            }`}
-          >
-            {d.day > 0 && (
-              <>
-                {d.distance > 0 && (
-                  <div className="absolute inset-1.5 rounded-full bg-[var(--color-accent)]/20" />
-                )}
-                <span className={`relative text-[11px] ${d.activities.length > 0 ? 'font-medium text-[var(--color-text)]' : ''}`}>
-                  {d.day}
-                </span>
-                {d.distance > 0 && (
-                  <span className="relative text-[9px] text-[var(--color-accent)] font-mono leading-tight">
-                    {(d.distance / 1000).toFixed(0)}k
+      {/* Calendar grid — fixed height so 5-row and 6-row months are identical */}
+      <div className="grid grid-cols-7 gap-0.5" style={{ height: '240px', gridAutoRows: '1fr' }}>
+        {days.map((d, i) => {
+          const circleSize = getCircleSize(d.distance)
+          const isHovered = hoveredDay === i && d.distance > 0
+          return (
+            <div
+              key={i}
+              onClick={() => { if (d.activities.length > 0) onSelectActivity(d.activities[0]) }}
+              onMouseEnter={() => d.distance > 0 && setHoveredDay(i)}
+              onMouseLeave={() => setHoveredDay(null)}
+              className={`flex items-center justify-center relative ${
+                d.day === 0 ? '' : d.activities.length > 0 ? 'cursor-pointer' : ''
+              }`}
+            >
+              {d.day > 0 && (
+                <>
+                  {/* Sized circle */}
+                  {circleSize > 0 && (
+                    <div
+                      className="absolute rounded-full bg-[var(--color-accent)]/25 transition-all duration-200"
+                      style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
+                    />
+                  )}
+                  {/* Label: show km by default, show date on hover */}
+                  <span className={`relative text-[10px] font-medium leading-none transition-all ${
+                    isHovered
+                      ? 'text-[var(--color-text)]'
+                      : d.activities.length > 0
+                        ? 'text-[var(--color-accent)]'
+                        : 'text-[var(--color-muted)]'
+                  }`}>
+                    {isHovered
+                      ? d.day
+                      : d.activities.length > 0
+                        ? `${(d.distance / 1000).toFixed(0)}k`
+                        : d.day}
                   </span>
-                )}
-              </>
-            )}
-          </div>
-        ))}
+                </>
+              )}
+            </div>
+          )
+        })}
       </div>
 
       {/* Summary */}

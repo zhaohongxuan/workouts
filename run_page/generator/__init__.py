@@ -89,6 +89,41 @@ class Generator:
             sys.stdout.flush()
         self.session.commit()
 
+    def sync_recent(self, days=7):
+        """
+        Sync only activities from the last N days (default: 7).
+        Useful for lightweight daily/weekly refreshes.
+        """
+        self.check_access()
+
+        after = datetime.datetime.utcnow() - datetime.timedelta(days=days)
+        filters = {"after": after}
+        print(f"Syncing activities after {after.strftime('%Y-%m-%d')} (last {days} days)")
+
+        count_new = 0
+        count_update = 0
+        for activity in self.client.get_activities(**filters):
+            if self.only_run and activity.type != "Run":
+                continue
+            if IGNORE_BEFORE_SAVING:
+                if activity.map and activity.map.summary_polyline:
+                    activity.map.summary_polyline = filter_out(
+                        activity.map.summary_polyline
+                    )
+            activity.source = "strava"
+            activity.elevation_gain = activity.total_elevation_gain
+            activity.subtype = activity.type
+            created = update_or_create_activity(self.session, activity)
+            if created:
+                sys.stdout.write("+")
+                count_new += 1
+            else:
+                sys.stdout.write(".")
+                count_update += 1
+            sys.stdout.flush()
+        self.session.commit()
+        print(f"\nDone: {count_new} new, {count_update} updated.")
+
     def sync_from_data_dir(self, data_dir, file_suffix="gpx", activity_title_dict={}):
         loader = track_loader.TrackLoader()
         tracks = loader.load_tracks(

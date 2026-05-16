@@ -1,24 +1,38 @@
-import type { SportFilter } from '../types'
+import type { SportFilter, Activity } from '../types'
 import { useLocale } from '../hooks/useLocale'
+
+type Page = 'home' | 'heatmap' | 'tracks'
 
 interface HeaderProps {
   filter: SportFilter
   setFilter: (f: SportFilter) => void
   dark: boolean
   toggleTheme: () => void
+  activities: Activity[]
+  page: Page
+  onNavigate: (p: Page) => void
 }
 
-export function Header({ filter, setFilter, dark, toggleTheme }: HeaderProps) {
+export function Header({ filter, setFilter, dark, toggleTheme, activities, page, onNavigate }: HeaderProps) {
   const { locale, setLocale, t } = useLocale()
-  const navItems = [t('home'), t('heatmap'), t('stats')]
-  const tabs: { label: string; value: SportFilter }[] = [
+
+  const existingTypes = new Set(activities.map((a) => a.type))
+  const allTabs: { label: string; value: SportFilter }[] = [
     { label: t('all'), value: 'all' },
     { label: t('run'), value: 'Run' },
     { label: t('ride'), value: 'Ride' },
+    { label: t('hike'), value: 'Hike' },
+  ]
+  const tabs = allTabs.filter((tab) => tab.value === 'all' || existingTypes.has(tab.value))
+
+  const navItems: { label: string; page: Page | null }[] = [
+    { label: t('home'), page: 'home' },
+    { label: t('tracks'), page: 'tracks' },
+    { label: t('heatmap'), page: 'heatmap' },
   ]
 
   return (
-    <header className="border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/70 backdrop-blur-md">
       <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -48,10 +62,15 @@ export function Header({ filter, setFilter, dark, toggleTheme }: HeaderProps) {
         <div className="flex items-center gap-6">
           {navItems.map((item) => (
             <span
-              key={item}
-              className="text-sm text-[var(--color-muted)] hover:text-[var(--color-text)] cursor-pointer transition-colors"
+              key={item.label}
+              onClick={() => item.page && onNavigate(item.page)}
+              className={`text-sm cursor-pointer transition-colors ${
+                item.page === page
+                  ? 'text-[var(--color-accent)] font-medium'
+                  : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
+              }`}
             >
-              {item}
+              {item.label}
             </span>
           ))}
           <button
