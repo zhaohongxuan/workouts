@@ -72,7 +72,7 @@ def make_gpx_from_points(title, points_dict_list):
 
 
 async def upload_to_activities(
-    garmin_client, strava_client, format, use_fake_garmin_device
+    garmin_client, strava_client, strava_web_client, format, use_fake_garmin_device
 ):
     last_activity = await garmin_client.get_activities(0, 1)
     if not last_activity:
@@ -94,8 +94,7 @@ async def upload_to_activities(
     # strava rate limit
     for i in sorted(strava_activities, key=lambda i: int(i.id)):
         try:
-            print("get strava data: id ", i.id)
-            data = strava_client.get_activity(i.id)
+            data = strava_web_client.get_activity_data(i.id, fmt=format)
             files_list.append(data)
         except Exception as ex:
             print("get strava data error: ", ex)
@@ -115,6 +114,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("strava_email", nargs="?", help="email of strava")
     parser.add_argument("strava_password", nargs="?", help="password of strava")
+    parser.add_argument("strava_jwt", nargs="?", help="jwt token of strava")
     parser.add_argument(
         "--is-cn",
         dest="is_cn",
@@ -133,7 +133,18 @@ if __name__ == "__main__":
         options.strava_client_secret,
         options.strava_refresh_token,
     )
-
+    if options.strava_jwt:
+        strava_web_client = WebClient(
+            access_token=strava_client.access_token,
+            jwt=options.strava_jwt,
+        )
+    elif options.strava_email and options.strava_password:
+        strava_web_client = WebClient(
+            access_token=strava_client.access_token,
+            email=options.strava_email,
+            password=options.strava_password,
+        )
+    
     garmin_auth_domain = "CN" if options.is_cn else ""
 
     try:
@@ -143,6 +154,7 @@ if __name__ == "__main__":
             upload_to_activities(
                 garmin_client,
                 strava_client,
+                strava_web_client,
                 DataFormat.ORIGINAL,
                 options.use_fake_garmin_device,
             )
