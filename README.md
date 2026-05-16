@@ -89,6 +89,36 @@ src/
     └── activities.json          # 活动数据（由 Python 脚本生成）
 ```
 
+## 个性化配置
+
+编辑 `src/config.ts` 即可自定义以下选项，无需改动其他代码。
+
+### 默认语言与主题
+
+```ts
+// 默认语言：'zh'（中文）| 'en'（英文）
+export const DEFAULT_LOCALE: Locale = 'zh'
+
+// 默认主题：'system'（跟随系统）| 'light'（浅色）| 'dark'（深色）
+export const DEFAULT_THEME = 'system'
+```
+
+> 用户手动切换后，选择会保存在 `localStorage`，下次访问以用户选择为准。
+
+### 运动目标
+
+支持按运动类型分别设置年度 / 月度 / 周度目标。跑步、骑行、徒步的目标以 **km** 为单位；健身目标以**分钟**为单位，进度条和展示会自动切换为时长。
+
+```ts
+export const GOALS: Record<string, GoalConfig> = {
+  all:  { yearly: 2000, monthly: 150, weekly: 35,  unit: 'distance' },
+  Run:  { yearly: 1200, monthly: 100, weekly: 25,  unit: 'distance' },
+  Ride: { yearly: 3000, monthly: 250, weekly: 60,  unit: 'distance' },
+  Hike: { yearly: 300,  monthly: 25,  weekly: 6,   unit: 'distance' },
+  Gym:  { yearly: 6000, monthly: 600, weekly: 150, unit: 'time' },  // 分钟
+}
+```
+
 ## 部署
 
 项目通过 GitHub Actions 自动部署至 GitHub Pages，推送到 `master` 分支后自动触发构建，详见 `.github/workflows/gh-pages.yml`。
