@@ -51,18 +51,52 @@ pnpm preview
 
 ## 数据同步
 
-活动数据通过 Strava / Garmin 同步脚本生成，存储为 `src/static/activities.json`。
+活动数据通过 [running_page](https://github.com/yihong0618/running_page) 的同步脚本生成，存储为 `src/static/activities.json`，脚本位于本项目的 `run_page/` 目录下。
+
+### 支持的数据源
+
+| 数据源 | 脚本 | 认证方式 | 备注 |
+|--------|------|----------|------|
+| **Strava** | `strava_sync.py` | OAuth（Client ID / Secret / Refresh Token） | 支持全量同步 |
+| **Strava（近期）** | `strava_sync_recent.py` | 同上，读取环境变量 | 仅同步最近 7 天，适合定时任务 |
+| **Garmin（国际版）** | `garmin_sync.py` | Secret 字符串（由 `get_garmin_secret.py` 生成） | `--only-run` 可只同步跑步 |
+| **Garmin（CN + 国际版）** | `garmin_sync_cn_global.py` | CN Secret + Global Secret 两个字符串 | 同时同步国区和国际区账号 |
+| **Keep** | `keep_sync.py` | 手机号 + 密码 | 国内主流跑步 App |
+| **Nike Run Club** | `nike_sync.py` | Access Token | 从 Nike App 抓取 token |
+| **悦跑圈 JoyRun** | `joyrun_sync.py` | UID + Session ID | 从 App 抓包获取 |
+| **COROS** | `coros_sync.py` | 账号邮箱 + 密码 | 高驰手表 |
+| **行者 XingZhe** | `xingzhe_sync.py` | 账号 + 密码 | 骑行常用平台 |
+| **咕咚 Codoon** | `codoon_sync.py` | HMAC 认证（账号体系） | 需从 App 抓取签名参数 |
+| **OPPO Health** | `oppo_sync.py` | OAuth Refresh Token | OPPO 运动健康 |
+| **本地 GPX 文件** | `gpx_sync.py` | 无需认证 | 将 GPX 文件放入配置的目录即可 |
+| **本地 FIT 文件** | `fit_sync.py` | 无需认证 | 将 FIT 文件放入配置的目录即可 |
+
+### Strava 快速开始
 
 ```bash
-# 同步最近 7 天（从环境变量读取凭证）
+# 全量同步
+python run_page/strava_sync.py CLIENT_ID CLIENT_SECRET REFRESH_TOKEN
+
+# 增量同步（最近 7 天，适合配置为定时任务）
 export STRAVA_CLIENT_ID=xxx
 export STRAVA_CLIENT_SECRET=yyy
 export STRAVA_REFRESH_TOKEN=zzz
 python run_page/strava_sync_recent.py
-
-# 全量同步
-python run_page/strava_sync.py CLIENT_ID CLIENT_SECRET REFRESH_TOKEN
 ```
+
+### Garmin 快速开始
+
+```bash
+# 1. 先生成 secret 字符串（需要 Garmin 账号密码，只需执行一次）
+python run_page/get_garmin_secret.py EMAIL PASSWORD
+# 国区账号加上 --is-cn
+python run_page/get_garmin_secret.py EMAIL PASSWORD --is-cn
+
+# 2. 使用 secret 同步数据
+python run_page/garmin_sync.py SECRET_STRING
+```
+
+> 完整的各平台接入说明请参考 [running_page 项目文档](https://github.com/yihong0618/running_page)。
 
 ## 个性化配置
 
