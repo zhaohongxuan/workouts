@@ -90,7 +90,7 @@ export default function App() {
       )}
 
       <footer className="text-center py-6 text-sm text-[var(--color-muted)] border-t border-[var(--color-border)]">
-        &copy; {new Date().getFullYear()} Workout Dashboard. All miles counted.
+        &copy; {new Date().getFullYear()} Workout Dashboard. 
       </footer>
       </div>
     </LocaleProvider>

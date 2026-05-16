@@ -5,10 +5,10 @@
 
 # 默认语言：zh（中文）| en（英文）
 # 用户手动切换后会保存到 localStorage，下次访问以用户选择为准
-locale: zh
+locale: en
 
 # 默认主题：system（跟随系统）| light（浅色）| dark（深色）
-theme: system
+theme: dark
 
 # ── 运动目标 ──────────────────────────────────────────────────────────────────
 # unit: distance → 单位 km
@@ -16,7 +16,7 @@ theme: system
 
 goals:
   all:
-    yearly: 2000
+    yearly: 2500
     monthly: 150
     weekly: 35
     unit: distance
@@ -28,9 +28,9 @@ goals:
     unit: distance
 
   Ride:
-    yearly: 3000
-    monthly: 250
-    weekly: 60
+    yearly: 1000
+    monthly: 80
+    weekly: 20
     unit: distance
 
   Hike:
