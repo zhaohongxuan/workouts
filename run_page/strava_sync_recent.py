@@ -7,7 +7,9 @@ from config import JSON_FILE, SQL_FILE
 from generator import Generator
 
 
-def run_strava_sync_recent(client_id, client_secret, refresh_token, days=7, only_run=False):
+def run_strava_sync_recent(
+    client_id, client_secret, refresh_token, days=7, only_run=False
+):
     generator = Generator(SQL_FILE)
     generator.set_strava_config(client_id, client_secret, refresh_token)
     generator.only_run = only_run
@@ -21,12 +23,22 @@ def run_strava_sync_recent(client_id, client_secret, refresh_token, days=7, only
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Sync recent Strava activities (default: last 7 days). "
-                    "Credentials can be provided via env vars: "
-                    "STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN."
+        "Credentials can be provided via env vars: "
+        "STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN."
     )
-    parser.add_argument("client_id", nargs="?", help="Strava client ID (or set STRAVA_CLIENT_ID)")
-    parser.add_argument("client_secret", nargs="?", help="Strava client secret (or set STRAVA_CLIENT_SECRET)")
-    parser.add_argument("refresh_token", nargs="?", help="Strava refresh token (or set STRAVA_REFRESH_TOKEN)")
+    parser.add_argument(
+        "client_id", nargs="?", help="Strava client ID (or set STRAVA_CLIENT_ID)"
+    )
+    parser.add_argument(
+        "client_secret",
+        nargs="?",
+        help="Strava client secret (or set STRAVA_CLIENT_SECRET)",
+    )
+    parser.add_argument(
+        "refresh_token",
+        nargs="?",
+        help="Strava refresh token (or set STRAVA_REFRESH_TOKEN)",
+    )
     parser.add_argument(
         "--days",
         type=int,
@@ -47,11 +59,15 @@ if __name__ == "__main__":
     client_secret = options.client_secret or os.getenv("STRAVA_CLIENT_SECRET")
     refresh_token = options.refresh_token or os.getenv("STRAVA_REFRESH_TOKEN")
 
-    missing = [name for name, val in [
-        ("client_id / STRAVA_CLIENT_ID", client_id),
-        ("client_secret / STRAVA_CLIENT_SECRET", client_secret),
-        ("refresh_token / STRAVA_REFRESH_TOKEN", refresh_token),
-    ] if not val]
+    missing = [
+        name
+        for name, val in [
+            ("client_id / STRAVA_CLIENT_ID", client_id),
+            ("client_secret / STRAVA_CLIENT_SECRET", client_secret),
+            ("refresh_token / STRAVA_REFRESH_TOKEN", refresh_token),
+        ]
+        if not val
+    ]
 
     if missing:
         parser.error("Missing required credentials: " + ", ".join(missing))

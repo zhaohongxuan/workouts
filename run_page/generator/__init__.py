@@ -98,7 +98,9 @@ class Generator:
 
         after = datetime.datetime.utcnow() - datetime.timedelta(days=days)
         filters = {"after": after}
-        print(f"Syncing activities after {after.strftime('%Y-%m-%d')} (last {days} days)")
+        print(
+            f"Syncing activities after {after.strftime('%Y-%m-%d')} (last {days} days)"
+        )
 
         count_new = 0
         count_update = 0
