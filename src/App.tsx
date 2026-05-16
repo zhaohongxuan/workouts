@@ -14,6 +14,7 @@ import { MonthlyChart } from './components/MonthlyChart'
 import { ProfileCard } from './components/ProfileCard'
 import { PersonalBest } from './components/PersonalBest'
 import { TracksPage } from './components/TracksPage'
+import { ChinaMap } from './components/ChinaMap'
 import rawActivities from './static/activities.json'
 
 const activities = rawActivities as Activity[]
@@ -72,6 +73,7 @@ export default function App() {
           {/* Right column */}
           <div className="flex flex-col gap-6 min-w-0 overflow-hidden">
             <ProfileCard activities={activities} filter={filter} />
+            <ChinaMap activities={activities} />
             <RouteMap
               activities={filtered}
               selectedActivity={selectedActivity}
