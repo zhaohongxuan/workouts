@@ -2,7 +2,10 @@
 
 基于 React + TypeScript + Tailwind CSS 构建的现代运动数据看板，支持跑步、骑行、徒步、健身等多种运动类型的可视化展示。
 
-> 数据管道基于 [running_page](https://github.com/yihong0618/running_page) 项目。在线演示：[zhaohongxuan.github.io/workouts](http://zhaohongxuan.github.io/workouts)
+> 数据基于 [running_page](https://github.com/yihong0618/running_page) 项目同步 ， 脚本本项目的 run_page 文件夹下。
+> 在线演示：[zhaohongxuan.github.io/workouts](http://zhaohongxuan.github.io/workouts)
+
+<img width="1439" height="963" alt="image" src="https://github.com/user-attachments/assets/7ba5fc4c-dd2b-402d-bd83-0be8a2c670ab" />
 
 ## 功能特性
 
@@ -61,34 +64,6 @@ python run_page/strava_sync_recent.py
 python run_page/strava_sync.py CLIENT_ID CLIENT_SECRET REFRESH_TOKEN
 ```
 
-## 项目结构
-
-```
-src/
-├── App.tsx                      # 应用入口与路由
-├── i18n.ts                      # 中英文翻译字典
-├── types.ts                     # TypeScript 类型定义
-├── hooks/
-│   ├── useActivities.ts         # 数据过滤与格式化工具
-│   ├── useLocale.tsx            # 国际化 Context
-│   └── useTheme.ts              # 深色/浅色模式
-├── components/
-│   ├── Header.tsx               # 顶部导航与运动类型筛选
-│   ├── StatsCards.tsx           # 目标卡片与连续记录
-│   ├── ProfileCard.tsx          # 个人数据摘要
-│   ├── PersonalBest.tsx         # 个人最佳成绩
-│   ├── ContributionHeatmap.tsx  # 年度活动热力图
-│   ├── HeatmapPage.tsx          # 全年份热力图总览页
-│   ├── ActivityLog.tsx          # 活动记录表格
-│   ├── CalendarWidget.tsx       # 月度日历组件
-│   ├── MonthlyChart.tsx         # 月度统计柱状图
-│   ├── TrendCharts.tsx          # 趋势折线图
-│   ├── RouteMap.tsx             # Mapbox 路线地图
-│   └── TracksPage.tsx           # 轨迹墙页面
-└── static/
-    └── activities.json          # 活动数据（由 Python 脚本生成）
-```
-
 ## 个性化配置
 
 编辑根目录 `config.yml` 即可完成个性化设置，无需改动源代码。
@@ -118,9 +93,41 @@ goals:
   Gym:   { yearly: 6000, monthly: 600, weekly: 150, unit: time }   # 分钟
 ```
 
+
 ## 部署
 
 项目通过 GitHub Actions 自动部署至 GitHub Pages，推送到 `master` 分支后自动触发构建，详见 `.github/workflows/gh-pages.yml`。
+
+
+## 项目结构
+
+```
+src/
+├── App.tsx                      # 应用入口与路由
+├── i18n.ts                      # 中英文翻译字典
+├── types.ts                     # TypeScript 类型定义
+├── hooks/
+│   ├── useActivities.ts         # 数据过滤与格式化工具
+│   ├── useLocale.tsx            # 国际化 Context
+│   └── useTheme.ts              # 深色/浅色模式
+├── components/
+│   ├── Header.tsx               # 顶部导航与运动类型筛选
+│   ├── StatsCards.tsx           # 目标卡片与连续记录
+│   ├── ProfileCard.tsx          # 个人数据摘要
+│   ├── PersonalBest.tsx         # 个人最佳成绩
+│   ├── ContributionHeatmap.tsx  # 年度活动热力图
+│   ├── HeatmapPage.tsx          # 全年份热力图总览页
+│   ├── ActivityLog.tsx          # 活动记录表格
+│   ├── CalendarWidget.tsx       # 月度日历组件
+│   ├── MonthlyChart.tsx         # 月度统计柱状图
+│   ├── TrendCharts.tsx          # 趋势折线图
+│   ├── RouteMap.tsx             # Mapbox 路线地图
+│   └── TracksPage.tsx           # 轨迹墙页面
+└── static/
+    └── activities.json          # 活动数据（由 Python 脚本生成）
+```
+
+
 
 ## 致谢
 
