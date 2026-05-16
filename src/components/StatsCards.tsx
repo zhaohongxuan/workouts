@@ -2,6 +2,7 @@ import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { formatDistance, parseMovingTime } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
+import { GOALS, DEFAULT_GOAL } from '../config'
 
 interface StatsCardsProps {
   activities: Activity[]
@@ -13,6 +14,14 @@ interface StatsCardsProps {
 
 export function StatsCards({ activities, allActivities, year, filter, onSelectActivity }: StatsCardsProps) {
   const { t, locale } = useLocale()
+  const goal = GOALS[filter] ?? DEFAULT_GOAL
+  // For Gym, goals are in minutes; for others, goals are in km → convert to meters
+  const yearGoalMeters  = goal.unit === 'time' ? 0 : goal.yearly  * 1000
+  const monthGoalMeters = goal.unit === 'time' ? 0 : goal.monthly * 1000
+  const weekGoalMeters  = goal.unit === 'time' ? 0 : goal.weekly  * 1000
+  const yearGoalMins    = goal.unit === 'time' ? goal.yearly  : 0
+  const monthGoalMins   = goal.unit === 'time' ? goal.monthly : 0
+  const weekGoalMins    = goal.unit === 'time' ? goal.weekly  : 0
 
   // Current year stats (for yearly goal)
   const now = new Date()
@@ -226,13 +235,15 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
           {t('yearlyGoal')}
         </p>
         <p className="text-3xl font-bold font-mono whitespace-nowrap">
-          {formatDistance(yearDistance)}
-          <span className="text-base font-normal text-[var(--color-muted)] ml-1">/ 2000 km</span>
+          {goal.unit === 'time' ? formatHours(yearSeconds) : formatDistance(yearDistance)}
+          <span className="text-base font-normal text-[var(--color-muted)] ml-1">
+            / {goal.unit === 'time' ? `${Math.round(yearGoalMins / 60)}h` : `${goal.yearly} km`}
+          </span>
         </p>
         <div className="mt-3 h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <div
             className="h-full bg-[var(--color-accent)] rounded-full transition-all"
-            style={{ width: `${Math.min((yearDistance / 2000000) * 100, 100)}%` }}
+            style={{ width: `${Math.min(goal.unit === 'time' ? (yearSeconds / (yearGoalMins * 60)) * 100 : (yearDistance / yearGoalMeters) * 100, 100)}%` }}
           />
         </div>
         <div className="mt-3 flex items-center justify-between text-sm text-[var(--color-muted)]">
@@ -245,7 +256,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
           <span>{formatHours(yearSeconds)}</span>
         </div>
         <p className={`mt-1.5 text-xs ${yearDiff >= 0 ? 'text-emerald-500' : 'text-red-400'}`}>
-          {yearDiff >= 0 ? '↗' : '↘'} {formatDistance(Math.abs(yearDiff))} km {t('vsLastYear')}
+          {yearDiff >= 0 ? '↗' : '↘'} {goal.unit === 'time' ? formatHours(Math.abs(yearDiff)) : `${formatDistance(Math.abs(yearDiff))} km`} {t('vsLastYear')}
         </p>
       </div>
 
@@ -258,13 +269,15 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
           {t('monthlyGoal')}
         </p>
         <p className="text-3xl font-bold font-mono whitespace-nowrap">
-          {formatDistance(monthDistance)}
-          <span className="text-base font-normal text-[var(--color-muted)] ml-1">/ 120 km</span>
+          {goal.unit === 'time' ? formatHours(monthSeconds) : formatDistance(monthDistance)}
+          <span className="text-base font-normal text-[var(--color-muted)] ml-1">
+            / {goal.unit === 'time' ? `${Math.round(monthGoalMins / 60)}h` : `${goal.monthly} km`}
+          </span>
         </p>
         <div className="mt-3 h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <div
             className="h-full bg-[var(--color-accent)] rounded-full transition-all"
-            style={{ width: `${Math.min((monthDistance / 120000) * 100, 100)}%` }}
+            style={{ width: `${Math.min(goal.unit === 'time' ? (monthSeconds / (monthGoalMins * 60)) * 100 : (monthDistance / monthGoalMeters) * 100, 100)}%` }}
           />
         </div>
         <div className="mt-3 flex items-center justify-between text-sm text-[var(--color-muted)]">
@@ -277,7 +290,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
           <span>{formatHours(monthSeconds)}</span>
         </div>
         <p className={`mt-1.5 text-xs ${monthDiff >= 0 ? 'text-emerald-500' : 'text-red-400'}`}>
-          {monthDiff >= 0 ? '↗' : '↘'} {formatDistance(Math.abs(monthDiff))} km {t('vsLastMonth')}
+          {monthDiff >= 0 ? '↗' : '↘'} {goal.unit === 'time' ? formatHours(Math.abs(monthDiff)) : `${formatDistance(Math.abs(monthDiff))} km`} {t('vsLastMonth')}
         </p>
       </div>
 
@@ -290,13 +303,15 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
           {locale === 'zh' ? '周目标' : 'WEEKLY GOAL'}
         </p>
         <p className="text-3xl font-bold font-mono whitespace-nowrap">
-          {formatDistance(weekDistance)}
-          <span className="text-base font-normal text-[var(--color-muted)] ml-1">/ 30 km</span>
+          {goal.unit === 'time' ? formatHours(weekSeconds) : formatDistance(weekDistance)}
+          <span className="text-base font-normal text-[var(--color-muted)] ml-1">
+            / {goal.unit === 'time' ? `${weekGoalMins}m` : `${goal.weekly} km`}
+          </span>
         </p>
         <div className="mt-3 h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <div
             className="h-full bg-[var(--color-accent)] rounded-full transition-all"
-            style={{ width: `${Math.min((weekDistance / 30000) * 100, 100)}%` }}
+            style={{ width: `${Math.min(goal.unit === 'time' ? (weekSeconds / (weekGoalMins * 60)) * 100 : (weekDistance / weekGoalMeters) * 100, 100)}%` }}
           />
         </div>
         <div className="mt-3 flex items-center justify-between text-sm text-[var(--color-muted)]">
@@ -309,7 +324,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
           <span>{formatHours(weekSeconds)}</span>
         </div>
         <p className={`mt-1.5 text-xs ${weekDiff >= 0 ? 'text-emerald-500' : 'text-red-400'}`}>
-          {weekDiff >= 0 ? '↗' : '↘'} {formatDistance(Math.abs(weekDiff))} km {locale === 'zh' ? 'vs 上周同期' : 'vs last week'}
+          {weekDiff >= 0 ? '↗' : '↘'} {goal.unit === 'time' ? formatHours(Math.abs(weekDiff)) : `${formatDistance(Math.abs(weekDiff))} km`} {locale === 'zh' ? 'vs 上周同期' : 'vs last week'}
         </p>
       </div>
 

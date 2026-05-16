@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback } from 'react'
 import type { ReactNode } from 'react'
 import { messages, type Locale } from '../i18n'
+import { DEFAULT_LOCALE } from '../config'
 
 interface LocaleContextValue {
   locale: Locale
@@ -16,7 +17,7 @@ const LocaleContext = createContext<LocaleContextValue>({
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
-    return (localStorage.getItem('locale') as Locale) || 'zh'
+    return (localStorage.getItem('locale') as Locale) || DEFAULT_LOCALE
   })
 
   const setLocale = useCallback((l: Locale) => {
