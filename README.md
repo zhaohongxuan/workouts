@@ -91,16 +91,16 @@ src/
 
 ## 个性化配置
 
-编辑 `src/config.ts` 即可自定义以下选项，无需改动其他代码。
+编辑根目录 `config.yml` 即可完成个性化设置，无需改动源代码。
 
 ### 默认语言与主题
 
-```ts
-// 默认语言：'zh'（中文）| 'en'（英文）
-export const DEFAULT_LOCALE: Locale = 'zh'
+```yaml
+# 默认语言：zh（中文）| en（英文）
+locale: zh
 
-// 默认主题：'system'（跟随系统）| 'light'（浅色）| 'dark'（深色）
-export const DEFAULT_THEME = 'system'
+# 默认主题：system（跟随系统）| light（浅色）| dark（深色）
+theme: system
 ```
 
 > 用户手动切换后，选择会保存在 `localStorage`，下次访问以用户选择为准。
@@ -109,14 +109,13 @@ export const DEFAULT_THEME = 'system'
 
 支持按运动类型分别设置年度 / 月度 / 周度目标。跑步、骑行、徒步的目标以 **km** 为单位；健身目标以**分钟**为单位，进度条和展示会自动切换为时长。
 
-```ts
-export const GOALS: Record<string, GoalConfig> = {
-  all:  { yearly: 2000, monthly: 150, weekly: 35,  unit: 'distance' },
-  Run:  { yearly: 1200, monthly: 100, weekly: 25,  unit: 'distance' },
-  Ride: { yearly: 3000, monthly: 250, weekly: 60,  unit: 'distance' },
-  Hike: { yearly: 300,  monthly: 25,  weekly: 6,   unit: 'distance' },
-  Gym:  { yearly: 6000, monthly: 600, weekly: 150, unit: 'time' },  // 分钟
-}
+```yaml
+goals:
+  all:   { yearly: 2000, monthly: 150, weekly: 35,  unit: distance }
+  Run:   { yearly: 1200, monthly: 100, weekly: 25,  unit: distance }
+  Ride:  { yearly: 3000, monthly: 250, weekly: 60,  unit: distance }
+  Hike:  { yearly: 300,  monthly: 25,  weekly: 6,   unit: distance }
+  Gym:   { yearly: 6000, monthly: 600, weekly: 150, unit: time }   # 分钟
 ```
 
 ## 部署

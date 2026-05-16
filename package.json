@@ -26,6 +26,7 @@
     "recharts": "^2.13.3"
   },
   "devDependencies": {
+    "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@tailwindcss/vite": "^4.0.0",
     "@types/mapbox__polyline": "^1.0.5",
     "@types/react": "^18.3.3",
