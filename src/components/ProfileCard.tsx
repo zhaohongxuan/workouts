@@ -71,7 +71,7 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
   }
 
   return (
-    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
+    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
       {/* Avatar top-left + Distance */}
       <div className="flex items-center gap-4">
         <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[var(--color-border)] shrink-0">

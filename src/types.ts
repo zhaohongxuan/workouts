@@ -3,7 +3,7 @@ export interface Activity {
   name: string
   distance: number // meters
   moving_time: string // "H:MM:SS"
-  type: 'Run' | 'Ride' | 'Hike'
+  type: 'Run' | 'Ride' | 'Hike' | 'WeightTraining' | 'Workout' | 'StairStepper' | 'WaterSport' | string
   start_date: string
   start_date_local: string
   location_country: string | null
@@ -15,4 +15,6 @@ export interface Activity {
   streak: number
 }
 
-export type SportFilter = 'all' | 'Run' | 'Ride' | 'Hike'
+export type SportFilter = 'all' | 'Run' | 'Ride' | 'Hike' | 'Gym'
+export type WorkoutType = 'WeightTraining' | 'Workout' | 'StairStepper' | 'WaterSport'
+export const WORKOUT_TYPES: WorkoutType[] = ['WeightTraining', 'Workout', 'StairStepper', 'WaterSport']

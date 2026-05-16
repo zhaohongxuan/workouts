@@ -119,6 +119,10 @@ MAPPING_TYPE = [
     "Kayaking",
     "Snowboard",
     "Ski",
+    "WeightTraining",
+    "Workout",
+    "StairStepper",
+    "WaterSport",
 ]
 
 STRAVA_GARMIN_TYPE_DICT = {

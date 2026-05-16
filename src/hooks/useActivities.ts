@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import type { Activity, SportFilter } from '../types'
+import { WORKOUT_TYPES } from '../types'
 
 export function useFilteredActivities(
   activities: Activity[],
@@ -8,7 +9,9 @@ export function useFilteredActivities(
 ) {
   return useMemo(() => {
     let filtered = activities
-    if (filter !== 'all') {
+    if (filter === 'Gym') {
+      filtered = filtered.filter((a) => (WORKOUT_TYPES as string[]).includes(a.type))
+    } else if (filter !== 'all') {
       filtered = filtered.filter((a) => a.type === filter)
     }
     if (year) {

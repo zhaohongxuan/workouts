@@ -61,7 +61,6 @@ export default function App() {
         />
       ) : (
       <main className="max-w-[1400px] mx-auto px-6 py-6">
-        {/* Single two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] xl:grid-cols-[1fr_380px] gap-6 items-start">
           {/* Left column */}
           <div className="space-y-6 min-w-0 overflow-hidden">

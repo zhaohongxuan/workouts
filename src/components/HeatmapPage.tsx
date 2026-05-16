@@ -14,13 +14,14 @@ function getColor(distance: number, max: number, filter: SportFilter): string {
   if (distance === 0) return 'var(--color-border)'
   const ratio = Math.min(distance / max, 1)
   const level = Math.ceil(ratio * 4)
-  const colors = {
-    all: ['#3b0764', '#7c3aed', '#a855f7', '#c084fc', '#e9d5ff'],
-    Run: ['#431407', '#c2410c', '#f97316', '#fb923c', '#fed7aa'],
+  const colors: Record<string, string[]> = {
+    all:  ['#3b0764', '#7c3aed', '#a855f7', '#c084fc', '#e9d5ff'],
+    Run:  ['#431407', '#c2410c', '#f97316', '#fb923c', '#fed7aa'],
     Ride: ['#1e3a5f', '#1d4ed8', '#3b82f6', '#60a5fa', '#bfdbfe'],
     Hike: ['#14532d', '#15803d', '#22c55e', '#4ade80', '#bbf7d0'],
+    Gym:  ['#4a1942', '#86198f', '#c026d3', '#d946ef', '#f5d0fe'],
   }
-  return colors[filter][4 - level] || colors[filter][0]
+  return colors[filter]?.[4 - level] || colors.all[0]
 }
 
 function buildYearGrid(yr: number, acts: Activity[]) {

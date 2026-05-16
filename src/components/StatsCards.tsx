@@ -1,4 +1,5 @@
 import type { Activity, SportFilter } from '../types'
+import { WORKOUT_TYPES } from '../types'
 import { formatDistance, parseMovingTime } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 
@@ -87,6 +88,11 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
   const lastWeekDistance = lastWeekActivities.reduce((s, a) => s + a.distance, 0)
   const weekDiff = weekDistance - lastWeekDistance
 
+  // Use local date string to avoid UTC offset issues
+  function toLocalDateStr(d: Date): string {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+  }
+
   // Streak calculation (consecutive days with activity)
   const sortedDates = [...new Set(
     activities.map((a) => a.start_date_local.slice(0, 10))
@@ -94,15 +100,16 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
 
   let currentStreak = 0
   if (sortedDates.length > 0) {
-    const today = now.toISOString().slice(0, 10)
-    const yesterday = new Date(now.getTime() - 86400000).toISOString().slice(0, 10)
+    const today = toLocalDateStr(now)
+    const yesterday = toLocalDateStr(new Date(now.getTime() - 86400000))
     if (sortedDates[0] === today || sortedDates[0] === yesterday) {
-      let expected = new Date(sortedDates[0])
+      let expected = sortedDates[0]
       for (const dateStr of sortedDates) {
-        const d = new Date(dateStr + 'T00:00:00')
-        if (d.toISOString().slice(0, 10) === expected.toISOString().slice(0, 10)) {
+        if (dateStr === expected) {
           currentStreak++
-          expected = new Date(expected.getTime() - 86400000)
+          const prev = new Date(expected + 'T12:00:00')
+          prev.setDate(prev.getDate() - 1)
+          expected = toLocalDateStr(prev)
         } else {
           break
         }
@@ -130,9 +137,11 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
     const currKey = `${d.getFullYear()}-${getWeekNumber(d)}`
     if (weekSet.has(currKey)) {
       // Count backwards from current week
+      const seen = new Set<string>()
       while (true) {
         const key = `${d.getFullYear()}-${getWeekNumber(d)}`
-        if (weekSet.has(key)) {
+        if (weekSet.has(key) && !seen.has(key)) {
+          seen.add(key)
           currentWeekStreak++
           d = new Date(d.getTime() - 7 * 86400000)
         } else {
@@ -143,9 +152,11 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
       // Try last week
       d = new Date(now.getTime() - 7 * 86400000)
       if (weekSet.has(`${d.getFullYear()}-${getWeekNumber(d)}`)) {
+        const seen = new Set<string>()
         while (true) {
           const key = `${d.getFullYear()}-${getWeekNumber(d)}`
-          if (weekSet.has(key)) {
+          if (weekSet.has(key) && !seen.has(key)) {
+            seen.add(key)
             currentWeekStreak++
             d = new Date(d.getTime() - 7 * 86400000)
           } else {
@@ -207,7 +218,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
   return (
     <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1.6fr] gap-4">
       {/* Yearly Goal */}
-      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
         <p className="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-2 flex items-center gap-1.5">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -239,7 +250,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
       </div>
 
       {/* Monthly Goal */}
-      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
         <p className="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-2 flex items-center gap-1.5">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -271,7 +282,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
       </div>
 
       {/* Weekly Goal */}
-      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
         <p className="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-2 flex items-center gap-1.5">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -303,7 +314,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
       </div>
 
       {/* Streak */}
-      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
         <p className="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-2 flex items-center gap-1.5">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
@@ -320,14 +331,26 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
 
         {/* Week days visual */}
         {(() => {
-          const today = now.getDay()
-          const weekStart = new Date(now.getTime() - today * 86400000)
+          const todayIdx = now.getDay()
+          const weekStart = new Date(now.getTime() - todayIdx * 86400000)
           const weekLabels = locale === 'zh' ? ['日','一','二','三','四','五','六'] : ['S','M','T','W','T','F','S']
+
+          function dayColor(acts: Activity[]): string {
+            if (acts.length === 0) return ''
+            const sorted = [...acts].sort((a, b) => b.distance - a.distance)
+            const type = sorted[0].type
+            if (type === 'Run') return '#f97316'
+            if (type === 'Ride') return '#3b82f6'
+            if (type === 'Hike') return '#22c55e'
+            if ((WORKOUT_TYPES as string[]).includes(type)) return '#ec4899'
+            return 'var(--color-text)'
+          }
+
           const weekDays = Array.from({ length: 7 }, (_, i) => {
             const date = new Date(weekStart.getTime() + i * 86400000)
-            const key = date.toISOString().slice(0, 10)
-            const hasAct = activities.some((a) => a.start_date_local.slice(0, 10) === key)
-            return { day: date.getDate(), hasActivity: hasAct, isToday: i === today }
+            const key = toLocalDateStr(date)
+            const dayActs = activities.filter((a) => a.start_date_local.slice(0, 10) === key)
+            return { day: date.getDate(), hasActivity: dayActs.length > 0, isToday: i === todayIdx, acts: dayActs }
           })
           return (
             <div className="mt-3 flex items-center gap-2">
@@ -342,30 +365,30 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
               </div>
               <div className="flex items-center gap-1.5 flex-1">
                 {weekDays.map((wd, i) => {
-                  const isPast = new Date(weekStart.getTime() + i * 86400000) < now || wd.isToday
-                  const dateKey = new Date(weekStart.getTime() + i * 86400000).toISOString().slice(0, 10)
-                  const dayActivities = activities.filter((a) => a.start_date_local.slice(0, 10) === dateKey)
+                  const isPast = new Date(weekStart.getTime() + i * 86400000) <= now
+                  const color = dayColor(wd.acts)
                   return (
-                  <div
-                    key={i}
-                    className={`flex flex-col items-center gap-0.5 ${dayActivities.length > 0 ? 'cursor-pointer' : ''}`}
-                    onClick={() => {
-                      if (dayActivities.length > 0) onSelectActivity(dayActivities[0])
-                    }}
-                  >
-                    <span className="text-[9px] text-[var(--color-muted)]">{weekLabels[i]}</span>
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium transition-opacity ${
-                      wd.hasActivity
-                        ? 'bg-[var(--color-text)] text-[var(--color-bg)] hover:opacity-70'
-                        : wd.isToday
-                          ? 'ring-1.5 ring-[var(--color-text)] text-[var(--color-text)]'
-                          : isPast
-                            ? 'bg-[var(--color-border)] text-[var(--color-muted)]'
-                            : 'text-[var(--color-muted)]'
-                    }`}>
-                      {wd.day}
+                    <div
+                      key={i}
+                      className={`flex flex-col items-center gap-0.5 ${wd.hasActivity ? 'cursor-pointer' : ''}`}
+                      onClick={() => { if (wd.acts.length > 0) onSelectActivity(wd.acts[0]) }}
+                    >
+                      <span className="text-[9px] text-[var(--color-muted)]">{weekLabels[i]}</span>
+                      <div
+                        className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium transition-opacity ${
+                          wd.hasActivity
+                            ? 'text-white hover:opacity-70'
+                            : wd.isToday
+                              ? 'ring-1 ring-[var(--color-text)] text-[var(--color-text)]'
+                              : isPast
+                                ? 'bg-[var(--color-border)] text-[var(--color-muted)]'
+                                : 'text-[var(--color-muted)]'
+                        }`}
+                        style={wd.hasActivity ? { backgroundColor: color } : {}}
+                      >
+                        {wd.day}
+                      </div>
                     </div>
-                  </div>
                   )
                 })}
               </div>
