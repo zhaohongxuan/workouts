@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import * as polyline from '@mapbox/polyline'
 import type { Activity, SportFilter } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
@@ -110,41 +110,53 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
   const avgPace = allRuns.length > 0 ? allRuns.reduce((s, a) => s + a.average_speed, 0) / allRuns.length : 0
 
   // Cluster similar routes: round start/end lat/lng to ~1km grid + round distance to 2km bucket
-  const clusteredTracks = useMemo(() => {
-    type Cluster = { representative: Activity; count: number; color: string }
-    const clusters: Cluster[] = []
-    const used = new Set<number>()
+  type Cluster = { representative: Activity; count: number; color: string }
+  const [clusteredTracks, setClusteredTracks] = useState<Cluster[]>([])
+  const [clustering, setClustering] = useState(true)
 
-    const acts = withPolyline
-    for (let i = 0; i < acts.length; i++) {
-      if (used.has(i)) continue
-      const a = acts[i]
-      const coordsA = polyline.decode(a.summary_polyline!)
-      if (coordsA.length < 2) continue
-      const startA = coordsA[0], endA = coordsA[coordsA.length - 1]
-      const distBucketA = Math.round(a.distance / 2000)
+  useEffect(() => {
+    setClustering(true)
+    // Defer to next tick so the page shell renders first
+    const id = setTimeout(() => {
+      const acts = withPolyline
+      // Pre-decode all polylines once
+      type Decoded = { start: [number, number]; end: [number, number]; distBucket: number }
+      const decoded: (Decoded | null)[] = acts.map(a => {
+        try {
+          const coords = polyline.decode(a.summary_polyline!)
+          if (coords.length < 2) return null
+          return {
+            start: coords[0] as [number, number],
+            end: coords[coords.length - 1] as [number, number],
+            distBucket: Math.round(a.distance / 2000),
+          }
+        } catch { return null }
+      })
 
-      let count = 1
-      for (let j = i + 1; j < acts.length; j++) {
-        if (used.has(j)) continue
-        const b = acts[j]
-        const coordsB = polyline.decode(b.summary_polyline!)
-        if (coordsB.length < 2) continue
-        const startB = coordsB[0], endB = coordsB[coordsB.length - 1]
-        const distBucketB = Math.round(b.distance / 2000)
+      const clusters: Cluster[] = []
+      const used = new Set<number>()
 
-        // Same distance bucket and start/end within ~500m (0.005 deg ≈ 500m)
-        const startClose = Math.abs(startA[0] - startB[0]) < 0.005 && Math.abs(startA[1] - startB[1]) < 0.005
-        const endClose = Math.abs(endA[0] - endB[0]) < 0.005 && Math.abs(endA[1] - endB[1]) < 0.005
-        if (distBucketA === distBucketB && startClose && endClose) {
-          used.add(j)
-          count++
+      for (let i = 0; i < acts.length; i++) {
+        if (used.has(i)) continue
+        const di = decoded[i]
+        if (!di) continue
+        let count = 1
+        for (let j = i + 1; j < acts.length; j++) {
+          if (used.has(j)) continue
+          const dj = decoded[j]
+          if (!dj) continue
+          if (di.distBucket !== dj.distBucket) continue
+          const startClose = Math.abs(di.start[0] - dj.start[0]) < 0.005 && Math.abs(di.start[1] - dj.start[1]) < 0.005
+          const endClose = Math.abs(di.end[0] - dj.end[0]) < 0.005 && Math.abs(di.end[1] - dj.end[1]) < 0.005
+          if (startClose && endClose) { used.add(j); count++ }
         }
+        used.add(i)
+        clusters.push({ representative: acts[i], count, color: getColor(acts[i]) })
       }
-      used.add(i)
-      clusters.push({ representative: a, count, color: getColor(a) })
-    }
-    return clusters
+      setClusteredTracks(clusters)
+      setClustering(false)
+    }, 0)
+    return () => clearTimeout(id)
   }, [withPolyline])
 
   function getColor(a: Activity): string {
@@ -247,6 +259,13 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
 
         {/* Right: track grid */}
         <div className="flex-1 bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 min-w-0">
+          {clustering ? (
+            <div className="flex flex-wrap gap-1">
+              {Array.from({ length: 40 }).map((_, i) => (
+                <div key={i} className="w-[80px] h-[80px] rounded bg-[var(--color-border)] animate-pulse" style={{ animationDelay: `${i * 20}ms` }} />
+              ))}
+            </div>
+          ) : (
           <div className="flex flex-wrap gap-1">
             {clusteredTracks.map(({ representative: a, count, color }) => (
               <div key={a.run_id} className="relative">
@@ -263,6 +282,7 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
               </div>
             ))}
           </div>
+          )}
 
           {/* Legend */}
           <div className="mt-4 pt-4 border-t border-[var(--color-border)] flex items-center gap-6 text-xs text-[var(--color-muted)]">
