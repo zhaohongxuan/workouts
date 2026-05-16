@@ -7,9 +7,10 @@ interface StatsCardsProps {
   allActivities: Activity[]
   year: number | null
   filter: SportFilter
+  onSelectActivity: (a: Activity) => void
 }
 
-export function StatsCards({ activities, allActivities, year, filter }: StatsCardsProps) {
+export function StatsCards({ activities, allActivities, year, filter, onSelectActivity }: StatsCardsProps) {
   const { t, locale } = useLocale()
 
   // Current year stats (for yearly goal)
@@ -204,7 +205,7 @@ export function StatsCards({ activities, allActivities, year, filter }: StatsCar
   const unit = filter === 'Run' ? t('runs') : filter === 'Ride' ? t('rides') : t('activities')
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1.5fr] gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1.6fr] gap-4">
       {/* Yearly Goal */}
       <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/5">
         <p className="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-2 flex items-center gap-1.5">
@@ -213,7 +214,7 @@ export function StatsCards({ activities, allActivities, year, filter }: StatsCar
           </svg>
           {t('yearlyGoal')}
         </p>
-        <p className="text-3xl font-bold font-mono">
+        <p className="text-3xl font-bold font-mono whitespace-nowrap">
           {formatDistance(yearDistance)}
           <span className="text-base font-normal text-[var(--color-muted)] ml-1">/ 2000 km</span>
         </p>
@@ -245,7 +246,7 @@ export function StatsCards({ activities, allActivities, year, filter }: StatsCar
           </svg>
           {t('monthlyGoal')}
         </p>
-        <p className="text-3xl font-bold font-mono">
+        <p className="text-3xl font-bold font-mono whitespace-nowrap">
           {formatDistance(monthDistance)}
           <span className="text-base font-normal text-[var(--color-muted)] ml-1">/ 120 km</span>
         </p>
@@ -277,7 +278,7 @@ export function StatsCards({ activities, allActivities, year, filter }: StatsCar
           </svg>
           {locale === 'zh' ? '周目标' : 'WEEKLY GOAL'}
         </p>
-        <p className="text-3xl font-bold font-mono">
+        <p className="text-3xl font-bold font-mono whitespace-nowrap">
           {formatDistance(weekDistance)}
           <span className="text-base font-normal text-[var(--color-muted)] ml-1">/ 30 km</span>
         </p>
@@ -315,10 +316,6 @@ export function StatsCards({ activities, allActivities, year, filter }: StatsCar
             {currentStreak}
             <span className="text-base font-normal text-[var(--color-muted)] ml-1">{t('days')}</span>
           </p>
-          <p className="text-3xl font-bold font-mono">
-            {currentWeekStreak}
-            <span className="text-base font-normal text-[var(--color-muted)] ml-1">{t('weeks')}</span>
-          </p>
         </div>
 
         {/* Week days visual */}
@@ -334,18 +331,32 @@ export function StatsCards({ activities, allActivities, year, filter }: StatsCar
           })
           return (
             <div className="mt-3 flex items-center gap-2">
-              <svg className="w-6 h-6 text-[#f97316] shrink-0 self-center mt-3" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 23c-3.866 0-7-3.134-7-7 0-2.468 1.5-5.093 3.03-6.97.44-.54 1.47-.36 1.64.3.17.66.54 1.44 1.13 2.07.26-.94.76-2.06 1.57-3.04.81-.98 1.49-2.09 1.78-3.36.12-.53.71-.78 1.15-.46C17.09 6.46 19 9.58 19 13.5c0 5.247-3.134 9.5-7 9.5z"/>
-              </svg>
+              <div className="flex flex-col items-center shrink-0 gap-0">
+                <div className="relative w-9 h-9">
+                  <svg className="w-9 h-9 text-[#f97316]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 23c-3.866 0-7-3.134-7-7 0-2.468 1.5-5.093 3.03-6.97.44-.54 1.47-.36 1.64.3.17.66.54 1.44 1.13 2.07.26-.94.76-2.06 1.57-3.04.81-.98 1.49-2.09 1.78-3.36.12-.53.71-.78 1.15-.46C17.09 6.46 19 9.58 19 13.5c0 5.247-3.134 9.5-7 9.5z"/>
+                  </svg>
+                  <span className="absolute bottom-[18%] left-0 right-0 flex items-center justify-center text-[9px] font-bold text-white leading-none">{currentWeekStreak}</span>
+                </div>
+                <span className="text-[11px] font-medium text-[var(--color-muted)] -mt-0.5">{t('weeks')}</span>
+              </div>
               <div className="flex items-center gap-1.5 flex-1">
                 {weekDays.map((wd, i) => {
                   const isPast = new Date(weekStart.getTime() + i * 86400000) < now || wd.isToday
+                  const dateKey = new Date(weekStart.getTime() + i * 86400000).toISOString().slice(0, 10)
+                  const dayActivities = activities.filter((a) => a.start_date_local.slice(0, 10) === dateKey)
                   return (
-                  <div key={i} className="flex flex-col items-center gap-0.5">
+                  <div
+                    key={i}
+                    className={`flex flex-col items-center gap-0.5 ${dayActivities.length > 0 ? 'cursor-pointer' : ''}`}
+                    onClick={() => {
+                      if (dayActivities.length > 0) onSelectActivity(dayActivities[0])
+                    }}
+                  >
                     <span className="text-[9px] text-[var(--color-muted)]">{weekLabels[i]}</span>
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium ${
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium transition-opacity ${
                       wd.hasActivity
-                        ? 'bg-[var(--color-text)] text-[var(--color-bg)]'
+                        ? 'bg-[var(--color-text)] text-[var(--color-bg)] hover:opacity-70'
                         : wd.isToday
                           ? 'ring-1.5 ring-[var(--color-text)] text-[var(--color-text)]'
                           : isPast
