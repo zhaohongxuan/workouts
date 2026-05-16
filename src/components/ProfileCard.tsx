@@ -1,6 +1,7 @@
 import type { Activity, SportFilter } from '../types'
 import { useLocale } from '../hooks/useLocale'
 import { formatDistance, parseMovingTime } from '../hooks/useActivities'
+import avatar from '../assets/avatar.jpg'
 
 interface ProfileCardProps {
   activities: Activity[]
@@ -76,7 +77,7 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
       <div className="flex items-center gap-4">
         <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[var(--color-border)] shrink-0">
           <img
-            src="https://avatars.githubusercontent.com/u/8613196"
+            src={avatar}
             alt="avatar"
             className="w-full h-full object-cover"
           />
