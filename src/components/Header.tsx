@@ -2,7 +2,7 @@ import type { SportFilter, Activity } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { useLocale } from '../hooks/useLocale'
 
-type Page = 'home' | 'heatmap' | 'tracks'
+type Page = 'home' | 'tracks'
 
 interface HeaderProps {
   filter: SportFilter
@@ -36,7 +36,6 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
   const navItems: { label: string; page: Page }[] = [
     { label: t('home'), page: 'home' },
     { label: t('tracks'), page: 'tracks' },
-    { label: t('heatmap'), page: 'heatmap' },
   ]
 
   return (

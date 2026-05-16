@@ -13,13 +13,12 @@ import { CalendarWidget } from './components/CalendarWidget'
 import { MonthlyChart } from './components/MonthlyChart'
 import { ProfileCard } from './components/ProfileCard'
 import { PersonalBest } from './components/PersonalBest'
-import { HeatmapPage } from './components/HeatmapPage'
 import { TracksPage } from './components/TracksPage'
 import rawActivities from './static/activities.json'
 
 const activities = rawActivities as Activity[]
 
-type Page = 'home' | 'heatmap' | 'tracks'
+type Page = 'home' | 'tracks'
 
 export default function App() {
   const { dark, toggle } = useTheme()
@@ -45,14 +44,7 @@ export default function App() {
         onNavigate={setPage}
       />
 
-      {page === 'heatmap' ? (
-        <HeatmapPage
-          activities={filtered}
-          filter={filter}
-          onSelectActivity={setSelectedActivity}
-          onBack={() => setPage('home')}
-        />
-      ) : page === 'tracks' ? (
+      {page === 'tracks' ? (
         <TracksPage
           activities={filtered}
           filter={filter}
