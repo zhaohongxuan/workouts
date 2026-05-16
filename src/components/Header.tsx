@@ -1,4 +1,5 @@
 import type { SportFilter, Activity } from '../types'
+import { WORKOUT_TYPES } from '../types'
 import { useLocale } from '../hooks/useLocale'
 
 type Page = 'home' | 'heatmap' | 'tracks'
@@ -17,15 +18,22 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
   const { locale, setLocale, t } = useLocale()
 
   const existingTypes = new Set(activities.map((a) => a.type))
+  const hasGym = WORKOUT_TYPES.some((t) => existingTypes.has(t))
+
   const allTabs: { label: string; value: SportFilter }[] = [
     { label: t('all'), value: 'all' },
     { label: t('run'), value: 'Run' },
     { label: t('ride'), value: 'Ride' },
     { label: t('hike'), value: 'Hike' },
+    { label: t('gym'), value: 'Gym' },
   ]
-  const tabs = allTabs.filter((tab) => tab.value === 'all' || existingTypes.has(tab.value))
+  const tabs = allTabs.filter((tab) => {
+    if (tab.value === 'all') return true
+    if (tab.value === 'Gym') return hasGym
+    return existingTypes.has(tab.value)
+  })
 
-  const navItems: { label: string; page: Page | null }[] = [
+  const navItems: { label: string; page: Page }[] = [
     { label: t('home'), page: 'home' },
     { label: t('tracks'), page: 'tracks' },
     { label: t('heatmap'), page: 'heatmap' },
@@ -43,17 +51,17 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
 
         {/* Sport filter tabs */}
         <div className="flex items-center gap-1">
-          {tabs.map((t) => (
+          {tabs.map((tab) => (
             <button
-              key={t.value}
-              onClick={() => setFilter(t.value)}
+              key={tab.value}
+              onClick={() => { setFilter(tab.value); onNavigate('home') }}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                filter === t.value
+                filter === tab.value && page === 'home'
                   ? 'bg-[var(--color-accent)] text-white'
                   : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
               }`}
             >
-              {t.label}
+              {tab.label}
             </button>
           ))}
         </div>
@@ -63,7 +71,7 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
           {navItems.map((item) => (
             <span
               key={item.label}
-              onClick={() => item.page && onNavigate(item.page)}
+              onClick={() => onNavigate(item.page)}
               className={`text-sm cursor-pointer transition-colors ${
                 item.page === page
                   ? 'text-[var(--color-accent)] font-medium'

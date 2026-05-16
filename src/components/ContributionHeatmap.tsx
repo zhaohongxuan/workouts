@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { Activity, SportFilter } from '../types'
+import { WORKOUT_TYPES } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 
@@ -10,18 +11,63 @@ interface HeatmapProps {
   onSelectActivity?: (a: Activity | null) => void
 }
 
+// Map any activity type to the 4 display categories
+function toDisplayType(type: string): 'Run' | 'Ride' | 'Hike' | 'Training' {
+  if (type === 'Run') return 'Run'
+  if (type === 'Ride') return 'Ride'
+  if (type === 'Hike') return 'Hike'
+  return 'Training'
+}
+
+const TYPE_PALETTES: Record<string, string[]> = {
+  Run:      ['#fed7aa', '#fb923c', '#f97316', '#ea580c'],
+  Ride:     ['#bfdbfe', '#60a5fa', '#3b82f6', '#2563eb'],
+  Hike:     ['#bbf7d0', '#4ade80', '#22c55e', '#16a34a'],
+  Training: ['#fce7f3', '#f9a8d4', '#ec4899', '#db2777'],
+}
+
+// Color for single-filter modes (intensity by global max)
 function getColor(distance: number, max: number, filter: SportFilter): string {
   if (distance === 0) return 'var(--color-border)'
-  const ratio = Math.min(distance / max, 1)
-  const level = Math.ceil(ratio * 4)
-
-  const colors = {
-    all: ['#3b0764', '#7c3aed', '#a855f7', '#c084fc', '#e9d5ff'],
-    Run: ['#431407', '#c2410c', '#f97316', '#fb923c', '#fed7aa'],
-    Ride: ['#1e3a5f', '#1d4ed8', '#3b82f6', '#60a5fa', '#bfdbfe'],
-    Hike: ['#14532d', '#15803d', '#22c55e', '#4ade80', '#bbf7d0'],
+  const level = Math.ceil(Math.min(distance / max, 1) * 4)
+  const colors: Record<string, string[]> = {
+    all:  ['#e9d5ff', '#c084fc', '#a855f7', '#7c3aed'],
+    Run:  TYPE_PALETTES.Run,
+    Ride: TYPE_PALETTES.Ride,
+    Hike: TYPE_PALETTES.Hike,
+    Gym:  ['#f5d0fe', '#d946ef', '#c026d3', '#a21caf'],
   }
-  return colors[filter][4 - level] || colors[filter][0]
+  const palette = colors[filter] ?? colors.all
+  return palette[level - 1] ?? palette[0]
+}
+
+// Color for "all" mode: ratio is per-type (dayDist / typeMax)
+function getColorAll(typeRatio: number, displayType: string): string {
+  if (typeRatio === 0) return 'var(--color-border)'
+  const level = Math.ceil(Math.min(typeRatio, 1) * 4)
+  const palette = TYPE_PALETTES[displayType] ?? TYPE_PALETTES.Training
+  return palette[level - 1] ?? palette[0]
+}
+
+function typeLabel(type: string, locale: string): string {
+  const map: Record<string, { zh: string; en: string }> = {
+    Run:      { zh: '跑步', en: 'Run' },
+    Ride:     { zh: '骑行', en: 'Ride' },
+    Hike:     { zh: '徒步', en: 'Hike' },
+    Training: { zh: '训练', en: 'Training' },
+    WeightTraining: { zh: '力量训练', en: 'Weight Training' },
+    Workout:        { zh: '综合训练', en: 'Workout' },
+    StairStepper:   { zh: '楼梯机',   en: 'Stair Stepper' },
+    WaterSport:     { zh: '水上运动', en: 'Water Sport' },
+  }
+  return map[type]?.[locale as 'zh' | 'en'] ?? type
+}
+
+// Dominant display type for a day (by distance; Training is fallback)
+function dominantDisplayType(acts: Activity[]): 'Run' | 'Ride' | 'Hike' | 'Training' {
+  if (acts.length === 0) return 'Training'
+  const sorted = [...acts].sort((a, b) => b.distance - a.distance)
+  return toDisplayType(sorted[0].type)
 }
 
 export function ContributionHeatmap({ activities, year: defaultYear, filter, onSelectActivity }: HeatmapProps) {
@@ -29,62 +75,118 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
   const allYears = getAvailableYears(activities)
   const [selectedYear, setSelectedYear] = useState<number>(defaultYear)
 
-  // Build heatmap data for a single year
-  function buildYearGrid(yr: number, acts: Activity[]) {
-    const yearActivities = acts.filter((a) => {
-      const d = new Date(a.start_date_local)
-      return d.getFullYear() === yr
-    })
+  const isGym = filter === 'Gym'
+  const isAll = filter === 'all'
 
-    // Stats
+  function buildYearGrid(yr: number, acts: Activity[]) {
+    const yearActivities = acts.filter((a) => new Date(a.start_date_local).getFullYear() === yr)
+
     const totalDist = yearActivities.reduce((s, a) => s + a.distance, 0)
     const totalTime = yearActivities.reduce((s, a) => s + parseMovingTime(a.moving_time), 0)
     const runs = yearActivities.filter((a) => a.type === 'Run')
     const avgPace = runs.length > 0 ? runs.reduce((s, a) => s + a.average_speed, 0) / runs.length : 0
 
+    // Per-day totals
     const dayMap = new Map<string, number>()
+    const dayTimeMap = new Map<string, number>() // date → total seconds (for Training)
     const dayActivitiesMap = new Map<string, Activity[]>()
     for (const a of yearActivities) {
       const day = a.start_date_local.slice(0, 10)
-      dayMap.set(day, (dayMap.get(day) || 0) + a.distance)
+      dayMap.set(day, (dayMap.get(day) || 0) + (isGym ? 1 : (a.distance > 0 ? a.distance : 1)))
+      dayTimeMap.set(day, (dayTimeMap.get(day) || 0) + parseMovingTime(a.moving_time))
       const arr = dayActivitiesMap.get(day) || []
       arr.push(a)
       dayActivitiesMap.set(day, arr)
     }
 
-    const maxDist = Math.max(...dayMap.values(), 1)
+    // Per-type max (for "all" mode per-type intensity)
+    // Training uses time (seconds), others use distance
+    const typeMaxMap: Record<string, number> = { Run: 1, Ride: 1, Hike: 1, Training: 1 }
+    if (isAll) {
+      dayActivitiesMap.forEach((dayActs, day) => {
+        const domType = dominantDisplayType(dayActs)
+        const value = domType === 'Training'
+          ? (dayTimeMap.get(day) || 0)
+          : dayActs.reduce((s, a) => s + (a.distance > 0 ? a.distance : 0), 0)
+        if (value > typeMaxMap[domType]) typeMaxMap[domType] = value
+      })
+    }
+
+    const maxVal = Math.max(...dayMap.values(), 1)
 
     const startDate = new Date(yr, 0, 1)
     const startDay = startDate.getDay()
-    const grid: { date: string; distance: number; activities: Activity[] }[][] = []
+    const grid: { date: string; distance: number; timeSecs: number; activities: Activity[]; domType: string; typeRatio: number }[][] = []
     const monthPositions: { label: string; weekIdx: number }[] = []
-
     let currentMonth = -1
-    const endDate = new Date(yr, 11, 31)
-    const totalDays = Math.round((endDate.getTime() - startDate.getTime()) / 86400000) + 1
+    const totalDays = Math.round((new Date(yr, 11, 31).getTime() - startDate.getTime()) / 86400000) + 1
 
     for (let d = 0; d < totalDays; d++) {
       const date = new Date(yr, 0, 1 + d)
       const weekIdx = Math.floor((d + startDay) / 7)
       while (grid.length <= weekIdx) grid.push([])
-
       const key = `${yr}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
-      grid[weekIdx].push({ date: key, distance: dayMap.get(key) || 0, activities: dayActivitiesMap.get(key) || [] })
-
+      const dayActs = dayActivitiesMap.get(key) || []
+      const dist = dayMap.get(key) || 0
+      const domType = dominantDisplayType(dayActs)
+      const typeValue = domType === 'Training'
+        ? (dayTimeMap.get(key) || 0)
+        : dayActs.reduce((s, a) => s + (a.distance > 0 ? a.distance : 0), 0)
+      const typeRatio = typeValue / (typeMaxMap[domType] ?? 1)
+      grid[weekIdx].push({ date: key, distance: dist, timeSecs: dayTimeMap.get(key) || 0, activities: dayActs, domType, typeRatio })
       if (date.getMonth() !== currentMonth) {
         currentMonth = date.getMonth()
         monthPositions.push({ label: `${currentMonth + 1}`, weekIdx })
       }
     }
 
-    return { grid, max: maxDist, monthPositions, stats: { count: yearActivities.length, distance: totalDist, time: totalTime, pace: avgPace } }
+    return { grid, max: maxVal, monthPositions, stats: { count: yearActivities.length, distance: totalDist, time: totalTime, pace: avgPace } }
   }
 
   const yearData = useMemo(() => {
     return [{ year: selectedYear, ...buildYearGrid(selectedYear, activities) }]
-  }, [activities, selectedYear, filter, allYears])
+  }, [activities, selectedYear, filter])
 
   const dayLabels = locale === 'zh' ? ['', '一', '', '三', '', '五', ''] : ['', 'M', '', 'W', '', 'F', '']
+
+  // Which display types are present this year
+  const presentDisplayTypes = useMemo(() => {
+    if (!isAll) return []
+    const types = new Set(
+      activities
+        .filter(a => new Date(a.start_date_local).getFullYear() === selectedYear)
+        .map(a => toDisplayType(a.type))
+    )
+    return (['Run', 'Ride', 'Hike', 'Training'] as const).filter(t => types.has(t))
+  }, [activities, selectedYear, isAll])
+
+  // Gym: monthly session breakdown
+  const gymMonthlyData = useMemo(() => {
+    if (!isGym) return []
+    return Array.from({ length: 12 }, (_, m) => {
+      const monthActs = activities.filter(a => {
+        const d = new Date(a.start_date_local)
+        return d.getFullYear() === selectedYear && d.getMonth() === m
+      })
+      const byType = Object.fromEntries(
+        WORKOUT_TYPES.map(t => [t, monthActs.filter(a => a.type === t).length])
+      )
+      return { month: m, total: monthActs.length, byType }
+    })
+  }, [activities, selectedYear, isGym])
+
+  const gymTypeColors: Record<string, string> = {
+    WeightTraining: '#f97316',
+    Workout:        '#c026d3',
+    StairStepper:   '#3b82f6',
+    WaterSport:     '#06b6d4',
+  }
+
+  const heatmapTitle = filter === 'Run'  ? (locale === 'zh' ? '跑步热力图' : 'Run Heatmap')
+    : filter === 'Ride' ? (locale === 'zh' ? '骑行热力图' : 'Ride Heatmap')
+    : filter === 'Hike' ? (locale === 'zh' ? '徒步热力图' : 'Hike Heatmap')
+    : filter === 'Gym'  ? (locale === 'zh' ? '健身热力图' : 'Gym Heatmap')
+    : t('heatmapTitle')
 
   return (
     <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 overflow-x-auto">
@@ -94,82 +196,65 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-      {/* Header with year selector */}
+
+      {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold">
-          {filter === 'Run' ? (locale === 'zh' ? '跑步热力图' : 'Run Heatmap')
-            : filter === 'Ride' ? (locale === 'zh' ? '骑行热力图' : 'Ride Heatmap')
-            : t('heatmapTitle')}
-        </h2>
+        <h2 className="text-lg font-semibold">{heatmapTitle}</h2>
         <div className="flex items-center gap-2">
           {allYears.map((y) => (
-            <button
-              key={y}
-              onClick={() => setSelectedYear(y)}
+            <button key={y} onClick={() => setSelectedYear(y)}
               className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
-                selectedYear === y
-                  ? 'bg-[var(--color-accent)] text-white'
-                  : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
+                selectedYear === y ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
               }`}
-            >
-              {y}
-            </button>
+            >{y}</button>
           ))}
         </div>
       </div>
 
-
-      {/* Year grids */}
+      {/* Year grid */}
       <div className="space-y-6" key={selectedYear}>
         {yearData.map(({ year: yr, grid, max, monthPositions }, idx) => (
-          <div
-            key={yr}
-            className="animate-[fadeSlideIn_0.3s_ease-out_both]"
-            style={{ animationDelay: `${idx * 80}ms` }}
-          >
-
-            {/* Month labels row */}
+          <div key={yr} className="animate-[fadeSlideIn_0.3s_ease-out_both]" style={{ animationDelay: `${idx * 80}ms` }}>
             <div className="flex ml-5">
               {monthPositions.map((m, i) => {
                 const nextStart = monthPositions[i + 1]?.weekIdx ?? grid.length
                 const span = nextStart - m.weekIdx
                 return (
-                  <div
-                    key={i}
-                    className="text-xs text-[var(--color-muted)]"
-                    style={{ width: `${span * 14}px`, minWidth: `${span * 14}px` }}
-                  >
+                  <div key={i} className="text-xs text-[var(--color-muted)]" style={{ width: `${span * 14}px`, minWidth: `${span * 14}px` }}>
                     {locale === 'zh' ? `${m.label}月` : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Number(m.label) - 1]}
                   </div>
                 )
               })}
             </div>
-
-            {/* Grid */}
             <div className="flex gap-[3px] mt-1">
-              {/* Day labels */}
               <div className="flex flex-col gap-[3px] mr-1">
                 {dayLabels.map((d, i) => (
-                  <div key={i} className="w-3 h-3 flex items-center justify-center text-[10px] text-[var(--color-muted)]">
-                    {d}
-                  </div>
+                  <div key={i} className="w-3 h-3 flex items-center justify-center text-[10px] text-[var(--color-muted)]">{d}</div>
                 ))}
               </div>
-
-              {/* Weeks */}
               {grid.map((week, wi) => (
                 <div key={wi} className="flex flex-col gap-[3px]">
-                  {week.map((day, di) => (
-                    <div
-                      key={di}
-                      className="w-3 h-3 rounded-sm transition-colors hover:ring-1 hover:ring-[var(--color-muted)] cursor-pointer"
-                      style={{ backgroundColor: getColor(day.distance, max, filter) }}
-                      title={`${day.date}: ${(day.distance / 1000).toFixed(1)} km`}
-                      onClick={() => {
-                        if (day.activities.length > 0) onSelectActivity?.(day.activities[0])
-                      }}
-                    />
-                  ))}
+                  {week.map((day, di) => {
+                    const bgColor = day.distance === 0
+                      ? 'var(--color-border)'
+                      : isAll
+                        ? getColorAll(day.typeRatio, day.domType)
+                        : getColor(day.distance, max, filter)
+                    const titleText = day.activities.length === 0 ? day.date
+                      : isGym ? `${day.date}: ${day.distance} session(s)`
+                      : day.domType === 'Training'
+                        ? `${day.date}: ${Math.round(day.timeSecs / 60)}min`
+                        : `${day.date}: ${(day.activities.reduce((s, a) => s + a.distance, 0) / 1000).toFixed(1)} km`
+                    return (
+                      <div
+                        key={di}
+                        className="w-3 h-3 rounded-sm transition-colors hover:ring-1 hover:ring-[var(--color-muted)] cursor-pointer"
+                        style={{ backgroundColor: bgColor }}
+                        title={titleText}
+                        onClick={() => { if (day.activities.length > 0) onSelectActivity?.(day.activities[0]) }}
+                      />
+                    )
+                  })}
                 </div>
               ))}
             </div>
@@ -178,37 +263,93 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-1.5 mt-3 text-xs text-[var(--color-muted)]">
-        <span>{t('less')}</span>
-        {[0, 0.25, 0.5, 0.75, 1].map((ratio, i) => (
-          <div
-            key={i}
-            className="w-3 h-3 rounded-sm"
-            style={{ backgroundColor: getColor(ratio * (yearData[0]?.max || 1), yearData[0]?.max || 1, filter) }}
-          />
-        ))}
-        <span>{t('more')}</span>
+      <div className="flex items-center gap-3 mt-3 flex-wrap">
+        {isAll ? (
+          presentDisplayTypes.map(tp => (
+            <span key={tp} className="flex items-center gap-1.5 text-[11px] text-[var(--color-muted)]">
+              <span className="flex gap-[2px]">
+                {TYPE_PALETTES[tp].map((c, i) => (
+                  <span key={i} className="w-2.5 h-2.5 rounded-sm inline-block" style={{ backgroundColor: c }} />
+                ))}
+              </span>
+              {typeLabel(tp, locale)}
+            </span>
+          ))
+        ) : (
+          <>
+            <span className="text-xs text-[var(--color-muted)]">{t('less')}</span>
+            {[0.1, 0.35, 0.6, 0.82, 1].map((ratio, i) => (
+              <div key={i} className="w-3 h-3 rounded-sm" style={{ backgroundColor: getColor(ratio * (yearData[0]?.max || 1), yearData[0]?.max || 1, filter) }} />
+            ))}
+            <span className="text-xs text-[var(--color-muted)]">{t('more')}</span>
+          </>
+        )}
       </div>
 
-      {/* Stats summary below */}
+      {/* Stats row */}
       {yearData[0] && (
         <div className="mt-4 pt-4 border-t border-[var(--color-border)] flex items-center justify-end gap-4 text-sm text-[var(--color-muted)]">
           <span className="font-mono flex items-center gap-1">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-            {yearData[0].stats.count} {locale === 'zh' ? '次' : 'acts'}
-          </span>
-          <span className="font-mono flex items-center gap-1">
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-            {formatDistance(yearData[0].stats.distance)} km
+            {yearData[0].stats.count} {locale === 'zh' ? '次' : 'sessions'}
           </span>
           <span className="font-mono flex items-center gap-1">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             {(yearData[0].stats.time / 3600).toFixed(0)}h
           </span>
-          {filter === 'Run' && yearData[0].stats.pace > 0 && <span className="font-mono flex items-center gap-1">
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
-            {formatPace(yearData[0].stats.pace)}
-          </span>}
+          {!isGym && (
+            <span className="font-mono flex items-center gap-1">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+              {formatDistance(yearData[0].stats.distance)} km
+            </span>
+          )}
+          {filter === 'Run' && yearData[0].stats.pace > 0 && (
+            <span className="font-mono flex items-center gap-1">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+              {formatPace(yearData[0].stats.pace)}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Gym: monthly frequency bars */}
+      {isGym && gymMonthlyData.length > 0 && (
+        <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
+          <p className="text-xs text-[var(--color-muted)] mb-3">{locale === 'zh' ? '月度频次' : 'Monthly Frequency'}</p>
+          <div className="flex items-end gap-1.5" style={{ height: '64px' }}>
+            {gymMonthlyData.map((m) => {
+              const maxMonthTotal = Math.max(...gymMonthlyData.map(x => x.total), 1)
+              const barH = m.total > 0 ? Math.max(Math.round((m.total / maxMonthTotal) * 52), 6) : 0
+              return (
+                <div key={m.month} className="flex-1 flex flex-col items-center gap-1 group">
+                  <div className="w-full flex items-end justify-center" style={{ height: '52px' }}>
+                    {m.total > 0 && (
+                      <div className="w-full rounded-t-sm relative overflow-hidden" style={{ height: `${barH}px` }}>
+                        {WORKOUT_TYPES.filter(t => m.byType[t] > 0).map((t) => {
+                          const segPct = (m.byType[t] / m.total) * 100
+                          return <div key={t} className="w-full" style={{ height: `${segPct}%`, backgroundColor: gymTypeColors[t] }} />
+                        })}
+                        <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                          {m.total}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <span className="text-[9px] text-[var(--color-muted)]">
+                    {['J','F','M','A','M','J','J','A','S','O','N','D'][m.month]}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+          <div className="flex items-center gap-4 mt-2 flex-wrap">
+            {WORKOUT_TYPES.filter(t => activities.some(a => a.type === t)).map(t => (
+              <span key={t} className="flex items-center gap-1 text-[10px] text-[var(--color-muted)]">
+                <span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ backgroundColor: gymTypeColors[t] }} />
+                {typeLabel(t, locale)}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>

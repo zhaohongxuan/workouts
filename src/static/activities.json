@@ -31616,6 +31616,54 @@
 "streak": 2
 },
 {
+"run_id": 7260301393,
+"name": "Afternoon Activity",
+"distance": 0.0,
+"moving_time": "0:26:51",
+"type": "Workout",
+"start_date": "2022-05-07 13:05:00+00:00",
+"start_date_local": "2022-05-07 13:05:00",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 111.0,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 7260301625,
+"name": "Afternoon Activity",
+"distance": 0.0,
+"moving_time": "0:23:37",
+"type": "Workout",
+"start_date": "2022-05-08 14:18:31+00:00",
+"start_date_local": "2022-05-08 14:18:31",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 123.7,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 7260301689,
+"name": "Afternoon Activity",
+"distance": 0.0,
+"moving_time": "0:26:14",
+"type": "Workout",
+"start_date": "2022-05-09 14:11:09+00:00",
+"start_date_local": "2022-05-09 14:11:09",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 113.1,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 7258816780,
 "name": "Morning Run",
 "distance": 10157.5,
@@ -31648,6 +31696,38 @@
 "streak": 1
 },
 {
+"run_id": 7259043876,
+"name": "Afternoon Activity",
+"distance": 0.0,
+"moving_time": "0:27:58",
+"type": "Workout",
+"start_date": "2022-06-04 13:05:17+00:00",
+"start_date_local": "2022-06-04 13:05:17",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 98.6,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 7259801429,
+"name": "Afternoon Activity",
+"distance": 0.0,
+"moving_time": "0:23:46",
+"type": "Workout",
+"start_date": "2022-06-05 13:27:25+00:00",
+"start_date_local": "2022-06-05 13:27:25",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 98.0,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 7261951403,
 "name": "Morning Run",
 "distance": 5585.9,
@@ -31661,7 +31741,7 @@
 "average_speed": 2.915,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 4
 },
 {
 "run_id": 7267244744,
@@ -31677,7 +31757,7 @@
 "average_speed": 3.195,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 5
 },
 {
 "run_id": 7272774804,
@@ -31693,7 +31773,7 @@
 "average_speed": 2.852,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 6
 },
 {
 "run_id": 7280282986,
@@ -31709,7 +31789,7 @@
 "average_speed": 2.866,
 "elevation_gain": null,
 "source": "strava",
-"streak": 4
+"streak": 7
 },
 {
 "run_id": 7306694826,
@@ -32528,6 +32608,22 @@
 "streak": 1
 },
 {
+"run_id": 7887637333,
+"name": "Lunch Hike",
+"distance": 12637.4,
+"moving_time": "4:44:01",
+"type": "Hike",
+"start_date": "2022-09-29 03:57:28+00:00",
+"start_date_local": "2022-09-29 11:57:28",
+"location_country": "\u8303\u5bb6\u5e84, \u767b\u5c01\u5e02, \u90d1\u5dde\u5e02, \u6cb3\u5357\u7701, \u4e2d\u56fd",
+"summary_polyline": "{nmqEulzpTbA}BPcEo@e@g@oAs@}Ba@oDiG}DK[@s@g@{AuBwA_CqC{@eBWmA@m@s@a@qBKuDcAeBLuAe@{@Vc@KcAv@a@BgAr@cAC{As@u@@M^gA]cCC{A]q@d@mAu@g@{@u@I_@R}@q@W@i@g@O@Uc@s@SnArEPLARV[a@Q]_BYe@@{@a@Jo@y@wAOq@@i@_@k@GWZa@QkA?W][GkCV?JZHh@MZdBiBCi@DOROGo@o@OH_A[_CzA@MO@AP]OSP[IWVw@FATMp@_@IWFGX@QYII?@NIS_@@iC`B]vAEk@iARa@KCL]YYe@[LUSU{BOQLRLq@Yl@EQ}AM}Ao@I@@JEQ]Kk@`@iA[@[QDIMW}BuAe@Um@i@C?k@HOOL?iAQ[YJZMDSWTRcAMRP]IDIUPVKBV]Aa@TBJYEHGOr@GJBKKPL}@}@DOr@WCKXqAPMVZFII?A{@@j@P_@UE?SMTt@QRQDe@Ng@NKOEHJDOMBFIISQAFq@LGSBKkAGECRDUQM@]GPJGAm@QSJTRWN[A[w@MIL{@?IX?MwBFYXq@Dg@`Aa@@ANO?QOIPo@KIToAk@k@u@oCMaBn@_Bz@e@d@sAJMToARcBN}@Au@_@k@f@]k@ESc@EHANNY@QOl@Fn@t@^O~@VfA?rAU|@]`AEpAq@r@c@d@c@jCg@dBZ~AzAlAKvAWJg@VSrB]rAH`C]PLa@JK`@PTA~@r@fBOXTLKVPTAPSJIt@IIQ^a@B@`@OS_@`AIv@w@TBp@d@`@HMo@^[CDNM\\JBg@j@Dx@H]ODBx@TXFr@?OJBW|@V@R\\^ILNKJTV^BHZXJBl@IHJj@`AXbAGx@ZDOl@t@l@Pb@FtAFh@vCbABD\\v@ZrAIZgAnBmApACrAQFq@`Ac@zAADQNDrCkAICnBp@@LnAApAOD_CG@rADl@\\~@FhAO`AZrCVf@^p@dBV{@bC~Af@M~@P`@z@~@f@|@c@`AVb@IdAPxAn@\\ILY~@BjBr@xCy@|@s@zAQrAj@~AUnFfA~@?`@b@h@pCt@nApBbCfBbAp@z@b@pCvAz@r@t@ZA`Ax@b@LCI^nDdAtD",
+"average_heartrate": 103.2,
+"average_speed": 0.742,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 7887636457,
 "name": "Morning Run",
 "distance": 5066.0,
@@ -32541,7 +32637,7 @@
 "average_speed": 2.724,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 7897606282,
@@ -32557,7 +32653,7 @@
 "average_speed": 2.918,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 3
 },
 {
 "run_id": 7897606291,
@@ -32573,7 +32669,7 @@
 "average_speed": 2.712,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 4
 },
 {
 "run_id": 7918191948,
@@ -33328,6 +33424,38 @@
 "streak": 1
 },
 {
+"run_id": 8470114781,
+"name": "Morning HIIT",
+"distance": 0.0,
+"moving_time": "0:17:04",
+"type": "Workout",
+"start_date": "2023-01-27 10:56:06+00:00",
+"start_date_local": "2023-01-27 10:56:06",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 104.4,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 8485587897,
+"name": "Lunch HIIT",
+"distance": 0.0,
+"moving_time": "0:08:52",
+"type": "Workout",
+"start_date": "2023-01-29 11:35:59+00:00",
+"start_date_local": "2023-01-29 11:35:59",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 94.4,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 8470115100,
 "name": "Afternoon Run",
 "distance": 6086.4,
@@ -33472,6 +33600,22 @@
 "streak": 3
 },
 {
+"run_id": 8578663621,
+"name": "Lunch Workout",
+"distance": 0.0,
+"moving_time": "0:14:14",
+"type": "Workout",
+"start_date": "2023-02-14 11:43:10+00:00",
+"start_date_local": "2023-02-14 11:43:10",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 92.6,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 8578663609,
 "name": "Morning Run",
 "distance": 10046.7,
@@ -33536,6 +33680,22 @@
 "streak": 2
 },
 {
+"run_id": 8624255319,
+"name": "Night Workout",
+"distance": 0.0,
+"moving_time": "0:19:36",
+"type": "Workout",
+"start_date": "2023-02-25 03:29:12+00:00",
+"start_date_local": "2023-02-25 03:29:12",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 138.0,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 8624255477,
 "name": "Evening Run",
 "distance": 3737.9,
@@ -33549,7 +33709,7 @@
 "average_speed": 2.451,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 4
 },
 {
 "run_id": 8639305987,
@@ -33728,6 +33888,22 @@
 "streak": 5
 },
 {
+"run_id": 8763246581,
+"name": "Afternoon Workout",
+"distance": 0.0,
+"moving_time": "0:08:24",
+"type": "Workout",
+"start_date": "2023-03-05 09:43:00+00:00",
+"start_date_local": "2023-03-05 17:43:00",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 93.4,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 6
+},
+{
 "run_id": 8763247982,
 "name": "Morning Ride",
 "distance": 38369.9,
@@ -33741,7 +33917,7 @@
 "average_speed": 6.535,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 7
 },
 {
 "run_id": 8763247068,
@@ -34043,6 +34219,22 @@
 "summary_polyline": "oa||D_sraVt@\\vAhA|NzLzEbDbAnA~@bCXZv@T~Ia@zBOp@QrLiGjKcGR_@@[_AgE`@_D|@kCrCeCdAg@NvFAjBn@vQ|Bd~@fAtL~@zF|AhHrRxq@rAbEbCdGhCdFtDrG|[nb@~A~C~@lCPx@_BeEeAyB}AwBgAcAUDgAhDqA|CjDkJfIgRxHkTvCsJRITBz@vA`@ZZC\\_@Fc@GWuBqDEYFWGT~@{BXaD`BgFjNsX`@_@|AI\\[`@wAg@iAFg@nHmNbAm@x@{ARo@@iANi@hh@ocAhZ_m@|G_MxImQr@aBbEoOzAgDjA}AlAiD`LkSxKkQb@e@pAu@`BuB\\s@\\aBbAuA|FsFLe@F_EzHoX|@uBdEyNXoANoBb@cBdBwFdCaGt@oA|C_D^M`ARXGhEsGjHiGrVoMp@GZd@VxIJp@d@NzAm@jAkAZi@?W]gBAeAr@aEX}@|DiHjRmVvGiL|HyP`AeAt@a@dA[dAI`AFnAZt@`@z@x@f@|@Rx@lApMtD|k@zB|Z|AtYVlGhAfP`AfH`@fEfCb`@h@vKhC`b@nErp@L`DxB|uACbAa@lAEp@`AxFf@~ZWxEy@nD]h@g@^qCXiC|A]h@}@pCErAl@lSRd@xBxCx@jBPjAL~KI|@}@pDKjCFpA^zAvAbB`@bA|BdLnBlGn@pCXzPBvXItAuA`EMxAj@~RdBx[BtETfB^xL\\tAlB`CRdAt@`v@GbCcBjHIpAt@rt@HxAtAhHn@dh@EmFgBq@uBUg@LaCrQCj@DlC{AdCYp@]`DgHp_@eHvXkAhCuFbQs@nCy@nBwGhSYNSGkBcBgC_BiIoH{EkDgCuAmC_AwCk@qDc@yADoHSUHaZ{@eDYmEcAuCqAmA]sJwDoFeAyD[}Gn@cTbEoMzBqQvD}Gl@}EQsCc@kDcA_CgAaC_BeB}AkB{BuBoDsBoFmJaY{AqFW_CwAyH}De\\gCwOoB}HgJe[sAgG[wBa@wE_AyNs@sEu@wCo@mBmAmCqIsNuEaJoEgKs@oAgAoCqCuFwRwb@cAoCiAiE}@qGYkFo@go@i@gGu@sDsA}DwB_EaZo`@yCoE{DoHwBmFaB_FcQ{n@o@eB{@qDw@{Ds@{Ek@qFW_EcCm`AHaHSq@QwAQsKAHSO[Ca@NyBhBcAjAYj@i@~BOrBt@dEA^OZmWrNuBr@wL`@_AQc@e@gAuCu@{@oFsDuOqM",
 "average_heartrate": 151.7,
 "average_speed": 7.371,
+"elevation_gain": null,
+"source": "strava",
+"streak": 5
+},
+{
+"run_id": 8869091387,
+"name": "Evening Workout",
+"distance": 0.0,
+"moving_time": "0:02:52",
+"type": "Workout",
+"start_date": "2023-04-09 10:25:42+00:00",
+"start_date_local": "2023-04-09 18:25:42",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 77.9,
+"average_speed": 0.0,
 "elevation_gain": null,
 "source": "strava",
 "streak": 5
@@ -35152,6 +35344,22 @@
 "streak": 1
 },
 {
+"run_id": 9549306656,
+"name": "Evening HIIT",
+"distance": 0.0,
+"moving_time": "0:12:01",
+"type": "Workout",
+"start_date": "2023-07-30 10:12:10+00:00",
+"start_date_local": "2023-07-30 18:12:10",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 101.5,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 9549306918,
 "name": "Evening Ride",
 "distance": 22249.6,
@@ -35408,6 +35616,38 @@
 "streak": 1
 },
 {
+"run_id": 9984975095,
+"name": "Afternoon Hike",
+"distance": 119.3,
+"moving_time": "0:02:47",
+"type": "Hike",
+"start_date": "2023-09-29 08:54:42+00:00",
+"start_date_local": "2023-09-29 16:54:42",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 137.5,
+"average_speed": 0.714,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 9984975129,
+"name": "Morning Hike",
+"distance": 4180.3,
+"moving_time": "1:48:19",
+"type": "Hike",
+"start_date": "2023-09-30 01:55:15+00:00",
+"start_date_local": "2023-09-30 09:55:15",
+"location_country": "S328, \u683e\u5ddd\u4e61, \u683e\u5ddd\u53bf, \u6d1b\u9633\u5e02, \u6cb3\u5357\u7701, 471500, \u4e2d\u56fd",
+"summary_polyline": "irzlEuclhTBBRDGFCCCDC?ABTHLAZDHI?DMTE@FBL?@@EFAH@DNCBCPALEFKD?LEGNBLBIFELANOD@LGH]@UEK@A@B@EMHE?PFCFDC@C[UAC@APBBD@C?D?C^p@RDDE@OFIHADKNANERFfAHJCHI\\KJAHD@PDPX^X@`@TNNRBJIBQLK^?JBDE@IC@BBJBJIBGAM@ORGBOLECEDC@INHFANDLATHPSHEF_@VDPEBGe@iCFEF?BHJL`@VADBK@SBGJEP@@DBKB??@JHDAFIH?ACD??A?B@IR]?GBAFAFD@ABJCBMJPBHCGS?[JSAS@GFCH?PLD?FGDQNOD?PS?CEGQMCKDUGMGIIC?CNKFADBFGI?JO@QBCHATFFADIBWJOREPKF@FA@EKQBIJEACC?H?LGF@ACJC?GEE@MBGfI]C@AHAABND@EB?@DHNFLV?FGL@Hb@LNAFF@PEJ@RDFJDIIEZD_@MCJKADFFPf@JLF?DGNBDBD`FFLLAE?JHXJBJ@?ARBPNHFNJ?RV@GB@CHD?BPADDBDP?DFLKZ@DCL?HGE@JFDGF@FNPHBBFAFACBBDWBABDFGDHCFFA\\@D_@FC@IFCL@@PGRKBHFMBIE?LG?OFG@CFBLCINT@@EA?BFFD@LGL@NEFDJT?BC?D?@LMHH@AGACBL?IM@D?ANJTEHEBCLOFHLELBDLTBAJJDLC@EAGFAVCF?JGKC?HNPN@HNDDPGJKHBCHVB@LGFDBADJPLDTFJDBJRGLOCMQ?ADCSJEU@FGF?FDD?HD@?JDH?FBJ?FEH@FAGACAGCE@HJX?FEXBRAFCd@GLDZGJKd@HNCP@LC^CFKF@NIBABIBCMEA?DLD?G?DCAHEB?DQEOE?BKEa@ESEEDEEQA{@Ga@?_@EQ?WQkAGAKI@EOY?IEEDIGLCE?BAK?BB@AFA?DD?ADHCC@@HJHR@?FFDHD@@EIS@SGQCa@EGGCIQo@e@?WEOIMSMYk@MIGMGa@DO@YE_@EKQUGa@a@g@K]k@c@KUI?GEEA@FDEGQOQSMKEa@ECBGNUGGKE@ACBQFN@K@?QODIDAK?CKI?@IEBANNO@EECG?ED@DFHJSHI@@IN_@TJU@MAIED?ECC",
+"average_heartrate": 104.8,
+"average_speed": 0.643,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 9984974764,
 "name": "Morning Run",
 "distance": 5207.7,
@@ -35520,6 +35760,22 @@
 "streak": 2
 },
 {
+"run_id": 10047077050,
+"name": "Lunch Walk",
+"distance": 3023.0,
+"moving_time": "0:42:29",
+"type": "Hike",
+"start_date": "2023-10-16 04:44:30+00:00",
+"start_date_local": "2023-10-16 12:44:30",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "ovt}Da~hdVWXm@`@{@^[FUCYO[Uk@k@_@i@i@}@Wg@K_@_@kCAU@cASuA?[No@`AqGh@aCX{@t@_B^eA^eBr@aBb@sAp@mCV_B?YMu@QkBSiA{@{Cu@iBIIMAa@Li@XQPELFRp@jANf@z@zBNl@TdBDt@?r@C^Yv@]vAs@zAUr@BJJHfA`@GFKNg@dBsAxCW~@o@rBG\\GdAQnAGbCKr@?ZNxA^|Ad@rAd@zAn@vANRXPXLRDVAdA_@lAcA",
+"average_heartrate": 90.1,
+"average_speed": 1.186,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 10048897988,
 "name": "Evening Run",
 "distance": 5225.6,
@@ -35547,6 +35803,22 @@
 "summary_polyline": "}ae}De|dbVeFWa`@?eO^iJHmV@yDEUGIS@kKCsUF{f@OaQAke@Be@E{I@sXCo\\MuHHcFAaLByLD{@GiBG_G@gQPiJC{JMyA@oAEiCFwH?uQCI@}DCyADeB?oLQgEBgK@qCCgA@}ZCcS@{THyM?wHAuHI{AEqLBiTC{KAg`@@u^Lwj@HaPFgBD_GE_\\O_UQqJKcDa@mScAiVs@uKIo@}@eMy@aJOuCa@}Do@aFiByMo@sCaD{RuBsKyAwGaDuMwH_Zm@qCiC_KgAkE{@iEgCoJuAsEg@oBm@}CwDyLyA{Dk@eCi@uAcCkHKKS_@[GiAJoChAmB\\iA@u@EgAQc@SMSIY[oFWqBmBiJ_@yAQ]OM[M_@?c@JcE~A[BOIM_@[qCYyAuAkFsAuDm@sA{@}AgCiD{BiC{G_JsBiCyCeDqE}FwE{Fk@e@o@UgAmAs@k@gBq@kBYm@Y{AqA_AgAoAgBi@k@iBaBgFoFeAqAoAsBmBqEeCwIgCuCeP}TkAaBiAiB{AsC{@yBg@yAuB_I_@cAqEqNg@gBu@aDY_COgCEcN?qLJyADwBAoAVsFDqBBiHIkHGkBe@}Ee@uD}D{TwBgRiA_LmByOUaCGwAEkBBmDLgD|@oPC}@@iAp@gUL{APaE@kBNgFGUOMUE[@eF`AoC^oEjAsAN{FdAI?KGEQCc@KsOEOGaCCmG?_FU{RDsC\\wCT_An@oB~@iD\\aCXcAPQh@IRQHWNeAd@iB~AuFh@uAf@u@l@m@fA{@~A}@h@i@\\k@p@sARu@Lw@@uBQmC]uCEgCSiC?wCHgBt@iGTyFUmI?uAFuA^wCpAyHRq@Di@t@yE^mFJuCDaCCoC]wYKyCEwC@y@H_AjAwGHw@@q@s@qDSgCKaDIq@Hg@IiE?eBHsBRuAxAuGz@cD^eBTgBXqDD}BE{BUaEFm@Ay@a@{HOcBoAcK[oDyAgK_@iD[eBa@aDIoBBqCGa@w@e@w@CIE_A_Dc@qAwAiD{@{As@_AgGwGkAgBc@g@mCgCoAeAIQ@QHMxCkDCi@Yi@u@u@uAkAy@sAYkA[aEMaAQs@qAuCaAmBcAgBK[?QHWl@}@`BuBPk@Ac@I_B[mBI_Ae@iDCgBBqDSgA]y@kAuBmAkDYq@aAsAyCmDw@iAyG_Rs@yA_F{Ic@aA_B}FqBmF}@wCq@oEy@sD[mBqAqJ{@aFq@aBsCwFm@eAg@k@",
 "average_heartrate": 138.0,
 "average_speed": 6.226,
+"elevation_gain": null,
+"source": "strava",
+"streak": 4
+},
+{
+"run_id": 10052849706,
+"name": "Lunch Walk",
+"distance": 5081.5,
+"moving_time": "0:48:16",
+"type": "Hike",
+"start_date": "2023-10-17 04:31:02+00:00",
+"start_date_local": "2023-10-17 12:31:02",
+"location_country": "\u897f\u82cf\u5dde\u8def, \u53c9\u888b\u89d2, \u6c5f\u5b81\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200041, \u4e2d\u56fd",
+"summary_polyline": "}mu}DqzfdVyAjCiCfEgAnAaAv@KHQF[@{@MkBq@QSK]e@g@IGa@MkAgAOGOCOBOHsA`B{AvA_Ar@c@`@e@t@a@~@O`AUlAI~C@`@LnBJz@JVD@HCDSGqACkAImA@e@D{@AgCBa@FWH[P[l@w@b@a@dAu@zA}Ar@g@b@_@FCJ@PPzBfCh@b@TLp@Rn@Vx@NR@PCTGNM^g@jAoAhBmC`ByCx@_BbCmEx@eBlAgBz@u@j@q@~AyBvBwBbAw@tBiCp@q@Xa@`AiBh@mAXmAH}@?k@E{@a@aDCQYa@KYES@KFKLGzAo@rBo@vCsANU?UKU]c@",
+"average_heartrate": 107.4,
+"average_speed": 1.755,
 "elevation_gain": null,
 "source": "strava",
 "streak": 4
@@ -35648,6 +35920,38 @@
 "streak": 4
 },
 {
+"run_id": 10094104971,
+"name": "Lunch Walk",
+"distance": 1664.5,
+"moving_time": "0:24:01",
+"type": "Hike",
+"start_date": "2023-10-24 04:50:47+00:00",
+"start_date_local": "2023-10-24 12:50:47",
+"location_country": "\u65b0\u95f8\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "ust}D}_idVi@Rm@f@SLe@NgAf@OBMCw@k@{@aAQ[]aAYi@IYS}AAe@FQPOzEwA|@_@|@SxC{@hB}@jAw@l@WbA[jAu@TKN?LDTj@HJJDLZh@p@",
+"average_heartrate": 86.3,
+"average_speed": 1.155,
+"elevation_gain": null,
+"source": "strava",
+"streak": 4
+},
+{
+"run_id": 10099479253,
+"name": "Evening Walk",
+"distance": 1326.4,
+"moving_time": "0:05:12",
+"type": "Hike",
+"start_date": "2023-10-24 12:39:47+00:00",
+"start_date_local": "2023-10-24 20:39:47",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 81.0,
+"average_speed": 4.251,
+"elevation_gain": null,
+"source": "strava",
+"streak": 4
+},
+{
 "run_id": 10099479291,
 "name": "Morning Run",
 "distance": 5222.7,
@@ -35680,6 +35984,22 @@
 "streak": 6
 },
 {
+"run_id": 10110886938,
+"name": "Lunch Walk",
+"distance": 2694.1,
+"moving_time": "0:35:42",
+"type": "Hike",
+"start_date": "2023-10-26 04:43:56+00:00",
+"start_date_local": "2023-10-26 12:43:56",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "iqt}DqaidVy@f@q@XaA~@_Al@[LMDM@OCWMm@k@w@{@Wc@cA{COuA?aAKcCBgAEm@Fy@?s@DYf@uAv@qCXq@f@wAp@oAZcAz@qB^iAT}@N{@NyADgA@IBCDHDP?^CT]`AYxAYjAsAjDi@v@?@H@AL{AdDg@zAUz@WhA[vBQpBEvANpAFnBVnAz@vCv@lAj@l@RPRHPBLA|@[h@U|@o@`@_@",
+"average_heartrate": 88.7,
+"average_speed": 1.258,
+"elevation_gain": null,
+"source": "strava",
+"streak": 6
+},
+{
 "run_id": 10110886854,
 "name": "Morning Run",
 "distance": 5200.3,
@@ -35691,6 +36011,38 @@
 "summary_polyline": "oxd}DqfebVXsEAAa@WeAe@q@a@u@[q@i@[_@}@g@]CGASe@IGGC{@N_B~@iBz@_Bl@e@Tm@P]PUNWXgA`CMLGDM@GAUQQSK_@WeBSg@QSQKWK[GUCYDUJMJQTMXQx@M\\INWP[H[?[KMKEI_AiD_AcC}@yF[iE@_@Hc@Da@Ca@QcAC[@[L_A?U]gBB[\\cCH]Ve@Fe@EuEPeABe@AYIo@Ce@BiBMwBAq@DuAPw@Fs@C_@MgA?Y`@}BPyARcA^oBRk@APc@tCoAtG?\\PnAB\\C^YdACX?jAD`BGz@A`CKhCAzACx@@TTx@B\\CVUj@IZ_@hCA\\@XRx@D\\A^KlAB^Ll@Dh@?\\Kp@A^JrBJ~@^dCTfBJn@z@hBp@|BRx@PP^JX?VIRQNWZqARi@PQVKNCX?ZFZHVNTTHLFP\\|BLRRNLDLANIHKf@oAZo@X[NM^Qv@QjBo@lCqAx@]t@Mh@CRFPR\\@|@Zj@d@h@l@VN",
 "average_heartrate": 149.4,
 "average_speed": 2.853,
+"elevation_gain": null,
+"source": "strava",
+"streak": 7
+},
+{
+"run_id": 10118615482,
+"name": "Lunch Walk",
+"distance": 3370.2,
+"moving_time": "0:50:58",
+"type": "Hike",
+"start_date": "2023-10-27 04:32:43+00:00",
+"start_date_local": "2023-10-27 12:32:43",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "{vt}Ds}hdVo@Zi@f@UHSCYM_@WUYw@qAg@m@Y{@Q{@WwBKq@M{A?g@ToCBaAF_@b@mAr@qCl@sAXy@j@iAh@{Ad@iAr@qBXkAVyC@w@I}@Ge@m@uCa@}AKWs@{AKGG@[Lq@`@KNCPL\\t@rAt@|A\\jAJl@Dt@?t@EnAO~A[nAQ^a@p@m@p@KZ?HDFpAd@LJ@HWp@iAdBUf@Up@U~@o@bDWnCM~BKNCJ^tDJt@\\vAj@jAVb@h@f@`@d@TPRHN@NAz@UTIdBgAr@{@ZY`@Oj@G",
+"average_heartrate": 87.1,
+"average_speed": 1.102,
+"elevation_gain": null,
+"source": "strava",
+"streak": 7
+},
+{
+"run_id": 10118615429,
+"name": "Night Walk",
+"distance": 1709.9,
+"moving_time": "0:12:22",
+"type": "Hike",
+"start_date": "2023-10-27 13:24:59+00:00",
+"start_date_local": "2023-10-27 21:24:59",
+"location_country": "\u76c8\u6e2f\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "ufe}Di`ebVEhADNHHTHVDjCD",
+"average_heartrate": 80.4,
+"average_speed": 2.304,
 "elevation_gain": null,
 "source": "strava",
 "streak": 7
@@ -35712,6 +36064,22 @@
 "streak": 8
 },
 {
+"run_id": 10147138153,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:10:41",
+"type": "WeightTraining",
+"start_date": "2023-10-29 10:28:13+00:00",
+"start_date_local": "2023-10-29 18:28:13",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 92.5,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 9
+},
+{
 "run_id": 10147138428,
 "name": "Morning Run",
 "distance": 5074.8,
@@ -35725,7 +36093,39 @@
 "average_speed": 2.674,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 10
+},
+{
+"run_id": 10147138375,
+"name": "Morning Stair-Stepper",
+"distance": 0.0,
+"moving_time": "0:03:07",
+"type": "StairStepper",
+"start_date": "2023-10-29 23:58:15+00:00",
+"start_date_local": "2023-10-30 07:58:15",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 136.4,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 10
+},
+{
+"run_id": 10147138402,
+"name": "Lunch Walk",
+"distance": 2468.9,
+"moving_time": "0:37:14",
+"type": "Hike",
+"start_date": "2023-10-30 04:44:03+00:00",
+"start_date_local": "2023-10-30 12:44:03",
+"location_country": "\u65b0\u95f8\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "yqt}DgaidVm@b@q@PQHONc@j@QHe@Pe@\\[FKAKGm@m@w@}@a@k@Se@o@eCKu@?a@Pu@Ae@GW]q@GQ@[TmC@u@Hg@Xq@v@aDXm@`@mAz@aBNw@|@cBl@eBXkAJQB@@HE`@GZMb@Yh@]d@_@t@KVG^GVcAjBg@tAa@x@[~@Yf@Qd@Gb@C`A]nCCh@FpAAv@TfCP~@j@vBRb@Xd@VZ`A~@RJRF\\GnBaA^Q",
+"average_heartrate": 90.0,
+"average_speed": 1.105,
+"elevation_gain": null,
+"source": "strava",
+"streak": 10
 },
 {
 "run_id": 10147138862,
@@ -35741,7 +36141,23 @@
 "average_speed": 2.705,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 11
+},
+{
+"run_id": 10147138578,
+"name": "Lunch Walk",
+"distance": 2503.3,
+"moving_time": "0:35:23",
+"type": "Hike",
+"start_date": "2023-10-31 04:41:32+00:00",
+"start_date_local": "2023-10-31 12:41:32",
+"location_country": "\u65b0\u95f8\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "}st}D{_idVc@P{@dA_@Zm@ZUHSBSCOMoAsAs@mASa@_AqDCY@cACa@Ga@Og@AO@WV}B@iAHe@Xw@t@sCd@qAdA{Bj@_Bf@eAv@yBZgALQB@?JMl@Oh@Yp@_@xAS\\[LMLg@xAc@~@i@tAk@hBg@fCUnBSvC@hANxAAr@BVH^`@bA^~AN`@LNrAvAVTNFL@ZK|Aq@v@e@jA}@",
+"average_heartrate": 85.7,
+"average_speed": 1.179,
+"elevation_gain": null,
+"source": "strava",
+"streak": 11
 },
 {
 "run_id": 10147138766,
@@ -35757,7 +36173,7 @@
 "average_speed": 2.857,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 12
 },
 {
 "run_id": 10147138721,
@@ -35773,7 +36189,7 @@
 "average_speed": 2.572,
 "elevation_gain": null,
 "source": "strava",
-"streak": 4
+"streak": 13
 },
 {
 "run_id": 10150667572,
@@ -35789,7 +36205,39 @@
 "average_speed": 2.978,
 "elevation_gain": null,
 "source": "strava",
-"streak": 5
+"streak": 14
+},
+{
+"run_id": 10150667480,
+"name": "Morning Stair-Stepper",
+"distance": 0.0,
+"moving_time": "0:07:27",
+"type": "StairStepper",
+"start_date": "2023-11-02 23:32:22+00:00",
+"start_date_local": "2023-11-03 07:32:22",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 125.7,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 14
+},
+{
+"run_id": 10151237673,
+"name": "Lunch Walk",
+"distance": 3220.0,
+"moving_time": "0:38:37",
+"type": "Hike",
+"start_date": "2023-11-03 04:40:57+00:00",
+"start_date_local": "2023-11-03 12:40:57",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "_vt}Dq~hdVe@VeBdAK@K?]MsAsAUYQ]Si@g@uBSuA?uCIy@?m@X{C\\{BPu@p@wBvAeD`@}Aj@kAn@aBh@mCLuABw@Cw@KaAUgAcA{Ds@_BKMKAUHy@h@KLCJJ\\z@`BHVF~@x@jCDV@^AhAUlBOr@Uz@{BvEo@jAcAjC?PFL`Ab@JH@JCNMXIV[pBI|AS|B?d@d@hEX`BZfAVr@Xf@j@n@f@b@TLNDN?JClBeA~@u@r@]",
+"average_heartrate": 91.6,
+"average_speed": 1.39,
+"elevation_gain": null,
+"source": "strava",
+"streak": 14
 },
 {
 "run_id": 10155888285,
@@ -35805,7 +36253,7 @@
 "average_speed": 3.006,
 "elevation_gain": null,
 "source": "strava",
-"streak": 6
+"streak": 15
 },
 {
 "run_id": 10156279024,
@@ -35821,7 +36269,7 @@
 "average_speed": 2.696,
 "elevation_gain": null,
 "source": "strava",
-"streak": 6
+"streak": 15
 },
 {
 "run_id": 10156679975,
@@ -35837,7 +36285,7 @@
 "average_speed": 3.546,
 "elevation_gain": null,
 "source": "strava",
-"streak": 6
+"streak": 15
 },
 {
 "run_id": 10161841685,
@@ -35853,7 +36301,7 @@
 "average_speed": 3.012,
 "elevation_gain": null,
 "source": "strava",
-"streak": 7
+"streak": 16
 },
 {
 "run_id": 10168135626,
@@ -35869,7 +36317,23 @@
 "average_speed": 2.874,
 "elevation_gain": null,
 "source": "strava",
-"streak": 8
+"streak": 17
+},
+{
+"run_id": 10173694398,
+"name": "Lunch Walk",
+"distance": 1509.1,
+"moving_time": "0:20:49",
+"type": "Hike",
+"start_date": "2023-11-06 04:41:52+00:00",
+"start_date_local": "2023-11-06 12:41:52",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "qut}Di~hdVMLMHwAT}@b@S?_@SkAiAU_@e@aAQq@a@{COqD?YBo@P_BDeAF[BD?T]xCKxB?\\V`DL~@R|@h@rA`@r@Z\\v@r@VJJBPANEv@g@bBq@",
+"average_heartrate": 78.8,
+"average_speed": 1.208,
+"elevation_gain": null,
+"source": "strava",
+"streak": 17
 },
 {
 "run_id": 10173694408,
@@ -35885,7 +36349,23 @@
 "average_speed": 2.885,
 "elevation_gain": null,
 "source": "strava",
-"streak": 9
+"streak": 18
+},
+{
+"run_id": 10180233099,
+"name": "Lunch Walk",
+"distance": 2675.7,
+"moving_time": "0:36:16",
+"type": "Hike",
+"start_date": "2023-11-07 04:33:44+00:00",
+"start_date_local": "2023-11-07 12:33:44",
+"location_country": "\u65b0\u95f8\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "ust}D{_idVOHm@f@{@PWH_BbAED?BFHh@\\x@n@bAp@l@f@l@x@nA|BTVb@`@BHBP@h@d@z@R~@BPAPKRWLGFQl@Q~@[~@k@jAy@tAgBpBmAxAqApAu@h@s@p@cB~BKTCTDVJNFCd@sAb@w@x@cA`AcAf@}@`AcAzAmB`A_A`AsA`@y@Tu@ToALeA?a@GqAa@}Ce@{@EQ@QFMHGz@_@d@W`Bg@",
+"average_heartrate": 82.8,
+"average_speed": 1.23,
+"elevation_gain": null,
+"source": "strava",
+"streak": 18
 },
 {
 "run_id": 10180233150,
@@ -35901,7 +36381,23 @@
 "average_speed": 3.071,
 "elevation_gain": null,
 "source": "strava",
-"streak": 10
+"streak": 19
+},
+{
+"run_id": 10185733965,
+"name": "Lunch Walk",
+"distance": 1126.8,
+"moving_time": "0:15:50",
+"type": "Hike",
+"start_date": "2023-11-08 04:44:58+00:00",
+"start_date_local": "2023-11-08 12:44:58",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "kkt}DqsidV`EoBhAW|Au@lA]\\EF@BDJb@JRZVLNBP@h@C^U^K\\Gv@IFYA",
+"average_heartrate": 78.8,
+"average_speed": 1.186,
+"elevation_gain": null,
+"source": "strava",
+"streak": 19
 },
 {
 "run_id": 10185734021,
@@ -35917,7 +36413,23 @@
 "average_speed": 3.321,
 "elevation_gain": null,
 "source": "strava",
-"streak": 11
+"streak": 20
+},
+{
+"run_id": 10204259902,
+"name": "Lunch Walk",
+"distance": 1627.0,
+"moving_time": "0:07:26",
+"type": "Hike",
+"start_date": "2023-11-10 04:57:08+00:00",
+"start_date_local": "2023-11-10 12:57:08",
+"location_country": "\u5357\u82cf\u5dde\u8def, \u6ce5\u57ce\u6865, \u5357\u4eac\u4e1c\u8def\u8857\u9053, \u4e0a\u6d77\u5e02, \u9ec4\u6d66\u533a, \u4e0a\u6d77\u5e02, 200001, \u4e2d\u56fd",
+"summary_polyline": "gau}DwaidVXr@`@r@nAlAXPPB^Et@_@r@i@rAs@ZU",
+"average_heartrate": 81.0,
+"average_speed": 3.648,
+"elevation_gain": null,
+"source": "strava",
+"streak": 21
 },
 {
 "run_id": 10204260122,
@@ -35933,7 +36445,7 @@
 "average_speed": 2.942,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 22
 },
 {
 "run_id": 10204260195,
@@ -35949,7 +36461,7 @@
 "average_speed": 2.649,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 23
 },
 {
 "run_id": 10209199534,
@@ -35965,7 +36477,7 @@
 "average_speed": 2.49,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 24
 },
 {
 "run_id": 10209602843,
@@ -35981,7 +36493,23 @@
 "average_speed": 5.041,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 24
+},
+{
+"run_id": 10225803979,
+"name": "Night Workout",
+"distance": 0.0,
+"moving_time": "0:04:22",
+"type": "Workout",
+"start_date": "2023-11-14 13:44:37+00:00",
+"start_date_local": "2023-11-14 21:44:37",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 73.3,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 25
 },
 {
 "run_id": 10225804563,
@@ -35997,7 +36525,39 @@
 "average_speed": 2.954,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 26
+},
+{
+"run_id": 10225803864,
+"name": "Lunch Walk",
+"distance": 2387.8,
+"moving_time": "0:30:44",
+"type": "Hike",
+"start_date": "2023-11-15 04:50:25+00:00",
+"start_date_local": "2023-11-15 12:50:25",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "awt}Dq}hdVw@l@WLg@JO?KCQI[W{@_Ai@{@]_A]qAIo@C}@DyAEa@Ku@A_@XiEFYj@kBHa@?OCQQOe@Om@O~@Xc@OSCKBGPMfAs@nDQnAKzCI|@Bl@Db@L^`@z@fAbERh@P\\X`@p@p@bDpCrCrCNVBLINUT?Bf@GnA]XODEBIE_@Ia@M[U]Y[iAs@aAw@QSMSAWBMHKd@Yr@S",
+"average_heartrate": 97.7,
+"average_speed": 1.295,
+"elevation_gain": null,
+"source": "strava",
+"streak": 26
+},
+{
+"run_id": 10245974441,
+"name": "Lunch Walk",
+"distance": 3138.6,
+"moving_time": "0:40:02",
+"type": "Hike",
+"start_date": "2023-11-16 04:42:10+00:00",
+"start_date_local": "2023-11-16 12:42:10",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "cvt}Dw~hdVgAn@s@f@WJ]D]MsAsAs@uAWs@UeAGe@E}@?}AMgBBmALsA@s@D]ReAb@{A?ICIIIq@WOKIKAQDOVi@r@qBd@q@n@qAj@q@t@qA^cBPiBB}@AcA[qBUu@w@aBu@uAGSDOTSp@]VIHBJL\\~@Rt@d@~@J\\p@nG@\\G~@OlAe@jBcAhCk@fBm@rAg@`Ag@nAOf@e@nB]dAIj@UdEEt@@h@RtCj@pCVp@\\l@\\b@l@l@f@\\NDR?NExCsA",
+"average_heartrate": 94.2,
+"average_speed": 1.307,
+"elevation_gain": null,
+"source": "strava",
+"streak": 27
 },
 {
 "run_id": 10245974366,
@@ -36032,6 +36592,22 @@
 "streak": 1
 },
 {
+"run_id": 10259907135,
+"name": "Lunch Walk",
+"distance": 2038.4,
+"moving_time": "0:29:13",
+"type": "Hike",
+"start_date": "2023-11-20 04:43:15+00:00",
+"start_date_local": "2023-11-20 12:43:15",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "iwt}Dq}hdVoAx@UJUDYGo@c@y@aAk@aAa@eAOq@QsACm@Ju@@_@G]Qs@CYViCDsANq@N_AX{@@MEMUOo@UYAEDGJMnAm@vCMt@a@~FAb@Jz@?ZCHEDSFlDqAd@KV?e@TKRIn@Bh@\\zA\\dATf@j@r@z@x@\\NPBPEp@[p@c@~@U",
+"average_heartrate": 85.9,
+"average_speed": 1.163,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 10259907210,
 "name": "Morning Run",
 "distance": 4872.8,
@@ -36045,7 +36621,7 @@
 "average_speed": 2.895,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 10259910515,
@@ -36061,7 +36637,39 @@
 "average_speed": 3.112,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 3
+},
+{
+"run_id": 10265843685,
+"name": "Afternoon Walk",
+"distance": 1362.2,
+"moving_time": "0:05:13",
+"type": "Hike",
+"start_date": "2023-11-22 05:09:19+00:00",
+"start_date_local": "2023-11-22 13:09:19",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 82.6,
+"average_speed": 4.352,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
+"run_id": 10280905321,
+"name": "Night Workout",
+"distance": 0.0,
+"moving_time": "0:09:26",
+"type": "Workout",
+"start_date": "2023-11-23 13:18:14+00:00",
+"start_date_local": "2023-11-23 21:18:14",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 86.2,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 4
 },
 {
 "run_id": 10280905350,
@@ -36077,7 +36685,7 @@
 "average_speed": 3.161,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 5
 },
 {
 "run_id": 10280905407,
@@ -36093,7 +36701,7 @@
 "average_speed": 2.683,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 6
 },
 {
 "run_id": 10282136614,
@@ -36109,7 +36717,23 @@
 "average_speed": 3.084,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 7
+},
+{
+"run_id": 10341717062,
+"name": "Afternoon Walk",
+"distance": 1947.6,
+"moving_time": "0:06:55",
+"type": "Hike",
+"start_date": "2023-11-29 08:51:36+00:00",
+"start_date_local": "2023-11-29 16:51:36",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 81.2,
+"average_speed": 4.693,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
 },
 {
 "run_id": 10341718805,
@@ -36126,6 +36750,22 @@
 "elevation_gain": null,
 "source": "strava",
 "streak": 1
+},
+{
+"run_id": 10346570989,
+"name": "Morning Walk",
+"distance": 2622.4,
+"moving_time": "0:23:39",
+"type": "Hike",
+"start_date": "2023-12-08 02:31:48+00:00",
+"start_date_local": "2023-12-08 10:31:48",
+"location_country": "\u5927\u83b2\u6e56\u4fee\u590d\u533a, \u6caa\u6e1d\u9ad8\u901f, \u6731\u5bb6\u89d2\u9547, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, \u4e2d\u56fd",
+"summary_polyline": "ups|DclpaVWtBKl@I~@YnCMt@Gz@YtBc@jAMb@EFGAq@YuEaCi@UYGq@]AC@MDO@AAHPNBG@O@?GDOD@BC@IHE@wAm@QAYLi@b@m@T[DWAQDs@?WEWIk@_@c@UWYCOKWSCKNE@SMm@Ui@c@e@i@IAEBk@dAGR",
+"average_heartrate": 83.1,
+"average_speed": 1.848,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
 },
 {
 "run_id": 10346900873,
@@ -36192,6 +36832,38 @@
 "streak": 1
 },
 {
+"run_id": 10477291873,
+"name": "Lunch Walk",
+"distance": 2061.6,
+"moving_time": "0:30:06",
+"type": "Hike",
+"start_date": "2024-01-02 04:48:46+00:00",
+"start_date_local": "2024-01-02 12:48:46",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "_vt}D}}hdVUTu@f@a@TYJI@UAi@U[QSSiAeBe@mAe@yBEw@Bs@Ac@SsAA[XkCHyAd@aBl@kCd@cAl@}At@sAIMWGu@[SCKJU`@m@z@Qd@Wx@]t@@FHF~@b@LNBNAPUt@Ml@E~Ao@vFJhA?tAFt@H^b@fBTl@dA|AbA|@RHP@p@Kh@ShAm@",
+"average_heartrate": 86.2,
+"average_speed": 1.142,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 10508612920,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:14:15",
+"type": "WeightTraining",
+"start_date": "2024-01-06 11:19:57+00:00",
+"start_date_local": "2024-01-06 19:19:57",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 108.3,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 10508613022,
 "name": "Morning Run",
 "distance": 5219.6,
@@ -36205,7 +36877,23 @@
 "average_speed": 2.686,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 2
+},
+{
+"run_id": 10522728245,
+"name": "Lunch Walk",
+"distance": 2199.5,
+"moving_time": "0:30:32",
+"type": "Hike",
+"start_date": "2024-01-08 04:41:38+00:00",
+"start_date_local": "2024-01-08 12:41:38",
+"location_country": "\u65b0\u95f8\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "}st}Dw_idVk@LYLo@b@}@x@OD[DO?OCk@]o@o@SWc@w@_@{@YoAIy@Cs@@_AOwAAW\\wFFWTo@VkAVaAJYb@u@XgAR]l@m@LWAICGUQw@YQCK@OJ_AbBk@|A[j@CJBPFJPJt@XHF@HCNWl@Kf@C~A[vCIpB?tATxCN~@J`@r@|Af@n@v@r@XPVFTCjCeAb@W",
+"average_heartrate": 88.9,
+"average_speed": 1.201,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
 },
 {
 "run_id": 10528563259,
@@ -36240,6 +36928,38 @@
 "streak": 1
 },
 {
+"run_id": 10561157538,
+"name": "Lunch Walk",
+"distance": 4749.6,
+"moving_time": "1:07:35",
+"type": "Hike",
+"start_date": "2024-01-15 04:36:09+00:00",
+"start_date_local": "2024-01-15 12:36:09",
+"location_country": "\u65b0\u95f8\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "ott}D{_idV]LiAv@sAx@]HW?QIWUgAoAw@yA]mAS}AC]@_AQkAAo@VwCDsAPs@L_A^iA@UAKIKaAc@IGAIBI\\q@b@kAx@cBJKNA~@VZNHHg@t@]r@_@nAw@jBc@z@[tAIx@CfAK`AKvA@RNbA@nBBp@F^VlAZ|@p@hA|@~@b@ZVFVCt@SXECFi@Vk@JMAKCe@]eAgAk@aAe@gAW{AKeB?a@Eg@@s@Gw@?{@RcB@o@Da@b@wBj@mAHWFi@\\w@LaAt@iALKPEmAe@UGM?MJ]v@e@x@c@rA]n@CJU|Ak@hC_@hCWnE?dBJ`@n@dA`AvDb@fAXb@Z^~BhBzArAz@fAf@b@b@b@DF?Di@`@AFDBJ?b@MhA_@\\QBG?GIWGe@Sc@gAoA}BuASOMU?QDIHGjAWfAm@x@k@p@{@",
+"average_heartrate": 89.8,
+"average_speed": 1.171,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 10568933761,
+"name": "Lunch Walk",
+"distance": 2114.8,
+"moving_time": "0:25:47",
+"type": "Hike",
+"start_date": "2024-01-16 04:53:29+00:00",
+"start_date_local": "2024-01-16 12:53:29",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "mxt}De}hdVq@T]VOFKAMCa@[aAcAg@_Aa@gA]oBEw@?}@OkB?c@H_AXaA\\qDb@eBt@{Bb@aAr@gAL]CMOKcAWWAIDIFy@~A_AbCGVBNFJbAb@HJ@JCPYr@Id@GrB]~AEfBM|@@\\^bD`@pBl@tAf@t@t@r@ZRVHVC`Bo@r@]",
+"average_heartrate": 90.1,
+"average_speed": 1.367,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 10573142149,
 "name": "Morning Run",
 "distance": 5038.8,
@@ -36251,6 +36971,38 @@
 "summary_polyline": "kxd}DwfebVBgBH}A?KGOs@Wc@S{@g@m@Wy@g@[_@q@a@MEU?CG?GFODCZGo@R{Bt@cDv@wAb@i@Rg@Je@Ra@XQReAfCMNKFO@k@SKBED]r@Yp@WvBMZMP_@Pa@Da@Go@UOAWHMNYnACZ@tAHhAAfAB|DGhF@xEKlE@~BAfC?\\BRLZPz@RRBNENEDc@DKHAJAdA@d@JZ@LAp@@nAKf@?L\\nBBTCRSf@An@D\\b@fANt@?RMpBJ~@HXBA?EGc@IeBGg@@_@CUCQg@sAG]@w@T}@UmAKcA@MNe@@]C}@@k@O]?cB@KFKh@EDEBKCSQSGOIc@Sk@ASBk@?mCEaCHyBC{BHyMEeBBiACaBBoAXqANYNIJAN@r@ZXFZAVKPQJQP{@Bm@Fc@Vs@Te@JOJIR@\\NH?PIPYv@wBX[n@_@dAWtCeAdB}@p@YZI`@EN@l@JJFb@@x@XNLx@~@LJ~A`Ap@\\d@Zx@X",
 "average_heartrate": 153.4,
 "average_speed": 3.014,
+"elevation_gain": null,
+"source": "strava",
+"streak": 4
+},
+{
+"run_id": 10598116289,
+"name": "\ud83c\udf19 Lunch Walk",
+"distance": 2108.0,
+"moving_time": "0:27:48",
+"type": "Hike",
+"start_date": "2024-01-17 04:35:04+00:00",
+"start_date_local": "2024-01-17 12:35:04",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "cvt}De~hdVm@p@g@\\YLSFU?UCSKc@]o@q@[c@y@iB_@sAI_@EoBQqACc@Bc@TmCDqA`@oAZoARcALa@Ra@n@y@Vu@`@{@FSEKQK}@WWCOJu@zAq@fB[j@AF@PFJNLp@XFFDLANWr@Kj@CV?jAYxBCfBGfAFhBJhAd@rB`@~@l@|@z@|@VRVFRClC{@`@U",
+"average_heartrate": 93.7,
+"average_speed": 1.264,
+"elevation_gain": null,
+"source": "strava",
+"streak": 4
+},
+{
+"run_id": 10598116182,
+"name": "Afternoon Walk",
+"distance": 559.2,
+"moving_time": "0:07:31",
+"type": "Hike",
+"start_date": "2024-01-19 05:35:05+00:00",
+"start_date_local": "2024-01-19 13:35:05",
+"location_country": "\u73af\u6e56\u5927\u9053, \u5ea6\u5047\u533a\u793e\u533a, \u6dc0\u5c71\u6e56\u9547, \u6606\u5c71\u5e02, \u82cf\u5dde\u5e02, \u6c5f\u82cf\u7701, \u4e2d\u56fd",
+"summary_polyline": "wgc}DwxlaVf@r@Z\\P?PKD[JsBFqBAIMWq@[UHKA}@e@g@K{@MgAWADAA@??BEHl@`A",
+"average_heartrate": 89.1,
+"average_speed": 1.24,
 "elevation_gain": null,
 "source": "strava",
 "streak": 1
@@ -36267,6 +37019,38 @@
 "summary_polyline": "}xd}D_gebVFaBJcA?a@CG_@]q@[m@a@}@]qAsAs@Yc@EQa@OKOAg@?OFSJo@d@cB|@_DrAo@Ji@TSRW\\_A~BMJMDO?ICUQMSGQUkBQe@UYWSe@KYAQ@UHWRIJMXc@|AKNUP_@JYAc@OQWMe@{@yCu@}Au@gF_@}E@c@Hm@@a@Ci@Qw@A]LmA?g@UiAC[^sCJg@P[DYAm@IiA?_@B{@RmABw@IiA@uCIaBAaAFkATaABe@OeB?a@Fa@\\gBf@uB\\cCNu@_@dBwAxI?b@PfBCT]tAClANjC@dBBp@F`A@^C\\SjAKlEGf@Sx@]nCA\\BTNp@F^?PI`A?^BZN|@B`@Ch@Gl@?\\b@bFv@bFh@lA`A|CJl@DFLJVHX@XITQPYZyARa@VSTKTAR?ZDXJXNRRN`@^`CNVPLJDLANGHIlAgCh@g@^Qv@QfBq@xDgBf@MXGt@AZRj@Jn@XbAbA",
 "average_heartrate": 166.1,
 "average_speed": 3.021,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 10611302155,
+"name": "\ud83c\udf25\ufe0f\ud83e\udd76 Lunch Walk",
+"distance": 2258.1,
+"moving_time": "0:29:39",
+"type": "Hike",
+"start_date": "2024-01-22 04:42:09+00:00",
+"start_date_local": "2024-01-22 12:42:09",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "_vt}Di~hdVUNk@PcAn@UDc@Eg@W}@_Ae@u@g@iAI]SmAI}BIgACeAXaF\\iBV_A@SGQWOk@OMAGBINKt@e@xB]bCIlBMjB?j@LhAANCJIJQFGA?CDCbA_@jBk@d@IMFKLGRAR@h@Dd@X|Af@jAf@v@|@|@VNRFV?XIvCsA\\Sr@s@n@_@",
+"average_heartrate": 90.7,
+"average_speed": 1.269,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 10632937014,
+"name": "\ud83c\udf1e Lunch Walk",
+"distance": 2349.8,
+"moving_time": "0:32:35",
+"type": "Hike",
+"start_date": "2024-01-25 04:34:45+00:00",
+"start_date_local": "2024-01-25 12:34:45",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "_wt}Du~hdV[Pm@l@o@`@WFUEWQcAcA[c@Ug@]{@]uAGcBDs@?SE[Oy@A_@VoC?}@BUFUZy@r@{Cb@aAp@eBn@cADMIKe@S_@MYCQJw@|Ak@|Ac@z@Sv@QfAi@jCM~@MpAItBGx@?PFZ?POz@OZvAg@zBo@BA?AE?GDKPEXEn@@f@TjA`@fAn@dAfAfATPNHT@XI~CgB",
+"average_heartrate": 87.3,
+"average_speed": 1.202,
 "elevation_gain": null,
 "source": "strava",
 "streak": 1
@@ -36352,6 +37136,38 @@
 "streak": 1
 },
 {
+"run_id": 10797590145,
+"name": "\u2601\ufe0f Afternoon Walk",
+"distance": 2764.2,
+"moving_time": "0:19:48",
+"type": "Hike",
+"start_date": "2024-02-18 05:16:45+00:00",
+"start_date_local": "2024-02-18 13:16:45",
+"location_country": "\u5149\u590d\u8def, \u5353\u60a6\u5c40, \u5929\u76ee\u897f\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "sfu}DyqidV\\qC^gBRwADIHGJ?NBt@XJHBHGXYt@Kp@CrASvBUjD?f@HbAN~@\\bBb@nAx@tAj@n@f@ZPFXChA[^OjBoArByAd@c@ZO",
+"average_heartrate": 103.3,
+"average_speed": 2.327,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 10877714125,
+"name": "\ud83c\udf19 Evening Walk",
+"distance": 3908.3,
+"moving_time": "0:42:47",
+"type": "Hike",
+"start_date": "2024-03-02 11:34:41+00:00",
+"start_date_local": "2024-03-02 19:34:41",
+"location_country": "\u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "chf}DknebVq@{Be@oAI[a@wCUkAS{AGu@Ac@B[LeA@_@C_@OkA@_CGa@Wq@IQICGHETBdAAjBJzBN`AB`@?d@ET@NRpAPhBH^PTHTd@hCt@`Bh@fB\\tANVTLNBV?TERMNQHSVw@Nm@NYZ]PERAb@FXJTLNNNVJTTpBH\\NPRHN@RGRSVu@l@qALOTQvCeAxDcBj@INDNPDAH_@n@mH",
+"average_heartrate": 87.6,
+"average_speed": 1.522,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 10879277889,
 "name": "\ud83c\udf1e Afternoon Run",
 "distance": 5193.2,
@@ -36363,6 +37179,38 @@
 "summary_polyline": "cxd}DmjebV@k@BWCMGIm@e@k@Wy@g@m@Wk@e@]a@OMu@Wc@AS[a@[a@DKFyDxBgC`Ac@Hm@V[ZQRkAdCEFMFK@OAQOOQUq@WyAWi@c@_@k@QYAQBULSRSb@]~AGLUPe@J[?]OSYG]aAaDu@gB{@}F_@oE@ULw@@]Ee@OgAHcB?WGa@Ok@E[b@iDDQRa@?}DDw@TuAIqB@oCM{DFs@XeAB_@A_@QkAAe@Hm@l@_DVeAp@wDs@~Dy@fFGf@@r@LfA?RCZYfACb@?z@FpBIv@AhAOxI@LL^@zAEXMXMf@WlBC\\Db@Pv@B\\A\\In@Af@BXLr@Dj@?TKn@A\\TfDbAbHp@|AjA~DPPTHZ@ZIPQNU\\{AFQPULKTIXCZ@n@NXRRVLX`@`CHNRRLFFALELOfAaCNQZWd@Up@MvBu@zDkBh@Mf@G^@b@FPFz@f@~@bATP",
 "average_heartrate": 158.6,
 "average_speed": 2.839,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 10879277770,
+"name": "Afternoon Workout",
+"distance": 0.0,
+"moving_time": "0:19:18",
+"type": "Workout",
+"start_date": "2024-03-03 09:29:22+00:00",
+"start_date_local": "2024-03-03 17:29:22",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 116.9,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 10899240308,
+"name": "\u2601\ufe0f Lunch Walk",
+"distance": 2123.6,
+"moving_time": "0:28:09",
+"type": "Hike",
+"start_date": "2024-03-05 04:50:04+00:00",
+"start_date_local": "2024-03-05 12:50:04",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "mxt}Da|hdV_@R[JSBUCWIm@a@s@u@e@_Ag@wAKu@Qo@EaBM_@EWCkA@a@N}B`@{DPs@\\q@XmA^k@p@}Ar@uA?GGEg@Si@OU?IDGJYr@[h@YhAe@|@ET?NFJPJp@VJFBFCNYl@Mj@AVAfAYjBGt@GzCDt@T`Cf@zBp@tAZ\\fA|@VLLBZAv@Wt@_@f@c@n@SRQ",
+"average_heartrate": 88.9,
+"average_speed": 1.257,
 "elevation_gain": null,
 "source": "strava",
 "streak": 1
@@ -36381,7 +37229,7 @@
 "average_speed": 2.747,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 10913201573,
@@ -36400,6 +37248,22 @@
 "streak": 1
 },
 {
+"run_id": 10928719740,
+"name": "\u2601\ufe0f Evening Walk",
+"distance": 5144.2,
+"moving_time": "1:22:21",
+"type": "Hike",
+"start_date": "2024-03-09 11:17:33+00:00",
+"start_date_local": "2024-03-09 19:17:33",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "yfe}Dm}dbV_AC{@D_BA_ABu@AgADsCA{ABUCOIKQG[C_@?a@PeAHw@R{@`@gAF]A]ImAKk@IQQU]Si@OW?S@QFOHWXM^ShAIPON[Pa@B[ESOIQKs@g@oBaAyBS{Ae@sB]eDIqA?]Jo@BWAYGOFj@MfA?t@PvAJxAd@dDVzAp@zAnApEPLZF`@ATGVWNW\\yAP]PSVOLCR?\\D^JRNPRHNHVHdALt@LTLLPHJ@NEPOnAiCTYVOf@UjDiAlAk@f@YXGR?LHLNDADWFqAl@iGLuB?m@Py@P{C?}AP{ABBb@?vJCtAEz@Oz@H`A@jAH`AGt@Hr@E`Dd@l@RFFBJB\\Mj@SrBC`@?n@Eb@C~@IfABb@Pr@@RALQXAFFJLDbBTBBFPEdASnAMnAW`BWt@Qz@Wr@WfA{@pCYbAE`@E~@?~@Bz@ARKFW@sAGqAOYA",
+"average_heartrate": 84.1,
+"average_speed": 1.041,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 10928719509,
 "name": "\ud83c\udf1e Morning Run",
 "distance": 5489.6,
@@ -36413,7 +37277,7 @@
 "average_speed": 2.57,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 3
 },
 {
 "run_id": 10933738907,
@@ -36429,7 +37293,39 @@
 "average_speed": 2.776,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 4
+},
+{
+"run_id": 10948880836,
+"name": "\ud83c\udf2b\ufe0f Lunch Walk",
+"distance": 2027.7,
+"moving_time": "0:29:58",
+"type": "Hike",
+"start_date": "2024-03-12 04:45:44+00:00",
+"start_date_local": "2024-03-12 12:45:44",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "{wt}Du|hdVk@`@a@LU@OA_@Ma@]gAuAc@w@e@kAYaBC_CEMOUEOGm@?c@Z{AF{@?u@B[FU\\{@Z}ACGIEqAe@K?GLKdAa@pBI`AQ|@WjF?VH|AF`G?LAAo@gDMeANIfDiA`@KNABHAFa@\\IT@VJb@b@vAv@jBX\\jAhA`@RJ@PAxBw@b@Ub@_@",
+"average_heartrate": 81.0,
+"average_speed": 1.128,
+"elevation_gain": null,
+"source": "strava",
+"streak": 5
+},
+{
+"run_id": 10948880833,
+"name": "\u2601\ufe0f Lunch Walk",
+"distance": 2253.8,
+"moving_time": "0:29:26",
+"type": "Hike",
+"start_date": "2024-03-13 04:32:25+00:00",
+"start_date_local": "2024-03-13 12:32:25",
+"location_country": "\u65b0\u95f8\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "ctt}D_`idVYHULcAfAs@f@c@Pa@BQG[UuAyAg@y@Um@I[W_BK{@ASFw@?a@E_@Ic@C[FkBPwBF[Xw@X{ATy@~@cB^gAf@w@FS?GEIUMs@WYCKDIJ]t@]l@k@zAWf@EN?NFJbAb@JJBHALUj@Mj@EfB[tBGvBMh@D~@^rCh@vB\\z@`@n@n@r@ZXXLRBZChA]z@g@pAaA",
+"average_heartrate": 85.5,
+"average_speed": 1.276,
+"elevation_gain": null,
+"source": "strava",
+"streak": 6
 },
 {
 "run_id": 10955089316,
@@ -36445,7 +37341,7 @@
 "average_speed": 5.781,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 7
 },
 {
 "run_id": 10975002017,
@@ -36475,6 +37371,22 @@
 "summary_polyline": "{sd}DugebVNw@Do@?OGKw@Ui@Go@Wq@e@k@Sq@c@i@Qq@e@Y]WQo@Ye@GMa@KCqA@WLi@\\iCpAs@Zc@N_@PcAXWNSPORm@nAUh@OTUFMC_@OG?GD]p@Up@ENWrBOb@QNYNc@?]Gk@USCUHMRMx@Uv@E\\@\\J|@?hBDjAE`D?tIGlFBbAAbECt@@NRf@Jj@VZDJ?FALEFo@FEDCL@|ABVHTAfCKf@@R\\nB?PAHUp@CV@XDVd@fALf@@l@MpAAZLx@HV?QG{@E}@Ga@AcAI_@a@mAG[?Y@_@DO`AsBDa@AQIWIK]SIIKiCI[A}@?g@DQDGj@GBABGESQQIMKm@Oe@CQDoDAiCD{A?_CCkAFqD?mCBy@?aAEmBF}@EgAD}ALu@Ja@NUFENAVBz@\\`@?PKTSN]ZaCb@_AVe@HGF?h@TJAHEV]bA_CTY`@Y\\Ml@K`@QlAa@xDgBZKbAIL?LBNJ^Fn@Vf@`@z@|@l@\\`@X~@b@l@^HF@F",
 "average_heartrate": 134.1,
 "average_speed": 2.672,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 10993443553,
+"name": "\ud83c\udf25\ufe0f Lunch Walk",
+"distance": 1150.3,
+"moving_time": "0:16:52",
+"type": "Hike",
+"start_date": "2024-03-18 04:41:54+00:00",
+"start_date_local": "2024-03-18 12:41:54",
+"location_country": "\u81ea\u7136\u535a\u7269\u9986, \u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "k{s}DqnidVEi@Cw@@SBGFEXCJEBM?SM{ACOMKc@GS]STUNQHi@JOPENAPBr@Ch@DJJB^I\\@^G`@THPHv@D~@AJCF",
+"average_heartrate": 88.4,
+"average_speed": 1.137,
 "elevation_gain": null,
 "source": "strava",
 "streak": 1
@@ -36592,6 +37504,22 @@
 "streak": 1
 },
 {
+"run_id": 11074849204,
+"name": "Afternoon Walk",
+"distance": 3924.3,
+"moving_time": "1:20:48",
+"type": "Hike",
+"start_date": "2024-03-29 06:41:41+00:00",
+"start_date_local": "2024-03-29 14:41:41",
+"location_country": "\u4e0a\u865e\u533a, \u7ecd\u5174\u5e02, \u6d59\u6c5f\u7701, \u4e2d\u56fd",
+"summary_polyline": "awqtDg`jaVQq@JICGBGbAyAFY?SMKBKCM?aADOl@q@HQFWLQF[HQLs@LOZM\\E^[RGTAZSLMLGH?j@JOCCGB?@DBC@DJDEEGAAE?@`AGNIFI?CA@GEREFBJ[LMBMHEB@@DFAJMABH?DWCEBMd@Y@KLEH@@DJCZ_@PEFKFA?IDOHG@EEEDGLBHKAEPIHMJA?CBERAAGD?@FRWAGHCAEJKAIFKNGFMHCF?BAFF@JPH?ZLb@NVHIGJCTOf@EXIHI@EEIBKJKBW@_@CIBEAISSPKCGBMAMJEAKDUNML_@JEJSNEHM?IBADDJOA?FG?AB?PGEQAORALQBCDALGJ?b@WIc@AQ@c@GGEEBNR@BAXEDAPHTPP?RMXE^W\\LTEBMACD@ZXfAYnABLILMBEBI`@GL?DtAx@t@HFDt@JXJHFARJj@LNIAI@OLUDMFKEE?AHDLAHIGG?C?AFO@U?ADFHONG@SP]HAPGD?BQPIVKDU@MFICIHKT]R@DG`@@b@Cb@SVGBCABD@FGh@INCJQGEVCBE?EB?FMTI\\EAo@?OHYFCDECOCi@@WD_@IODEHKj@k@n@Wb@GPOTAD@DNFEGK@_@b@ANEJAT@v@Ad@o@|AQPGN?NDPCHGH_A\\Dq@BCN?I@",
+"average_heartrate": 127.0,
+"average_speed": 0.809,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 11074848768,
 "name": "\u2601\ufe0f Morning Run",
 "distance": 5053.5,
@@ -36624,6 +37552,22 @@
 "streak": 2
 },
 {
+"run_id": 11088729749,
+"name": "\u2601\ufe0f Afternoon Walk",
+"distance": 1274.8,
+"moving_time": "0:17:34",
+"type": "Hike",
+"start_date": "2024-04-02 08:21:38+00:00",
+"start_date_local": "2024-04-02 16:21:38",
+"location_country": "\u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "q{s}D}qidVLcACoA@e@GQSMICIBUVYPs@VKJGNANBv@?l@BDDB`@G^DVMFAd@ZJZHvAD\\DFF@f@UH?JH|@vCDXALEDKAa@[",
+"average_heartrate": 79.2,
+"average_speed": 1.209,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 11094167188,
 "name": "\ud83c\udf25\ufe0f Morning Run",
 "distance": 5049.9,
@@ -36637,7 +37581,7 @@
 "average_speed": 2.727,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 4
 },
 {
 "run_id": 11104656427,
@@ -36653,7 +37597,7 @@
 "average_speed": 2.655,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 5
 },
 {
 "run_id": 11110796101,
@@ -36669,7 +37613,39 @@
 "average_speed": 3.481,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 6
+},
+{
+"run_id": 11116169059,
+"name": "\u2601\ufe0f Afternoon Walk",
+"distance": 1533.7,
+"moving_time": "0:31:57",
+"type": "Hike",
+"start_date": "2024-04-06 06:24:58+00:00",
+"start_date_local": "2024-04-06 14:24:58",
+"location_country": "\u77f3\u516c\u5c71\u666f\u533a, X206, \u77f3\u516c\u6751, \u91d1\u5ead\u9547, \u5434\u4e2d\u533a, \u82cf\u5dde\u5e02, \u6c5f\u82cf\u7701, \u4e2d\u56fd",
+"summary_polyline": "yhr|Dm~d}UJEPEFB?FB@d@EK?EB?@I?QECELKd@GPMC?GKA@?IRKNa@?KHSJABGLFF@T_@Ni@Ii@M?GMLE?ECE@D?ESDEFAHC?CH@HICWVEAXw@\\g@@M?UBMHKLGH[FGCCNBFOXU@ZEPHNDD^@PF\\g@LEJ}@AODG@GIGG@MICMGHE?LO@YCIKE?EBKEIMIM?e@QSOK@FCQG{@\\SNKBISYaAGGSXa@\\M@KCECCOISA_@Ig@KQGa@GMMKOBqAr@UDa@j@Sh@Oz@BNHJU^_@nAYh@?FDDR@ZT@PE\\RV?tAEFK?GBCF",
+"average_heartrate": 90.5,
+"average_speed": 0.8,
+"elevation_gain": null,
+"source": "strava",
+"streak": 7
+},
+{
+"run_id": 11131542177,
+"name": "\ud83c\udf27\ufe0f Lunch Walk",
+"distance": 2362.2,
+"moving_time": "0:35:39",
+"type": "Hike",
+"start_date": "2024-04-07 03:48:00+00:00",
+"start_date_local": "2024-04-07 11:48:00",
+"location_country": "\u534e\u8fb0\u5609\u56ed\u793e\u533a, \u5143\u548c\u8857\u9053, \u76f8\u57ce\u533a, \u82cf\u5dde\u5e02, \u6c5f\u82cf\u7701, \u4e2d\u56fd",
+"summary_polyline": "a_m~Dqu}~USz@YLFBA^Ux@CXCJ@@ABGDGCCB@AHFS^BLADIFUHi@?YDULENEDM`CDpABRGlA?XFd@Pl@Vj@?FSb@CVBFADo@j@eACc@Bg@COBe@\\m@p@c@Ke@EmAFUCWSG?E_@OYIM]Se@DOTE@c@f@a@VWBQK[y@E[EKKsA@KHGVGHFBIDGRKLAp@WJGJ[CiB@UBO\\_@PEd@[J]DcAEYSg@_@k@I]Bc@Lm@HsAHe@HSRS^OvA]f@E`@QdBg@f@Ip@[z@o@RIfBSj@Bh@JVAJCHMBOToELMTGL[BAD@CAAIBQf@aAAY@IFETIf@I",
+"average_heartrate": 84.0,
+"average_speed": 1.104,
+"elevation_gain": null,
+"source": "strava",
+"streak": 8
 },
 {
 "run_id": 11138252842,
@@ -36683,6 +37659,22 @@
 "summary_polyline": "eyd}D}gebV`@gD?GMOSQu@[q@a@w@_@iA{@c@W]Oc@EEEKi@KEy@@YLcAp@}Ax@sChA{@V_@RYVQTgA`COPOBG?e@OOF[b@_@bAEXKv@Or@MVONYJ]?UEs@WUCQBKHCF_@rBEl@?`@L`A@nADnAExFGvDDnBCpCErADbBElA@~@Al@@RPd@Hf@DHVZ@LCJIJa@DEBGPAn@@r@Nl@GdABn@Kv@Db@Jf@J|@APOd@Ep@FXd@zAHd@@r@QlA?HN|@HXAw@GwAKi@Au@q@qBE_@@g@BKL]t@sAHYBSE[GOQQ_@QCICQA}@Eq@IUAQ@uADSJMb@GHGBED[P]BQE]KMMIe@?ICIIAKBmDEkCDiB?gGFuCA}ABgAAqAEs@BsAC}ADeATqAR_@XIP@f@R^HX?ZMV[Ng@Lm@Fw@F[r@oAHGH?b@PH?LCNKFM`A{Bf@k@XOhAYpBu@nAo@xB_Af@Mj@ENDTNZF|@d@t@n@TZtAz@",
 "average_heartrate": 151.5,
 "average_speed": 3.085,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 11145683557,
+"name": "\ud83c\udf1e Lunch Walk",
+"distance": 1466.2,
+"moving_time": "0:20:37",
+"type": "Hike",
+"start_date": "2024-04-09 04:39:31+00:00",
+"start_date_local": "2024-04-09 12:39:31",
+"location_country": "\u81ea\u7136\u535a\u7269\u9986, \u5927\u7530\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "_~s}DypidVNEV?LBJDF?BWA[@UFGDQHOHEP@DGC[Q]DOAQCGKKCK@MCIQOSPKAQb@QDQNO@OLM?UTGLCRFPB\\Gn@DFPFNSJGb@HHALIJBBJFFJAD@DHD\\@h@LnAFFJ@d@e@DAFDh@lBTbAF\\ADIBGEgBmB",
+"average_heartrate": 84.7,
+"average_speed": 1.185,
 "elevation_gain": null,
 "source": "strava",
 "streak": 1
@@ -36784,6 +37776,22 @@
 "streak": 7
 },
 {
+"run_id": 11186552607,
+"name": "\ud83c\udf1e Lunch Walk",
+"distance": 1116.6,
+"moving_time": "0:03:36",
+"type": "Hike",
+"start_date": "2024-04-15 04:48:58+00:00",
+"start_date_local": "2024-04-15 12:48:58",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 85.2,
+"average_speed": 5.169,
+"elevation_gain": null,
+"source": "strava",
+"streak": 7
+},
+{
 "run_id": 11191552524,
 "name": "\u2601\ufe0f Morning Run",
 "distance": 5018.3,
@@ -36795,6 +37803,22 @@
 "summary_polyline": "kxd}D{hebVLeA?o@COMQYUs@_@i@]w@[YQaA{@q@a@i@IMYMIOEWCe@PoDnBkBn@c@Rm@Nc@R_@\\WZSb@a@jAMPEDMDM?g@QOFW`@_@~@Ml@Gt@Ib@MZQR]LW?_@Im@SSCOBUVK^Kp@IdA@\\HjACvAD`AGlH?pIE`CBbBG|DB\\N^Pr@T^@NENGD_@BMFERA^B|@Nd@C|BKv@N~@NlACPSf@E^Fb@j@zAH\\@\\A\\KvAVxA@OI{@A}@Gg@?]Ce@m@kBEO?]@[BO~@iBFOF]E]IQWUYMEOC_AG{@GWC_B@[BGLGd@GFQCOW[Km@Uu@DkAAqFFiBC{@BsCAsCFwFGqBDqAEmC@S^_BPWVEL@l@XNB`@AVIRSHQLc@Hy@No@Z{@\\k@NC^PL@JCLIJQfAcC^]b@Uz@Sd@SrAc@bCmA`Aa@^Gz@?ZJ\\BLBx@b@jAtAd@Tj@`@p@V",
 "average_heartrate": 153.5,
 "average_speed": 2.84,
+"elevation_gain": null,
+"source": "strava",
+"streak": 8
+},
+{
+"run_id": 11194670283,
+"name": "Lunch Elliptical",
+"distance": 0.0,
+"moving_time": "0:09:40",
+"type": "Workout",
+"start_date": "2024-04-16 03:34:57+00:00",
+"start_date_local": "2024-04-16 11:34:57",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 62.8,
+"average_speed": 0.0,
 "elevation_gain": null,
 "source": "strava",
 "streak": 8
@@ -36827,6 +37851,22 @@
 "summary_polyline": "exd}DwgebV?}AHiA?GEGg@_@{@c@e@[{@_@o@c@]_@OIk@Ua@GKW[YMEg@Fm@Vi@^aB`AsChA{@Va@Va@`@mAjCMLOBMAa@OG@KF]l@Wr@YpBK`@MVOLYJ]?WGo@WUCUHKN[tAEr@?l@H`AAlAD`CIxOEbDDfCGvD@PRf@Ln@VZDLCNEBi@HGBGL@xAD\\HV@r@GtAMj@BR^rB?POXETC`@@THZd@hAHb@@\\SjBBZT`AGkACgAE]@i@A[Qm@a@cAE_@?WFYbAqBFSB[CSOYMK[MGEAS@qAE]KWCW@iAD]HId@GHGFc@J[@OC[MQOEa@CKICK?}DCaBH}BAuDFiIAo@@aBAoA?kAEaDD]T}@LWHENCPBz@\\NBZA`@SJKJYb@oCXs@Vg@JGFA\\NN@PEDEPUz@qB\\a@`@WVKr@Md@U`AYhAk@`Bw@r@Up@In@BPLXBPDv@`@\\`@h@j@b@Rx@j@hAl@",
 "average_heartrate": 147.7,
 "average_speed": 2.946,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 11214415734,
+"name": "\ud83c\udf2b\ufe0f Lunch Walk",
+"distance": 2647.1,
+"moving_time": "0:21:36",
+"type": "Hike",
+"start_date": "2024-04-19 04:23:40+00:00",
+"start_date_local": "2024-04-19 12:23:40",
+"location_country": "\u5357\u82cf\u5dde\u8def, \u65af\u6587\u91cc, \u77f3\u95e8\u4e8c\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200431, \u4e2d\u56fd",
+"summary_polyline": "ocu}DokidVGaAB]HSFiAJy@Aw@Le@Tg@ZqAHi@@a@CIg@S[GUIKKX]|@_Cd@y@La@LGjBp@UTMVWn@WjAc@n@OXw@vCMp@M|AWjBCh@@REp@ACDWKtA@THb@?VPzATv@VlAb@`AT\\X\\b@d@`@XXNXEj@Yl@MbAa@",
+"average_heartrate": 90.6,
+"average_speed": 2.042,
 "elevation_gain": null,
 "source": "strava",
 "streak": 2
@@ -36880,6 +37920,22 @@
 "streak": 5
 },
 {
+"run_id": 11236284376,
+"name": "\u2601\ufe0f Lunch Walk",
+"distance": 2857.8,
+"moving_time": "0:36:51",
+"type": "Hike",
+"start_date": "2024-04-22 04:15:48+00:00",
+"start_date_local": "2024-04-22 12:15:48",
+"location_country": "\u6768\u6c0f\u82b1\u56ed\u4f4f\u5b85, 136, \u660c\u5316\u8def, \u53c9\u888b\u89d2, \u6c5f\u5b81\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200041, \u4e2d\u56fd",
+"summary_polyline": "sgt}D{vgdVk@eAe@gAIKs@Ny@C_@?eBL]F_@Pg@b@mB`CyBlB{AxAiA~Aq@dAKJk@^ST]f@y@fBgApBiAdCs@jASNS@WKWWIQCSBWFSfDiFf@iA`@s@t@gBb@s@p@m@jA{AlDaDb@k@j@g@j@_@LGJ?LL^z@FBFAnBsB~A}BVi@Ng@ZcBDm@Ai@Eq@_@mCC_AUu@AMHUPOz@a@f@Q",
+"average_heartrate": 91.8,
+"average_speed": 1.293,
+"elevation_gain": null,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 11246428436,
 "name": "\ud83c\udf19 Evening Run",
 "distance": 6173.4,
@@ -36907,6 +37963,22 @@
 "summary_polyline": "ixd}DcgebVJ{@A}@FeAAGUQ]Ou@[m@]s@Yq@_@_@c@IG{@WYECEAa@OS{@Jo@LoCvAoClAaAZo@^Y^mAjCMFO?c@OGAIBKLWb@Yx@Kl@Kv@Kb@GNSR[JW@c@Gk@SQAUDQRY`BGfAJzA?hAFdCGfD@tBErD@jBEhCBhA?lCCvA@PPb@Hj@FNPPBNCNMFc@@IFENB|ABPJT@JCvBANIXAN^fCCNQj@Aj@H`@l@~A@x@MbBNfAHXQuCE]@_@Ci@ESe@sAG[@i@V}@@IWgAIcALm@@_@AeAQiA@{ADOFGd@GNKFa@LUBQC[KQIGKEg@EGECGASByDC_BJyCC_B?uDHiICsA@kAE{@AeADs@XkAHQHIVGN@l@X\\J\\CVKPSL]ViBRu@Re@Va@JCF?d@PRERSdAcCd@e@b@U~@StBu@bEkBb@Gd@A\\DVJTALDx@^f@d@`@h@dAn@",
 "average_heartrate": 138.7,
 "average_speed": 2.782,
+"elevation_gain": null,
+"source": "strava",
+"streak": 7
+},
+{
+"run_id": 11251168557,
+"name": "\ud83c\udf1e Lunch Walk",
+"distance": 2122.0,
+"moving_time": "0:26:22",
+"type": "Hike",
+"start_date": "2024-04-24 04:08:56+00:00",
+"start_date_local": "2024-04-24 12:08:56",
+"location_country": "\u660c\u5316\u8def, \u53c9\u888b\u89d2, \u6c5f\u5b81\u8def\u8857\u9053, \u9759\u5b89\u533a, \u4e0a\u6d77\u5e02, 200041, \u4e2d\u56fd",
+"summary_polyline": "ict}DwmgdVu@j@mBhCoBjBUNgBp@KAECOYq@mBi@mAm@wBc@kAm@sAQUMEKAQDSNo@t@YTWL_@FYPe@n@aBdCnAQv@gBn@_At@q@z@{@v@i@VUNY@c@FU\\g@nAuA|AoCZu@Ru@Nu@Bk@Ak@G{@_@aCC}@Qq@AQHOVQRGn@M^O",
+"average_heartrate": 92.1,
+"average_speed": 1.341,
 "elevation_gain": null,
 "source": "strava",
 "streak": 7
@@ -37056,6 +38128,22 @@
 "streak": 4
 },
 {
+"run_id": 11360787682,
+"name": "\ud83c\udf19 Evening Walk",
+"distance": 1292.0,
+"moving_time": "0:16:52",
+"type": "Hike",
+"start_date": "2024-05-08 12:29:47+00:00",
+"start_date_local": "2024-05-08 20:29:47",
+"location_country": "\u9999\u82b1\u6865\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "m`f}D}pebV^If@@d@J^XLPJVP|ANj@HPLLJFL@REJKVo@j@qANUVUd@W|@SxBu@~BoAdAa@XE^Ap@HLDX@PDp@`@n@z@RRr@`@",
+"average_heartrate": 103.4,
+"average_speed": 1.277,
+"elevation_gain": null,
+"source": "strava",
+"streak": 4
+},
+{
 "run_id": 11365013886,
 "name": "\ud83c\udf25\ufe0f Morning Run",
 "distance": 5056.1,
@@ -37104,6 +38192,22 @@
 "streak": 1
 },
 {
+"run_id": 11396958997,
+"name": "\u2601\ufe0f Evening Walk",
+"distance": 1450.2,
+"moving_time": "0:20:24",
+"type": "Hike",
+"start_date": "2024-05-12 12:12:43+00:00",
+"start_date_local": "2024-05-12 20:12:43",
+"location_country": "\u590f\u9633\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "slf}DozebVh@hDHXd@~@Rj@v@xCHRJLRJRDP?RENIPQP]^{AT_@PKPIRCR?VB`@JRLNLN^VnBJ`@LTPLLDPALGHO`A_CRWNOb@St@Sn@WpAc@lCsA",
+"average_heartrate": 102.0,
+"average_speed": 1.185,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 11397544768,
 "name": "\ud83c\udf1e Morning Ride",
 "distance": 38238.9,
@@ -37131,6 +38235,22 @@
 "summary_polyline": "oxd}DsiebVA{@?m@C[_B{@k@e@uA}@m@i@q@Ua@GWc@OMCAs@HcAl@iCpAgA`@m@V_AVYNc@`@QRk@tAQh@KLQFM@c@QOB]n@_@fAGZGn@Kf@KVOLa@Rc@?e@M_@SMAK@MHMREXAN@dBCLMRAHFrAEfABj@AdFBj@I~B@rFA|ACr@B`A?|@EpDBVRb@Fh@FHPLBRCNEBe@FKFCF@pBBJHL@LGx@B`@AZMp@`@bC@NUn@Cj@@XFRb@bALl@?ZOjACb@Fb@Px@M{A@s@Ig@@Y?c@G]c@gAIe@@g@F]x@cBJa@A]M_@KM_@QGOCWBw@Ee@Me@AmABa@FMj@IFGHc@N_@?SGWOIOAMBID?FLh@FNLHF@JEHQ@OC[KMQI]AICKIAKBaD?wAC_ADeB?qJFcGC}A@wAIqA@}@D[\\oAFMJINAP@n@X`@DRCNGJIPUZaADk@Ly@n@eBBU?QQeBMc@QS_@Yw@SUBKBo@^[n@O~@GTGJSRWHWB]GQIIKEMU_Ao@{Bq@eBm@mD",
 "average_heartrate": 130.0,
 "average_speed": 2.65,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
+"run_id": 11412903500,
+"name": "\ud83c\udf19 Evening Walk",
+"distance": 1443.3,
+"moving_time": "0:19:24",
+"type": "Hike",
+"start_date": "2024-05-14 12:09:53+00:00",
+"start_date_local": "2024-05-14 20:09:53",
+"location_country": "\u590f\u9633\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "olf}D}yebVR~AR~@|@`Cx@xCHPNLLFNDR?RERKNMN[^}AHQLOPKRGRET?ZDVHRLLNTd@VlBHZLPNLPFN?NIFKbAcCf@g@\\Q`ASzAk@~BgA",
+"average_heartrate": 93.2,
+"average_speed": 1.24,
 "elevation_gain": null,
 "source": "strava",
 "streak": 3
@@ -37232,6 +38352,22 @@
 "streak": 8
 },
 {
+"run_id": 11442924598,
+"name": "\ud83c\udf1e Morning Walk",
+"distance": 1249.3,
+"moving_time": "0:16:54",
+"type": "Hike",
+"start_date": "2024-05-18 23:25:31+00:00",
+"start_date_local": "2024-05-19 07:25:31",
+"location_country": "\u9999\u82b1\u6865\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "c`f}DaqebV^G`@B`@J\\VNRHR`@vBHXRVVHNCNMdA}BPWZWZO~@WlAa@pB{@xAu@f@Q\\Ct@AdAPr@^jArA|@h@",
+"average_heartrate": 94.7,
+"average_speed": 1.232,
+"elevation_gain": null,
+"source": "strava",
+"streak": 8
+},
+{
 "run_id": 11451594617,
 "name": "\u2601\ufe0f Morning Run",
 "distance": 5035.1,
@@ -37259,6 +38395,22 @@
 "summary_polyline": "swd}D_hebVP}AAM]{@iAq@mA_A[]e@o@WQqAk@m@G[[OIOAM@o@XcAn@aClAmAb@e@Tu@R_@RYXY`@s@bBU^ODI?c@OIAKFIJo@xAIj@K`AYr@QLMF[Be@Iy@YQ?GBMHKTWzACnAHvAAhADxBEhG?fHItCDlCEhD@P`@lAXb@@HCLGF]HKFEHANAh@Br@BRHV?JCn@@z@AHO`@?J^jC?NOVGRE\\?PDTb@fANb@Dj@?n@HXHHD?b@EHHJr@Hx@ZzBDl@^lC?HET@Jj@xCXhCZdBRbB\\lACdB@RH\\LpBAvCQnB?VRvEHbFJrCDXFLj@\\^Jd@C`AMf@?hESdBQfAIbBGh@FNANETQTIlAB~@OXCxABnAFjA@pBKlA_@f@Mn@@t@Lf@@l@IlBOTK^Uh@Ml@Bl@Vf@Dj@It@WRCNFVXL@r@InAAz@KdAA~@GzA?v@Ot@I`B@~@K|BCtBUpA@VEz@[PA~@Af@Ev@AP?f@NxASfDQh@@NCn@]p@EhAAPBVNFBfA@b@Gz@Q|AGrAKx@M\\A|@Dr@K|@ApA?tCY|B?x@IzAYt@B^Hd@?VAtAMxACb@GFE@G?[BGZBRVLDrABNCFG@I?QGUCQDIVObASp@Ux@Ap@DLAJGDIEQmB}DMK[GWYC?e@JOAIGIOIo@EQa@]GI_@sA[g@Oi@c@cAw@iAeB_Ba@]Yg@s@y@eDoC][@OTa@Nk@JKVEBEPu@?GCEYUc@m@w@[YSMYAQ?]AIKMQKOEQBk@PM?OEaCyAkAm@uDwBGIk@_Bs@eAo@aBCSDs@AMKYQUMGg@CKGKKCK?_@?eADYDKb@Y^_@|CgBzAeAv@]FGBG@IGs@Qw@Iy@A]Dg@Le@F_A@GPM]_Al@nBFFF?SOKQGCWCECy@mAOm@C[EmAG]GMs@_@MKCICQD_@JQ\\WBINs@@QAK_@qA@ONe@A_@SmAUu@Cc@Mm@i@iBYsAi@qAe@y@Uo@",
 "average_heartrate": 144.4,
 "average_speed": 2.936,
+"elevation_gain": null,
+"source": "strava",
+"streak": 10
+},
+{
+"run_id": 11460609615,
+"name": "\u2601\ufe0f Morning Walk",
+"distance": 904.1,
+"moving_time": "0:10:53",
+"type": "Hike",
+"start_date": "2024-05-20 23:16:31+00:00",
+"start_date_local": "2024-05-21 07:16:31",
+"location_country": "\u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "ycb}D_jebVW?_@IsBIm@?SGa@C_AE{@?m@CWNs@NKFEFDn@Hj@?PLr@?T",
+"average_heartrate": 106.9,
+"average_speed": 1.385,
 "elevation_gain": null,
 "source": "strava",
 "streak": 10
@@ -37339,6 +38491,22 @@
 "summary_polyline": "cxd}DqiebV@c@CkAGKc@a@mC}A[Ya@UYWi@SUS[EO]GEsA\\q@TkB|@iAb@aAX]Ny@Vc@Vm@n@eA`CMHOBMCSKKAG@IJc@bAQv@MhAOh@IP[TUDO@a@Gu@[SCODKJGL[|ACv@L|BCl@?tIEnJEzCD|AAhE@RPf@Lh@X`@BJCNEBe@DKDEV@bB@HLP@FEd@@tAQv@XlBB\\?NQ^CPAd@F^l@|ADR?f@QvA?PJr@Ld@BKGeA?_@BIHEd@BFDDHNhAR|@Jj@VtCRtA?ZBZh@pCVvBXjARtBVlA@~BNrAF`AAzCMrB?n@HtCDr@?|BP|DHlABJd@ZXLN@dBQlDK~CWZ@VDZ?r@Ql@Gb@BVC`@YNEV?n@HfBWrDJjA?vAIl@Mz@Y^Gd@@z@LV@jBKbAO|@c@TEV?PBz@X\\BRE`AY`@ELBFFNRJFl@KnAAnAMvCKdA?\\Gg@HqAAgALaA?oALu@AcAFOEOUKGS@wA`@WBg@Gg@Qc@Aa@Hi@Z]JcCP}@Bs@Q_@?c@Du@Vy@NmBJy@?cAKq@Aa@E[@_BPy@B]He@RU?e@G_AFiB?iAXi@H_BHo@?wADeBLWIe@_@IIGYUqF?oCYyEReCByBC}AO_BEwAKc@M_@EUCu@OgAa@gBIo@C_@UkAY_C@_@AUiAqHGoACMECWAYIIe@?c@Gm@Me@_@}@G[@[DYXm@b@y@HWB[E[IWOO[MGKAk@@w@CYOY?oB@IHIl@KDKDa@NWBOCWMUQIk@CIIAIB{@@wCE}BH{JAyCDsCIqBDcACkBBwAZgAJSLI\\@bAZXBJALGVWN]Ps@RaBn@eB@g@QkBOa@MQYUg@QWCS?ODUJQPS^]vAKPMJ[LSBSAa@MGGKOkAaEk@wAa@qC",
 "average_heartrate": 129.3,
 "average_speed": 2.642,
+"elevation_gain": null,
+"source": "strava",
+"streak": 14
+},
+{
+"run_id": 11490064383,
+"name": "\u2601\ufe0f Morning Walk",
+"distance": 1753.2,
+"moving_time": "0:23:36",
+"type": "Hike",
+"start_date": "2024-05-24 23:59:41+00:00",
+"start_date_local": "2024-05-25 07:59:41",
+"location_country": "\u590f\u9633\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "alf}DqwebVTlA|@rB`ApDNTZLP@XERILMPa@ZuAHSPSLITKXER@TBZL^TNPJRDRLvAJb@LTLLLFP?JGHKdAaCRWVUXMdAYtBw@nDaBt@Uh@G\\Bv@PRFr@f@j@t@ZXxA~@xAt@JLBH?NEd@",
+"average_heartrate": 91.6,
+"average_speed": 1.238,
 "elevation_gain": null,
 "source": "strava",
 "streak": 14
@@ -37872,6 +39040,22 @@
 "streak": 1
 },
 {
+"run_id": 11959966739,
+"name": "\u2601\ufe0f\ud83c\udf19\ud83e\udd75\ufe0f Evening Walk",
+"distance": 1421.1,
+"moving_time": "0:12:46",
+"type": "Hike",
+"start_date": "2024-07-23 11:34:23+00:00",
+"start_date_local": "2024-07-23 19:34:23",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 115.6,
+"average_speed": 1.855,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 11977156363,
 "name": "\u2601\ufe0f Evening Run",
 "distance": 5054.3,
@@ -38192,6 +39376,22 @@
 "streak": 1
 },
 {
+"run_id": 12336821120,
+"name": "\ud83c\udf25\ufe0f\ud83e\udd75\ufe0f Morning Walk",
+"distance": 1524.1,
+"moving_time": "0:13:13",
+"type": "Hike",
+"start_date": "2024-09-05 22:43:10+00:00",
+"start_date_local": "2024-09-06 06:43:10",
+"location_country": "\u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "yhe}DstebVj@Wn@K`AAv@Pv@ZNL|@fAtA|@l@X",
+"average_heartrate": 99.7,
+"average_speed": 1.922,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 12370496509,
 "name": "\ud83c\udf25\ufe0f\ud83e\udd75\ufe0f Morning Run",
 "distance": 5214.3,
@@ -38240,6 +39440,22 @@
 "streak": 1
 },
 {
+"run_id": 12407461525,
+"name": "\ud83c\udf25\ufe0f\ud83e\udd75\ufe0f Lunch Walk",
+"distance": 1252.7,
+"moving_time": "0:14:32",
+"type": "Hike",
+"start_date": "2024-09-14 04:04:20+00:00",
+"start_date_local": "2024-09-14 12:04:20",
+"location_country": "\u5929\u5c71\u897f\u8def, \u65b0\u6cfe\u9547, \u957f\u5b81\u533a, \u4e0a\u6d77\u5e02, 200335, \u4e2d\u56fd",
+"summary_polyline": "wpp}D_jtcVz@UJGFO@]BoBCi@AW_@u@@iAjA}@Ny@\\sKs@KgAHmAXeC`@g@p@{AnE_AzCqCfKgApEOdACt@Mj@CvBO`C?fA",
+"average_heartrate": 77.4,
+"average_speed": 1.437,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 12407462056,
 "name": "\ud83c\udf19\ud83e\udd75\ufe0f Evening Ride",
 "distance": 27017.8,
@@ -38272,6 +39488,22 @@
 "streak": 3
 },
 {
+"run_id": 12437379904,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:21:37",
+"type": "Workout",
+"start_date": "2024-09-17 12:00:24+00:00",
+"start_date_local": "2024-09-17 20:00:24",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 83.1,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 12437380066,
 "name": "\u2601\ufe0f Morning Run",
 "distance": 5179.3,
@@ -38285,7 +39517,7 @@
 "average_speed": 2.55,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 12471351073,
@@ -38448,6 +39680,22 @@
 "streak": 2
 },
 {
+"run_id": 12625478445,
+"name": "\u2601\ufe0f Lunch Walk",
+"distance": 2318.6,
+"moving_time": "0:24:20",
+"type": "Hike",
+"start_date": "2024-10-10 04:08:50+00:00",
+"start_date_local": "2024-10-10 12:08:50",
+"location_country": "\u6c64\u66f4\u6d6a, \u5317\u7fdf\u8def, \u65b0\u6cfe\u9547, \u957f\u5b81\u533a, \u4e0a\u6d77\u5e02, 200335, \u4e2d\u56fd",
+"summary_polyline": "uiq}DmcrcVlAEx@SOuD~AkFJI|@_@^u@PqAIaAq@s@U_@`@p@p@p@J`AH^BTCx@B~@O`A?HBHHDJ@ZIRWNc@Dq@Ji@D_AN}@LqD@qDZwKXgHAm@CIIISCWFQRGX@NHT`@b@HPB^C\\E?YIM?IBORMHM@a@@",
+"average_heartrate": 90.0,
+"average_speed": 1.588,
+"elevation_gain": null,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 12625478360,
 "name": "\ud83c\udf1e Morning Run",
 "distance": 5052.1,
@@ -38461,7 +39709,7 @@
 "average_speed": 2.853,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 4
 },
 {
 "run_id": 12640967136,
@@ -38672,6 +39920,22 @@
 "streak": 1
 },
 {
+"run_id": 12817721577,
+"name": "\ud83c\udf19 Afternoon Walk",
+"distance": 2265.4,
+"moving_time": "0:30:20",
+"type": "Hike",
+"start_date": "2024-11-02 09:27:49+00:00",
+"start_date_local": "2024-11-02 17:27:49",
+"location_country": "\u65b0\u6e14\u8def, \u5317\u65b0\u6cfe\u8857\u9053, \u65b0\u6cfe\u9547, \u957f\u5b81\u533a, \u4e0a\u6d77\u5e02, 200335, \u4e2d\u56fd",
+"summary_polyline": "wmp}DuetcVSxHI~@FCCb@WjAw@rCeClIi@`BYj@SVEJyAjJUdAKzBEd@EFGFw@TeCDQJETp@Od@OfAGNEPMNOFQFYZmCJi@Dk@bAu_@?c@CKGGIEK?WHSTEV@TDNJN^\\FX@XMtCCTCHIFi@Fe@P_@P]Xc@NGc@IQMK[K",
+"average_heartrate": 78.5,
+"average_speed": 1.245,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 12817721477,
 "name": "\ud83c\udf25\ufe0f Morning Run",
 "distance": 5220.9,
@@ -38832,6 +40096,22 @@
 "streak": 2
 },
 {
+"run_id": 12970232452,
+"name": "\ud83c\udf1e Lunch Walk",
+"distance": 1774.5,
+"moving_time": "0:24:22",
+"type": "Hike",
+"start_date": "2024-11-23 04:08:00+00:00",
+"start_date_local": "2024-11-23 12:08:00",
+"location_country": "\u4ed9\u971e\u897f\u8def, \u65b0\u6cfe\u9547, \u957f\u5b81\u533a, \u4e0a\u6d77\u5e02, 200335, \u4e2d\u56fd",
+"summary_polyline": "s~n}DcbucVW@q@@kANcABu@HaBCs@LiAJgANoCTsCReCJe@?eD\\y@\\SFcCLYFIJGTgA|FGPYh@UdAKVIJMFeAHODKJQf@]BQBMHGJE^G|BInAIlEEVGNKHSD",
+"average_heartrate": 83.9,
+"average_speed": 1.214,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 12976894418,
 "name": "\u2601\ufe0f Morning Run",
 "distance": 5205.1,
@@ -38875,6 +40155,22 @@
 "summary_polyline": "ywd}DslebVMc@aB_AmA{@wAkAy@]e@KO[KKKAs@Li@Nk@b@wBbAaC|@w@Tq@^SROVo@|AU^GDODO?_@GI@KFILUb@Qh@On@It@I\\KVKPWN[F[CeA[O@IBSPIRUzAEv@JjBDpDMtJA`D@n@CdCBnA@xBCdBD\\XdAFNPRDLAJGJ]La@j@CNAdATh@H^D`@Ev@Kb@APFt@RnAALOXGTEZ?VBZd@z@Ph@@n@KxABf@Nv@DF@UI}@?_@DMJCH?ZFFBVhAZfBV|CRtA@h@`AdFHfAR`ANpBXrAFfCHfAHlBAhBQpBAh@HrCF~@?bDHjAJ`CD\\LNh@^LBN@jBOtEMfCWpAAl@M`@AXFN?HAd@YPClAAvAOh@En@BtAJb@?v@Eb@?x@Ep@Op@Sj@GT?x@Lb@@x@I~AK`@Md@Wr@KRBl@Vb@DXC~@[NCR@PDPTLBf@GvAA~@IpAE|@Gb@@f@AdAOl@A\\Ev@?fBMrA@|@GhASJ??Dy@By@H}AAm@Bq@JcABWA[Bm@?kAPeAAoAJq@?eAJiA@_AFMCUWGEIAO@oA^WB_@Es@Wa@C[Bg@PALID_@J_DXY@y@Ms@@YBaBb@_BHgABaDQc@Bo@LYBi@Ia@AOBg@XMBm@Cy@D]@k@Em@RSB_FXc@?YBwADc@D[C]MWQGMCOS{EGeDMsD?{@NaC?mCEeAOqA?u@Ig@Ce@Qu@UmB]{Ag@{DQgAEa@?u@y@wFOu@QoBEMi@DEDAFFb@?p@APAHE@CCWuAC[VgA@QCe@Oi@_@_AG]?m@BK~@gBLYB[CYIWUQUKMMCS@}@Ai@I_@CS?u@@_@DSHOd@KHI@ICQWa@]gAGYAOBkDCoBDeBMeBFoAJ}F?qAAs@@iAEgA@}AIcCB[\\{AHMPMREN@VD^NXDX?NEJIR_@b@gCl@gBHEd@ELHL@JANINSVy@d@_AV[VSXM`AUfC_AxCyAf@QZEVCP@fAZp@`@^Z",
 "average_heartrate": 166.0,
 "average_speed": 2.893,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
+"run_id": 13006578824,
+"name": "Night Elliptical",
+"distance": 0.0,
+"moving_time": "0:04:44",
+"type": "Workout",
+"start_date": "2024-11-28 13:36:25+00:00",
+"start_date_local": "2024-11-28 21:36:25",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 112.4,
+"average_speed": 0.0,
 "elevation_gain": null,
 "source": "strava",
 "streak": 2
@@ -39568,6 +40864,22 @@
 "streak": 6
 },
 {
+"run_id": 13607638139,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:15:05",
+"type": "Workout",
+"start_date": "2025-02-10 00:26:18+00:00",
+"start_date_local": "2025-02-10 08:26:18",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 96.9,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 7
+},
+{
 "run_id": 13638622636,
 "name": "Afternoon Run",
 "distance": 5038.0,
@@ -39888,6 +41200,22 @@
 "streak": 6
 },
 {
+"run_id": 13875953258,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:13:29",
+"type": "Workout",
+"start_date": "2025-03-09 11:44:37+00:00",
+"start_date_local": "2025-03-09 19:44:37",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 85.1,
+"average_speed": 0.0,
+"elevation_gain": null,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 13875953272,
 "name": "Afternoon Run",
 "distance": 5036.1,
@@ -39901,7 +41229,7 @@
 "average_speed": 2.633,
 "elevation_gain": null,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 13875953256,
@@ -39917,7 +41245,7 @@
 "average_speed": 2.645,
 "elevation_gain": null,
 "source": "strava",
-"streak": 2
+"streak": 3
 },
 {
 "run_id": 13875953266,
@@ -39933,7 +41261,7 @@
 "average_speed": 2.849,
 "elevation_gain": null,
 "source": "strava",
-"streak": 3
+"streak": 4
 },
 {
 "run_id": 13875953290,
@@ -39949,7 +41277,7 @@
 "average_speed": 2.703,
 "elevation_gain": null,
 "source": "strava",
-"streak": 4
+"streak": 5
 },
 {
 "run_id": 13875953391,
@@ -39965,7 +41293,23 @@
 "average_speed": 3.039,
 "elevation_gain": null,
 "source": "strava",
-"streak": 5
+"streak": 6
+},
+{
+"run_id": 13894055318,
+"name": "Afternoon Walk",
+"distance": 2009.9,
+"moving_time": "0:27:45",
+"type": "Hike",
+"start_date": "2025-03-14 09:39:22+00:00",
+"start_date_local": "2025-03-14 17:39:22",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 93.0,
+"average_speed": 1.207,
+"elevation_gain": null,
+"source": "strava",
+"streak": 6
 },
 {
 "run_id": 13894055433,
@@ -40256,6 +41600,22 @@
 "streak": 1
 },
 {
+"run_id": 14084048240,
+"name": "\u2601\ufe0f Afternoon Hike",
+"distance": 6812.4,
+"moving_time": "2:27:57",
+"type": "Hike",
+"start_date": "2025-04-05 05:14:43+00:00",
+"start_date_local": "2025-04-05 13:14:43",
+"location_country": "\u9ec4\u6e7e\u9547, \u6d77\u5b81\u5e02, \u5609\u5174\u5e02, \u6d59\u6c5f\u7701, \u4e2d\u56fd",
+"summary_polyline": "gpkxDihl`Vp@w@\\k@D[Aa@E_@BOVYV_@~AkB`@_@Ti@\\_@NG@E?KKICBPHJCf@i@j@aA?EUIRHRChAg@LIREZM~AGTELIHS?YLy@Bk@Ag@Fm@Ik@Ck@MaADGPCJMBo@K{AWqAC]AmAXuDLc@Bo@Sy@NkC]o@WUIm@PiANUl@WLCLId@KXQN_@RUBQDCVKLCFEJ?BGFCBGXSZAHKJCd@[NDBAXe@ZMBOAa@FM?KDEBMC[IQGSKMEQ?QUa@SSOa@]QG?QKGAACC@?MEADSGM?IEICMFGCIIIB@BED?JULA@IBACIBGCIGEAEKG?CHGAIDCBE?AC?FCBKZYTGAGp@@@AVAH@V?RFLAXDLJECAONOVs@PI\\YJKJSXQb@c@d@YDGPIFAPQLABKPIHAZHFDFLFFfADTIJA^]XINKHCDGVCTS^OXGLKPGHIL?JEH??@AAA@VSPGR?FGLED@?CNIXGHGVHDCDFACDMAGIOKGIBEBE?@JEH@FABDGB@C?@C?EICAE@DAINABHD?BBAA?@C@@AC?BAGAKGDYCGBIAEWDMHSAIHe@RWCMFK@EEQ@_@Am@Ja@KO?[IY?YI]BAAGAACG?]KM?QCMHEE@CGACDC?BDCA@BYYM]E@AABIDE@EMO?IMCJBFG?]KOSMm@GODY@@AWHw@HO?aBPq@G]KKKc@GKIQGW@MHUDc@d@CCFGCACD@??DAB?H[XO@ICI?K@GDQBe@ZUHe@ZEFI?e@ZILM\\YVIZC\\MTSv@_@d@ALGFB\\FXODCN@NHXOFGD[?CJc@ZHv@DHFZ@tAJn@\\n@VbAFf@@d@DJTX\\t@LJVv@LPNf@b@v@HX@\\Gf@GlAE^@n@BPQJQDKFKLCRIXEZAX@TAFGNSTQ`@G@?LEL?JM`AWnACh@Lj@@RCZK`@E\\?b@@ZIfAUv@MdAK`@QZm@b@S^YdAKl@Ej@Hl@GtA@dAEt@Id@Af@@DZT@H]n@k@n@IBMEI@CGNJEJDJ@CCAIBu@r@e@ZO`@WTWb@UTORw@`ACH?PJz@DNKVy@`AEOs@fA]ZIRcAjAGPQRSJkBPc@@U@]IeBGKBO?",
+"average_heartrate": 92.1,
+"average_speed": 0.767,
+"elevation_gain": null,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 14105145305,
 "name": "\u2601\ufe0f Afternoon Run",
 "distance": 5684.9,
@@ -40480,6 +41840,22 @@
 "streak": 5
 },
 {
+"run_id": 14278607571,
+"name": "Lunch Walk",
+"distance": 2908.1,
+"moving_time": "0:46:02",
+"type": "Hike",
+"start_date": "2025-04-25 04:04:11+00:00",
+"start_date_local": "2025-04-25 12:04:11",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 92.9,
+"average_speed": 1.053,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 14299691731,
 "name": "\ud83c\udf1e Afternoon Run",
 "distance": 5202.4,
@@ -40572,6 +41948,22 @@
 "average_heartrate": 152.3,
 "average_speed": 3.132,
 "elevation_gain": 13.8,
+"source": "strava",
+"streak": 3
+},
+{
+"run_id": 14415101900,
+"name": "Afternoon Walk",
+"distance": 3070.0,
+"moving_time": "2:37:51",
+"type": "Hike",
+"start_date": "2025-05-08 09:48:12+00:00",
+"start_date_local": "2025-05-08 17:48:12",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 82.0,
+"average_speed": 0.324,
+"elevation_gain": 0.0,
 "source": "strava",
 "streak": 3
 },
@@ -40672,6 +42064,22 @@
 "streak": 4
 },
 {
+"run_id": 14494880813,
+"name": "Lunch Walk",
+"distance": 1560.3,
+"moving_time": "0:24:14",
+"type": "Hike",
+"start_date": "2025-05-16 04:02:07+00:00",
+"start_date_local": "2025-05-16 12:02:07",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 81.5,
+"average_speed": 1.073,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 14504096265,
 "name": "Lunch Run",
 "distance": 5283.5,
@@ -40685,7 +42093,7 @@
 "average_speed": 2.285,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 6
 },
 {
 "run_id": 14513089842,
@@ -40701,7 +42109,7 @@
 "average_speed": 3.107,
 "elevation_gain": 8.0,
 "source": "strava",
-"streak": 2
+"streak": 7
 },
 {
 "run_id": 14537825854,
@@ -40784,6 +42192,22 @@
 "streak": 5
 },
 {
+"run_id": 14575798277,
+"name": "Lunch Walk",
+"distance": 4169.6,
+"moving_time": "1:03:46",
+"type": "Hike",
+"start_date": "2025-05-24 03:40:13+00:00",
+"start_date_local": "2025-05-24 11:40:13",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 82.6,
+"average_speed": 1.09,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 14598450101,
 "name": "Afternoon Run",
 "distance": 5078.0,
@@ -40816,6 +42240,22 @@
 "streak": 2
 },
 {
+"run_id": 14618937137,
+"name": "Afternoon Walk",
+"distance": 2018.4,
+"moving_time": "0:31:29",
+"type": "Hike",
+"start_date": "2025-05-28 09:44:23+00:00",
+"start_date_local": "2025-05-28 17:44:23",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 94.1,
+"average_speed": 1.068,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 3
+},
+{
 "run_id": 14625339552,
 "name": "\ud83c\udf1e Morning Run",
 "distance": 5179.2,
@@ -40829,7 +42269,7 @@
 "average_speed": 3.403,
 "elevation_gain": 10.0,
 "source": "strava",
-"streak": 1
+"streak": 4
 },
 {
 "run_id": 14629424423,
@@ -40845,7 +42285,7 @@
 "average_speed": 2.712,
 "elevation_gain": 40.6,
 "source": "strava",
-"streak": 1
+"streak": 4
 },
 {
 "run_id": 14639519176,
@@ -40861,7 +42301,7 @@
 "average_speed": 2.735,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 5
 },
 {
 "run_id": 14646297101,
@@ -40877,7 +42317,39 @@
 "average_speed": 3.312,
 "elevation_gain": 23.8,
 "source": "strava",
-"streak": 3
+"streak": 6
+},
+{
+"run_id": 14661286627,
+"name": "\u2601\ufe0f Evening Walk",
+"distance": 4205.1,
+"moving_time": "0:54:12",
+"type": "Hike",
+"start_date": "2025-06-01 10:31:24+00:00",
+"start_date_local": "2025-06-01 18:31:24",
+"location_country": "\u76c8\u6e2f\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "_be}DcuebVm@OWOMCUAa@H_FzBsC`Ab@KpAe@~Ao@fB{@f@Ql@Eh@@`ARb@PZT`@f@h@h@rAz@jAn@\\X?JQfB?vAQrAEj@@d@DRDiANqBC_AB_AFk@FMFENAvAPf@Hr@Fl@Lr@Zl@NbBVvAJXFt@^XJPAHGDKB[ISqAy@[KeAUy@[_AUkAc@iAYmAa@]Im@EYIWM{@m@k@o@g@a@sAu@w@WmBUO@{@LkAJcCSY?ODQJsAdAYJYFm@AgAYO?SBQHKLKRMd@URyBp@gAHe@TMLIPSbAM^OVUPWHUBYEYKVLZD\\CTKNOLS\\yAR_@TUTKPCZ?VD\\JVNLPP`@TjBHZNRLJLFNALEJOdAaCNS\\Y^Q|@ShCaAz@e@vAo@`@Md@GVCT@^Nd@HXH\\Tt@|@",
+"average_heartrate": 95.7,
+"average_speed": 1.293,
+"elevation_gain": 7.6,
+"source": "strava",
+"streak": 7
+},
+{
+"run_id": 14667901424,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:08:19",
+"type": "Workout",
+"start_date": "2025-06-01 23:26:17+00:00",
+"start_date_local": "2025-06-02 07:26:17",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 105.0,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 8
 },
 {
 "run_id": 14670564280,
@@ -40893,7 +42365,7 @@
 "average_speed": 3.57,
 "elevation_gain": 2.4,
 "source": "strava",
-"streak": 1
+"streak": 8
 },
 {
 "run_id": 14681348042,
@@ -40909,7 +42381,23 @@
 "average_speed": 2.605,
 "elevation_gain": 37.8,
 "source": "strava",
-"streak": 2
+"streak": 9
+},
+{
+"run_id": 14688373285,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:37:11",
+"type": "Workout",
+"start_date": "2025-06-03 22:14:07+00:00",
+"start_date_local": "2025-06-04 06:14:07",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 75.0,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 10
 },
 {
 "run_id": 14711150748,
@@ -40925,7 +42413,7 @@
 "average_speed": 2.691,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 10
 },
 {
 "run_id": 14702970618,
@@ -40941,7 +42429,23 @@
 "average_speed": 2.665,
 "elevation_gain": 39.2,
 "source": "strava",
-"streak": 4
+"streak": 11
+},
+{
+"run_id": 14709302759,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:16:42",
+"type": "Workout",
+"start_date": "2025-06-05 23:04:21+00:00",
+"start_date_local": "2025-06-06 07:04:21",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 102.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 12
 },
 {
 "run_id": 14712353511,
@@ -40957,7 +42461,7 @@
 "average_speed": 3.128,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 5
+"streak": 12
 },
 {
 "run_id": 14718720593,
@@ -40973,7 +42477,23 @@
 "average_speed": 2.872,
 "elevation_gain": 10.2,
 "source": "strava",
-"streak": 6
+"streak": 13
+},
+{
+"run_id": 14728787178,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:13:02",
+"type": "Workout",
+"start_date": "2025-06-08 00:18:10+00:00",
+"start_date_local": "2025-06-08 08:18:10",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 99.4,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 14
 },
 {
 "run_id": 14742645373,
@@ -40989,7 +42509,7 @@
 "average_speed": 3.119,
 "elevation_gain": 40.8,
 "source": "strava",
-"streak": 1
+"streak": 15
 },
 {
 "run_id": 14753282435,
@@ -41005,7 +42525,7 @@
 "average_speed": 2.848,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 16
 },
 {
 "run_id": 14764027469,
@@ -41021,7 +42541,7 @@
 "average_speed": 2.731,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 17
 },
 {
 "run_id": 14775047885,
@@ -41037,7 +42557,7 @@
 "average_speed": 2.684,
 "elevation_gain": 46.0,
 "source": "strava",
-"streak": 4
+"streak": 18
 },
 {
 "run_id": 14781441121,
@@ -41053,7 +42573,7 @@
 "average_speed": 3.065,
 "elevation_gain": 8.4,
 "source": "strava",
-"streak": 5
+"streak": 19
 },
 {
 "run_id": 14786627564,
@@ -41069,7 +42589,7 @@
 "average_speed": 2.514,
 "elevation_gain": 13.6,
 "source": "strava",
-"streak": 5
+"streak": 19
 },
 {
 "run_id": 14796727063,
@@ -41085,7 +42605,7 @@
 "average_speed": 3.024,
 "elevation_gain": 18.4,
 "source": "strava",
-"streak": 6
+"streak": 20
 },
 {
 "run_id": 14805398833,
@@ -41101,7 +42621,7 @@
 "average_speed": 2.916,
 "elevation_gain": 8.2,
 "source": "strava",
-"streak": 7
+"streak": 21
 },
 {
 "run_id": 14815206533,
@@ -41117,7 +42637,7 @@
 "average_speed": 2.862,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 8
+"streak": 22
 },
 {
 "run_id": 14825795581,
@@ -41133,7 +42653,7 @@
 "average_speed": 2.77,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 9
+"streak": 23
 },
 {
 "run_id": 14834908925,
@@ -41149,7 +42669,7 @@
 "average_speed": 3.002,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 10
+"streak": 24
 },
 {
 "run_id": 14847893672,
@@ -41165,7 +42685,23 @@
 "average_speed": 2.686,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 11
+"streak": 25
+},
+{
+"run_id": 14855135311,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:16:10",
+"type": "Workout",
+"start_date": "2025-06-19 23:38:54+00:00",
+"start_date_local": "2025-06-20 07:38:54",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 94.2,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 26
 },
 {
 "run_id": 14856267062,
@@ -41181,7 +42717,7 @@
 "average_speed": 2.985,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 12
+"streak": 26
 },
 {
 "run_id": 14865057861,
@@ -41197,7 +42733,7 @@
 "average_speed": 3.095,
 "elevation_gain": 10.8,
 "source": "strava",
-"streak": 12
+"streak": 26
 },
 {
 "run_id": 14864773203,
@@ -41213,7 +42749,23 @@
 "average_speed": 2.823,
 "elevation_gain": 10.6,
 "source": "strava",
-"streak": 13
+"streak": 27
+},
+{
+"run_id": 14879652320,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:09:17",
+"type": "Workout",
+"start_date": "2025-06-22 11:01:09+00:00",
+"start_date_local": "2025-06-22 19:01:09",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 97.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 28
 },
 {
 "run_id": 14886796848,
@@ -41229,7 +42781,7 @@
 "average_speed": 2.902,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 29
 },
 {
 "run_id": 14888652891,
@@ -41245,7 +42797,7 @@
 "average_speed": 0.0,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 29
 },
 {
 "run_id": 14899337345,
@@ -41261,7 +42813,7 @@
 "average_speed": 2.806,
 "elevation_gain": 52.4,
 "source": "strava",
-"streak": 2
+"streak": 30
 },
 {
 "run_id": 14906141737,
@@ -41277,7 +42829,23 @@
 "average_speed": 3.14,
 "elevation_gain": 11.2,
 "source": "strava",
-"streak": 3
+"streak": 31
+},
+{
+"run_id": 14909475651,
+"name": "Afternoon Elliptical",
+"distance": 0.0,
+"moving_time": "0:16:29",
+"type": "Workout",
+"start_date": "2025-06-25 09:23:43+00:00",
+"start_date_local": "2025-06-25 17:23:43",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 112.0,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 31
 },
 {
 "run_id": 14920647619,
@@ -41293,7 +42861,23 @@
 "average_speed": 2.76,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 4
+"streak": 32
+},
+{
+"run_id": 14928447684,
+"name": "Lunch Walk",
+"distance": 1273.6,
+"moving_time": "0:18:58",
+"type": "Hike",
+"start_date": "2025-06-27 04:04:19+00:00",
+"start_date_local": "2025-06-27 12:04:19",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 86.9,
+"average_speed": 1.119,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 33
 },
 {
 "run_id": 14931923785,
@@ -41309,7 +42893,23 @@
 "average_speed": 2.698,
 "elevation_gain": 13.0,
 "source": "strava",
-"streak": 5
+"streak": 33
+},
+{
+"run_id": 14941502889,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:18:23",
+"type": "Workout",
+"start_date": "2025-06-28 12:05:55+00:00",
+"start_date_local": "2025-06-28 20:05:55",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 89.6,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 34
 },
 {
 "run_id": 14952384327,
@@ -41325,7 +42925,7 @@
 "average_speed": 3.158,
 "elevation_gain": 17.8,
 "source": "strava",
-"streak": 1
+"streak": 35
 },
 {
 "run_id": 14988675826,
@@ -41341,7 +42941,7 @@
 "average_speed": 2.933,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 36
 },
 {
 "run_id": 14971412885,
@@ -41357,7 +42957,7 @@
 "average_speed": 2.936,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 37
 },
 {
 "run_id": 14988675713,
@@ -41373,7 +42973,7 @@
 "average_speed": 2.969,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 4
+"streak": 38
 },
 {
 "run_id": 14992527674,
@@ -41389,7 +42989,7 @@
 "average_speed": 2.909,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 5
+"streak": 39
 },
 {
 "run_id": 15009539464,
@@ -41435,6 +43035,22 @@
 "summary_polyline": "",
 "average_heartrate": 119.7,
 "average_speed": 2.943,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 3
+},
+{
+"run_id": 15033395660,
+"name": "Evening Elliptical",
+"distance": 0.0,
+"moving_time": "0:18:54",
+"type": "Workout",
+"start_date": "2025-07-07 10:23:09+00:00",
+"start_date_local": "2025-07-07 18:23:09",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 110.4,
+"average_speed": 0.0,
 "elevation_gain": 0.0,
 "source": "strava",
 "streak": 3
@@ -41488,6 +43104,22 @@
 "streak": 5
 },
 {
+"run_id": 15064704940,
+"name": "Lunch Elliptical",
+"distance": 0.0,
+"moving_time": "1:00:30",
+"type": "Workout",
+"start_date": "2025-07-10 04:20:09+00:00",
+"start_date_local": "2025-07-10 12:20:09",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 76.2,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 6
+},
+{
 "run_id": 15066542810,
 "name": "Afternoon Run",
 "distance": 5094.3,
@@ -41536,6 +43168,22 @@
 "streak": 8
 },
 {
+"run_id": 15100458947,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:23:29",
+"type": "Workout",
+"start_date": "2025-07-13 12:51:46+00:00",
+"start_date_local": "2025-07-13 20:51:46",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 83.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 9
+},
+{
 "run_id": 15108811533,
 "name": "Afternoon Run",
 "distance": 5099.6,
@@ -41549,7 +43197,7 @@
 "average_speed": 2.832,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 10
 },
 {
 "run_id": 15117568013,
@@ -41565,7 +43213,7 @@
 "average_speed": 2.862,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 11
 },
 {
 "run_id": 15129211845,
@@ -41581,7 +43229,7 @@
 "average_speed": 2.787,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 12
 },
 {
 "run_id": 15196192420,
@@ -42192,6 +43840,22 @@
 "streak": 3
 },
 {
+"run_id": 15814415396,
+"name": "\ud83c\udf27\ufe0f\ud83e\udd75\ufe0f Afternoon Walk",
+"distance": 5793.7,
+"moving_time": "1:14:35",
+"type": "Hike",
+"start_date": "2025-09-13 09:27:18+00:00",
+"start_date_local": "2025-09-13 17:27:18",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "swd}DgjebVLoAFKJC|@N|@R~@NvBh@xATrBT^JlAj@JAFGDKBUAOIOk@c@WMy@Yu@O{@]gAY{DiAiCi@[Os@g@qAmAUOe@Qm@_@a@Mw@Eq@Km@?qBPyBQ]?ODOHuAfAWJYD[@SAoAY[@UJMLIRMb@MN]PgAZQJ@Pf@f@Td@Hd@JxAE`@a@fASx@[rBKTKLQLSDQ?QCaA]SAOFONGPSdAEl@?r@FtAAjABfBA`EGnD?rFEvB@xBAbDFl@\\fAT`@BJ?HGFi@NIJAL?pBHVFhAAz@KZCRTvAHT@VALQb@ETAV@RNh@f@tA@TCl@Mn@Ef@RfAHRB?@E@_BCo@G[Be@AYGWYs@So@CS?WDYRq@AIEC@eAQIAMAi@@SDU@y@Ss@B_@C_ADiADKFGf@KDG@IEM[o@[}@Gm@@mDAwAFeC?}FDqIC{B@uAA_BFkARaAPa@HILEX@v@TTBT?TKNOLUH[NiALo@Zy@T[HGNAj@HJAJGlAkCX[^W^Q|@U~Am@nBaAbBq@~@SR?LBXPj@Pn@XfAnAr@h@",
+"average_heartrate": 95.4,
+"average_speed": 1.295,
+"elevation_gain": 16.2,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 15814415385,
 "name": "\u2601\ufe0f\ud83e\udd75\ufe0f Evening Run",
 "distance": 5528.4,
@@ -42205,7 +43869,7 @@
 "average_speed": 3.31,
 "elevation_gain": 14.8,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 15815443068,
@@ -42221,7 +43885,7 @@
 "average_speed": 2.663,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 3
 },
 {
 "run_id": 15826499640,
@@ -42237,7 +43901,7 @@
 "average_speed": 2.7,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 4
 },
 {
 "run_id": 15843710669,
@@ -42253,7 +43917,7 @@
 "average_speed": 2.741,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 4
+"streak": 5
 },
 {
 "run_id": 15849079451,
@@ -42269,7 +43933,7 @@
 "average_speed": 2.765,
 "elevation_gain": 13.2,
 "source": "strava",
-"streak": 5
+"streak": 6
 },
 {
 "run_id": 15852030070,
@@ -42285,7 +43949,7 @@
 "average_speed": 4.255,
 "elevation_gain": 45.4,
 "source": "strava",
-"streak": 5
+"streak": 6
 },
 {
 "run_id": 15871773852,
@@ -42301,7 +43965,23 @@
 "average_speed": 2.697,
 "elevation_gain": 14.0,
 "source": "strava",
-"streak": 6
+"streak": 7
+},
+{
+"run_id": 15871773856,
+"name": "\u2601\ufe0f Evening Walk",
+"distance": 2796.5,
+"moving_time": "0:50:23",
+"type": "Hike",
+"start_date": "2025-09-19 12:47:32+00:00",
+"start_date_local": "2025-09-19 20:47:32",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "wwd}DqiebVHaBDKHAhANn@P`ALxA\\n@Hd@JXBb@JxALZJvAp@J?FGFc@AUEGk@IGOEEk@Kk@_@c@M{@_@q@MMIWGi@U}Bo@u@QeAMUG]ScAq@Ue@WS][aB{@_@Gi@CcAOLFyBFk@Pw@Kk@Ak@IK?KDe@`@cAp@SHMBaA?}@WKAQ@WHQRINI^KRc@LULu@BMTDN\\ZZf@DRNvAFd@Td@JJFBZITORi@Tc@Vq@Za@XUn@Sj@GPEXWVIZQx@WzA{@jAe@`@IJ?lAH@JJ?FFRFr@ZT\\?FNJHRFHb@Tp@f@lAh@h@b@@NOxB@j@Cl@",
+"average_heartrate": 82.1,
+"average_speed": 0.925,
+"elevation_gain": 20.4,
+"source": "strava",
+"streak": 7
 },
 {
 "run_id": 15916698539,
@@ -42592,6 +44272,22 @@
 "streak": 6
 },
 {
+"run_id": 16134035011,
+"name": "Afternoon Row",
+"distance": 0.0,
+"moving_time": "0:29:57",
+"type": "WaterSport",
+"start_date": "2025-10-13 09:44:56+00:00",
+"start_date_local": "2025-10-13 17:44:56",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 124.2,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 7
+},
+{
 "run_id": 16220256337,
 "name": "\u2601\ufe0f\ud83c\udf19 Afternoon Run",
 "distance": 5230.2,
@@ -42605,7 +44301,7 @@
 "average_speed": 2.813,
 "elevation_gain": 33.8,
 "source": "strava",
-"streak": 1
+"streak": 8
 },
 {
 "run_id": 16220256272,
@@ -42621,7 +44317,7 @@
 "average_speed": 2.699,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 9
 },
 {
 "run_id": 16220256327,
@@ -42637,7 +44333,23 @@
 "average_speed": 2.936,
 "elevation_gain": 14.0,
 "source": "strava",
-"streak": 3
+"streak": 10
+},
+{
+"run_id": 16220256305,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:33:35",
+"type": "Workout",
+"start_date": "2025-10-16 03:43:09+00:00",
+"start_date_local": "2025-10-16 11:43:09",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 125.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 10
 },
 {
 "run_id": 16220256328,
@@ -42653,7 +44365,7 @@
 "average_speed": 2.789,
 "elevation_gain": 9.6,
 "source": "strava",
-"streak": 4
+"streak": 11
 },
 {
 "run_id": 16220256419,
@@ -42669,7 +44381,7 @@
 "average_speed": 2.587,
 "elevation_gain": 11.0,
 "source": "strava",
-"streak": 5
+"streak": 12
 },
 {
 "run_id": 16220256426,
@@ -42685,7 +44397,23 @@
 "average_speed": 2.541,
 "elevation_gain": 25.6,
 "source": "strava",
-"streak": 6
+"streak": 13
+},
+{
+"run_id": 16220256401,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:18:12",
+"type": "Workout",
+"start_date": "2025-10-20 03:39:26+00:00",
+"start_date_local": "2025-10-20 11:39:26",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 112.2,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 14
 },
 {
 "run_id": 16220256383,
@@ -42701,7 +44429,23 @@
 "average_speed": 2.574,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 7
+"streak": 14
+},
+{
+"run_id": 16220256403,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:38:32",
+"type": "Workout",
+"start_date": "2025-10-21 03:37:39+00:00",
+"start_date_local": "2025-10-21 11:37:39",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 112.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 15
 },
 {
 "run_id": 16220256435,
@@ -42717,7 +44461,7 @@
 "average_speed": 2.963,
 "elevation_gain": 68.0,
 "source": "strava",
-"streak": 8
+"streak": 15
 },
 {
 "run_id": 16220256431,
@@ -42733,7 +44477,23 @@
 "average_speed": 2.772,
 "elevation_gain": 14.4,
 "source": "strava",
-"streak": 9
+"streak": 16
+},
+{
+"run_id": 16220256386,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:42:36",
+"type": "Workout",
+"start_date": "2025-10-22 09:40:21+00:00",
+"start_date_local": "2025-10-22 17:40:21",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 126.4,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 16
 },
 {
 "run_id": 16245829806,
@@ -42749,7 +44509,7 @@
 "average_speed": 2.826,
 "elevation_gain": 58.0,
 "source": "strava",
-"streak": 10
+"streak": 17
 },
 {
 "run_id": 16245829800,
@@ -42765,7 +44525,7 @@
 "average_speed": 2.817,
 "elevation_gain": 17.6,
 "source": "strava",
-"streak": 11
+"streak": 18
 },
 {
 "run_id": 16261959698,
@@ -42781,7 +44541,39 @@
 "average_speed": 2.798,
 "elevation_gain": 10.2,
 "source": "strava",
-"streak": 12
+"streak": 19
+},
+{
+"run_id": 16261959658,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:16:49",
+"type": "Workout",
+"start_date": "2025-10-26 12:32:26+00:00",
+"start_date_local": "2025-10-26 20:32:26",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 99.5,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 20
+},
+{
+"run_id": 16297263901,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:11:35",
+"type": "Workout",
+"start_date": "2025-10-27 09:41:11+00:00",
+"start_date_local": "2025-10-27 17:41:11",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 122.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 21
 },
 {
 "run_id": 16297263940,
@@ -42797,7 +44589,7 @@
 "average_speed": 2.753,
 "elevation_gain": 50.4,
 "source": "strava",
-"streak": 1
+"streak": 21
 },
 {
 "run_id": 16297263944,
@@ -42813,7 +44605,23 @@
 "average_speed": 2.954,
 "elevation_gain": 36.2,
 "source": "strava",
-"streak": 2
+"streak": 22
+},
+{
+"run_id": 16297263975,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:10:55",
+"type": "Workout",
+"start_date": "2025-10-29 09:42:34+00:00",
+"start_date_local": "2025-10-29 17:42:34",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 115.2,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 23
 },
 {
 "run_id": 16297264003,
@@ -42829,7 +44637,7 @@
 "average_speed": 2.838,
 "elevation_gain": 73.8,
 "source": "strava",
-"streak": 3
+"streak": 23
 },
 {
 "run_id": 16297264005,
@@ -42845,7 +44653,23 @@
 "average_speed": 3.234,
 "elevation_gain": 7.2,
 "source": "strava",
-"streak": 4
+"streak": 24
+},
+{
+"run_id": 16340983853,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:42:47",
+"type": "Workout",
+"start_date": "2025-10-30 09:47:12+00:00",
+"start_date_local": "2025-10-30 17:47:12",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 124.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 24
 },
 {
 "run_id": 16340983874,
@@ -42861,7 +44685,23 @@
 "average_speed": 2.67,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 5
+"streak": 25
+},
+{
+"run_id": 16340983836,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "1:00:07",
+"type": "Workout",
+"start_date": "2025-11-01 00:57:48+00:00",
+"start_date_local": "2025-11-01 08:57:48",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 116.8,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 26
 },
 {
 "run_id": 16340983858,
@@ -42877,7 +44717,39 @@
 "average_speed": 3.135,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 6
+"streak": 26
+},
+{
+"run_id": 16340984228,
+"name": "Afternoon Hike",
+"distance": 4548.7,
+"moving_time": "2:13:59",
+"type": "Hike",
+"start_date": "2025-11-02 06:10:39+00:00",
+"start_date_local": "2025-11-02 14:10:39",
+"location_country": "\u65fa\u5c71\u6751, \u8d8a\u6eaa\u8857\u9053, \u5434\u4e2d\u533a, \u82cf\u5dde\u5e02, \u6c5f\u82cf\u7701, \u4e2d\u56fd",
+"summary_polyline": "sup}Dggx~UODK?EBKA@EK@EA@FZ@IFK?IEK?c@MOKOD{AUE@ADUOg@Mm@IIEC@CS?KMMWO?BCAYMEKMAEBKt@A@@EEH?J@C@BELCb@AKBXDF?DQHOBCA@AKCKFEADCMAMEI@KAUDg@IAC@?MEGKBQACEGIA@CD@FSBMCDCEIHGBCCIFGLCZAEGAMJg@V?CAAYFACWBg@PKHGCWHGAAD?CO?MJQ?MFOBGFEAUBGDAEB?KHIEB?YN]DEBCDMASHMCUJGDA??C@@M@IDCAKB@@KCIFUBOHI?k@^?ECCK]?B@B@CGYC@CAI[CHCACMEC@IKI@QNU@E_@a@DA?AA?OKYC@AM@?CAAO@A@CCQ?E@?AK?ECQ@g@Gk@]M_@II?EMQIE?AK@@@DAC@ACDA?@G@ACSFAJGC_@J{@ZUJABIA?Aq@G]UDDBAQEC@KCK?MGIHCL@CF\\TL@FTBXJBAHN@DA@HXBf@JT?ZJ^CJDDED?CEb@MLDAATGB@A?RBHFH?BNFNNB@@HLTBA@?`@nBEx@CBCTCF?TBBDt@A@?HEPADG??FEABDALK@?@@LCRBb@ATJX@XAGHn@CL@FE@DTBAACAM@MOiA?EDHIk@Ec@Hk@J[Jg@?YCUCe@\\eCAB@BKS\\HPF?DZ^RFPLZDTH^VDNBMAD?MEGYOOCUWIEKMG[KOGm@@IJO@OCE@CP@BVZSL?FCB@@LDDBA@GHILHPSBHJFRUT@LEBFB?DOXENIHADEDBBGPIEH@D?GDGJ?FCRWNINM`@KBC?FHG^K\\GAFNCDGPKd@I@Db@ORAPIDBJKD@PG@CFBBCAGHCL?JERAHBJKJ@PGF?FBXSTENA?B\\ONAPIf@SD?FNRHXGLL`@LZCXBBDDCIBZ@NCJBHELADGEI?OAD?EDK@c@JaADER?HH?Bt@XBD?FFN?LLH^ATDf@DLJ@CF@n@HJ?ZFN?f@RTFH?@EP?J@BBRGHIR?FDVVPJNRHDJNt@\\",
+"average_heartrate": 86.9,
+"average_speed": 0.566,
+"elevation_gain": 262.4,
+"source": "strava",
+"streak": 27
+},
+{
+"run_id": 16340983876,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:18:48",
+"type": "Workout",
+"start_date": "2025-11-03 09:43:04+00:00",
+"start_date_local": "2025-11-03 17:43:04",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 125.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 28
 },
 {
 "run_id": 16340983955,
@@ -42893,7 +44765,7 @@
 "average_speed": 2.886,
 "elevation_gain": 45.2,
 "source": "strava",
-"streak": 1
+"streak": 28
 },
 {
 "run_id": 16350737698,
@@ -42909,7 +44781,23 @@
 "average_speed": 3.049,
 "elevation_gain": 89.0,
 "source": "strava",
-"streak": 2
+"streak": 29
+},
+{
+"run_id": 16361460164,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:15:12",
+"type": "Workout",
+"start_date": "2025-11-05 04:12:04+00:00",
+"start_date_local": "2025-11-05 12:12:04",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 132.8,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 30
 },
 {
 "run_id": 16361460283,
@@ -42925,7 +44813,39 @@
 "average_speed": 2.934,
 "elevation_gain": 49.6,
 "source": "strava",
-"streak": 3
+"streak": 30
+},
+{
+"run_id": 16399282526,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:17:19",
+"type": "Workout",
+"start_date": "2025-11-07 10:53:48+00:00",
+"start_date_local": "2025-11-07 18:53:48",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 89.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 16399282514,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:42:37",
+"type": "Workout",
+"start_date": "2025-11-08 04:19:36+00:00",
+"start_date_local": "2025-11-08 12:19:36",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 113.5,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 2
 },
 {
 "run_id": 16399282519,
@@ -42941,7 +44861,7 @@
 "average_speed": 2.917,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 16399282547,
@@ -42957,7 +44877,7 @@
 "average_speed": 2.696,
 "elevation_gain": 8.2,
 "source": "strava",
-"streak": 2
+"streak": 3
 },
 {
 "run_id": 16510434998,
@@ -42973,7 +44893,7 @@
 "average_speed": 2.802,
 "elevation_gain": 65.6,
 "source": "strava",
-"streak": 3
+"streak": 4
 },
 {
 "run_id": 16510434893,
@@ -43024,6 +44944,22 @@
 "streak": 3
 },
 {
+"run_id": 16510435042,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:20:30",
+"type": "Workout",
+"start_date": "2025-11-15 12:29:07+00:00",
+"start_date_local": "2025-11-15 20:29:07",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 87.3,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 4
+},
+{
 "run_id": 16510435222,
 "name": "\ud83c\udf1e Morning Run",
 "distance": 5369.2,
@@ -43037,7 +44973,7 @@
 "average_speed": 3.037,
 "elevation_gain": 7.6,
 "source": "strava",
-"streak": 1
+"streak": 5
 },
 {
 "run_id": 16510435048,
@@ -43053,7 +44989,7 @@
 "average_speed": 2.897,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 6
 },
 {
 "run_id": 16510434908,
@@ -43069,7 +45005,7 @@
 "average_speed": 2.765,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 7
 },
 {
 "run_id": 16551129763,
@@ -43083,6 +45019,22 @@
 "summary_polyline": "",
 "average_heartrate": 147.7,
 "average_speed": 3.004,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 16551129820,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:18:08",
+"type": "Workout",
+"start_date": "2025-11-22 11:15:57+00:00",
+"start_date_local": "2025-11-22 19:15:57",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 86.8,
+"average_speed": 0.0,
 "elevation_gain": 0.0,
 "source": "strava",
 "streak": 1
@@ -43104,6 +45056,22 @@
 "streak": 1
 },
 {
+"run_id": 16551129761,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:36:06",
+"type": "Workout",
+"start_date": "2025-11-23 12:55:11+00:00",
+"start_date_local": "2025-11-23 20:55:11",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 84.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 16551129797,
 "name": "\ud83c\udf19 Afternoon Run",
 "distance": 5276.1,
@@ -43117,7 +45085,23 @@
 "average_speed": 2.996,
 "elevation_gain": 34.8,
 "source": "strava",
-"streak": 1
+"streak": 3
+},
+{
+"run_id": 16568738516,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:16:50",
+"type": "Workout",
+"start_date": "2025-11-25 03:42:17+00:00",
+"start_date_local": "2025-11-25 11:42:17",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 126.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 4
 },
 {
 "run_id": 16568738519,
@@ -43133,7 +45117,7 @@
 "average_speed": 2.925,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 4
 },
 {
 "run_id": 16587403546,
@@ -43149,7 +45133,7 @@
 "average_speed": 2.713,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 5
 },
 {
 "run_id": 16587403543,
@@ -43165,7 +45149,7 @@
 "average_speed": 2.949,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 4
+"streak": 6
 },
 {
 "run_id": 16587403573,
@@ -43181,7 +45165,23 @@
 "average_speed": 3.018,
 "elevation_gain": 17.6,
 "source": "strava",
-"streak": 5
+"streak": 7
+},
+{
+"run_id": 16669933613,
+"name": "Night Weight Training",
+"distance": 0.0,
+"moving_time": "0:11:08",
+"type": "Workout",
+"start_date": "2025-11-30 13:04:14+00:00",
+"start_date_local": "2025-11-30 21:04:14",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 82.0,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
 },
 {
 "run_id": 16669933611,
@@ -43197,7 +45197,7 @@
 "average_speed": 2.9,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 16669933659,
@@ -43213,7 +45213,7 @@
 "average_speed": 2.852,
 "elevation_gain": 56.4,
 "source": "strava",
-"streak": 2
+"streak": 3
 },
 {
 "run_id": 16669933596,
@@ -43229,7 +45229,7 @@
 "average_speed": 2.912,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 4
 },
 {
 "run_id": 16669933658,
@@ -43245,7 +45245,39 @@
 "average_speed": 2.753,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 4
+"streak": 5
+},
+{
+"run_id": 16669933960,
+"name": "\ud83c\udf1e Morning Hike",
+"distance": 12013.2,
+"moving_time": "3:49:13",
+"type": "Hike",
+"start_date": "2025-12-06 02:23:36+00:00",
+"start_date_local": "2025-12-06 10:23:36",
+"location_country": "\u897f\u6eaa\u8c37\u6cbf\u5c71\u6162\u884c\u9053, \u83b2\u82b1\u793e\u533a, \u53e4\u8361\u8857\u9053, \u897f\u6e56\u533a, \u676d\u5dde\u5e02, \u6d59\u6c5f\u7701, 310013, \u4e2d\u56fd",
+"summary_polyline": "erwwDuyb|Ul@p@h@@Eg@N?BSPMb@?DOEYX??WP?Ey@Ka@FUt@p@r@d@`AX\\WVVd@P\\f@d@tBl@t@x@r@t@b@^|@tAxAAPH?~AzA~@vAbAxBTZEF?`AMbARjBJBKAVXBNANRXHDz@Cr@K^N`BZnA`@`@^f@bAf@l@dBdAz@n@FAf@~@Z`@VX?\\JNnAJnAMzBn@VXh@jBvA`A^Np@Jt@d@f@NpAHfA\\d@Cl@Lx@Cf@j@ZR`Ax@`@HrAUz@YpAOdA}@tBi@`BSl@VR\\RfBxAlCt@TX\\nBt@~A|@v@`BfBxAJP\\hDAh@Ib@AnAEd@BTr@tA\\pA\\z@NRj@f@Vt@^dBt@~@Td@v@bDTh@Nr@?Tk@hEA\\WdACj@FpAh@`Aj@d@`Af@LBBHRGd@B^Ft@fAXNnAyAXULW^U~@qBNGAFHHPGLHRSF_@Oa@?KTJXj@DBFKJXJWEi@IUp@RFMVNBCCU@G\\TJWISMMf@M\\N?QNHBE@YIURGQSTIMSp@s@PAXWLe@H}@Le@BYU}A[w@Aa@c@_AlA?@IIa@JSRKb@Nb@d@BAJc@^Dv@VBFDWLC`@[`@Q|@UHOFg@d@mAb@_@XKi@J]a@i@_Bu@mAc@aBqAiCg@qAQUgA_CEYXe@@SPGVYj@Yv@QZW\\CXNXr@HXBx@Tn@`@ZJRTpAyBmGEU]UGI?E^BNCPMNa@d@Sp@MLUnBINKNW?FHB\\Ur@OXSESBKPf@F?BIMq@[eAiB{B_AcBWSWaBEyA?_BJcA~@iDTk@^mBBq@QoGDQFGNeA\\UB@AS`@w@XgARkGCqCDaBCeF@cEEu@C_DEkA@_AEaABSA_@@SHOhBs@C[[g@Sw@VmAa@_A@QSUQe@GQ?Ug@_@ESWKWNSEm@k@@C_@Ja@OQ@ADBKEHi@KGI?MLk@NYGBOGOFIC_@c@CYYSQ[f@yACYQUEm@_@Yg@sAc@YI{@W{@C_AWFXGDIGG[AGMBYEUFSCe@Jc@Mq@I_AMISe@m@HaD|@U?EUEEw@FUc@o@IMUHk@_Di@gBAEIGHk@D{A?{@G{AJEg@@]KSWQMUHe@WcAUe@KeCMEg@FkAG`B?VCHMUgEIWAc@_@eC?w@?TEJi@R}K~B",
+"average_heartrate": 90.1,
+"average_speed": 0.873,
+"elevation_gain": 217.4,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 16698491897,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:30:12",
+"type": "Workout",
+"start_date": "2025-12-07 11:45:37+00:00",
+"start_date_local": "2025-12-07 19:45:37",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 72.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 2
 },
 {
 "run_id": 16698491886,
@@ -43261,7 +45293,7 @@
 "average_speed": 2.843,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 3
 },
 {
 "run_id": 16698492022,
@@ -43277,7 +45309,39 @@
 "average_speed": 2.73,
 "elevation_gain": 64.4,
 "source": "strava",
-"streak": 2
+"streak": 4
+},
+{
+"run_id": 16754070460,
+"name": "\u2601\ufe0f Morning Walk",
+"distance": 1247.2,
+"moving_time": "0:13:29",
+"type": "Hike",
+"start_date": "2025-12-10 00:13:53+00:00",
+"start_date_local": "2025-12-10 08:13:53",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "wed}D}xdbVbBJjDDlA\\ExAD`@DJf@r@i@?_@OEQCTDCNRTKKe@?qAEuAwBIsB_@QIoFW",
+"average_heartrate": 96.2,
+"average_speed": 1.542,
+"elevation_gain": 5.2,
+"source": "strava",
+"streak": 5
+},
+{
+"run_id": 16754070443,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:14:13",
+"type": "Workout",
+"start_date": "2025-12-10 12:19:09+00:00",
+"start_date_local": "2025-12-10 20:19:09",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 73.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
 },
 {
 "run_id": 16754070510,
@@ -43293,7 +45357,7 @@
 "average_speed": 2.693,
 "elevation_gain": 54.6,
 "source": "strava",
-"streak": 1
+"streak": 6
 },
 {
 "run_id": 16754070432,
@@ -43309,7 +45373,7 @@
 "average_speed": 3.089,
 "elevation_gain": 16.6,
 "source": "strava",
-"streak": 2
+"streak": 7
 },
 {
 "run_id": 16754070456,
@@ -43325,7 +45389,39 @@
 "average_speed": 2.77,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 8
+},
+{
+"run_id": 16754070439,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:31:07",
+"type": "Workout",
+"start_date": "2025-12-14 10:07:18+00:00",
+"start_date_local": "2025-12-14 18:07:18",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 82.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 9
+},
+{
+"run_id": 16754070444,
+"name": "Afternoon Row",
+"distance": 0.0,
+"moving_time": "0:23:55",
+"type": "WaterSport",
+"start_date": "2025-12-15 09:52:29+00:00",
+"start_date_local": "2025-12-15 17:52:29",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 103.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 10
 },
 {
 "run_id": 16754608757,
@@ -43341,7 +45437,7 @@
 "average_speed": 3.175,
 "elevation_gain": 121.6,
 "source": "strava",
-"streak": 1
+"streak": 11
 },
 {
 "run_id": 16774851858,
@@ -43357,7 +45453,7 @@
 "average_speed": 2.823,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 12
 },
 {
 "run_id": 16774852247,
@@ -43373,7 +45469,7 @@
 "average_speed": 3.014,
 "elevation_gain": 150.4,
 "source": "strava",
-"streak": 3
+"streak": 13
 },
 {
 "run_id": 16782981747,
@@ -43389,7 +45485,23 @@
 "average_speed": 2.771,
 "elevation_gain": 33.2,
 "source": "strava",
-"streak": 4
+"streak": 14
+},
+{
+"run_id": 16789639033,
+"name": "\ud83c\udf19 Evening Walk",
+"distance": 3547.0,
+"moving_time": "1:04:12",
+"type": "Hike",
+"start_date": "2025-12-19 11:07:12+00:00",
+"start_date_local": "2025-12-19 19:07:12",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "m_e}DmsebVMSKIUGm@[KASBSU_ABYFcBr@o@^m@VcBl@]Po@La@P_@XORkAlCIJMDK?OGQMGIMk@WoBM]QQOK[M_@G[?OB[NQNQ\\]dBUXSLUDS?[ESKKOGk@aA}Cm@uAOw@q@sEE_AWeC?[La@DW?a@CI?p@Kz@?Z\\hEt@~ELh@d@`AVt@^zATh@H`@HNFDNB`@@RGTMR[FQJOBk@L_@PW^W\\I^?RC|Ae@XQXKDIJ_@VURI^CdAP^@RA^I\\QzAoAHCLAb@HfBNNAb@M`AGj@?fALl@Bf@R\\\\`@J`@ZXb@RRbBdAt@J~@RzC|@fAb@fARl@ZXBxA`@LHTVb@TDF@HOj@EFE@gAm@eA]]EcAA{B_@",
+"average_heartrate": 83.1,
+"average_speed": 0.921,
+"elevation_gain": 15.4,
+"source": "strava",
+"streak": 14
 },
 {
 "run_id": 16789639036,
@@ -43405,7 +45517,7 @@
 "average_speed": 3.086,
 "elevation_gain": 24.2,
 "source": "strava",
-"streak": 5
+"streak": 15
 },
 {
 "run_id": 16816746905,
@@ -43456,6 +45568,22 @@
 "streak": 3
 },
 {
+"run_id": 16849238096,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:51:54",
+"type": "Workout",
+"start_date": "2025-12-25 03:44:09+00:00",
+"start_date_local": "2025-12-25 11:44:09",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 130.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 4
+},
+{
 "run_id": 16849238108,
 "name": "Lunch Run",
 "distance": 3057.5,
@@ -43504,6 +45632,22 @@
 "streak": 6
 },
 {
+"run_id": 16861121031,
+"name": "Afternoon Workout",
+"distance": 0.0,
+"moving_time": "0:10:50",
+"type": "Workout",
+"start_date": "2025-12-28 06:09:33+00:00",
+"start_date_local": "2025-12-28 14:09:33",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 140.4,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 7
+},
+{
 "run_id": 16861121072,
 "name": "\ud83c\udf1e Afternoon Run",
 "distance": 5030.9,
@@ -43518,6 +45662,22 @@
 "elevation_gain": 3.2,
 "source": "strava",
 "streak": 7
+},
+{
+"run_id": 16870907169,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:25:14",
+"type": "Workout",
+"start_date": "2025-12-29 03:43:07+00:00",
+"start_date_local": "2025-12-29 11:43:07",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 129.6,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 8
 },
 {
 "run_id": 16870907179,
@@ -43536,6 +45696,22 @@
 "streak": 8
 },
 {
+"run_id": 16888583085,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:22:44",
+"type": "Workout",
+"start_date": "2025-12-30 04:17:11+00:00",
+"start_date_local": "2025-12-30 12:17:11",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 112.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 9
+},
+{
 "run_id": 16889209667,
 "name": "\ud83c\udf1e Morning Run",
 "distance": 5045.3,
@@ -43549,7 +45725,23 @@
 "average_speed": 3.245,
 "elevation_gain": 42.4,
 "source": "strava",
-"streak": 1
+"streak": 10
+},
+{
+"run_id": 16900283808,
+"name": "\ud83c\udf27\ufe0f\ud83e\udd76 Morning Hike",
+"distance": 12028.1,
+"moving_time": "2:52:11",
+"type": "Hike",
+"start_date": "2026-01-01 00:26:40+00:00",
+"start_date_local": "2026-01-01 08:26:40",
+"location_country": "\u96c4\u9e70\u7ebf, \u5c71\u6e7e\u91cc, \u865e\u5c71\u6797\u573a, \u865e\u5c71\u8857\u9053, \u5e38\u719f\u5e02, \u82cf\u5dde\u5e02, \u6c5f\u82cf\u7701, \u4e2d\u56fd",
+"summary_polyline": "awj`Eqau_VEq@MYyAm@q@GwD?w@B@Gh@CxC@b@EdCf@PLN`@TDXA|@e@b@EpBb@zAKBBBPF{@Xi@DWCQ]k@X\\F\\m@fEXpAj@XrCPpB_@z@R\\At@PlAHr@c@h@?nAc@XAZOd@Az@]xBDVBd@XVF|AE|@HdAx@XD`Br@zAVnBBrDtBxBp@x@Ib@Sb@o@BQECGw@e@aBMw@O_@A{@f@}AJGTc@b@Y@Kb@J`@V\\D`@}@HY@[U_CLoBAcAOS[MeAEw@Zi@n@mA?g@OsBT_CbBQCkBiDKc@MuA]{@eAgBWsBWw@{A_Bi@u@cBoAoAeBcBiB?MZWOg@AeA]k@Kc@Cc@F{@`@{AFmANYTw@R]NGlBj@z@t@r@zAh@p@dAv@lAxAnAhA~@~Bj@ZhAbA`@l@nBbBh@\\f@f@NGZo@v@m@DM?oA[_A_@wB@aAOqAKyDKu@tAeDlBu@`AX|BH`EGjBj@HJDRD`Ah@nER`CX~APzBJ`@T~BLl@?hAHPr@l@tAnECLeA~@qClDRMpAiBVWPCtA`AbAbAFTJvAIN{@f@sAxAq@fAy@`@k@bAGAD_@O@Ud@w@v@[LoANJh@Ab@GHYDIJCd@K`@Fl@?r@FJHBCTONS@DLPFBRQb@?XOr@Ub@Br@[|@OJBRARUt@S\\{@`@qAXOLkA~AGl@Wj@y@P]?GH?Ln@L@TMXJJDXHJQVYDKGTJUz@y@x@k@\\[j@LTBj@?VOXB|@Lz@]J_BUW@yBpAKZBh@_@LS\\Md@m@vAWpA]l@QfBGDEh@UHIP_@NAZYXQZQFUCKJKEMLU?{@d@}@JAFDN^BDF]FGVe@Za@|@MAETm@RM\\@TGMC?BTOPI@SYAYBYJY^WLSd@}ALQ@U@{@CSOUGo@Jq@K_AAiAhA_DLOp@eB^y@bAaBZ_AAMYa@UC[]a@kAeAqBDcCVQ`AKIFEIHiASgACy@BmANk@KjB?~@Fj@CLi@`AaBl@w@`Ai@@}B]II}@K]Iy@o@aBK[Mq@Gm@a@_@IO?QVU~@Er@c@Mo@m@iBe@cAe@_@m@a@Ys@Wg@e@aBMo@Ko@_@{A_@gBHEMc@MQME[@OUOg@}@FF",
+"average_heartrate": 129.8,
+"average_speed": 1.164,
+"elevation_gain": 958.6,
+"source": "strava",
+"streak": 11
 },
 {
 "run_id": 16900283738,
@@ -43565,7 +45757,39 @@
 "average_speed": 2.913,
 "elevation_gain": 22.8,
 "source": "strava",
-"streak": 2
+"streak": 11
+},
+{
+"run_id": 16928168954,
+"name": "\ud83c\udf1e\ud83e\udd76 Lunch Hike",
+"distance": 4356.9,
+"moving_time": "1:07:08",
+"type": "Hike",
+"start_date": "2026-01-02 04:00:23+00:00",
+"start_date_local": "2026-01-02 12:00:23",
+"location_country": "\u5916\u9752\u677e\u516c\u8def, \u4f58\u5c71\u9547, \u677e\u6c5f\u533a, 201602, \u4e2d\u56fd",
+"summary_polyline": "y~w|D{hvbVEIQGGQUMm@w@SCy@F[?ICk@FKA[BYFGTE@DSAWCSGM?IIQBEPK@OCSKc@@QEY?a@KQ@o@EYB[MIWUGMQ?ARORGL@XGb@C^GlCQ~@D^?PUn@G`@g@pAMx@KTGn@CdAEn@@NIXBDJJPD?Xc@ZW\\g@XQBc@Ac@PCDAHBTAHc@z@OBMESFMFSAWL_@HEACMAABPFBVGPOFCR@PEXALBB?JKHWV[Ec@@KVINIn@Bl@WDEN[\\YB@HNHBXaAHMHC^J@VOXI\\Zd@Kh@U\\QLW\\e@\\Q`@MbAE`AQh@AfCGNAPCHcAJYEM@a@J_AP}@\\]Vs@t@Iv@BFTHPLTB`A\\X@AJJD\\n@f@d@D@x@MR@|@RPFLJj@p@JBDVNVT\\HBADDFHM?FHTJn@E\\NvACDC\\ILKFADHNJZDDDG@ICm@B@BLB^@@@C?k@Jn@D?AK@e@?PHb@PR?GFK?i@BIBDD^@BBAA]Bi@DMHKf@WZINM\\CYXWLD^Ad@Fj@Mm@@UCKCc@Vc@`@YLc@Dm@@iCD[Nk@Xo@ANDTH`@BFXRFBPINQAEGGIBw@IMi@FSLWRWd@y@\\]H[MIc@KgABy@k@Yi@QoABINKd@g@HUzAwA",
+"average_heartrate": 114.5,
+"average_speed": 1.082,
+"elevation_gain": 252.8,
+"source": "strava",
+"streak": 12
+},
+{
+"run_id": 16928169468,
+"name": "\ud83c\udf1e Morning Hike",
+"distance": 22182.3,
+"moving_time": "5:30:31",
+"type": "Hike",
+"start_date": "2026-01-03 00:18:12+00:00",
+"start_date_local": "2026-01-03 08:18:12",
+"location_country": "\u9999\u96ea\u6751, \u5149\u798f\u9547, \u5434\u4e2d\u533a, \u82cf\u5dde\u5e02, \u6c5f\u82cf\u7701, \u4e2d\u56fd",
+"summary_polyline": "et~}Dkeu}UvLCHwEQUsAVaC]@gBY]eB}GW_ENmAk@wBd@o@mFcJyByAwBsGHc@v@]pBbAC}@RCRo@z@St@kAd@p@jCt@p@h@xBrCn@nBlA|@jDt@xCHlCz@bFSlDyChCaBPFV}@|DiBzD{CzACtFsARF?VTi@dEl@nBm@Jg@Z\\bAErAr@TUFVB}CTKJVz@q@jBNzB`AlBDT\\?r@jAPRs@A\\l@?JuBr@{@lBWdEr@xAkMnAYtHmDx@mAXWRZp@RFm@x@^DUpAGXk@pHTp@YjGk@hAzGd@G\\f@b@zDpBpFsCvAEx@g@nA}FdHqAtC}BQy@fAyB|@[j@QzA_ClHOjEb@rDxDzJ_Av@uF`BEhEQ\\eCbAwDFuEhBL`AeBNG|CkBt@?f@W@Ph@OP_Cr@e@GGn@_@LOp@mBBy@SKl@_Al@EY@VfAh@n@nAe@kAsBgAkEgByEVJVFi@xDOvGnCMm@AR]OdAlAmBnDw@n@]xAy@VgAbAClAcAh@qB@x@|C?zBx@tFcARyAUgA{@RZs@K[dB@~@{@~ARPQj@DtBSLRrAYr@jItCvGhAjB_@bBBiAvBqCz@Sn@fBjCpAzDKb@XfAC`Be@vA^pC^v@Gr@o@f@n@p@h@|BbBfBdAnDnBzAx@hDOxKAbDfEQh@xAo@|A`JdCrBvGjDm@fAV^f@a@vAJ^hFrGfAtCbAfAdAVzESC]BXfAt@c@x@DrCu@nETn@UCKm@c@a@c@\\y@SaAdD}AfAgAOQRqAGQVc@]mAVU]qAW_CwAqCs@_AaCsEiCGe@eFaAaLgA{A`@o@p@QZF|A]z@yEPBiBx@Ky@T]nCiBTMbAuCRuAlAcBEm@j@qFfA`@pDjAxD`@|CK`DYbAoBeB{A]kE}CmBw@i@Dk@mDo@}@}AgEUgD}@uBAaDa@uCh@{CGoCPu@tBwFJmAz@@BoBb@o@n@Om@y@M_A\\w@Ys@Dm@t@wAOkBT[_@u@XODa@[s@RoAGeCQy@uBaBIi@VICa@y@[uDuEkBu@m@o@t@RlBG\\y@g@PeBc@_BsAkAqCoCMy@wAC_AzAaCd@}ADcE{@}AuCuBWeAVoA_@cAiA}@}@}BJiBl@c@EwGcBwBn@_@Ak@j@_@Os@Tc@r@QRcA~@NhDaGZmAgIyJ_DoCt@sGDmE",
+"average_heartrate": 120.4,
+"average_speed": 1.119,
+"elevation_gain": 1300.4,
+"source": "strava",
+"streak": 13
 },
 {
 "run_id": 16954548772,
@@ -43581,7 +45805,7 @@
 "average_speed": 2.939,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 14
 },
 {
 "run_id": 16954548778,
@@ -43597,7 +45821,7 @@
 "average_speed": 2.851,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 15
 },
 {
 "run_id": 16954548781,
@@ -43613,7 +45837,23 @@
 "average_speed": 2.82,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 16
+},
+{
+"run_id": 17006045554,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:30:39",
+"type": "WeightTraining",
+"start_date": "2026-01-07 03:43:52+00:00",
+"start_date_local": "2026-01-07 11:43:52",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 123.9,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 17
 },
 {
 "run_id": 17006045576,
@@ -43629,7 +45869,23 @@
 "average_speed": 2.868,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 4
+"streak": 17
+},
+{
+"run_id": 17006045566,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:09:54",
+"type": "WeightTraining",
+"start_date": "2026-01-09 10:02:35+00:00",
+"start_date_local": "2026-01-09 18:02:35",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 76.2,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
 },
 {
 "run_id": 17006045642,
@@ -43776,6 +46032,22 @@
 "streak": 2
 },
 {
+"run_id": 17145921006,
+"name": "\u2601\ufe0f\ud83c\udf19 Afternoon Walk",
+"distance": 3484.9,
+"moving_time": "0:45:07",
+"type": "Hike",
+"start_date": "2026-01-18 09:48:13+00:00",
+"start_date_local": "2026-01-18 17:48:13",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "swd}DckebVH}@AIGEcB_Aq@g@u@[{@gAKK}@_@c@EOK[Ao@B_@Do@\\sCpAgA^q@R_@FYLYRk@j@y@tBQVSJM?KESSKSGQOeAGu@IQSYw@c@w@?QDUNe@l@e@jBGJMLYHOBWAYIKKIOG]IQ[}@_@yAm@uAW}AIs@UqA[oDEgALcAAc@QmA@q@F_A?]Ig@Y}@CCGBCP?dELfBB`AXjCN~@@z@JfADNTRJ~@LZJl@XbAv@bBNRJdAHNH^RTPFV?VANE`@e@VaB`@k@TSLCTAf@Bn@N^b@JTLj@LrAP\\RTNFH?NKHIPi@\\q@Zu@JOROn@[l@MnBs@`Ae@^[~@WjAa@NCb@BNFPLn@Dp@PpAxAbBhAl@V",
+"average_heartrate": 90.8,
+"average_speed": 1.287,
+"elevation_gain": 26.2,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 17145920989,
 "name": "Lunch Run",
 "distance": 5064.1,
@@ -43808,6 +46080,22 @@
 "streak": 4
 },
 {
+"run_id": 17145920990,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:39:45",
+"type": "WeightTraining",
+"start_date": "2026-01-21 09:49:39+00:00",
+"start_date_local": "2026-01-21 17:49:39",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 110.3,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 17145920996,
 "name": "Lunch Run",
 "distance": 5263.6,
@@ -43821,7 +46109,7 @@
 "average_speed": 3.066,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 6
 },
 {
 "run_id": 17156093500,
@@ -43837,7 +46125,7 @@
 "average_speed": 2.97,
 "elevation_gain": 10.8,
 "source": "strava",
-"streak": 2
+"streak": 7
 },
 {
 "run_id": 17212318235,
@@ -43853,7 +46141,7 @@
 "average_speed": 2.79,
 "elevation_gain": 12.4,
 "source": "strava",
-"streak": 3
+"streak": 8
 },
 {
 "run_id": 17212318062,
@@ -43920,6 +46208,22 @@
 "streak": 4
 },
 {
+"run_id": 17255628647,
+"name": "Night Weight Training",
+"distance": 0.0,
+"moving_time": "0:12:06",
+"type": "WeightTraining",
+"start_date": "2026-01-30 13:46:42+00:00",
+"start_date_local": "2026-01-30 21:46:42",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 89.6,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 17255628817,
 "name": "\u2601\ufe0f Afternoon Run",
 "distance": 5057.1,
@@ -43933,7 +46237,23 @@
 "average_speed": 2.676,
 "elevation_gain": 14.8,
 "source": "strava",
-"streak": 1
+"streak": 6
+},
+{
+"run_id": 17255628716,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:39:29",
+"type": "WeightTraining",
+"start_date": "2026-02-01 11:54:57+00:00",
+"start_date_local": "2026-02-01 19:54:57",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 69.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 7
 },
 {
 "run_id": 17311755893,
@@ -43949,7 +46269,7 @@
 "average_speed": 2.555,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 8
 },
 {
 "run_id": 17311755896,
@@ -43965,7 +46285,7 @@
 "average_speed": 2.607,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 9
 },
 {
 "run_id": 17311756099,
@@ -43981,7 +46301,55 @@
 "average_speed": 2.896,
 "elevation_gain": 18.2,
 "source": "strava",
-"streak": 3
+"streak": 10
+},
+{
+"run_id": 17311755890,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "1:05:26",
+"type": "WeightTraining",
+"start_date": "2026-02-05 03:49:41+00:00",
+"start_date_local": "2026-02-05 11:49:41",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 128.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 11
+},
+{
+"run_id": 17311755898,
+"name": "Evening Weight Training",
+"distance": 0.0,
+"moving_time": "0:22:09",
+"type": "WeightTraining",
+"start_date": "2026-02-06 12:12:47+00:00",
+"start_date_local": "2026-02-06 20:12:47",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 74.4,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 12
+},
+{
+"run_id": 17323583136,
+"name": "Night Weight Training",
+"distance": 0.0,
+"moving_time": "0:17:13",
+"type": "WeightTraining",
+"start_date": "2026-02-07 13:42:05+00:00",
+"start_date_local": "2026-02-07 21:42:05",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 75.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 13
 },
 {
 "run_id": 17323583153,
@@ -43997,7 +46365,7 @@
 "average_speed": 2.85,
 "elevation_gain": 25.0,
 "source": "strava",
-"streak": 1
+"streak": 14
 },
 {
 "run_id": 17465879029,
@@ -44013,7 +46381,7 @@
 "average_speed": 2.738,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 2
+"streak": 15
 },
 {
 "run_id": 17465879167,
@@ -44029,7 +46397,7 @@
 "average_speed": 2.638,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 3
+"streak": 16
 },
 {
 "run_id": 17465879263,
@@ -44045,7 +46413,7 @@
 "average_speed": 2.797,
 "elevation_gain": 15.4,
 "source": "strava",
-"streak": 4
+"streak": 17
 },
 {
 "run_id": 17465879305,
@@ -44160,6 +46528,22 @@
 "streak": 4
 },
 {
+"run_id": 17585223084,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:31:36",
+"type": "WeightTraining",
+"start_date": "2026-02-24 03:45:16+00:00",
+"start_date_local": "2026-02-24 11:45:16",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 113.7,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 17585223442,
 "name": "\u2601\ufe0f Evening Ride",
 "distance": 25339.8,
@@ -44174,6 +46558,22 @@
 "elevation_gain": 74.6,
 "source": "strava",
 "streak": 5
+},
+{
+"run_id": 17585223072,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:05:11",
+"type": "WeightTraining",
+"start_date": "2026-02-25 09:42:31+00:00",
+"start_date_local": "2026-02-25 17:42:31",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 94.0,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 6
 },
 {
 "run_id": 17585223172,
@@ -44336,6 +46736,22 @@
 "streak": 3
 },
 {
+"run_id": 17630218989,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:29:07",
+"type": "WeightTraining",
+"start_date": "2026-03-05 03:42:23+00:00",
+"start_date_local": "2026-03-05 11:42:23",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 118.6,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 4
+},
+{
 "run_id": 17630219060,
 "name": "\u2601\ufe0f Lunch Run",
 "distance": 5286.2,
@@ -44464,6 +46880,22 @@
 "streak": 6
 },
 {
+"run_id": 17798037964,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:42:02",
+"type": "WeightTraining",
+"start_date": "2026-03-16 03:41:54+00:00",
+"start_date_local": "2026-03-16 11:41:54",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 120.6,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 1
+},
+{
 "run_id": 17798037963,
 "name": "Lunch Run",
 "distance": 5095.2,
@@ -44477,7 +46909,7 @@
 "average_speed": 2.63,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 1
+"streak": 2
 },
 {
 "run_id": 17798037981,
@@ -44493,7 +46925,7 @@
 "average_speed": 3.022,
 "elevation_gain": 19.8,
 "source": "strava",
-"streak": 2
+"streak": 3
 },
 {
 "run_id": 17798037980,
@@ -44509,7 +46941,7 @@
 "average_speed": 3.029,
 "elevation_gain": 46.6,
 "source": "strava",
-"streak": 3
+"streak": 4
 },
 {
 "run_id": 17798037976,
@@ -44525,7 +46957,7 @@
 "average_speed": 2.788,
 "elevation_gain": 6.0,
 "source": "strava",
-"streak": 4
+"streak": 5
 },
 {
 "run_id": 17798037992,
@@ -44541,7 +46973,7 @@
 "average_speed": 5.467,
 "elevation_gain": 40.6,
 "source": "strava",
-"streak": 5
+"streak": 6
 },
 {
 "run_id": 17815075284,
@@ -44557,7 +46989,7 @@
 "average_speed": 2.913,
 "elevation_gain": 20.8,
 "source": "strava",
-"streak": 6
+"streak": 7
 },
 {
 "run_id": 17827340389,
@@ -44573,7 +47005,23 @@
 "average_speed": 3.042,
 "elevation_gain": 87.4,
 "source": "strava",
-"streak": 7
+"streak": 8
+},
+{
+"run_id": 17854619403,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:07:24",
+"type": "WeightTraining",
+"start_date": "2026-03-24 09:42:41+00:00",
+"start_date_local": "2026-03-24 17:42:41",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 117.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 9
 },
 {
 "run_id": 17854619422,
@@ -44589,7 +47037,7 @@
 "average_speed": 2.75,
 "elevation_gain": 0.0,
 "source": "strava",
-"streak": 8
+"streak": 9
 },
 {
 "run_id": 17854619550,
@@ -44605,7 +47053,7 @@
 "average_speed": 2.895,
 "elevation_gain": 64.8,
 "source": "strava",
-"streak": 9
+"streak": 10
 },
 {
 "run_id": 17884111148,
@@ -44621,7 +47069,23 @@
 "average_speed": 5.492,
 "elevation_gain": 52.8,
 "source": "strava",
-"streak": 10
+"streak": 11
+},
+{
+"run_id": 17884111138,
+"name": "Afternoon Weight Training",
+"distance": 0.0,
+"moving_time": "0:32:57",
+"type": "WeightTraining",
+"start_date": "2026-03-26 09:54:18+00:00",
+"start_date_local": "2026-03-26 17:54:18",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 123.1,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 11
 },
 {
 "run_id": 17883290466,
@@ -44704,6 +47168,22 @@
 "streak": 3
 },
 {
+"run_id": 17986663260,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:37:08",
+"type": "WeightTraining",
+"start_date": "2026-04-02 03:43:33+00:00",
+"start_date_local": "2026-04-02 11:43:33",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 112.4,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 4
+},
+{
 "run_id": 17986663552,
 "name": "Morning Run",
 "distance": 10306.7,
@@ -44720,6 +47200,22 @@
 "streak": 1
 },
 {
+"run_id": 17986663929,
+"name": "\u2601\ufe0f Lunch Hike",
+"distance": 2700.2,
+"moving_time": "1:10:38",
+"type": "Hike",
+"start_date": "2026-04-05 04:53:13+00:00",
+"start_date_local": "2026-04-05 12:53:13",
+"location_country": null,
+"summary_polyline": "quxyDs}ibVFg@Cq@KQADDAGEMu@II?aAAMEOqB}BsAm@NQ?CCCO@IHI@MCGBI?MDMDADk@NOH[VKLE@ACB@KPE?sAxA[LUVG@ABCA]Va@`@GDYb@eAt@_@@EGQCo@AcCw@UCCIKKIAMOIAa@?MDEBQZUT^nAT`@AFHTDJFCFZAAGMBGv@HN@h@\\F@AA`@LH?PERDJ?MDALFN\\ZJRPLJRTLPL\\B`@@BBNDZB^APFJFJ@ZGN?NGXCXQVC`@DZ?VCJ@BDBVHLDp@DBLh@CTJJGXS?AAC@V?",
+"average_heartrate": 90.7,
+"average_speed": 0.637,
+"elevation_gain": 223.6,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 18062282842,
 "name": "Afternoon Run",
 "distance": 5207.4,
@@ -44732,6 +47228,22 @@
 "average_heartrate": 155.9,
 "average_speed": 2.955,
 "elevation_gain": 96.2,
+"source": "strava",
+"streak": 1
+},
+{
+"run_id": 18062282683,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:40:17",
+"type": "WeightTraining",
+"start_date": "2026-04-09 01:34:46+00:00",
+"start_date_local": "2026-04-09 09:34:46",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 126.8,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
 "source": "strava",
 "streak": 1
 },
@@ -44880,6 +47392,22 @@
 "streak": 5
 },
 {
+"run_id": 18144558445,
+"name": "Evening Walk",
+"distance": 3201.4,
+"moving_time": "0:52:09",
+"type": "Hike",
+"start_date": "2026-04-17 10:01:07+00:00",
+"start_date_local": "2026-04-17 18:01:07",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "m~d}D_rebV{@eAmAe@W?GMkB?IHs@\\YPc@Lk@V]R}Ah@g@Tc@Hs@`@WZY`AYXUv@KFQ?c@OOQK[YiBOa@k@k@WM[E_@AQB_@RSPEHKb@QpAENIH]R]FOAa@KSWGg@QCGKOq@Yw@Qu@_@iAQ}@BA@BJr@|@zAXnA\\hA@N@XBJXRRFN?PAXINKPSRe@Fa@J[Rc@PS^Oj@Cx@OHIN[jAc@b@g@^SPCZBZLb@HT?\\Cf@OdBsARGN?^HdBLv@UXBvB@GEJCXJ\\BRBj@RZ^\\H`@Vj@p@VVd@Zp@\\ZJp@JjCl@lBr@`ARx@`@pBd@LFTT^RHHBJOj@EHE@cBu@UIi@KaAEYE",
+"average_heartrate": 74.4,
+"average_speed": 1.023,
+"elevation_gain": 17.4,
+"source": "strava",
+"streak": 5
+},
+{
 "run_id": 18299887041,
 "name": "Evening Run",
 "distance": 5366.1,
@@ -44944,6 +47472,22 @@
 "streak": 9
 },
 {
+"run_id": 18299887032,
+"name": "\ud83c\udf27\ufe0f Evening Walk",
+"distance": 1049.0,
+"moving_time": "0:15:38",
+"type": "Hike",
+"start_date": "2026-04-22 10:10:15+00:00",
+"start_date_local": "2026-04-22 18:10:15",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "owd}DgmebVo@g@gAm@}AwAi@QMIgAcA}@Wa@Ae@Hm@^OL}@^[FYLpAo@l@MXWh@M\\DTAVN`@?`@FVJPRLXp@|@r@^l@`@|@`@n@h@?HS~@@\\GpB",
+"average_heartrate": 82.5,
+"average_speed": 1.118,
+"elevation_gain": 10.2,
+"source": "strava",
+"streak": 10
+},
+{
 "run_id": 18299887099,
 "name": "\u2601\ufe0f Afternoon Run",
 "distance": 5252.5,
@@ -44957,7 +47501,7 @@
 "average_speed": 2.878,
 "elevation_gain": 64.0,
 "source": "strava",
-"streak": 1
+"streak": 11
 },
 {
 "run_id": 18299887089,
@@ -44973,7 +47517,23 @@
 "average_speed": 2.724,
 "elevation_gain": 12.2,
 "source": "strava",
-"streak": 2
+"streak": 12
+},
+{
+"run_id": 18299887085,
+"name": "\ud83c\udf25\ufe0f\ud83e\udd75\ufe0f Afternoon Walk",
+"distance": 1422.2,
+"moving_time": "0:17:33",
+"type": "Hike",
+"start_date": "2026-04-28 05:17:26+00:00",
+"start_date_local": "2026-04-28 13:17:26",
+"location_country": "\u5929\u4e3b\u6559\u57f9\u8056\u4e2d\u5b78, 9, \u5929\u6cb3\u8def, \u5929\u6c34\u570d\u5357, \u5143\u6717\u5340, \u65b0\u754c, \u9999\u6e2f, \u4e2d\u56fd",
+"summary_polyline": "}v_hCqeyvT_@PwA~AiEhCw@XmB~@o@Vg@ZCAmGvC",
+"average_heartrate": 96.9,
+"average_speed": 1.351,
+"elevation_gain": 11.2,
+"source": "strava",
+"streak": 1
 },
 {
 "run_id": 18299887124,
@@ -44989,7 +47549,23 @@
 "average_speed": 3.043,
 "elevation_gain": 156.4,
 "source": "strava",
-"streak": 1
+"streak": 2
+},
+{
+"run_id": 18315991464,
+"name": "\ud83c\udf25\ufe0f Afternoon Walk",
+"distance": 3107.1,
+"moving_time": "0:44:18",
+"type": "Hike",
+"start_date": "2026-04-30 05:44:38+00:00",
+"start_date_local": "2026-04-30 13:44:38",
+"location_country": "\u76d0\u6885\u8def, \u76d0\u7530\u8857\u9053, \u76d0\u7530\u533a, \u6df1\u5733\u5e02, \u5e7f\u4e1c\u7701, 518000, \u4e2d\u56fd",
+"summary_polyline": "uz{hC{nsxTJLTL^BRFT@RH^HVJLLJPZ\\N\\RTr@n@f@VVT^b@Xh@ZVTFR?vAE^DVCBEFFP@^L^A@C?EAHB@`@Af@H\\Bl@Kf@WTQHa@BWH@FIPqAHIDKNGTWH[LHHEHFF?PKPC|@g@HU^cB\\[bAe@DAZ@PIR@n@LNHJHL?b@EPW@GHEXILDf@^XHv@JTJD?TGLDH?FGRIRAFCBCA@DARY@OFCd@NEHO@EL@V@FA^IJDJ@h@@G@@GHBHEc@IKIAS@UL[FQJKCSFQOe@E[@QC[Bk@A]@c@DQDK?OKQ[YSa@C]FKI@KEAURSDMZOj@GBB@?MCAB_@ACEAGF]n@IDGHKBKLc@Xw@TQE[P[\\SHCJILCNBXCXi@dAONUP}@R_@@KEYEk@Ai@Bo@O{@Em@?]Bc@AMESMKM]w@AGIEc@_@mAw@c@e@m@}@[Ui@YWGm@IYIg@WGOMKWK",
+"average_heartrate": 84.6,
+"average_speed": 1.169,
+"elevation_gain": 63.0,
+"source": "strava",
+"streak": 3
 },
 {
 "run_id": 18471545188,
@@ -45008,6 +47584,22 @@
 "streak": 1
 },
 {
+"run_id": 18471545197,
+"name": "\ud83c\udf1e Afternoon Workout",
+"distance": 2750.1,
+"moving_time": "0:46:12",
+"type": "Workout",
+"start_date": "2026-05-04 08:29:23+00:00",
+"start_date_local": "2026-05-04 16:29:23",
+"location_country": "\u6e56\u5824\u8def, \u91d1\u6d77\u8857\u9053, \u5949\u8d24\u533a, \u4e0a\u6d77\u5e02, 201403, \u4e2d\u56fd",
+"summary_polyline": "ysx{Do_pdVTHP@~@MLKFQ?OAKIIOIKAI@MJO`@IHOF]?_@Cq@Qw@A]EWOYe@KIKAK?k@HYLEJK@K?WIe@a@W_@KIMCW@g@Jw@`@OBO?CCGKQSo@aAMGo@OECCQEGSGWBYHULIJGJCV?`AEd@KTEFSLICAKDSJO\\]^gAFGd@GNGJA\\FVNPPVd@TLZ@f@GZ?LBZNPBrA@tATlAf@f@Lr@JdBAl@RRDPAXQl@MHBFFBJ?LIPKFKBa@CaAU]E_AJsAPcBFaAJY@y@AyAOMDYBWa@SE[E}@De@CSGKMUeAa@gA_@}@CSBSFMLIRCXDTN^h@LHf@P",
+"average_heartrate": 88.4,
+"average_speed": 0.992,
+"elevation_gain": 56.8,
+"source": "strava",
+"streak": 2
+},
+{
 "run_id": 18471545234,
 "name": "\ud83c\udf1e Morning Run",
 "distance": 5293.8,
@@ -45021,7 +47613,7 @@
 "average_speed": 2.941,
 "elevation_gain": 11.8,
 "source": "strava",
-"streak": 1
+"streak": 3
 },
 {
 "run_id": 18471545192,
@@ -45037,7 +47629,7 @@
 "average_speed": 2.724,
 "elevation_gain": 49.2,
 "source": "strava",
-"streak": 2
+"streak": 4
 },
 {
 "run_id": 18471545187,
@@ -45053,7 +47645,7 @@
 "average_speed": 2.832,
 "elevation_gain": 36.2,
 "source": "strava",
-"streak": 3
+"streak": 5
 },
 {
 "run_id": 18471545196,
@@ -45069,7 +47661,7 @@
 "average_speed": 2.743,
 "elevation_gain": 13.8,
 "source": "strava",
-"streak": 4
+"streak": 6
 },
 {
 "run_id": 18471545239,
@@ -45085,7 +47677,7 @@
 "average_speed": 5.378,
 "elevation_gain": 55.2,
 "source": "strava",
-"streak": 5
+"streak": 7
 },
 {
 "run_id": 18471545180,
@@ -45101,7 +47693,7 @@
 "average_speed": 2.829,
 "elevation_gain": 48.8,
 "source": "strava",
-"streak": 5
+"streak": 7
 },
 {
 "run_id": 18471545194,
@@ -45117,7 +47709,23 @@
 "average_speed": 2.978,
 "elevation_gain": 13.4,
 "source": "strava",
-"streak": 6
+"streak": 8
+},
+{
+"run_id": 18471545117,
+"name": "Lunch Weight Training",
+"distance": 0.0,
+"moving_time": "0:33:52",
+"type": "WeightTraining",
+"start_date": "2026-05-11 03:46:15+00:00",
+"start_date_local": "2026-05-11 11:46:15",
+"location_country": null,
+"summary_polyline": "",
+"average_heartrate": 111.5,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 9
 },
 {
 "run_id": 18477583819,
@@ -45133,6 +47741,70 @@
 "average_speed": 2.703,
 "elevation_gain": 60.0,
 "source": "strava",
-"streak": 1
+"streak": 10
+},
+{
+"run_id": 18515023784,
+"name": "\ud83c\udf1e Afternoon Run",
+"distance": 6514.2,
+"moving_time": "0:36:10",
+"type": "Run",
+"start_date": "2026-05-13 09:43:51+00:00",
+"start_date_local": "2026-05-13 17:43:51",
+"location_country": null,
+"summary_polyline": "{zq}DcxrcVcBRyAZg@D{AVYFy@ZyAFUA_Aa@{@GUDo@d@]JoAHoA@y@OoA]g@Gw@EqA@YFSHeBjAa@JWBa@?aAMQ?gCh@u@DcAAeANo@?]@QEg@_@OEI@s@RMFYXOFSDm@BoAG[E[Mq@a@YKk@CaAHOCuAm@wAc@s@YSCWBkAX{@@IICOBcAEHA\\DZJNLDXBXA\\Ir@[PAZBjA^rBz@VDbAIj@?VH~@l@f@Rf@Fx@Bf@CXEz@e@r@SN?FBh@b@NBT@ZAhAQrB?j@CnAc@VCzAN`@ANCRIh@[ZUZOb@Ml@ItCDdANnCTl@Ct@KVKn@]VGz@Jp@ZVFP@`@Ah@Gx@UjDg@tBg@x@OnCYrB[XAd@Dv@TdATr@@n@K`@MlBWpAk@REN@DDZ^p@l@BN?NENIJiAf@ODi@@e@JYBUC_AWQ?ODu@p@u@`@]XS^O`@S\\KZCR@Pr@nBLjAT^TLl@NP?f@EF@JF\\\\JB^?LBBLADEBaA@k@Jo@DwA@kDJ}@CIIAUJyADcBJo@B_@EwB",
+"average_heartrate": 151.6,
+"average_speed": 3.002,
+"elevation_gain": 101.4,
+"source": "strava",
+"streak": 11
+},
+{
+"run_id": 18515023746,
+"name": "\u2601\ufe0f Afternoon Run",
+"distance": 5572.2,
+"moving_time": "0:31:15",
+"type": "Run",
+"start_date": "2026-05-14 09:44:39+00:00",
+"start_date_local": "2026-05-14 17:44:39",
+"location_country": null,
+"summary_polyline": "yyq}DmxrcVoBViATaALo@PoAP}@Zg@FcAB{@WiAIWHg@\\QHkBRe@EoAQ}@Wc@Gg@EuB?WD]J{AfAWJ]FY@q@Ks@CWDiA\\s@Ji@@oACi@Hs@@W?UEm@_@WEUDe@Li@\\QFsBNc@C]GUMq@g@WIq@Ew@HYAgBw@s@Qg@WQC]?u@RYFk@BSCSMGSAUDo@AEEHAX@RDLLLLFVBXA\\Gr@Qb@ATH\\PvCbA^Dz@El@DRFhAl@x@Nl@?jAIXKn@_@`@KPCVDl@`@j@Lh@?x@EvA@v@GxAe@PCVAfADh@C\\Mr@i@b@U`@Mb@GdDDv@Hz@D`@JP?b@D\\Cx@C\\EXIj@_@PC~@Ht@TRBfAA\\Ez@QnBWh@QfASnAYrDe@dB[ZCb@BtBj@l@D|Ek@`Bm@H?LF`@f@`@ZHLBL?JENEFoAj@I@g@?y@N[EaAYY?OFy@j@y@\\YXKNWt@Uf@GZB^j@~A",
+"average_heartrate": 142.5,
+"average_speed": 2.972,
+"elevation_gain": 75.4,
+"source": "strava",
+"streak": 12
+},
+{
+"run_id": 18516731542,
+"name": "\ud83c\udf19 Evening Run",
+"distance": 5221.2,
+"moving_time": "0:27:27",
+"type": "Run",
+"start_date": "2026-05-15 11:15:46+00:00",
+"start_date_local": "2026-05-15 19:15:46",
+"location_country": null,
+"summary_polyline": "axd}D_iebVDkAHs@CMk@_@_A]{AcAsAaA{@YQAY@@GHId@Y@BMDiLnCs@Vq@f@[\\gBjCUJKBQAe@MMBGFWh@WbAI\\GbAG^GPQVWLYAQGq@a@WCSDEDU\\[fAGl@Cf@DnBEbA?bACtA?pEBtCHfCMhDBfCAr@@t@?zANj@Ln@Xb@DPELIDk@FIPA^DxBB\\H\\B\\E`@IZ?VVtADf@CTQ`@CT?`@DZf@zAFZAb@WxAP|AFRBCBk@EcAI_ADk@?WGWi@qAEQAW?a@BSbAqBDU@QCUOUOMWMIQAQ?wAQy@FuBHKf@ELGDI?QEOQOSm@EISKGQDkA@cAEmC@wAAaAFyBDyHAcB?aBAiA@mAEcA?uAB_@P}@FURSPEJ?NDr@ZXDN?PGNIJMJSDULuAv@eCF[@UKeBG_@S_@e@g@CGBG^WPWJIbA]h@i@PIZCv@JXBn@GXKXQxAiANGT?z@LbAF\\AdAQb@A`CZp@RrAp@b@\\r@r@tAx@jAVfBVz@V",
+"average_heartrate": 161.7,
+"average_speed": 3.17,
+"elevation_gain": 20.8,
+"source": "strava",
+"streak": 13
+},
+{
+"run_id": 18522150355,
+"name": "\ud83c\udf1e Morning Run",
+"distance": 5261.7,
+"moving_time": "0:25:33",
+"type": "Run",
+"start_date": "2026-05-15 22:22:41+00:00",
+"start_date_local": "2026-05-16 06:22:41",
+"location_country": null,
+"summary_polyline": "}xd}D{gebVJ}@Z_BAIk@c@oCaBMKu@cAUSo@]k@KUQIAW@kAVaAh@cAh@aDnAuA`@WNUVcAxBQXMFK@y@MKDKJYj@Wx@_@vBMXML[N[@YE{@WOBEBSVUbAIx@?dA@~BHnB?`BMhH?r@ChG?`@Dd@@fAQtDBXVjAFNTVBJ?NCBYDMFELALDlCLvAAd@I`@ALHn@?\\NbAAJQf@Ah@F^f@tAJb@Av@SpADlA@PB@BA@I@qBGoBIa@i@yACa@@UFShAwBFU?UAMMYOQYSIQCyAOaAEiB@IDEl@QVw@BSASKSQK[GQIIQAK@kGRkEAcIEeFGgADiBEaB@m@Bc@RmAHULONET@~@`@LBP@XEPIVWHWZgBr@_CDo@OsAOo@U]g@_@COJOl@k@v@Yr@o@\\O\\Cz@P\\Dn@Ef@QxAgAJGPEX@|ATV@zAUb@AbAJtAB^HnAh@h@`@x@z@l@b@b@TZL|Bj@",
+"average_heartrate": 161.0,
+"average_speed": 3.432,
+"elevation_gain": 17.2,
+"source": "strava",
+"streak": 14
 }
 ]
