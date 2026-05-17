@@ -16,7 +16,8 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
   const [hoveredDay, setHoveredDay] = useState<number | null>(null)
 
   const { days, monthDistance, monthCount } = useMemo(() => {
-    const firstDay = new Date(viewYear, viewMonth, 1).getDay()
+    const firstDaySun = new Date(viewYear, viewMonth, 1).getDay() // 0=Sun
+    const firstDay = (firstDaySun + 6) % 7 // convert to Mon=0
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate()
 
     const dayActivities = new Map<number, Activity[]>()
@@ -69,7 +70,7 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
     return 38
   }
 
-  const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+  const dayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
   const monthStr = `${String(viewMonth + 1).padStart(2, '0')}/${viewYear}`
 
   return (

@@ -1,6 +1,6 @@
 import type { Activity, SportFilter } from '../types'
 import { useLocale } from '../hooks/useLocale'
-import { formatDistance, parseMovingTime } from '../hooks/useActivities'
+import { formatDistance, parseMovingTime, extractProvince } from '../hooks/useActivities'
 import avatar from '../assets/avatar.jpg'
 
 interface ProfileCardProps {
@@ -21,38 +21,28 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
   const allDates = activities.map((a) => new Date(a.start_date_local).getFullYear())
   const yearsActive = allDates.length > 0 ? (Math.max(...allDates) - Math.min(...allDates) + 1) : 0
 
-  // Countries and provinces
+  // Countries and provinces — use shared extractProvince for consistency with ChinaMap
   const countries = new Set<string>()
   const provinces = new Set<string>()
-  const knownProvinces = ['上海市','北京市','浙江省','江苏省','河南省','广东省','福建省','安徽省','山东省','四川省','湖北省','湖南省','云南省','贵州省','海南省','天津市','重庆市']
   for (const a of activities) {
     const loc = a.location_country
     if (!loc || loc === 'None') continue
+    // Detect country
     if (loc.startsWith('{')) {
       try {
         const d = JSON.parse(loc.replace(/'/g, '"').replace(/None/g, 'null'))
         if (d.country) countries.add(d.country)
-        if (d.province) provinces.add(d.province)
       } catch { /* ignore */ }
-      continue
-    }
-    if (loc.includes(':') && !loc.includes(',')) {
-      countries.add('中国')
-    } else if (loc.includes('中国')) {
-      countries.add('中国')
     } else if (loc.includes('泰国')) {
       countries.add('泰国')
     } else if (loc.includes('日本')) {
       countries.add('日本')
-    } else if (loc.includes(',')) {
+    } else {
       countries.add('中国')
     }
-    for (const p of knownProvinces) {
-      if (loc.includes(p)) { provinces.add(p); break }
-    }
-    if (loc.includes('上海')) provinces.add('上海市')
-    if (loc.includes('江苏')) provinces.add('江苏省')
-    if (loc.includes('河南')) provinces.add('河南省')
+    // Province — use shared logic (China-only)
+    const p = extractProvince(loc)
+    if (p) provinces.add(p)
   }
 
   const formatHours = (secs: number) => `${(secs / 3600).toFixed(1)}h`

@@ -162,13 +162,12 @@ src/
 ```
 
 
-
 ## 致谢
 
-- [running_page](https://github.com/yihong0618/running_page) — 数据同步管道与原始项目灵感
-- [yihong0618](https://github.com/yihong0618) — running_page 作者
-- [workouts_page](https://github.com/ben-29/workouts_page) — 多运动类型支持的灵感来源
+- [running_page](https://github.com/yihong0618/running_page) — 数据同步与原始项目灵感, @[yihong0618](https://github.com/yihong0618)
+- [workouts_page](https://github.com/ben-29/workouts_page) — 多运动类型支持， @[ben-29](https://github.com/ben-29)
+- [RUN.LOG](https://github.com/yihong0618/running_page/issues/12#issuecomment-3689275071) 给我的页面设计灵感
 
 ## License
 
-MIT
+MIT 
