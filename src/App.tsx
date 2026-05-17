@@ -10,7 +10,6 @@ import { ContributionHeatmap } from './components/ContributionHeatmap'
 import { ActivityLog } from './components/ActivityLog'
 import { RouteMap } from './components/RouteMap'
 import { CalendarWidget } from './components/CalendarWidget'
-import { MonthlyChart } from './components/MonthlyChart'
 import { ProfileCard } from './components/ProfileCard'
 import { PersonalBest } from './components/PersonalBest'
 import { TracksPage } from './components/TracksPage'
@@ -85,7 +84,6 @@ export default function App() {
               activities={filtered}
               onSelectActivity={setSelectedActivity}
             />
-            <MonthlyChart activities={filtered} year={heatmapYear} onYearChange={setYear} />
           </div>
         </div>
       </main>
