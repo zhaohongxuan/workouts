@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { RefreshCw, CheckCircle, XCircle, Clock, Loader, Route } from 'lucide-react'
 import type { Activity, SportFilter } from '../types'
 import { useLocale } from '../hooks/useLocale'
@@ -26,6 +26,26 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
   const [runUrl, setRunUrl] = useState<string | null>(null)
   const [statusMsg, setStatusMsg] = useState('')
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(() => localStorage.getItem('lastSyncedAt'))
+
+  // Fetch last successful workflow run time on mount (when token available)
+  useEffect(() => {
+    if (!token) return
+    void (async () => {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_FILE}/runs?status=success&per_page=1`,
+          { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' } }
+        )
+        if (!res.ok) return
+        const data = (await res.json()) as { workflow_runs: Array<{ updated_at: string }> }
+        const run = data.workflow_runs[0]
+        if (run) {
+          setLastSyncedAt(run.updated_at)
+          localStorage.setItem('lastSyncedAt', run.updated_at)
+        }
+      } catch { /* ignore */ }
+    })()
+  }, [token])
 
   const filteredActivities = filter === 'all' ? activities : activities.filter(a => a.type === filter)
 
