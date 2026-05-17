@@ -44,3 +44,13 @@ goals:
     monthly: 600   # 10 小时
     weekly: 150    # 2.5 小时
     unit: time
+
+# ── 打卡模块 ──────────────────────────────────────────────────────────────────
+# GitHub OAuth App 的 Client ID（Device Flow 不需要 client_secret，client_id 可公开）
+# 注册地址：https://github.com/settings/applications/new
+# Authorization callback URL 填写你的站点域名即可（Device Flow 不实际使用 callback）
+githubClientId: 'Ov23liIA4gcZ3hXZkJnP'
+
+# 打卡数据存储位置（当前 repo），格式：username/repo-name
+repoOwner: 'zhaohongxuan'
+repoName: 'workouts'
