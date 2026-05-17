@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import './index.css'
 import type { Activity, SportFilter } from './types'
-import { useFilteredActivities, getAvailableYears } from './hooks/useActivities'
+import { useFilteredActivities, getAvailableYears, extractProvince } from './hooks/useActivities'
 import { useTheme } from './hooks/useTheme'
 import { LocaleProvider } from './hooks/useLocale'
 import { Header } from './components/Header'
@@ -25,11 +25,18 @@ export default function App() {
   const [filter, setFilter] = useState<SportFilter>('all')
   const [year, setYear] = useState<number | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null)
+  const [selectedProvince, setSelectedProvince] = useState<string | null>(null)
   const [page, setPage] = useState<Page>('home')
 
   const years = getAvailableYears(activities)
   const filtered = useFilteredActivities(activities, filter, year)
   const heatmapYear = year ?? years[0] ?? new Date().getFullYear()
+
+  // Activities filtered to the selected province (for RouteMap)
+  const provinceFiltered = useMemo(() => {
+    if (!selectedProvince) return filtered
+    return filtered.filter(a => extractProvince(a.location_country) === selectedProvince)
+  }, [filtered, selectedProvince])
 
   return (
     <LocaleProvider>
@@ -72,9 +79,17 @@ export default function App() {
           {/* Right column */}
           <div className="flex flex-col gap-6 min-w-0 overflow-hidden">
             <ProfileCard activities={activities} filter={filter} />
-            <ChinaMap activities={filtered} filter={filter} />
-            <RouteMap
+            <ChinaMap
               activities={filtered}
+              filter={filter}
+              selectedProvince={selectedProvince}
+              onSelectProvince={(p) => {
+                setSelectedProvince(p)
+                setSelectedActivity(null)
+              }}
+            />
+            <RouteMap
+              activities={provinceFiltered}
               selectedActivity={selectedActivity}
               dark={dark}
               onClearSelection={() => setSelectedActivity(null)}

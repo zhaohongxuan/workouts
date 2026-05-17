@@ -6,6 +6,8 @@ import { extractProvince } from '../hooks/useActivities'
 interface ChinaMapProps {
   activities: Activity[]
   filter: SportFilter
+  onSelectProvince?: (province: string | null) => void
+  selectedProvince?: string | null
 }
 
 type GeoFeature = {
@@ -44,13 +46,13 @@ function featureToPath(feature: GeoFeature, w: number, h: number): string {
     .join(' ')
 }
 
-export function ChinaMap({ activities, filter }: ChinaMapProps) {
+export function ChinaMap({ activities, filter, onSelectProvince, selectedProvince }: ChinaMapProps) {
   const { locale } = useLocale()
   const [hoveredProvince, setHoveredProvince] = useState<string | null>(null)
   const [features, setFeatures] = useState<GeoFeature[]>([])
 
   const SVG_W = 260
-  const SVG_H = 180
+  const SVG_H = 190
 
   // Lazy-load GeoJSON to keep initial bundle small
   useEffect(() => {
@@ -70,7 +72,15 @@ export function ChinaMap({ activities, filter }: ChinaMapProps) {
   }, [activities])
 
   const visitedCount = provinceCount.size
-  const hoveredCount = hoveredProvince ? (provinceCount.get(hoveredProvince) ?? 0) : 0
+  const displayProvince = hoveredProvince ?? selectedProvince
+  const displayCount = displayProvince ? (provinceCount.get(displayProvince) ?? 0) : 0
+
+  function handleClick(name: string) {
+    if (!onSelectProvince) return
+    const visited = (provinceCount.get(name) ?? 0) > 0
+    if (!visited) return
+    onSelectProvince(selectedProvince === name ? null : name)
+  }
 
   return (
     <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5">
@@ -80,54 +90,91 @@ export function ChinaMap({ activities, filter }: ChinaMapProps) {
           {locale === 'zh' ? '足迹地图' : 'Footprint Map'}
         </h2>
         <div className="flex items-center gap-2 text-xs text-[var(--color-muted)]">
-          <span className="font-mono font-bold text-[var(--color-accent)]">{visitedCount}</span>
-          <span>/ {features.length || 35} {locale === 'zh' ? '省份' : 'provinces'}</span>
+          {selectedProvince ? (
+            <button
+              onClick={() => onSelectProvince?.(null)}
+              className="flex items-center gap-1 text-[var(--color-accent)] hover:opacity-70 transition-opacity"
+            >
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              {locale === 'zh' ? '清除筛选' : 'Clear'}
+            </button>
+          ) : (
+            <>
+              <span className="font-mono font-bold text-[var(--color-accent)]">{visitedCount}</span>
+              <span>/ {features.length || 35} {locale === 'zh' ? '省份' : 'provinces'}</span>
+            </>
+          )}
         </div>
       </div>
 
-      {/* SVG Map */}
-      <div className="relative">
+      {/* SVG Map — aspect-ratio wrapper prevents stretching */}
+      <div className="relative" style={{ aspectRatio: `${SVG_W} / ${SVG_H}` }}>
         <svg
           key={filter}
           viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+          preserveAspectRatio="xMidYMid meet"
           width="100%"
-          style={{ display: 'block' }}
+          height="100%"
+          style={{ display: 'block', position: 'absolute', inset: 0 }}
         >
           {features.map(feature => {
             const name = feature.properties.name
             const count = provinceCount.get(name) ?? 0
             const visited = count > 0
             const isHovered = hoveredProvince === name
+            const isSelected = selectedProvince === name
+
+            let fill: string
+            if (visited) {
+              if (isSelected) {
+                fill = 'var(--color-accent)'
+              } else if (isHovered) {
+                fill = 'color-mix(in srgb, var(--color-accent) 80%, transparent)'
+              } else if (selectedProvince) {
+                // dim other provinces when one is selected
+                fill = 'color-mix(in srgb, var(--color-accent) 25%, transparent)'
+              } else {
+                fill = 'color-mix(in srgb, var(--color-accent) 55%, transparent)'
+              }
+            } else {
+              fill = 'var(--color-border)'
+            }
 
             return (
               <path
                 key={feature.properties.adcode}
                 d={featureToPath(feature, SVG_W, SVG_H)}
-                fill={visited
-                  ? isHovered
-                    ? 'var(--color-accent)'
-                    : 'color-mix(in srgb, var(--color-accent) 55%, transparent)'
-                  : 'var(--color-border)'}
+                fill={fill}
                 stroke="var(--color-bg)"
                 strokeWidth="0.5"
-                className="transition-all duration-150 cursor-default"
+                className={`transition-all duration-150 ${visited ? 'cursor-pointer' : 'cursor-default'}`}
                 onMouseEnter={() => setHoveredProvince(name)}
                 onMouseLeave={() => setHoveredProvince(null)}
+                onClick={() => handleClick(name)}
               />
             )
           })}
         </svg>
+      </div>
 
-        {/* Hover tooltip */}
-        {hoveredProvince && (
-          <div className="absolute bottom-0 left-0 text-xs text-[var(--color-muted)] pointer-events-none">
-            <span className="font-medium text-[var(--color-text)]">{hoveredProvince}</span>
-            {hoveredCount > 0 && (
+      {/* Tooltip */}
+      <div className="mt-1.5 h-4 text-xs text-[var(--color-muted)]">
+        {displayProvince && (
+          <>
+            <span className="font-medium text-[var(--color-text)]">{displayProvince}</span>
+            {displayCount > 0 && (
               <span className="ml-1.5">
-                {hoveredCount} {locale === 'zh' ? '次' : 'activities'}
+                {displayCount} {locale === 'zh' ? '次' : 'activities'}
               </span>
             )}
-          </div>
+            {selectedProvince === displayProvince && !hoveredProvince && (
+              <span className="ml-1.5 text-[var(--color-accent)]">
+                {locale === 'zh' ? '（已筛选）' : '(filtered)'}
+              </span>
+            )}
+          </>
         )}
       </div>
     </div>
