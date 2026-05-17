@@ -25,6 +25,7 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
   const [runStatus, setRunStatus] = useState<RunStatus>('idle')
   const [runUrl, setRunUrl] = useState<string | null>(null)
   const [statusMsg, setStatusMsg] = useState('')
+  const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(() => localStorage.getItem('lastSyncedAt'))
 
   const filteredActivities = filter === 'all' ? activities : activities.filter(a => a.type === filter)
 
@@ -54,6 +55,15 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
 
   const formatHours = (secs: number) => `${(secs / 3600).toFixed(1)}h`
 
+  const formatSyncTime = (isoStr: string) => {
+    const d = new Date(isoStr)
+    if (locale === 'zh') {
+      return `${d.getMonth() + 1}月${d.getDate()}日 ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`
+    }
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+      d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+  }
+
   const latest = activities.length > 0
     ? [...activities].sort((a, b) => new Date(b.start_date_local).getTime() - new Date(a.start_date_local).getTime())[0]
     : null
@@ -79,6 +89,11 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
       if (data.status === 'completed') {
         setRunStatus(data.conclusion === 'success' ? 'success' : 'failure')
         setStatusMsg(data.conclusion ?? '')
+        if (data.conclusion === 'success') {
+          const now = new Date().toISOString()
+          setLastSyncedAt(now)
+          localStorage.setItem('lastSyncedAt', now)
+        }
       } else {
         setRunStatus(data.status as RunStatus)
         setTimeout(() => void pollRun(runId, attempt + 1), 5000)
@@ -199,6 +214,12 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
           <div className="flex items-center justify-between mb-1">
             <p className="text-xs text-[var(--color-muted)]">{locale === 'zh' ? '最近活动' : 'Latest Activity'}</p>
             <div className="flex items-center gap-2">
+              {lastSyncedAt && runStatus === 'idle' && (
+                <span className="text-xs text-[var(--color-muted)] flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  {formatSyncTime(lastSyncedAt)}
+                </span>
+              )}
               <StatusBadge />
               {token && (
                 <button
