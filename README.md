@@ -5,7 +5,7 @@
 > 数据基于 [running_page](https://github.com/yihong0618/running_page) 项目同步 ， 脚本本项目的 run_page 文件夹下。
 > 在线演示：[zhaohongxuan.github.io/workouts](http://zhaohongxuan.github.io/workouts)
 
-<img width="1439" height="963" alt="image" src="https://github.com/user-attachments/assets/7ba5fc4c-dd2b-402d-bd83-0be8a2c670ab" />
+<img width="1449" height="987" alt="image" src="https://github.com/user-attachments/assets/33c4eef1-0208-4d01-920b-3270633b7201" />
 
 ## 功能特性
 
