@@ -73,7 +73,7 @@ export default function App() {
           {/* Right column */}
           <div className="flex flex-col gap-6 min-w-0 overflow-hidden">
             <ProfileCard activities={activities} filter={filter} />
-            <ChinaMap activities={activities} />
+            <ChinaMap activities={filtered} filter={filter} />
             <RouteMap
               activities={filtered}
               selectedActivity={selectedActivity}

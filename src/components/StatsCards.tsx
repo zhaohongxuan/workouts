@@ -73,9 +73,10 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
   const lastMonthDistance = lastMonthActivities.reduce((s, a) => s + a.distance, 0)
   const monthDiff = monthDistance - lastMonthDistance
 
-  // Current week stats
+  // Current week stats — week starts on Monday
   const dayOfWeek = now.getDay() // 0=Sun
-  const weekStart = new Date(now.getTime() - dayOfWeek * 86400000)
+  const daysSinceMon = (dayOfWeek + 6) % 7 // Mon=0 … Sun=6
+  const weekStart = new Date(now.getTime() - daysSinceMon * 86400000)
   weekStart.setHours(0, 0, 0, 0)
   const weekActivities = activities.filter((a) => {
     const d = new Date(a.start_date_local)
@@ -346,9 +347,9 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
 
         {/* Week days visual */}
         {(() => {
-          const todayIdx = now.getDay()
+          const todayIdx = (now.getDay() + 6) % 7 // Mon=0 … Sun=6
           const weekStart = new Date(now.getTime() - todayIdx * 86400000)
-          const weekLabels = locale === 'zh' ? ['日','一','二','三','四','五','六'] : ['S','M','T','W','T','F','S']
+          const weekLabels = locale === 'zh' ? ['一','二','三','四','五','六','日'] : ['M','T','W','T','F','S','S']
 
           function dayColor(acts: Activity[]): string {
             if (acts.length === 0) return ''
