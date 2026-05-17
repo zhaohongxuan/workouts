@@ -3,8 +3,9 @@
     {
       "date": "2026-05-18",
       "pushups": true,
-      "squats": false,
-      "coldShower": false
+      "squats": true,
+      "coldShower": false,
+      "squatsCount": 30
     }
   ]
 }
