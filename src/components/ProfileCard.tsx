@@ -76,12 +76,21 @@ export function ProfileCard({ activities, filter = 'all' }: ProfileCardProps) {
   const formatHours = (secs: number) => `${(secs / 3600).toFixed(1)}h`
 
   const formatSyncTime = (isoStr: string) => {
-    const d = new Date(isoStr)
+    const diffMs = Date.now() - new Date(isoStr).getTime()
+    const mins = Math.floor(diffMs / 60000)
+    const hours = Math.floor(mins / 60)
+    const days = Math.floor(hours / 24)
     if (locale === 'zh') {
-      return `${d.getMonth() + 1}月${d.getDate()}日 ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`
+      if (mins < 1) return '刚刚'
+      if (mins < 60) return `${mins} 分钟前`
+      if (hours < 24) return `${hours} 小时前`
+      return `${days} 天前`
+    } else {
+      if (mins < 1) return 'just now'
+      if (mins < 60) return `${mins}m ago`
+      if (hours < 24) return `${hours}h ago`
+      return `${days}d ago`
     }
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
-      d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
   }
 
   const latest = activities.length > 0
