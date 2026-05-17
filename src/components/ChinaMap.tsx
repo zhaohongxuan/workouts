@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Activity, SportFilter } from '../types'
 import { useLocale } from '../hooks/useLocale'
 import { extractProvince } from '../hooks/useActivities'
@@ -51,6 +51,12 @@ export function ChinaMap({ activities, filter, onSelectProvince, selectedProvinc
   const [hoveredProvince, setHoveredProvince] = useState<string | null>(null)
   const [features, setFeatures] = useState<GeoFeature[]>([])
 
+  // Zoom/pan state
+  const [transform, setTransform] = useState({ x: 0, y: 0, scale: 1 })
+  const dragging = useRef(false)
+  const lastPos = useRef({ x: 0, y: 0 })
+  const svgRef = useRef<SVGSVGElement>(null)
+
   const SVG_W = 260
   const SVG_H = 190
 
@@ -74,6 +80,53 @@ export function ChinaMap({ activities, filter, onSelectProvince, selectedProvinc
   const visitedCount = provinceCount.size
   const displayProvince = hoveredProvince ?? selectedProvince
   const displayCount = displayProvince ? (provinceCount.get(displayProvince) ?? 0) : 0
+
+  // Zoom with mouse wheel
+  function handleWheel(e: React.WheelEvent<SVGSVGElement>) {
+    e.preventDefault()
+    const delta = e.deltaY > 0 ? 0.85 : 1.18
+    setTransform(prev => {
+      const newScale = Math.min(Math.max(prev.scale * delta, 1), 8)
+      // Zoom toward cursor position
+      const rect = svgRef.current?.getBoundingClientRect()
+      if (!rect) return { ...prev, scale: newScale }
+      const cx = ((e.clientX - rect.left) / rect.width) * SVG_W
+      const cy = ((e.clientY - rect.top) / rect.height) * SVG_H
+      const ratio = newScale / prev.scale
+      return {
+        scale: newScale,
+        x: cx - ratio * (cx - prev.x),
+        y: cy - ratio * (cy - prev.y),
+      }
+    })
+  }
+
+  function handleMouseDown(e: React.MouseEvent) {
+    dragging.current = true
+    lastPos.current = { x: e.clientX, y: e.clientY }
+  }
+
+  function handleMouseMove(e: React.MouseEvent) {
+    if (!dragging.current) return
+    const dx = e.clientX - lastPos.current.x
+    const dy = e.clientY - lastPos.current.y
+    lastPos.current = { x: e.clientX, y: e.clientY }
+    const rect = svgRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const scaleX = SVG_W / rect.width
+    const scaleY = SVG_H / rect.height
+    setTransform(prev => ({
+      ...prev,
+      x: prev.x + dx * scaleX,
+      y: prev.y + dy * scaleY,
+    }))
+  }
+
+  function handleMouseUp() { dragging.current = false }
+
+  function resetView() {
+    setTransform({ x: 0, y: 0, scale: 1 })
+  }
 
   function handleClick(name: string) {
     if (!onSelectProvince) return
@@ -106,19 +159,37 @@ export function ChinaMap({ activities, filter, onSelectProvince, selectedProvinc
               <span>/ {features.length || 35} {locale === 'zh' ? '省份' : 'provinces'}</span>
             </>
           )}
+          {transform.scale > 1.05 && (
+            <button
+              onClick={resetView}
+              className="ml-1 text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors"
+              title={locale === 'zh' ? '重置视图' : 'Reset view'}
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
 
       {/* SVG Map — aspect-ratio wrapper prevents stretching */}
       <div className="relative" style={{ aspectRatio: `${SVG_W} / ${SVG_H}` }}>
         <svg
+          ref={svgRef}
           key={filter}
           viewBox={`0 0 ${SVG_W} ${SVG_H}`}
           preserveAspectRatio="xMidYMid meet"
           width="100%"
           height="100%"
-          style={{ display: 'block', position: 'absolute', inset: 0 }}
+          style={{ display: 'block', position: 'absolute', inset: 0, cursor: transform.scale > 1.05 ? 'grab' : 'default' }}
+          onWheel={handleWheel}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
         >
+          <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.scale})`}>
           {features.map(feature => {
             const name = feature.properties.name
             const count = provinceCount.get(name) ?? 0
@@ -148,7 +219,7 @@ export function ChinaMap({ activities, filter, onSelectProvince, selectedProvinc
                 d={featureToPath(feature, SVG_W, SVG_H)}
                 fill={fill}
                 stroke="var(--color-bg)"
-                strokeWidth="0.5"
+                strokeWidth={0.5 / transform.scale}
                 className={`transition-all duration-150 ${visited ? 'cursor-pointer' : 'cursor-default'}`}
                 onMouseEnter={() => setHoveredProvince(name)}
                 onMouseLeave={() => setHoveredProvince(null)}
@@ -156,6 +227,7 @@ export function ChinaMap({ activities, filter, onSelectProvince, selectedProvinc
               />
             )
           })}
+          </g>
         </svg>
       </div>
 
