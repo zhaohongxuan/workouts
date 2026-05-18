@@ -47806,5 +47806,37 @@
 "elevation_gain": 17.2,
 "source": "strava",
 "streak": 14
+},
+{
+"run_id": 18536200165,
+"name": "\ud83c\udf1e Morning Run",
+"distance": 5128.3,
+"moving_time": "0:27:27",
+"type": "Run",
+"start_date": "2026-05-16 23:35:09+00:00",
+"start_date_local": "2026-05-17 07:35:09",
+"location_country": "\u9752\u6d66\u56fe\u4e66\u9986, \u534e\u9752\u5357\u8def, \u590f\u9633\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "ykc}DwtibVNcAAUMWEO@[Nk@Vo@L{@VY@G@[Pi@Lg@NWnBkBD?LPP`AXd@DTC\\Wr@BDXHTAV@HCL[BABB\\v@Hd@Tx@Jn@@TMMo@e@I?G@ILBV\\z@FH`@TTb@DZBbAHt@AtAB^J^?REp@?v@MZEP@ZFp@EHIBY@q@EGAUOIAwAFqANc@?[EYKg@UYUSUOYU{@OcBA_@Bs@A]Bw@Jo@Bs@Li@@QCQKY?_@Ps@b@gAJc@X[Dc@Ti@Le@Da@?cAB[FMNKPGP?d@TRTLVPj@Zf@FZAPMh@@RDFF@p@?HIHYDC@@^hA^xAFb@?T]SQQKEI?EDENBP\\|@JJVLJJNVH\\@`@A^D|@Cj@?l@@RLh@Cz@Dp@ALMZER?XFp@CLGDODgAIIAIKMEqAAi@Hi@Dy@Io@Ys@m@_@k@Uu@KqA@qAGe@@KLcCLo@B]CQMWC_@XaAd@}@DYX]Ba@\\aAFg@BeAD_@FONOPGPCPFVL\\XFPJj@^r@DR?LCLM^ANBDNFVC`@?FEFSF?^rA\\hBB`@E@g@g@OII?EDCBAJDPb@`Ad@XHNJTD\\B~@F|@Ah@?v@Pt@In@Hx@Ip@@f@DNGUCU@SH_@G{@D_AIk@A[?q@Dk@Ks@?s@",
+"average_heartrate": 153.4,
+"average_speed": 3.114,
+"elevation_gain": 9.6,
+"source": "strava",
+"streak": 15
+},
+{
+"run_id": 18549327011,
+"name": "\u2601\ufe0f Morning Run",
+"distance": 5283.3,
+"moving_time": "0:30:32",
+"type": "Run",
+"start_date": "2026-05-17 22:33:42+00:00",
+"start_date_local": "2026-05-18 06:33:42",
+"location_country": "\u57ce\u4e2d\u5317\u8def, \u76c8\u6d66\u8857\u9053, \u9752\u6d66\u533a, \u4e0a\u6d77\u5e02, 201700, \u4e2d\u56fd",
+"summary_polyline": "sxd}D_iebVLaAX{@?Gm@QyAu@eAu@oA{A]QsAgAOEM?aF~B}CnAk@Nw@^YTOT_AxBORUHMC]OQFUZUh@Mh@OxAIb@KVSP_@Na@@iA]SAK@IDKP]|ACb@BfADl@CbBBz@@t@IzHBzEAdBGlA@jBEtA?|@Jt@Lf@Jp@Z`@@HANCFm@JEFALBdBHd@?PAdBIv@ZnCEVOb@C^Db@p@pB@j@MhAC^Fh@Rt@Eg@?kAKq@Bm@CYI]e@gAG_@As@Ro@?QUaBGk@Lk@@m@ASKi@?kDBIJI`@ELCBGFYN_@@OCQKSMGo@KKOCQBcBCmDFmCBiDE}CDmD?kCGeAFeAAsAHgBP}@J[POJCNANBp@XVB^ETQJOJ]LkAHe@Ro@d@mABYA_@I{@Ga@Ug@g@i@GODG^YT]LGb@KNGf@k@TOJCJAR@hAZNBZ?TG`@UxAmANIX?tAJX?nC[N@h@@tAVXJp@\\x@\\XRx@z@vA|@lFtAv@X",
+"average_heartrate": 134.1,
+"average_speed": 2.884,
+"elevation_gain": 16.8,
+"source": "strava",
+"streak": 16
 }
 ]
