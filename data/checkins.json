@@ -7,6 +7,14 @@
       "coldShower": true,
       "squatsCount": 30,
       "coldShowerAt": "2026-05-17T21:35:49"
+    },
+    {
+      "date": "2026-05-19",
+      "pushups": true,
+      "squats": false,
+      "coldShower": false,
+      "pushupsCount": 50,
+      "pushupsAt": "2026-05-18T23:58:05"
     }
   ]
 }
