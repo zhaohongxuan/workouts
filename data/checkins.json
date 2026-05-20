@@ -21,12 +21,14 @@
     },
     {
       "date": "2026-05-20",
-      "pushups": false,
+      "pushups": true,
       "squats": true,
       "coldShower": true,
       "coldShowerAt": "2026-05-19T23:11:55",
       "squatsCount": 50,
-      "squatsAt": "2026-05-20T00:01:51"
+      "squatsAt": "2026-05-20T00:01:51",
+      "pushupsCount": 50,
+      "pushupsAt": "2026-05-20T00:02:01"
     }
   ]
 }
