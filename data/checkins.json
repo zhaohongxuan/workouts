@@ -32,12 +32,14 @@
     },
     {
       "date": "2026-05-22",
-      "pushups": false,
+      "pushups": true,
       "squats": true,
       "coldShower": true,
       "coldShowerAt": "2026-05-22T00:58:40",
       "squatsCount": 50,
-      "squatsAt": "2026-05-22T01:07:23"
+      "squatsAt": "2026-05-22T01:07:23",
+      "pushupsCount": 50,
+      "pushupsAt": "2026-05-22T01:07:28"
     }
   ]
 }
