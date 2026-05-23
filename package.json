@@ -1,7 +1,7 @@
 {
   "name": "workout-dashboard",
   "description": "Modern workout dashboard with contribution heatmap",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": "Hank Zhao<hxzhenu@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@mapbox/polyline": "^1.2.1",
+    "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
     "lucide-react": "^1.16.0",
     "mapbox-gl": "^3.23.1",

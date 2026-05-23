@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
-import { formatDistance, formatDuration, formatPace } from '../hooks/useActivities'
+import { formatDuration, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 
 interface ActivityLogProps {
@@ -17,6 +17,19 @@ interface ActivityLogProps {
 const PAGE_SIZE = 16
 
 type DistanceFilter = 'all' | '10' | '20' | '40'
+
+function typeIcon(type: string): string {
+  const icons: Record<string, string> = {
+    Run: '🏃',
+    Ride: '🚴',
+    Hike: '🥾',
+    WeightTraining: '🏋️',
+    Workout: '💪',
+    StairStepper: '🪜',
+    WaterSport: '🏊',
+  }
+  return icons[type] ?? '📌'
+}
 
 function typeLabel(type: string, locale: string): string {
   const map: Record<string, { zh: string; en: string }> = {
@@ -195,10 +208,10 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                 <td className="py-3">
                   {isGym ? (
                     <span className="text-xs font-medium px-1.5 py-0.5 rounded-full" style={{ backgroundColor: typeColor(a.type) + '22', color: typeColor(a.type) }}>
-                      {typeLabel(a.type, locale)}
+                      {typeIcon(a.type)} {typeLabel(a.type, locale)}
                     </span>
                   ) : (
-                    <span className="text-[var(--color-muted)]">{a.type}</span>
+                    <span className="text-[var(--color-muted)]">{typeIcon(a.type)} {a.type}</span>
                   )}
                 </td>
                 <td className="py-3">{a.name || (a.type === 'Run' ? t('run') : t('ride'))}</td>
@@ -210,7 +223,7 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                 ) : (
                   <>
                     <td className="py-3 font-mono font-medium">
-                      {formatDistance(a.distance)}<span className="text-[var(--color-muted)] ml-1 font-normal text-xs">km</span>
+                      {(a.distance / 1000).toFixed(1)}<span className="text-[var(--color-muted)] ml-1 font-normal text-xs">km</span>
                     </td>
                     <td className="py-3 text-[var(--color-muted)]">{formatDuration(a.moving_time)}</td>
                     <td className="py-3 text-[var(--color-muted)]">

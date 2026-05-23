@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
+import { toPng } from 'html-to-image'
 import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
@@ -51,6 +52,15 @@ function getColorAll(typeRatio: number, displayType: string): string {
   return palette[level - 1] ?? palette[0]
 }
 
+function typeIcon(type: string): string {
+  const icons: Record<string, string> = {
+    Run: '🏃',
+    Ride: '🚴',
+    Hike: '🥾',
+  }
+  return icons[type] ?? '📌'
+}
+
 function typeLabel(type: string, locale: string): string {
   const map: Record<string, { zh: string; en: string }> = {
     Run:      { zh: '跑步', en: 'Run' },
@@ -78,6 +88,8 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
   const [selectedYear, setSelectedYear] = useState<number | 'all'>(defaultYear)
   // yearWindowEnd: index into allYears of the last visible year (0-based, most-recent-first)
   const [yearWindowEnd, setYearWindowEnd] = useState(Math.min(MAX_VISIBLE_YEARS - 1, allYears.length - 1))
+  const captureRef = useRef<HTMLDivElement>(null)
+  const [exporting, setExporting] = useState(false)
 
   const isGym = filter === 'Gym'
   const isAll = filter === 'all'
@@ -89,6 +101,14 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
     const totalTime = yearActivities.reduce((s, a) => s + parseMovingTime(a.moving_time), 0)
     const runs = yearActivities.filter((a) => a.type === 'Run')
     const avgPace = runs.length > 0 ? runs.reduce((s, a) => s + a.average_speed, 0) / runs.length : 0
+
+    // Per-type stats
+    const typeStats: Record<string, { distance: number; count: number }> = {}
+    for (const a of yearActivities) {
+      if (!typeStats[a.type]) typeStats[a.type] = { distance: 0, count: 0 }
+      typeStats[a.type].distance += a.distance
+      typeStats[a.type].count += 1
+    }
 
     // Per-day totals
     const dayMap = new Map<string, number>()
@@ -144,7 +164,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
       }
     }
 
-    return { grid, max: maxVal, monthPositions, stats: { count: yearActivities.length, distance: totalDist, time: totalTime, pace: avgPace } }
+    return { grid, max: maxVal, monthPositions, stats: { count: yearActivities.length, distance: totalDist, time: totalTime, pace: avgPace, typeStats } }
   }
 
   const yearData = useMemo(() => {
@@ -210,6 +230,44 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
     setYearWindowEnd(prev => Math.min(Math.max(prev + dir, MAX_VISIBLE_YEARS - 1), allYears.length - 1))
   }
 
+  const handleExport = async () => {
+    if (!captureRef.current || exporting) return
+    setExporting(true)
+    try {
+      const el = captureRef.current
+
+      // Freeze animations
+      el.classList.add('exporting')
+      const prevOverflow = el.style.overflow
+      el.style.overflow = 'visible'
+
+      // Wait a frame for styles to settle
+      await new Promise(resolve => requestAnimationFrame(resolve))
+
+      const computedBg = getComputedStyle(el).backgroundColor
+      const dataUrl = await toPng(el, {
+        backgroundColor: computedBg === 'rgba(0, 0, 0, 0)' || computedBg === 'transparent'
+          ? '#ffffff'
+          : computedBg,
+        pixelRatio: 2,
+        filter: (node) => !(node instanceof HTMLElement && node.hasAttribute('data-export-hidden')),
+        cacheBust: true,
+      })
+
+      // Restore
+      el.classList.remove('exporting')
+      el.style.overflow = prevOverflow
+
+      const link = document.createElement('a')
+      link.download = `heatmap-${selectedYear === 'all' ? 'all' : selectedYear}.png`
+      link.href = dataUrl
+      link.click()
+    } catch (err) {
+      console.error('Export failed:', err)
+    } finally {
+      setExporting(false)
+    }
+  }
 
   // Aggregate stats for "all" mode
   const allStats = useMemo(() => {
@@ -217,11 +275,20 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
     const count = yearData.reduce((s, d) => s + d.stats.count, 0)
     const distance = yearData.reduce((s, d) => s + d.stats.distance, 0)
     const time = yearData.reduce((s, d) => s + d.stats.time, 0)
-    return { count, distance, time }
+    // Aggregate per-type stats across all years
+    const typeStats: Record<string, { distance: number; count: number }> = {}
+    for (const yd of yearData) {
+      for (const [type, stat] of Object.entries(yd.stats.typeStats)) {
+        if (!typeStats[type]) typeStats[type] = { distance: 0, count: 0 }
+        typeStats[type].distance += stat.distance
+        typeStats[type].count += stat.count
+      }
+    }
+    return { count, distance, time, typeStats }
   }, [yearData, selectedYear])
 
   return (
-    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 overflow-x-auto">
+    <div ref={captureRef} className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-5 overflow-x-auto">
       <style>{`
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(8px); }
@@ -237,6 +304,13 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
         }
         .heatmap-year-row {
           animation: fadeSlideIn 0.32s ease-out both;
+        }
+        .exporting,
+        .exporting *,
+        .exporting *::before,
+        .exporting *::after {
+          animation: none !important;
+          transition: none !important;
         }
       `}</style>
 
@@ -286,6 +360,27 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
+
+          <span className="w-px h-3 bg-[var(--color-border)]" />
+
+          {/* Export button */}
+          <button
+            onClick={handleExport}
+            disabled={exporting}
+            data-export-hidden
+            className="w-6 h-6 flex items-center justify-center rounded text-[var(--color-muted)] hover:text-[var(--color-text)] disabled:opacity-50 transition-all"
+            title={locale === 'zh' ? '导出图片' : 'Export as image'}
+          >
+            {exporting ? (
+              <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            ) : (
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
 
@@ -302,12 +397,22 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
           >
             {/* Year label when showing all */}
             {selectedYear === 'all' && (
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-1.5 mb-2 flex-wrap">
                 <span className="text-xs font-semibold text-[var(--color-accent)]">{yr}</span>
                 <span className="text-xs text-[var(--color-muted)]">
                   {stats.count} {locale === 'zh' ? '次' : 'sessions'}
-                  {!isGym && ` · ${formatDistance(stats.distance)} km`}
                 </span>
+                {Object.entries(stats.typeStats)
+                  .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike'].includes(type))
+                  .sort(([a], [b]) => {
+                    const order = ['Run', 'Ride', 'Hike']
+                    return order.indexOf(a) - order.indexOf(b)
+                  })
+                  .map(([type, v]) => (
+                    <span key={type} className="text-xs text-[var(--color-muted)]">
+                      · {typeIcon(type)} {(v.distance / 1000).toFixed(1)} km
+                    </span>
+                  ))}
               </div>
             )}
             <div className="flex ml-5">
@@ -384,46 +489,78 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
       {/* Stats row */}
       {selectedYear === 'all' ? (
         allStats && (
-          <div className="mt-4 pt-4 border-t border-[var(--color-border)] flex items-center justify-end gap-4 text-sm text-[var(--color-muted)]">
-            <span className="text-xs text-[var(--color-muted)] mr-auto">{locale === 'zh' ? '全部年份汇总' : 'All-time total'}</span>
+          <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
+            <div className="flex items-center justify-end gap-2 text-xs text-[var(--color-muted)] flex-wrap">
+              <span className="text-xs text-[var(--color-muted)] mr-auto">{locale === 'zh' ? '全部年份汇总' : 'All-time total'}</span>
+              {Object.entries(allStats.typeStats)
+                .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike'].includes(type))
+                .sort(([a], [b]) => {
+                  const order = ['Run', 'Ride', 'Hike']
+                  return order.indexOf(a) - order.indexOf(b)
+                })
+                .map(([type, v]) => (
+                  <span key={type}>
+                    {typeIcon(type)} {(v.distance / 1000).toFixed(1)} km
+                  </span>
+                ))}
+            </div>
+            <div className="flex items-center justify-end gap-4 mt-1.5 text-sm text-[var(--color-muted)]">
+              <span className="font-mono flex items-center gap-1">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                {allStats.count} {locale === 'zh' ? '次' : 'sessions'}
+              </span>
+              <span className="font-mono flex items-center gap-1">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                {(allStats.time / 3600).toFixed(0)}h
+              </span>
+              {!isGym && (
+                <span className="font-mono flex items-center gap-1">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                  {formatDistance(allStats.distance)} km
+                </span>
+              )}
+            </div>
+          </div>
+        )
+      ) : yearData[0] && (
+        <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
+          {isAll && (
+            <div className="flex items-center justify-end gap-2 text-xs text-[var(--color-muted)] flex-wrap">
+              {Object.entries(yearData[0].stats.typeStats)
+                .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike'].includes(type))
+                .sort(([a], [b]) => {
+                  const order = ['Run', 'Ride', 'Hike']
+                  return order.indexOf(a) - order.indexOf(b)
+                })
+                .map(([type, v]) => (
+                  <span key={type}>
+                    {typeIcon(type)} {(v.distance / 1000).toFixed(1)} km
+                  </span>
+                ))}
+            </div>
+          )}
+          <div className="flex items-center justify-end gap-4 mt-1.5 text-sm text-[var(--color-muted)]">
             <span className="font-mono flex items-center gap-1">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-              {allStats.count} {locale === 'zh' ? '次' : 'sessions'}
+              {yearData[0].stats.count} {locale === 'zh' ? '次' : 'sessions'}
             </span>
             <span className="font-mono flex items-center gap-1">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              {(allStats.time / 3600).toFixed(0)}h
+              {(yearData[0].stats.time / 3600).toFixed(0)}h
             </span>
             {!isGym && (
               <span className="font-mono flex items-center gap-1">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-                {formatDistance(allStats.distance)} km
+                {formatDistance(yearData[0].stats.distance)} km
+              </span>
+            )}
+            {filter === 'Run' && yearData[0].stats.pace > 0 && (
+              <span className="font-mono flex items-center gap-1">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                {formatPace(yearData[0].stats.pace)}
               </span>
             )}
           </div>
-        )
-      ) : yearData[0] && (
-        <div className="mt-4 pt-4 border-t border-[var(--color-border)] flex items-center justify-end gap-4 text-sm text-[var(--color-muted)]">
-          <span className="font-mono flex items-center gap-1">
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-            {yearData[0].stats.count} {locale === 'zh' ? '次' : 'sessions'}
-          </span>
-          <span className="font-mono flex items-center gap-1">
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            {(yearData[0].stats.time / 3600).toFixed(0)}h
-          </span>
-          {!isGym && (
-            <span className="font-mono flex items-center gap-1">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-              {formatDistance(yearData[0].stats.distance)} km
-            </span>
-          )}
-          {filter === 'Run' && yearData[0].stats.pace > 0 && (
-            <span className="font-mono flex items-center gap-1">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
-              {formatPace(yearData[0].stats.pace)}
-            </span>
-          )}
         </div>
       )}
 
