@@ -4,7 +4,7 @@ import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
-import siteMetadata from '../static/site-metadata'
+import { BrandingBar } from './BrandingBar'
 
 const MAX_VISIBLE_YEARS = 10
 
@@ -81,21 +81,6 @@ function dominantDisplayType(acts: Activity[]): 'Run' | 'Ride' | 'Hike' | 'Train
   if (acts.length === 0) return 'Training'
   const sorted = [...acts].sort((a, b) => b.distance - a.distance)
   return toDisplayType(sorted[0].type)
-}
-
-function BrandingBar() {
-  const basePath = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
-  const siteUrl = siteMetadata.siteUrl + basePath
-
-  return (
-    <div className="flex items-center gap-2 mr-auto">
-      <img src={siteMetadata.logo} alt="avatar" className="w-7 h-7 rounded-full" />
-      <div className="flex flex-col gap-0.5">
-        <span className="text-xs font-semibold">{siteMetadata.siteTitle}</span>
-        <span className="text-[10px] text-[var(--color-muted)]">{siteUrl}</span>
-      </div>
-    </div>
-  )
 }
 
 export function ContributionHeatmap({ activities, year: defaultYear, filter, onSelectActivity }: HeatmapProps) {
@@ -520,8 +505,8 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                   </span>
                 ))}
             </div>
-            <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)]">
-              <BrandingBar />
+            <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)] -mt-1">
+              <div className="mr-auto"><BrandingBar /></div>
               <span className="font-mono flex items-center gap-1">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 {allStats.count} {locale === 'zh' ? '次' : 'sessions'}
@@ -556,7 +541,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                 ))}
             </div>
           )}
-          <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)]">
+          <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)] -mt-1">
             <BrandingBar />
             <span className="font-mono flex items-center gap-1">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>

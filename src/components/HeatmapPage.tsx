@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import type { Activity, SportFilter } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
+import { BrandingBar } from './BrandingBar'
 
 interface HeatmapPageProps {
   activities: Activity[]
@@ -365,6 +366,10 @@ export function HeatmapPage({ activities, filter, onSelectActivity, onBack }: He
             </div>
           )
         })}
+      </div>
+
+      <div className="mt-6 flex justify-center">
+        <BrandingBar />
       </div>
     </div>
   )

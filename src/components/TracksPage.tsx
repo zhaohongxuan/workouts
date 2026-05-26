@@ -6,6 +6,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import type { Activity } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
+import { BrandingBar } from './BrandingBar'
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmVuLTI5IiwiYSI6ImNrZ3Q4Ym9mMDBqMGYyeXFvODV2dWl6YzQifQ.gSKoWF-fMjhzU67TuDezJQ'
 
@@ -331,6 +332,15 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
         {/* Right: track grid with year filter inside */}
         <div className="min-w-0">
           <div ref={captureRef} className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-4">
+          <style>{`
+            .exporting,
+            .exporting *,
+            .exporting *::before,
+            .exporting *::after {
+              animation: none !important;
+              transition: none !important;
+            }
+          `}</style>
           {/* Year pills + sport filter */}
           <div className="flex items-center gap-1.5 mb-4 pb-3 border-b border-[var(--color-border)]">
             {totalYearPages > 1 && (
@@ -375,10 +385,12 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
                   setExporting(true)
                   try {
                     const el = captureRef.current
+                    el.classList.add('exporting')
                     const prevOverflow = el.style.overflow
                     el.style.overflow = 'visible'
                     await new Promise(resolve => requestAnimationFrame(resolve))
                     const dataUrl = await toPng(el, { pixelRatio: 2, cacheBust: true })
+                    el.classList.remove('exporting')
                     el.style.overflow = prevOverflow
                     const link = document.createElement('a')
                     const label = selectedYear ?? 'all'
@@ -439,6 +451,9 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
               ))}
             </div>
           )}
+
+          {/* Branding bar (export only) */}
+          <BrandingBar />
 
           {/* Legend + sort */}
           {!clustering && clusteredTracks.length > 0 && (
