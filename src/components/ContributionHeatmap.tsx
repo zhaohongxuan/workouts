@@ -505,7 +505,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
       {/* Stats row */}
       {selectedYear === 'all' ? (
         allStats && (
-          <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
+          <div className="mt-3 pt-3 border-t border-[var(--color-border)]">
             <div className="flex items-center justify-end gap-2 text-xs text-[var(--color-muted)] flex-wrap">
               <span className="text-xs text-[var(--color-muted)] mr-auto">{locale === 'zh' ? '全部年份汇总' : 'All-time total'}</span>
               {Object.entries(allStats.typeStats)
@@ -515,12 +515,12 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                   return order.indexOf(a) - order.indexOf(b)
                 })
                 .map(([type, v]) => (
-                  <span key={type}>
+                  <span key={type} className="whitespace-nowrap">
                     {typeIcon(type)} {(v.distance / 1000).toFixed(1)} km
                   </span>
                 ))}
             </div>
-            <div className="flex items-center justify-end gap-4 mt-1.5 text-sm text-[var(--color-muted)]">
+            <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)]">
               <BrandingBar />
               <span className="font-mono flex items-center gap-1">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
@@ -540,7 +540,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
           </div>
         )
       ) : yearData[0] && (
-        <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
+        <div className="mt-3 pt-3 border-t border-[var(--color-border)]">
           {isAll && (
             <div className="flex items-center justify-end gap-2 text-xs text-[var(--color-muted)] flex-wrap">
               {Object.entries(yearData[0].stats.typeStats)
@@ -550,13 +550,13 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                   return order.indexOf(a) - order.indexOf(b)
                 })
                 .map(([type, v]) => (
-                  <span key={type}>
+                  <span key={type} className="whitespace-nowrap">
                     {typeIcon(type)} {(v.distance / 1000).toFixed(1)} km
                   </span>
                 ))}
             </div>
           )}
-          <div className="flex items-center justify-end gap-4 mt-1.5 text-sm text-[var(--color-muted)]">
+          <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)]">
             <BrandingBar />
             <span className="font-mono flex items-center gap-1">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
@@ -584,7 +584,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
 
       {/* Gym: monthly frequency bars */}
       {isGym && gymMonthlyData.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
+        <div className="mt-3 pt-3 border-t border-[var(--color-border)]">
           <p className="text-xs text-[var(--color-muted)] mb-3">{locale === 'zh' ? '月度频次' : 'Monthly Frequency'}</p>
           <div className="flex items-end gap-1.5" style={{ height: '64px' }}>
             {gymMonthlyData.map((m) => {
