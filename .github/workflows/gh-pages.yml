@@ -2,6 +2,9 @@ name: Publish GitHub Pages
 
 # Controls when the action will run.
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       save_data_in_github_cache:
