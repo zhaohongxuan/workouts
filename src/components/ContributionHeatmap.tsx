@@ -505,8 +505,9 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                   </span>
                 ))}
             </div>
-            <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)] -mt-1">
-              <div className="mr-auto"><BrandingBar /></div>
+            <div className="flex items-end justify-between text-sm text-[var(--color-muted)]">
+              <BrandingBar />
+              <div className="flex items-center gap-4">
               <span className="font-mono flex items-center gap-1">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 {allStats.count} {locale === 'zh' ? '次' : 'sessions'}
@@ -521,6 +522,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                   {formatDistance(allStats.distance)} km
                 </span>
               )}
+            </div>
             </div>
           </div>
         )
@@ -541,8 +543,9 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                 ))}
             </div>
           )}
-          <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)] -mt-1">
+          <div className="flex items-end justify-between text-sm text-[var(--color-muted)]">
             <BrandingBar />
+            <div className="flex items-center gap-4">
             <span className="font-mono flex items-center gap-1">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               {yearData[0].stats.count} {locale === 'zh' ? '次' : 'sessions'}
@@ -563,6 +566,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                 {formatPace(yearData[0].stats.pace)}
               </span>
             )}
+            </div>
           </div>
         </div>
       )}
