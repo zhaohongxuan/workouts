@@ -1,0 +1,21 @@
+run_page/strava_web_sync.py
+  s_14dfd98a797e06::t_69953c72e47b91 35,84-86,207,221-229
+  s_14dfd98a797e06::t_38902c95039a98 30-34,36-39
+  s_14dfd98a797e06::t_4216814eb614f7 87-88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.43-trip",
+  "base_commit_sha": "532b81846c6e3d4d82d045dee3829ecdf0942b19",
+  "prompts": {},
+  "sessions": {
+    "s_14dfd98a797e06": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9e6bb97b-38c8-4f31-b7e7-3b3940ea3545",
+        "model": "ep-07p4u7vn"
+      },
+      "human_author": "zhaohongxuan <hxzhenu@gmail.com>"
+    }
+  }
+}
