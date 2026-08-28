@@ -1,0 +1,26 @@
+.github/workflows/run_data_sync.yml
+  s_14dfd98a797e06::t_4acc540151c9c8 24
+  s_14dfd98a797e06::t_cb5da116b1374f 101-107
+run_page/strava_web_sync.py
+  s_14dfd98a797e06::t_dff9bfa4a91c55 1-21,23,25-123,143-149,151-180,182-211
+  s_14dfd98a797e06::t_a2799f845ead88 124-142
+  s_14dfd98a797e06::t_73bb9428010d44 181
+  s_14dfd98a797e06::t_109c3e105c58f6 150
+  s_14dfd98a797e06::t_ae740ad6b707e9 22,24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.43-trip",
+  "base_commit_sha": "00ec9f44c16e41993556b7f908ec7793977bb74a",
+  "prompts": {},
+  "sessions": {
+    "s_14dfd98a797e06": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9e6bb97b-38c8-4f31-b7e7-3b3940ea3545",
+        "model": "ep-07p4u7vn"
+      },
+      "human_author": "zhaohongxuan <hxzhenu@gmail.com>"
+    }
+  }
+}
