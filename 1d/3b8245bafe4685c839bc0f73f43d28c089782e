@@ -1,0 +1,20 @@
+src/static/activities.json
+  s_14dfd98a797e06::t_e3bffc2d80af21 48625-49626,49629-49642,49645-49658,49661-49674,49677-49691,49693-49707,49709-49723,49725-49739,49741-49755,49757-49771,49773-49787,49789-49803,49805-49807
+  s_14dfd98a797e06::t_8bc0e587a2875a 49627-49628,49643-49644,49659-49660,49675-49676,49692,49708,49724,49740,49756,49772,49788,49804
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.43-trip",
+  "base_commit_sha": "1d3b8245bafe4685c839bc0f73f43d28c089782e",
+  "prompts": {},
+  "sessions": {
+    "s_14dfd98a797e06": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9e6bb97b-38c8-4f31-b7e7-3b3940ea3545",
+        "model": "ep-07p4u7vn"
+      },
+      "human_author": "zhaohongxuan <hxzhenu@gmail.com>"
+    }
+  }
+}
