@@ -27,6 +27,16 @@ from config import JSON_FILE, SQL_FILE, start_point, run_map
 from generator.db import init_db, update_or_create_activity
 from stravaweblib import WebClient
 
+# Nominatim reverse-geocoding (used by update_or_create_activity for
+# location_country) can hang indefinitely on a slow network. Give it a global
+# timeout so the web sync never blocks forever on a single activity.
+try:
+    import geopy.geocoders
+
+    geopy.geocoders.options.default_timeout = 10
+except Exception:
+    pass
+
 TRAINING_ACTIVITIES_URL = (
     "https://www.strava.com/athlete/training_activities"
     "?keywords=&sport_type=&tags=&commute=&private_activities=&trainer=&gear="
@@ -71,7 +81,11 @@ class WebActivity:
     def __init__(self, raw, streams=None):
         self.id = int(raw["id"])
         self.name = raw.get("name", "")
-        self.type = raw.get("sport_type") or raw.get("activity_type_display_name") or "Workout"
+        self.type = (
+            raw.get("sport_type") or raw.get("activity_type_display_name") or "Workout"
+        )
+        # subtype mirrors type (some generators/db layers read it, e.g. running_page)
+        self.subtype = self.type
         # distance in meters
         self.distance = float(raw.get("distance_raw") or 0.0)
         # moving_time as timedelta (DB column is Interval)
@@ -190,6 +204,7 @@ def _sync_one(client, session, raw):
 
 def _finalize(session, count):
     from generator import Generator
+
     gen = Generator(SQL_FILE)
     activities_list = gen.loadForMapping()
     with open(JSON_FILE, "w") as f:
@@ -203,9 +218,14 @@ if __name__ == "__main__":
         description="Sync Strava activities via web endpoints (JWT session)."
     )
     parser.add_argument("jwt", help="Strava strava_remember_token JWT cookie value")
-    parser.add_argument("--days", type=int, default=7,
-                        help="number of days to look back (default: 7)")
-    parser.add_argument("--only-run", dest="only_run", action="store_true",
-                        help="only sync Run activities")
+    parser.add_argument(
+        "--days", type=int, default=7, help="number of days to look back (default: 7)"
+    )
+    parser.add_argument(
+        "--only-run",
+        dest="only_run",
+        action="store_true",
+        help="only sync Run activities",
+    )
     options = parser.parse_args()
     run_strava_web_sync(options.jwt, days=options.days, only_run=options.only_run)
