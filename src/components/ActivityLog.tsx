@@ -111,6 +111,8 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
 
   const logTitle = filter === 'Run'  ? (locale === 'zh' ? '跑步记录' : 'Run Log')
     : filter === 'Ride' ? (locale === 'zh' ? '骑行记录' : 'Ride Log')
+    : filter === 'Hike' ? (locale === 'zh' ? '徒步记录' : 'Hike Log')
+    : filter === 'Swim' ? (locale === 'zh' ? '游泳记录' : 'Swim Log')
     : filter === 'Gym'  ? (locale === 'zh' ? '健身记录' : 'Gym Log')
     : t('activityLog')
 

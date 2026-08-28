@@ -11,6 +11,7 @@
   --color-run: #f97316;
   --color-ride: #3b82f6;
   --color-hike: #22c55e;
+  --color-swim: #06b6d4;
   --color-all: #a855f7;
   --color-accent: #a855f7;
 }
@@ -27,6 +28,7 @@
 [data-filter="Run"] { --color-accent: #f97316; }
 [data-filter="Ride"] { --color-accent: #3b82f6; }
 [data-filter="Hike"] { --color-accent: #22c55e; }
+[data-filter="Swim"] { --color-accent: #06b6d4; }
 
 body {
   background-color: var(--color-bg);

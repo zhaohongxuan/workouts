@@ -10,7 +10,7 @@ import { BrandingBar } from './BrandingBar'
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmVuLTI5IiwiYSI6ImNrZ3Q4Ym9mMDBqMGYyeXFvODV2dWl6YzQifQ.gSKoWF-fMjhzU67TuDezJQ'
 
-type SportType = 'Run' | 'Ride' | 'Hike'
+type SportType = 'Run' | 'Ride' | 'Hike' | 'Swim'
 
 interface TracksPageProps {
   activities: Activity[]
@@ -101,7 +101,7 @@ function TrackMap({ activity, activities, dark }: {
     if (!features.length) return
     m.addSource('all-routes', { type: 'geojson', data: { type: 'FeatureCollection', features } })
     m.addLayer({ id: 'all-routes', type: 'line', source: 'all-routes', paint: {
-      'line-color': ['match', ['get', 'type'], 'Run', '#f97316', 'Ride', '#3b82f6', 'Hike', '#22c55e', '#a855f7'],
+      'line-color': ['match', ['get', 'type'], 'Run', '#f97316', 'Ride', '#3b82f6', 'Hike', '#22c55e', 'Swim', '#06b6d4', '#a855f7'],
       'line-width': 1.2, 'line-opacity': 0.5,
     }})
     const allCoords = features.flatMap(f => f.geometry.coordinates as [number, number][])
@@ -139,6 +139,7 @@ function getColor(a: Activity): string {
   if (a.type === 'Run') { const km = a.distance / 1000; return km >= 40 ? '#ef4444' : km >= 20 ? '#f97316' : '#f97316' }
   if (a.type === 'Ride') return '#3b82f6'
   if (a.type === 'Hike') return '#22c55e'
+  if (a.type === 'Swim') return '#06b6d4'
   return '#a855f7'
 }
 
@@ -230,6 +231,7 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
     { label: locale === 'zh' ? '跑步' : 'Run', value: 'Run', color: '#f97316' },
     { label: locale === 'zh' ? '骑行' : 'Ride', value: 'Ride', color: '#3b82f6' },
     { label: locale === 'zh' ? '徒步' : 'Hike', value: 'Hike', color: '#22c55e' },
+    { label: locale === 'zh' ? '游泳' : 'Swim', value: 'Swim', color: '#06b6d4' },
   ]
 
   return (
@@ -464,6 +466,7 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
               </> : null}
               {(sportFilter === null || sportFilter === 'Ride') && hasSport('Ride') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#3b82f6] rounded" />{locale === 'zh' ? '骑行' : 'Ride'}</span>}
               {(sportFilter === null || sportFilter === 'Hike') && hasSport('Hike') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#22c55e] rounded" />{locale === 'zh' ? '徒步' : 'Hike'}</span>}
+              {(sportFilter === null || sportFilter === 'Swim') && hasSport('Swim') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#06b6d4] rounded" />{locale === 'zh' ? '游泳' : 'Swim'}</span>}
               <div className="ml-auto flex items-center gap-1">
                 <span>{clusteredTracks.length} {locale === 'zh' ? '条路线' : 'routes'}</span>
                 <span className="mx-1.5 text-[var(--color-border)]">·</span>

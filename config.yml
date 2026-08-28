@@ -39,6 +39,12 @@ goals:
     weekly: 6
     unit: distance
 
+  Swim:
+    yearly: 100
+    monthly: 10
+    weekly: 3
+    unit: distance
+
   Gym:
     yearly: 6000   # 100 小时
     monthly: 600   # 10 小时

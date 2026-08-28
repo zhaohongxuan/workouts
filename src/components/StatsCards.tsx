@@ -358,6 +358,7 @@ export function StatsCards({ activities, allActivities, year, filter, onSelectAc
             if (type === 'Run') return '#f97316'
             if (type === 'Ride') return '#3b82f6'
             if (type === 'Hike') return '#22c55e'
+            if (type === 'Swim') return '#06b6d4'
             if ((WORKOUT_TYPES as string[]).includes(type)) return '#ec4899'
             return 'var(--color-text)'
           }

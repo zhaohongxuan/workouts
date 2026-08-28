@@ -15,11 +15,12 @@ interface HeatmapProps {
   onSelectActivity?: (a: Activity | null) => void
 }
 
-// Map any activity type to the 4 display categories
-function toDisplayType(type: string): 'Run' | 'Ride' | 'Hike' | 'Training' {
+// Map any activity type to the 5 display categories
+function toDisplayType(type: string): 'Run' | 'Ride' | 'Hike' | 'Swim' | 'Training' {
   if (type === 'Run') return 'Run'
   if (type === 'Ride') return 'Ride'
   if (type === 'Hike') return 'Hike'
+  if (type === 'Swim') return 'Swim'
   return 'Training'
 }
 
@@ -27,6 +28,7 @@ const TYPE_PALETTES: Record<string, string[]> = {
   Run:      ['#fed7aa', '#fb923c', '#f97316', '#ea580c'],
   Ride:     ['#bfdbfe', '#60a5fa', '#3b82f6', '#2563eb'],
   Hike:     ['#bbf7d0', '#4ade80', '#22c55e', '#16a34a'],
+  Swim:     ['#cffafe', '#22d3ee', '#06b6d4', '#0891b2'],
   Training: ['#fce7f3', '#f9a8d4', '#ec4899', '#db2777'],
 }
 
@@ -39,6 +41,7 @@ function getColor(distance: number, max: number, filter: SportFilter): string {
     Run:  TYPE_PALETTES.Run,
     Ride: TYPE_PALETTES.Ride,
     Hike: TYPE_PALETTES.Hike,
+    Swim: TYPE_PALETTES.Swim,
     Gym:  ['#f5d0fe', '#d946ef', '#c026d3', '#a21caf'],
   }
   const palette = colors[filter] ?? colors.all
@@ -58,6 +61,7 @@ function typeIcon(type: string): string {
     Run: '🏃',
     Ride: '🚴',
     Hike: '🥾',
+    Swim: '🏊',
   }
   return icons[type] ?? '📌'
 }
@@ -67,6 +71,7 @@ function typeLabel(type: string, locale: string): string {
     Run:      { zh: '跑步', en: 'Run' },
     Ride:     { zh: '骑行', en: 'Ride' },
     Hike:     { zh: '徒步', en: 'Hike' },
+    Swim:     { zh: '游泳', en: 'Swim' },
     Training: { zh: '训练', en: 'Training' },
     WeightTraining: { zh: '力量训练', en: 'Weight Training' },
     Workout:        { zh: '综合训练', en: 'Workout' },
@@ -77,7 +82,7 @@ function typeLabel(type: string, locale: string): string {
 }
 
 // Dominant display type for a day (by distance; Training is fallback)
-function dominantDisplayType(acts: Activity[]): 'Run' | 'Ride' | 'Hike' | 'Training' {
+function dominantDisplayType(acts: Activity[]): 'Run' | 'Ride' | 'Hike' | 'Swim' | 'Training' {
   if (acts.length === 0) return 'Training'
   const sorted = [...acts].sort((a, b) => b.distance - a.distance)
   return toDisplayType(sorted[0].type)
@@ -126,7 +131,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
 
     // Per-type max (for "all" mode per-type intensity)
     // Training uses time (seconds), others use distance
-    const typeMaxMap: Record<string, number> = { Run: 1, Ride: 1, Hike: 1, Training: 1 }
+    const typeMaxMap: Record<string, number> = { Run: 1, Ride: 1, Hike: 1, Swim: 1, Training: 1 }
     if (isAll) {
       dayActivitiesMap.forEach((dayActs, day) => {
         const domType = dominantDisplayType(dayActs)
@@ -186,7 +191,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
         .filter(a => yearToCheck === null || new Date(a.start_date_local).getFullYear() === yearToCheck)
         .map(a => toDisplayType(a.type))
     )
-    return (['Run', 'Ride', 'Hike', 'Training'] as const).filter(t => types.has(t))
+    return (['Run', 'Ride', 'Hike', 'Swim', 'Training'] as const).filter(t => types.has(t))
   }, [activities, selectedYear, isAll])
 
   // Gym: monthly session breakdown
@@ -214,6 +219,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
   const heatmapTitle = filter === 'Run'  ? (locale === 'zh' ? '跑步热力图' : 'Run Heatmap')
     : filter === 'Ride' ? (locale === 'zh' ? '骑行热力图' : 'Ride Heatmap')
     : filter === 'Hike' ? (locale === 'zh' ? '徒步热力图' : 'Hike Heatmap')
+    : filter === 'Swim' ? (locale === 'zh' ? '游泳热力图' : 'Swim Heatmap')
     : filter === 'Gym'  ? (locale === 'zh' ? '健身热力图' : 'Gym Heatmap')
     : t('heatmapTitle')
 
@@ -404,9 +410,9 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                   {stats.count} {locale === 'zh' ? '次' : 'sessions'}
                 </span>
                 {Object.entries(stats.typeStats)
-                  .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike'].includes(type))
+                  .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike', 'Swim'].includes(type))
                   .sort(([a], [b]) => {
-                    const order = ['Run', 'Ride', 'Hike']
+                    const order = ['Run', 'Ride', 'Hike', 'Swim']
                     return order.indexOf(a) - order.indexOf(b)
                   })
                   .map(([type, v]) => (
@@ -494,9 +500,9 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
             <div className="flex items-center justify-end gap-2 text-xs text-[var(--color-muted)] flex-wrap">
               <span className="text-xs text-[var(--color-muted)] mr-auto">{locale === 'zh' ? '全部年份汇总' : 'All-time total'}</span>
               {Object.entries(allStats.typeStats)
-                .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike'].includes(type))
+                .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike', 'Swim'].includes(type))
                 .sort(([a], [b]) => {
-                  const order = ['Run', 'Ride', 'Hike']
+                  const order = ['Run', 'Ride', 'Hike', 'Swim']
                   return order.indexOf(a) - order.indexOf(b)
                 })
                 .map(([type, v]) => (
@@ -529,9 +535,9 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
           {isAll && (
             <div className="flex items-center justify-end gap-2 text-xs text-[var(--color-muted)] flex-wrap">
               {Object.entries(yearData[0].stats.typeStats)
-                .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike'].includes(type))
+                .filter(([type, v]) => v.count > 0 && ['Run', 'Ride', 'Hike', 'Swim'].includes(type))
                 .sort(([a], [b]) => {
-                  const order = ['Run', 'Ride', 'Hike']
+                  const order = ['Run', 'Ride', 'Hike', 'Swim']
                   return order.indexOf(a) - order.indexOf(b)
                 })
                 .map(([type, v]) => (
@@ -542,7 +548,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
             </div>
           )}
           <div className="flex items-end justify-end gap-4 text-sm text-[var(--color-muted)] -mt-1">
-            <BrandingBar />
+            <div className="mr-auto"><BrandingBar /></div>
             <span className="font-mono flex items-center gap-1">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               {yearData[0].stats.count} {locale === 'zh' ? '次' : 'sessions'}
