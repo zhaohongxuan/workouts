@@ -23,6 +23,7 @@ function typeIcon(type: string): string {
     Run: '🏃',
     Ride: '🚴',
     Hike: '🥾',
+    Swim: '🏊',
     WeightTraining: '🏋️',
     Workout: '💪',
     StairStepper: '🪜',

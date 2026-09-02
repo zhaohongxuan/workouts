@@ -56,6 +56,24 @@ function getColorAll(typeRatio: number, displayType: string): string {
   return palette[level - 1] ?? palette[0]
 }
 
+// Solid accent color for a display type (mid intensity of its palette).
+function segmentColor(type: string): string {
+  const palette = TYPE_PALETTES[type] ?? TYPE_PALETTES.Training
+  return palette[2] ?? palette[0]
+}
+
+// CSS background for a day split into at most 2 count-based bands.
+// Returns a linear-gradient string, or null when there's nothing to split.
+function multiSegmentBackground(segments: { type: string; start: number; end: number }[]): string | null {  if (!segments || segments.length < 2) return null
+  const stops: string[] = []
+  for (const s of segments) {
+    const c = segmentColor(s.type)
+    stops.push(`${c} ${(s.start * 100).toFixed(1)}%`)
+    stops.push(`${c} ${(s.end * 100).toFixed(1)}%`)
+  }
+  return `linear-gradient(to bottom, ${stops.join(', ')})`
+}
+
 function typeIcon(type: string): string {
   const icons: Record<string, string> = {
     Run: '🏃',
@@ -86,6 +104,28 @@ function dominantDisplayType(acts: Activity[]): 'Run' | 'Ride' | 'Hike' | 'Swim'
   if (acts.length === 0) return 'Training'
   const sorted = [...acts].sort((a, b) => b.distance - a.distance)
   return toDisplayType(sorted[0].type)
+}
+
+// Segment a day's activities by display type into at most 2 bands (by count).
+// Returns cumulative percentage bands plus the activities each band maps to:
+//   [{ type:'Run', start:0, end:0.8, acts:[...] }, { type:'Ride', start:0.8, end:1, acts:[...] }]
+function buildSegments(acts: Activity[]): { type: string; start: number; end: number; acts: Activity[] }[] {
+  if (acts.length === 0) return []
+  const grouped = new Map<string, Activity[]>()
+  for (const a of acts) {
+    const t = toDisplayType(a.type)
+    if (!grouped.has(t)) grouped.set(t, [])
+    grouped.get(t)!.push(a)
+  }
+  const sorted = [...grouped.entries()].sort((a, b) => b[1].length - a[1].length)
+  const total = acts.length
+  const top = sorted.slice(0, 2)
+  let acc = 0
+  return top.map(([type, groupActs]) => {
+    const start = acc
+    acc += groupActs.length / total
+    return { type, start, end: acc, acts: groupActs }
+  })
 }
 
 export function ContributionHeatmap({ activities, year: defaultYear, filter, onSelectActivity }: HeatmapProps) {
@@ -146,7 +186,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
 
     const startDate = new Date(yr, 0, 1)
     const startDay = startDate.getDay()
-    const grid: { date: string; distance: number; timeSecs: number; activities: Activity[]; domType: string; typeRatio: number }[][] = []
+    const grid: { date: string; distance: number; timeSecs: number; activities: Activity[]; domType: string; typeRatio: number; segments: { type: string; start: number; end: number; acts: Activity[] }[] }[][] = []
     const monthPositions: { label: string; weekIdx: number }[] = []
     let currentMonth = -1
     const totalDays = Math.round((new Date(yr, 11, 31).getTime() - startDate.getTime()) / 86400000) + 1
@@ -163,7 +203,8 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
         ? (dayTimeMap.get(key) || 0)
         : dayActs.reduce((s, a) => s + (a.distance > 0 ? a.distance : 0), 0)
       const typeRatio = typeValue / (typeMaxMap[domType] ?? 1)
-      grid[weekIdx].push({ date: key, distance: dist, timeSecs: dayTimeMap.get(key) || 0, activities: dayActs, domType, typeRatio })
+      const segments = isAll ? buildSegments(dayActs) : []
+      grid[weekIdx].push({ date: key, distance: dist, timeSecs: dayTimeMap.get(key) || 0, activities: dayActs, domType, typeRatio, segments })
       if (date.getMonth() !== currentMonth) {
         currentMonth = date.getMonth()
         monthPositions.push({ label: `${currentMonth + 1}`, weekIdx })
@@ -312,6 +353,30 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
         .heatmap-year-row {
           animation: fadeSlideIn 0.32s ease-out both;
         }
+        .heatmap-cell {
+          width: 12px;
+          height: 12px;
+          position: relative;
+          transition: transform 0.15s ease, z-index 0s;
+          z-index: 0;
+        }
+        .heatmap-cell:hover {
+          transform: scale(1.4);
+          z-index: 20;
+        }
+        .heatmap-multi .heatmap-cell:hover {
+          transform: scale(1.8);
+          z-index: 30;
+        }
+        .heatmap-multi {
+          width: 12px;
+          height: 12px;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          border-radius: 2px;
+          overflow: visible;
+        }
         .exporting,
         .exporting *,
         .exporting *::before,
@@ -442,22 +507,47 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
               {grid.map((week, wi) => (
                 <div key={wi} className="flex flex-col gap-[3px]">
                   {week.map((day, di) => {
+                    const multiBg = day.distance !== 0 && isAll ? multiSegmentBackground(day.segments) : null
                     const bgColor = day.distance === 0
                       ? 'var(--color-border)'
-                      : isAll
-                        ? getColorAll(day.typeRatio, day.domType)
-                        : getColor(day.distance, max, filter)
-                    const titleText = day.activities.length === 0 ? day.date
+                      : multiBg
+                        ?? (isAll
+                          ? getColorAll(day.typeRatio, day.domType)
+                          : getColor(day.distance, max, filter))
+                    // Whole-day summary (single cells / no multi split)
+                    const wholeDayText = day.activities.length === 0 ? day.date
                       : isGym ? `${day.date}: ${day.distance} session(s)`
-                      : day.domType === 'Training'
-                        ? `${day.date}: ${Math.round(day.timeSecs / 60)}min`
-                        : `${day.date}: ${(day.activities.reduce((s, a) => s + a.distance, 0) / 1000).toFixed(1)} km`
+                      : `${day.date}: ${day.activities.length === 1
+                          ? (day.domType === 'Training'
+                            ? `${Math.round(day.timeSecs / 60)}min`
+                            : `${(day.activities[0].distance / 1000).toFixed(1)} km`)
+                          : `${(day.activities.reduce((s, a) => s + a.distance, 0) / 1000).toFixed(1)} km · ${day.segments.map(s => `${typeLabel(s.type, locale)}×${s.acts.length}`).join(' + ')}`}`
+                    // Per-band tooltip: date + this band's sport only.
+                    const bandTitle = (s: { type: string; acts: Activity[] }) =>
+                      `${day.date}: ${s.acts.map(a => a.name || typeLabel(a.type, locale)).join('、')}`
+                    const cellCls = "heatmap-cell rounded-sm cursor-pointer"
+                    // Multi-sport day: two independently clickable bands.
+                    if (multiBg && day.segments.length > 1) {
+                      return (
+                        <div key={di} className="heatmap-multi rounded-sm overflow-visible">
+                          {day.segments.map((s, si) => (
+                            <div
+                              key={si}
+                              className={cellCls}
+                              style={{ flexBasis: `${(s.end - s.start) * 100}%`, backgroundColor: segmentColor(s.type) }}
+                              title={bandTitle(s)}
+                              onClick={() => { if (s.acts.length > 0) onSelectActivity?.(s.acts[0]) }}
+                            />
+                          ))}
+                        </div>
+                      )
+                    }
                     return (
                       <div
                         key={di}
-                        className="w-3 h-3 rounded-sm transition-colors hover:ring-1 hover:ring-[var(--color-muted)] cursor-pointer"
-                        style={{ backgroundColor: bgColor }}
-                        title={titleText}
+                        className={cellCls}
+                        style={multiBg ? { backgroundImage: multiBg } : { backgroundColor: bgColor }}
+                        title={wholeDayText}
                         onClick={() => { if (day.activities.length > 0) onSelectActivity?.(day.activities[0]) }}
                       />
                     )
