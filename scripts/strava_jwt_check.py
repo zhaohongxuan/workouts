@@ -53,14 +53,20 @@ def main():
     if not jwt:
         if machine_mode:
             return 2
-        print("No JWT provided. Pass it as an argument, via stdin, or set STRAVA_JWT.", file=sys.stderr)
+        print(
+            "No JWT provided. Pass it as an argument, via stdin, or set STRAVA_JWT.",
+            file=sys.stderr,
+        )
         return 2
 
     remaining = days_left(jwt)
     if remaining is None:
         if machine_mode:
             return 1
-        print("ERROR: could not decode the JWT (is it a valid strava_remember_token?).", file=sys.stderr)
+        print(
+            "ERROR: could not decode the JWT (is it a valid strava_remember_token?).",
+            file=sys.stderr,
+        )
         return 1
 
     if machine_mode:
@@ -72,7 +78,12 @@ def main():
     exp_dt = datetime.datetime.fromtimestamp(exp, datetime.timezone.utc)
 
     print(f"Subject (athlete id): {data.get('sub', '?')}")
-    print(f"Issued at:            {datetime.datetime.fromtimestamp(data['iat'], datetime.timezone.utc).isoformat() if data.get('iat') else '?'}")
+    issued_at = (
+        datetime.datetime.fromtimestamp(data["iat"], datetime.timezone.utc).isoformat()
+        if data.get("iat")
+        else "?"
+    )
+    print(f"Issued at:            {issued_at}")
     print(f"Expires at:           {exp_dt.isoformat()}")
     print(f"Days remaining:       {remaining:.1f}")
 
