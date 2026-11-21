@@ -7,6 +7,7 @@ import type { Activity } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 import { BrandingBar } from './BrandingBar'
+import { HighlightActivities } from './HighlightActivities'
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmVuLTI5IiwiYSI6ImNrZ3Q4Ym9mMDBqMGYyeXFvODV2dWl6YzQifQ.gSKoWF-fMjhzU67TuDezJQ'
 
@@ -250,6 +251,14 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
       <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-5 items-start">
         {/* Left: stats + map */}
         <div className="flex flex-col gap-4">
+          {/* Highlights — milestones + user-pinned, drives the map on click.
+              Uses the full activity set so milestones/pins are all-time, not tied to the year/sport filter. */}
+          <HighlightActivities
+            activities={activities}
+            onSelect={handleSelectTrack}
+            selectedActivity={selectedActivity}
+          />
+
           {/* Stats card */}
           <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-4">
             <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wider mb-3">
