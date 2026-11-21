@@ -142,9 +142,11 @@ function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
   const triggerLabel = allActive
     ? tabs.find(t => t.value === 'all')?.label ?? 'All'
     : selectedTabs.map(t => t.label).join(', ')
-  // Single selected type → show that type's icon; multiple/none → funnel.
+  // All → ALL icon; single type → that type's icon; multiple → funnel.
+  const allTab = tabs.find(t => t.value === 'all')
   const singleTab = !allActive && selectedTabs.length === 1 ? selectedTabs[0] : null
-  const TriggerIcon = singleTab ? singleTab.icon : Filter
+  const TriggerIcon = allActive ? (allTab?.icon ?? Filter) : singleTab ? singleTab.icon : Filter
+  const triggerColor = allActive ? 'var(--color-accent)' : singleTab ? singleTab.color : undefined
 
   const toggle = (v: SportFilter) => {
     if (v === 'all') {
@@ -170,7 +172,7 @@ function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
         <TriggerIcon
           className="w-4 h-4"
           strokeWidth={2}
-          style={{ color: singleTab ? singleTab.color : undefined }}
+          style={{ color: triggerColor }}
         />
       </button>
       {open && (
