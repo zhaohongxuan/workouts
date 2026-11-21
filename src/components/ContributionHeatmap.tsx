@@ -103,6 +103,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
   // Export preview: generated PNG shown before the user downloads it.
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [previewName, setPreviewName] = useState('')
+  const [copyState, setCopyState] = useState<'idle' | 'done' | 'failed'>('idle')
 
   const isGym = filter === 'Gym'
   const isAll = filter === 'all'
@@ -302,6 +303,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
 
       // Show preview instead of downloading immediately
       setPreviewName(`heatmap-${selectedYear === 'all' ? 'all' : selectedYear}.png`)
+      setCopyState('idle')
       setPreviewUrl(dataUrl)
     } catch (err) {
       console.error('Export failed:', err)
@@ -317,6 +319,25 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
     link.href = previewUrl
     link.click()
     setPreviewUrl(null)
+  }
+
+  // Copy the generated image to the clipboard.
+  const handleCopy = async () => {
+    if (!previewUrl) return
+    try {
+      if (!navigator.clipboard || typeof ClipboardItem === 'undefined') {
+        throw new Error('clipboard image not supported')
+      }
+      const res = await fetch(previewUrl)
+      const blob = await res.blob()
+      await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })])
+      setCopyState('done')
+    } catch (err) {
+      console.error('Copy failed:', err)
+      setCopyState('failed')
+    } finally {
+      window.setTimeout(() => setCopyState('idle'), 2000)
+    }
   }
 
   // Aggregate stats for "all" mode
@@ -758,6 +779,30 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                   className="rounded-lg border border-[var(--color-border)] px-3 py-1.5 text-xs text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]"
                 >
                   {locale === 'zh' ? '取消' : 'Cancel'}
+                </button>
+                <button
+                  onClick={handleCopy}
+                  className="flex items-center gap-1.5 rounded-lg border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-text)] transition-colors hover:border-[var(--color-accent)]"
+                  title={locale === 'zh' ? '复制图片到剪贴板' : 'Copy image to clipboard'}
+                >
+                  {copyState === 'done' ? (
+                    <svg className="h-3.5 w-3.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : copyState === 'failed' ? (
+                    <svg className="h-3.5 w-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  ) : (
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3" />
+                    </svg>
+                  )}
+                  {copyState === 'done'
+                    ? (locale === 'zh' ? '已复制' : 'Copied')
+                    : copyState === 'failed'
+                      ? (locale === 'zh' ? '复制失败' : 'Copy failed')
+                      : (locale === 'zh' ? '复制' : 'Copy')}
                 </button>
                 <button
                   onClick={handleDownload}
