@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { LogOut, Footprints, Bike, Mountain, Waves, LayoutGrid, Dumbbell } from 'lucide-react'
+import { LogOut, Footprints, Bike, Mountain, Waves, LayoutGrid, Dumbbell, Filter } from 'lucide-react'
 import type { SportFilter, Activity } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { useLocale } from '../hooks/useLocale'
@@ -138,9 +138,13 @@ function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
 
   const active = (v: SportFilter) => typeFilters.includes(v)
   const allActive = typeFilters.filter(v => v !== 'all').length === 0
+  const selectedTabs = tabs.filter(t => t.value !== 'all' && active(t.value))
   const triggerLabel = allActive
     ? tabs.find(t => t.value === 'all')?.label ?? 'All'
-    : tabs.filter(t => active(t.value) && t.value !== 'all').map(t => t.label).join(', ')
+    : selectedTabs.map(t => t.label).join(', ')
+  // Single selected type → show that type's icon; multiple/none → funnel.
+  const singleTab = !allActive && selectedTabs.length === 1 ? selectedTabs[0] : null
+  const TriggerIcon = singleTab ? singleTab.icon : Filter
 
   const toggle = (v: SportFilter) => {
     if (v === 'all') {
@@ -163,9 +167,11 @@ function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
         title={triggerLabel}
         aria-label={triggerLabel}
       >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 018 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
-        </svg>
+        <TriggerIcon
+          className="w-4 h-4"
+          strokeWidth={2}
+          style={{ color: singleTab ? singleTab.color : undefined }}
+        />
       </button>
       {open && (
         <div className="absolute right-0 top-10 w-40 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg py-1 z-50">
