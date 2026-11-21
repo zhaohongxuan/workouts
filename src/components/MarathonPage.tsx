@@ -33,8 +33,9 @@ function TypeIcon({ type, className = 'w-3.5 h-3.5', style }: { type: string; cl
   if (type === 'Run') {
     return (
       <svg {...common}>
-        <circle cx="17" cy="4" r="2" />
-        <path d="M13 8l-3 4 3 2-2 6M10 12l-3 1M13 14l4 1 1 4" />
+        {/* footprints — clear running/walking cue */}
+        <ellipse cx="8.5" cy="8" rx="2.6" ry="4" transform="rotate(-25 8.5 8)" />
+        <ellipse cx="15.5" cy="16" rx="2.6" ry="4" transform="rotate(-25 15.5 16)" />
       </svg>
     )
   }
@@ -245,8 +246,8 @@ export function MarathonPage({ activities, dark, onBack, onSelectActivity }: Mar
                       </>
                     )}
                   </svg>
-                  <span className="absolute top-1.5 left-1.5 inline-flex items-center justify-center rounded p-1 text-white" style={{ backgroundColor: typeColor(a.type) }}>
-                    <TypeIcon type={a.type} className="w-3.5 h-3.5" />
+                  <span className="absolute top-1.5 left-1.5 inline-flex items-center justify-center" style={{ color: typeColor(a.type) }}>
+                    <TypeIcon type={a.type} className="w-4 h-4" />
                   </span>
                 </div>
                 <div className="mt-2.5">
