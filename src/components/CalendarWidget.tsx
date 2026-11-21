@@ -127,6 +127,9 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
         <div>
           <span className="text-lg font-bold">{monthStr}</span>
           <span className="text-sm text-[var(--color-muted)] ml-3">
+            {monthCount} {t('calendarActivities')}
+          </span>
+          <span className="text-sm text-[var(--color-muted)] ml-3">
             {formatDistance(monthDistance)} km
           </span>
         </div>
@@ -204,12 +207,6 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
                       </>
                     )
                   })()}
-                  {/* Activity count badge */}
-                  {d.activities.length > 0 && (
-                    <span className="absolute -top-1 -right-1 min-w-[12px] h-3 px-0.5 flex items-center justify-center rounded-full bg-[var(--color-accent)] text-white text-[8px] font-bold leading-none">
-                      {d.activities.length}
-                    </span>
-                  )}
                 </div>
               )}
             </div>
