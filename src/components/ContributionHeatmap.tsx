@@ -100,6 +100,9 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
   const [daySelector, setDaySelector] = useState<{ date: string; activities: Activity[]; x: number; y: number; openBy: 'hover' | 'click' } | null>(null)
   const closeTimer = useRef<number | null>(null)
   const [exporting, setExporting] = useState(false)
+  // Export preview: generated PNG shown before the user downloads it.
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [previewName, setPreviewName] = useState('')
 
   const isGym = filter === 'Gym'
   const isAll = filter === 'all'
@@ -297,15 +300,23 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
       el.classList.remove('exporting')
       el.style.overflow = prevOverflow
 
-      const link = document.createElement('a')
-      link.download = `heatmap-${selectedYear === 'all' ? 'all' : selectedYear}.png`
-      link.href = dataUrl
-      link.click()
+      // Show preview instead of downloading immediately
+      setPreviewName(`heatmap-${selectedYear === 'all' ? 'all' : selectedYear}.png`)
+      setPreviewUrl(dataUrl)
     } catch (err) {
       console.error('Export failed:', err)
     } finally {
       setExporting(false)
     }
+  }
+
+  const handleDownload = () => {
+    if (!previewUrl) return
+    const link = document.createElement('a')
+    link.download = previewName || 'heatmap.png'
+    link.href = previewUrl
+    link.click()
+    setPreviewUrl(null)
   }
 
   // Aggregate stats for "all" mode
@@ -707,6 +718,58 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                 </span>
               </button>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Export preview modal: shows the generated image before download */}
+      {previewUrl && (
+        <div
+          data-export-hidden
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+          onClick={() => setPreviewUrl(null)}
+        >
+          <div
+            className="flex max-h-[90vh] w-full max-w-4xl flex-col rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <span className="text-sm font-medium text-[var(--color-text)]">
+                {locale === 'zh' ? '导出预览' : 'Export preview'}
+              </span>
+              <button
+                onClick={() => setPreviewUrl(null)}
+                className="flex h-6 w-6 items-center justify-center rounded text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]"
+                aria-label={locale === 'zh' ? '关闭' : 'Close'}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="overflow-auto bg-[var(--color-bg)] p-4">
+              <img src={previewUrl} alt={previewName} className="mx-auto block max-w-full rounded" />
+            </div>
+            <div className="flex items-center justify-between gap-3 border-t border-[var(--color-border)] px-4 py-3">
+              <span className="truncate font-mono text-xs text-[var(--color-muted)]">{previewName}</span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setPreviewUrl(null)}
+                  className="rounded-lg border border-[var(--color-border)] px-3 py-1.5 text-xs text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]"
+                >
+                  {locale === 'zh' ? '取消' : 'Cancel'}
+                </button>
+                <button
+                  onClick={handleDownload}
+                  className="flex items-center gap-1.5 rounded-lg bg-[var(--color-accent)] px-3 py-1.5 text-xs font-medium text-white transition-opacity hover:opacity-90"
+                >
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  {locale === 'zh' ? '下载' : 'Download'}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
