@@ -331,7 +331,9 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                 ) : (
                   <>
                     <td className="py-3 font-mono font-medium">
-                      {(a.distance / 1000).toFixed(1)}<span className="text-[var(--color-muted)] ml-1 font-normal text-xs">km</span>
+                      {a.distance > 0
+                        ? <>{(a.distance / 1000).toFixed(1)}<span className="text-[var(--color-muted)] ml-1 font-normal text-xs">km</span></>
+                        : <span className="text-[var(--color-muted)]">--</span>}
                     </td>
                     <td className="py-3 text-[var(--color-muted)]">{formatDuration(a.moving_time)}</td>
                     <td className="py-3 text-[var(--color-muted)]">
