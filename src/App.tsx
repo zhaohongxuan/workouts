@@ -92,14 +92,9 @@ export default function App() {
           {/* Right column */}
           <div className="flex flex-col gap-6 min-w-0 overflow-hidden">
             <ProfileCard activities={activities} filter={filter} />
-            <ChinaMap
+            <CalendarWidget
               activities={filtered}
-              filter={filter}
-              selectedProvince={selectedProvince}
-              onSelectProvince={(p) => {
-                setSelectedProvince(p)
-                setSelectedActivity(null)
-              }}
+              onSelectActivity={setSelectedActivity}
             />
             <RouteMap
               activities={provinceFiltered}
@@ -108,9 +103,14 @@ export default function App() {
               onClearSelection={() => setSelectedActivity(null)}
             />
             <PersonalBest activities={activities} onSelectActivity={setSelectedActivity} />
-            <CalendarWidget
+            <ChinaMap
               activities={filtered}
-              onSelectActivity={setSelectedActivity}
+              filter={filter}
+              selectedProvince={selectedProvince}
+              onSelectProvince={(p) => {
+                setSelectedProvince(p)
+                setSelectedActivity(null)
+              }}
             />
           </div>
         </div>

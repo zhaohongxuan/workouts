@@ -1,7 +1,41 @@
 import { useMemo, useState } from 'react'
+import * as polyline from '@mapbox/polyline'
 import type { Activity } from '../types'
 import { formatDistance } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
+
+// SVG polyline points for a thumbnail of the given polyline.
+function renderTrackSVG(summaryPolyline: string, width: number, height: number): string {
+  try {
+    const coords = polyline.decode(summaryPolyline)
+    if (coords.length < 2) return ''
+    const lats = coords.map(c => c[0])
+    const lngs = coords.map(c => c[1])
+    const minLat = Math.min(...lats), maxLat = Math.max(...lats)
+    const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
+    const latRange = maxLat - minLat || 0.001
+    const lngRange = maxLng - minLng || 0.001
+    const pad = 4
+    const scale = Math.min((width - pad * 2) / lngRange, (height - pad * 2) / latRange)
+    const offsetX = (width - lngRange * scale) / 2
+    const offsetY = (height - latRange * scale) / 2
+    return coords.map(([lat, lng]) => {
+      const x = (lng - minLng) * scale + offsetX
+      const y = height - ((lat - minLat) * scale + offsetY)
+      return `${x.toFixed(1)},${y.toFixed(1)}`
+    }).join(' ')
+  } catch {
+    return ''
+  }
+}
+
+function trackColor(type: string): string {
+  if (type === 'Run') return '#f97316'
+  if (type === 'Ride') return '#3b82f6'
+  if (type === 'Hike') return '#22c55e'
+  if (type === 'Swim') return '#06b6d4'
+  return 'var(--color-accent)'
+}
 
 interface CalendarWidgetProps {
   activities: Activity[]
@@ -15,7 +49,7 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
   const [viewMonth, setViewMonth] = useState(now.getMonth())
   const [hoveredDay, setHoveredDay] = useState<number | null>(null)
 
-  const { days, monthDistance, monthCount } = useMemo(() => {
+  const { days, monthDistance, monthCount, monthTrack } = useMemo(() => {
     const firstDaySun = new Date(viewYear, viewMonth, 1).getDay() // 0=Sun
     const firstDay = (firstDaySun + 6) % 7 // convert to Mon=0
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate()
@@ -33,9 +67,18 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
 
     let totalDist = 0
     let totalCount = 0
+    // Representative track for the header: the longest activity with a polyline this month.
+    let monthTrack: { polyline: string; type: string } | null = null
+    let trackDist = -1
     for (const acts of dayActivities.values()) {
       totalCount += acts.length
       totalDist += acts.reduce((s, a) => s + a.distance, 0)
+      for (const a of acts) {
+        if (a.summary_polyline && a.summary_polyline.length > 20 && a.distance > trackDist) {
+          trackDist = a.distance
+          monthTrack = { polyline: a.summary_polyline, type: a.type }
+        }
+      }
     }
 
     const days: { day: number; activities: Activity[]; distance: number }[] = []
@@ -48,7 +91,7 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
       days.push({ day: d, activities: acts, distance: dist })
     }
 
-    return { days, monthDistance: totalDist, monthCount: totalCount }
+    return { days, monthDistance: totalDist, monthCount: totalCount, monthTrack }
   }, [activities, viewYear, viewMonth])
 
   const prevMonth = () => {
@@ -77,11 +120,25 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
     <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-4 w-full min-w-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <div>
+        <div className="flex items-center gap-3">
           <span className="text-lg font-bold">{monthStr}</span>
-          <span className="text-sm text-[var(--color-muted)] ml-3">
-            {formatDistance(monthDistance)} km
-          </span>
+          {(() => {
+            const w = 64, h = 40
+            const points = monthTrack ? renderTrackSVG(monthTrack.polyline, w, h) : ''
+            if (!points) return null
+            return (
+              <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="rounded bg-[var(--color-border)]/25" aria-hidden="true">
+                <polyline
+                  points={points}
+                  fill="none"
+                  stroke={trackColor(monthTrack!.type)}
+                  strokeWidth={1.6}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )
+          })()}
         </div>
         <div className="flex items-center gap-2">
           <button onClick={prevMonth} className="text-[var(--color-muted)] hover:text-[var(--color-text)] px-1">←</button>
