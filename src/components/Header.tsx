@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { LogOut } from 'lucide-react'
+import { LogOut, Footprints, Bike, Mountain, Waves, LayoutGrid } from 'lucide-react'
 import type { SportFilter, Activity } from '../types'
 import { useLocale } from '../hooks/useLocale'
 import { useGitHubAuthContext } from '../hooks/useGitHubAuthContext'
@@ -122,7 +122,7 @@ function GitHubAuthDropdown() {
 function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
   typeFilters: SportFilter[]
   setTypeFilters: (f: SportFilter[]) => void
-  tabs: { label: string; value: SportFilter }[]
+  tabs: { label: string; value: SportFilter; icon: typeof Footprints; color: string }[]
 }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -170,17 +170,22 @@ function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
         <div className="absolute right-0 top-10 w-40 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg py-1 z-50">
           {tabs.map((tab) => {
             const checked = tab.value === 'all' ? allActive : active(tab.value)
+            const Icon = tab.icon
             return (
               <button
                 key={tab.value}
                 onClick={() => toggle(tab.value)}
-                className={`w-full flex items-center justify-between px-3 py-2 text-sm transition-colors ${
-                  checked ? 'text-[var(--color-accent)] font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-border)]/40'
+                className={`w-full flex items-center justify-between gap-2 px-3 py-2 text-sm transition-colors ${
+                  checked ? 'font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-border)]/40'
                 }`}
+                style={checked ? { color: tab.color } : undefined}
               >
-                <span>{tab.label}</span>
+                <span className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 shrink-0" style={{ color: tab.color }} />
+                  {tab.label}
+                </span>
                 {checked && (
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 )}
@@ -198,12 +203,12 @@ export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activit
 
   const existingTypes = new Set(activities.map((a) => a.type))
 
-  const allTabs: { label: string; value: SportFilter }[] = [
-    { label: t('all'), value: 'all' },
-    { label: t('run'), value: 'Run' },
-    { label: t('ride'), value: 'Ride' },
-    { label: t('hike'), value: 'Hike' },
-    { label: t('swim'), value: 'Swim' },
+  const allTabs: { label: string; value: SportFilter; icon: typeof Footprints; color: string }[] = [
+    { label: t('all'), value: 'all', icon: LayoutGrid, color: 'var(--color-accent)' },
+    { label: t('run'), value: 'Run', icon: Footprints, color: '#f97316' },
+    { label: t('ride'), value: 'Ride', icon: Bike, color: '#3b82f6' },
+    { label: t('hike'), value: 'Hike', icon: Mountain, color: '#22c55e' },
+    { label: t('swim'), value: 'Swim', icon: Waves, color: '#06b6d4' },
   ]
   const tabs = allTabs.filter((tab) => {
     if (tab.value === 'all') return true

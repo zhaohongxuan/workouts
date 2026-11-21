@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as polyline from '@mapbox/polyline'
+import { Calendar, Rows3, Tag, Route, Clock, Gauge, Heart } from 'lucide-react'
 import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { formatDuration, formatPace } from '../hooks/useActivities'
@@ -45,22 +46,11 @@ function typeLabel(type: string, locale: string): string {
   return map[type]?.[locale as 'zh' | 'en'] ?? type
 }
 
-// Small inline icon for table headers.
+// lucide icon for table headers.
 function HeaderIcon({ kind }: { kind: 'date' | 'type' | 'name' | 'distance' | 'duration' | 'pace' | 'hr' }) {
-  const paths: Record<typeof kind, string> = {
-    date: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
-    type: 'M4 6h16M4 12h16M4 18h10',
-    name: 'M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z',
-    distance: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
-    duration: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
-    pace: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
-    hr: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
-  }
-  return (
-    <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d={paths[kind]} />
-    </svg>
-  )
+  const map = { date: Calendar, type: Rows3, name: Tag, distance: Route, duration: Clock, pace: Gauge, hr: Heart }
+  const Icon = map[kind]
+  return <Icon className="w-3 h-3 shrink-0" strokeWidth={2} aria-hidden="true" />
 }
 
 function typeColor(type: string): string {

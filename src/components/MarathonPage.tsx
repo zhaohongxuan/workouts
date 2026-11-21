@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
+import { Footprints, Bike, Mountain, Dumbbell } from 'lucide-react'
 import * as polyline from '@mapbox/polyline'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -27,42 +28,9 @@ function typeColor(type: string): string {
   return THRESHOLDS.find(t => t.type === type)?.color ?? 'var(--color-accent)'
 }
 
-// Line-art icon for a sport type.
 function TypeIcon({ type, className = 'w-3.5 h-3.5', style }: { type: string; className?: string; style?: CSSProperties }) {
-  const common = { className, style, fill: 'none', viewBox: '0 0 24 24', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
-  if (type === 'Run') {
-    return (
-      <svg {...common}>
-        {/* running person */}
-        <circle cx="14.5" cy="4.5" r="1.8" />
-        <path d="M12.5 8.5l-2.5 2 1.5 3M12.5 8.5l3 1 1.5 2.5" />
-        <path d="M8 20l2.5-4 2-2M12.5 14l1.5 3 1.5 3" />
-        <path d="M6 12l3-1" />
-      </svg>
-    )
-  }
-  if (type === 'Ride') {
-    return (
-      <svg {...common}>
-        <circle cx="6" cy="17" r="3.5" />
-        <circle cx="18" cy="17" r="3.5" />
-        <path d="M6 17l4-7 3 7M10 10h4l2 4M14 10l1-3h3" />
-      </svg>
-    )
-  }
-  if (type === 'Hike') {
-    return (
-      <svg {...common}>
-        <path d="M4 20l5-14 3 6 2-3 6 11M4 20h16" />
-      </svg>
-    )
-  }
-  return (
-    <svg {...common}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </svg>
-  )
+  const Icon = type === 'Run' ? Footprints : type === 'Ride' ? Bike : type === 'Hike' ? Mountain : Dumbbell
+  return <Icon className={className} style={style} strokeWidth={2} aria-hidden="true" />
 }
 
 function renderTrackSVG(summaryPolyline: string, size = 120): string {

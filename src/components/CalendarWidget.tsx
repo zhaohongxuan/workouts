@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import * as polyline from '@mapbox/polyline'
+import { Footprints, Bike, Mountain, Waves, Dumbbell } from 'lucide-react'
 import type { Activity } from '../types'
 import { formatDistance, formatDuration, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
@@ -42,27 +43,19 @@ function trackColor(type: string): string {
   return '#c026d3'
 }
 
-// Emoji for a sport type (used for indoor / no-GPS activity days).
-function TypeGlyph({ type, size = 18 }: { type: string; size?: number }) {
-  const emoji =
-    type === 'Run' ? '🏃' :
-    type === 'Ride' ? '🚴' :
-    type === 'Hike' ? '🥾' :
-    type === 'Swim' ? '🏊' :
-    '🏋️'
-  return <span style={{ fontSize: size }} className="leading-none" aria-hidden="true">{emoji}</span>
+// lucide icon component for a sport type.
+function sportIcon(type: string) {
+  if (type === 'Run') return Footprints
+  if (type === 'Ride') return Bike
+  if (type === 'Hike') return Mountain
+  if (type === 'Swim' || type === 'WaterSport') return Waves
+  return Dumbbell // WeightTraining / Workout / StairStepper / gym
 }
 
-function typeEmoji(type: string): string {
-  if (type === 'Run') return '🏃'
-  if (type === 'Ride') return '🚴'
-  if (type === 'Hike') return '🥾'
-  if (type === 'Swim') return '🏊'
-  if (type === 'WeightTraining') return '🏋️'
-  if (type === 'Workout') return '💪'
-  if (type === 'StairStepper') return '🪜'
-  if (type === 'WaterSport') return '🌊'
-  return '📌'
+// Icon for a sport type (used for indoor / no-GPS activity days).
+function TypeGlyph({ type, size = 18 }: { type: string; size?: number }) {
+  const Icon = sportIcon(type)
+  return <Icon size={size} strokeWidth={2} style={{ color: trackColor(type) }} aria-hidden="true" />
 }
 
 function typeLabel(type: string, locale: string): string {
@@ -255,7 +248,7 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
           <div className="space-y-1.5">
             {hoverInfo.activities.map((a) => (
               <div key={a.run_id} className="flex items-start gap-1.5 text-[11px]">
-                <span className="shrink-0">{typeEmoji(a.type)}</span>
+                <span className="shrink-0 mt-0.5"><TypeGlyph type={a.type} size={13} /></span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium text-[var(--color-text)]">{a.name || typeLabel(a.type, locale)}</p>
                   <p className="text-[10px] text-[var(--color-muted)] flex items-center gap-1.5 flex-wrap">
