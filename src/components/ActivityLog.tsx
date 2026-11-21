@@ -276,7 +276,7 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                           width={26}
                           height={26}
                           viewBox="0 0 26 26"
-                          className="shrink-0 rounded bg-[var(--color-bg)]"
+                          className="shrink-0"
                           aria-hidden="true"
                         >
                           <polyline
