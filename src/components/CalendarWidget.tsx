@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import * as polyline from '@mapbox/polyline'
 import type { Activity } from '../types'
-import { formatDistance } from '../hooks/useActivities'
+import { formatDistance, formatDuration, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 
 // SVG polyline points for a thumbnail of the given polyline.
@@ -53,17 +53,45 @@ function TypeGlyph({ type, size = 18 }: { type: string; size?: number }) {
   return <span style={{ fontSize: size }} className="leading-none" aria-hidden="true">{emoji}</span>
 }
 
+function typeEmoji(type: string): string {
+  if (type === 'Run') return '🏃'
+  if (type === 'Ride') return '🚴'
+  if (type === 'Hike') return '🥾'
+  if (type === 'Swim') return '🏊'
+  if (type === 'WeightTraining') return '🏋️'
+  if (type === 'Workout') return '💪'
+  if (type === 'StairStepper') return '🪜'
+  if (type === 'WaterSport') return '🌊'
+  return '📌'
+}
+
+function typeLabel(type: string, locale: string): string {
+  const map: Record<string, { zh: string; en: string }> = {
+    Run: { zh: '跑步', en: 'Run' },
+    Ride: { zh: '骑行', en: 'Ride' },
+    Hike: { zh: '徒步', en: 'Hike' },
+    Swim: { zh: '游泳', en: 'Swim' },
+    WeightTraining: { zh: '力量训练', en: 'Weight Training' },
+    Workout: { zh: '综合训练', en: 'Workout' },
+    StairStepper: { zh: '楼梯机', en: 'Stair Stepper' },
+    WaterSport: { zh: '水上运动', en: 'Water Sport' },
+  }
+  return map[type]?.[locale as 'zh' | 'en'] ?? type
+}
+
 interface CalendarWidgetProps {
   activities: Activity[]
   onSelectActivity: (activity: Activity | null) => void
 }
 
 export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetProps) {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const now = new Date()
   const [viewYear, setViewYear] = useState(now.getFullYear())
   const [viewMonth, setViewMonth] = useState(now.getMonth())
   const [hoveredDay, setHoveredDay] = useState<number | null>(null)
+  // Hover detail popup for a day with activities.
+  const [hoverInfo, setHoverInfo] = useState<{ x: number; y: number; activities: Activity[] } | null>(null)
 
   const { days, monthDistance, monthCount } = useMemo(() => {
     const firstDaySun = new Date(viewYear, viewMonth, 1).getDay() // 0=Sun
@@ -155,19 +183,22 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
       {/* Calendar grid — fixed height so 5-row and 6-row months are identical */}
       <div className="grid grid-cols-7 gap-0.5" style={{ height: '240px', gridAutoRows: '1fr' }}>
         {days.map((d, i) => {
-          const isHovered = hoveredDay === i && d.distance > 0
+          const isHovered = hoveredDay === i && d.activities.length > 0
           return (
             <div
               key={i}
               onClick={() => { if (d.activities.length > 0) onSelectActivity(d.activities[0]) }}
-              onMouseEnter={() => d.distance > 0 && setHoveredDay(i)}
-              onMouseLeave={() => setHoveredDay(null)}
+              onMouseEnter={(e) => {
+                if (d.activities.length > 0) {
+                  setHoveredDay(i)
+                  const r = e.currentTarget.getBoundingClientRect()
+                  setHoverInfo({ x: r.left + r.width / 2, y: r.top, activities: d.activities })
+                }
+              }}
+              onMouseLeave={() => { setHoveredDay(null); setHoverInfo(null) }}
               className={`flex items-center justify-center relative rounded transition-colors ${
                 d.day === 0 ? '' : d.activities.length > 0 ? 'cursor-pointer' : ''
               } ${isHovered ? 'ring-1 ring-[var(--color-accent)]' : ''}`}
-              title={d.day > 0 && d.activities.length > 0
-                ? (d.distance > 0 ? `${d.day} · ${(d.distance / 1000).toFixed(1)} km` : `${d.day} · ${d.activities.length}`)
-                : undefined}
             >
               {d.day > 0 && (
                 <div className="relative flex items-center justify-center">
@@ -211,6 +242,34 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
           )
         })}
       </div>
+
+      {/* Hover detail popup for a day with activities */}
+      {hoverInfo && hoverInfo.activities.length > 0 && (
+        <div
+          className="fixed z-50 min-w-[170px] max-w-[240px] rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg p-2"
+          style={{ left: hoverInfo.x, top: hoverInfo.y, transform: 'translate(-50%, calc(-100% - 8px))', pointerEvents: 'none' }}
+        >
+          <div className="px-1 pb-1 mb-1 border-b border-[var(--color-border)]/60 text-[10px] font-medium text-[var(--color-muted)]">
+            {new Date(hoverInfo.activities[0].start_date_local).toLocaleDateString(locale === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </div>
+          <div className="space-y-1.5">
+            {hoverInfo.activities.map((a) => (
+              <div key={a.run_id} className="flex items-start gap-1.5 text-[11px]">
+                <span className="shrink-0">{typeEmoji(a.type)}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-medium text-[var(--color-text)]">{a.name || typeLabel(a.type, locale)}</p>
+                  <p className="text-[10px] text-[var(--color-muted)] flex items-center gap-1.5 flex-wrap">
+                    <span>{typeLabel(a.type, locale)}</span>
+                    {a.distance > 0 && <span className="font-mono">{(a.distance / 1000).toFixed(1)} km</span>}
+                    <span>{formatDuration(a.moving_time)}</span>
+                    {a.type === 'Run' && a.average_speed > 0 && <span className="font-mono">{formatPace(a.average_speed)}</span>}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
