@@ -148,7 +148,7 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
   const { locale } = useLocale()
   const allYears = getAvailableYears(activities)
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
-  const [sportFilter, setSportFilter] = useState<SportType | null>(null)
+  const [sportFilter, setSportFilter] = useState<SportType[]>(['Run'])
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null)
   const [sortBy, setSortBy] = useState<'date' | 'distance'>('date')
 
@@ -168,7 +168,7 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
   // Filtered base (year + sport)
   const base = activities.filter(a => {
     if (selectedYear !== null && new Date(a.start_date_local).getFullYear() !== selectedYear) return false
-    if (sportFilter !== null && a.type !== sportFilter) return false
+    if (sportFilter.length > 0 && !sportFilter.includes(a.type as SportType)) return false
     return true
   })
 
@@ -376,19 +376,23 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
                 ›
               </button>
             )}
-            {/* Sport filter — right side */}
+            {/* Sport filter — right side, multi-select */}
             <div className="flex items-center gap-1.5 ml-auto">
-              <button onClick={() => setSportFilter(null)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${sportFilter === null ? 'bg-[var(--color-accent)] text-white border-transparent' : 'border-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}>
+              <button onClick={() => setSportFilter([])}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${sportFilter.length === 0 ? 'bg-[var(--color-accent)] text-white border-transparent' : 'border-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}>
                 {locale === 'zh' ? '全部' : 'All'}
               </button>
-              {allSportTabs.filter(t => hasSport(t.value)).map(({ label, value, color }) => (
-                <button key={value} onClick={() => setSportFilter(sportFilter === value ? null : value)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${sportFilter === value ? 'text-white border-transparent' : 'border-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}
-                  style={sportFilter === value ? { backgroundColor: color } : {}}>
-                  {label}
-                </button>
-              ))}
+              {allSportTabs.filter(t => hasSport(t.value)).map(({ label, value, color }) => {
+                const active = sportFilter.includes(value)
+                return (
+                  <button key={value}
+                    onClick={() => setSportFilter(prev => prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value])}
+                    className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${active ? 'text-white border-transparent' : 'border-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}
+                    style={active ? { backgroundColor: color } : {}}>
+                    {label}
+                  </button>
+                )
+              })}
               <span className="w-px h-3 bg-[var(--color-border)] mx-1" />
               <button
                 onClick={async () => {
@@ -469,13 +473,13 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
           {/* Legend + sort */}
           {!clustering && clusteredTracks.length > 0 && (
             <div className="mt-4 pt-3 border-t border-[var(--color-border)] flex items-center gap-4 text-xs text-[var(--color-muted)] flex-wrap">
-              {sportFilter === null || sportFilter === 'Run' ? <>
+              {sportFilter.length === 0 || sportFilter.includes('Run') ? <>
                 <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#f97316] rounded" />{locale === 'zh' ? '跑步' : 'Run'}</span>
                 <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#ef4444] rounded" />{locale === 'zh' ? '跑步 >20km' : 'Run >20km'}</span>
               </> : null}
-              {(sportFilter === null || sportFilter === 'Ride') && hasSport('Ride') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#3b82f6] rounded" />{locale === 'zh' ? '骑行' : 'Ride'}</span>}
-              {(sportFilter === null || sportFilter === 'Hike') && hasSport('Hike') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#22c55e] rounded" />{locale === 'zh' ? '徒步' : 'Hike'}</span>}
-              {(sportFilter === null || sportFilter === 'Swim') && hasSport('Swim') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#06b6d4] rounded" />{locale === 'zh' ? '游泳' : 'Swim'}</span>}
+              {(sportFilter.length === 0 || sportFilter.includes('Ride')) && hasSport('Ride') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#3b82f6] rounded" />{locale === 'zh' ? '骑行' : 'Ride'}</span>}
+              {(sportFilter.length === 0 || sportFilter.includes('Hike')) && hasSport('Hike') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#22c55e] rounded" />{locale === 'zh' ? '徒步' : 'Hike'}</span>}
+              {(sportFilter.length === 0 || sportFilter.includes('Swim')) && hasSport('Swim') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#06b6d4] rounded" />{locale === 'zh' ? '游泳' : 'Swim'}</span>}
               <div className="ml-auto flex items-center gap-1">
                 <span>{clusteredTracks.length} {locale === 'zh' ? '条路线' : 'routes'}</span>
                 <span className="mx-1.5 text-[var(--color-border)]">·</span>
