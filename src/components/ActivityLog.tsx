@@ -267,29 +267,32 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
               >
                 <td className="py-3 text-[var(--color-muted)]">
                   <div className="flex items-center gap-2 whitespace-nowrap">
-                    <span>{a.start_date_local.slice(0, 16).replace('T', ' ')}</span>
-                    {(() => {
-                      const points = renderTrackSVG(a.summary_polyline)
-                      if (!points) return null
-                      return (
-                        <svg
-                          width={26}
-                          height={26}
-                          viewBox="0 0 26 26"
-                          className="shrink-0"
-                          aria-hidden="true"
-                        >
-                          <polyline
-                            points={points}
-                            fill="none"
-                            stroke={trackColor(a.type)}
-                            strokeWidth={1.4}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      )
-                    })()}
+                    <span className="tabular-nums">{a.start_date_local.slice(0, 16).replace('T', ' ')}</span>
+                    {/* Fixed-width slot so rows without a track keep the same alignment */}
+                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center">
+                      {(() => {
+                        const points = renderTrackSVG(a.summary_polyline, 28)
+                        if (!points) return null
+                        return (
+                          <svg
+                            width={28}
+                            height={28}
+                            viewBox="0 0 28 28"
+                            className="rounded bg-[var(--color-border)]/25"
+                            aria-hidden="true"
+                          >
+                            <polyline
+                              points={points}
+                              fill="none"
+                              stroke={trackColor(a.type)}
+                              strokeWidth={1.5}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        )
+                      })()}
+                    </span>
                   </div>
                 </td>
                 <td className="py-3">
