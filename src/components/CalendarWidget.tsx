@@ -158,50 +158,60 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
               } ${isHovered ? 'ring-1 ring-[var(--color-accent)]' : ''}`}
               title={d.day > 0 && d.activities.length > 0 ? `${d.day} · ${(d.distance / 1000).toFixed(1)} km` : undefined}
             >
-              {d.day > 0 && (() => {
-                const size = 30
-                const points = d.track ? renderTrackSVG(d.track.polyline, size, size) : ''
-                if (points) {
-                  // Day has a GPS track: show its thumbnail.
-                  return (
-                    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
-                      <polyline
-                        points={points}
-                        fill="none"
-                        stroke={trackColor(d.track!.type)}
-                        strokeWidth={1.5}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )
-                }
-                // No track (rest day, or no-GPS activity): original circle + label.
-                const circleSize = getCircleSize(d.distance)
-                return (
-                  <>
-                    {circleSize > 0 && (
-                      <div
-                        className="absolute rounded-full bg-[var(--color-accent)]/25 transition-all duration-200"
-                        style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
-                      />
-                    )}
-                    <span className={`relative text-[10px] font-medium leading-none transition-all ${
-                      isHovered
-                        ? 'text-[var(--color-text)]'
-                        : d.activities.length > 0
-                          ? 'text-[var(--color-accent)]'
-                          : 'text-[var(--color-muted)]'
-                    }`}>
-                      {isHovered
-                        ? d.day
-                        : d.activities.length > 0
-                          ? `${(d.distance / 1000).toFixed(0)}k`
-                          : d.day}
+              {d.day > 0 && (
+                <div className="relative flex items-center justify-center">
+                  {(() => {
+                    const size = 30
+                    const points = d.track ? renderTrackSVG(d.track.polyline, size, size) : ''
+                    if (points) {
+                      // Day has a GPS track: show its thumbnail.
+                      return (
+                        <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+                          <polyline
+                            points={points}
+                            fill="none"
+                            stroke={trackColor(d.track!.type)}
+                            strokeWidth={1.5}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      )
+                    }
+                    // No track (rest day, or no-GPS activity): original circle + label.
+                    const circleSize = getCircleSize(d.distance)
+                    return (
+                      <>
+                        {circleSize > 0 && (
+                          <div
+                            className="absolute rounded-full bg-[var(--color-accent)]/25 transition-all duration-200"
+                            style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
+                          />
+                        )}
+                        <span className={`relative text-[10px] font-medium leading-none transition-all ${
+                          isHovered
+                            ? 'text-[var(--color-text)]'
+                            : d.activities.length > 0
+                              ? 'text-[var(--color-accent)]'
+                              : 'text-[var(--color-muted)]'
+                        }`}>
+                          {isHovered
+                            ? d.day
+                            : d.activities.length > 0
+                              ? `${(d.distance / 1000).toFixed(0)}k`
+                              : d.day}
+                        </span>
+                      </>
+                    )
+                  })()}
+                  {/* Activity count badge */}
+                  {d.activities.length > 0 && (
+                    <span className="absolute -top-1 -right-1 min-w-[12px] h-3 px-0.5 flex items-center justify-center rounded-full bg-[var(--color-accent)] text-white text-[8px] font-bold leading-none">
+                      {d.activities.length}
                     </span>
-                  </>
-                )
-              })()}
+                  )}
+                </div>
+              )}
             </div>
           )
         })}
