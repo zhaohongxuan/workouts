@@ -159,7 +159,9 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
               className={`flex items-center justify-center relative rounded transition-colors ${
                 d.day === 0 ? '' : d.activities.length > 0 ? 'cursor-pointer' : ''
               } ${isHovered ? 'ring-1 ring-[var(--color-accent)]' : ''}`}
-              title={d.day > 0 && d.activities.length > 0 ? `${d.day} · ${(d.distance / 1000).toFixed(1)} km` : undefined}
+              title={d.day > 0 && d.activities.length > 0
+                ? (d.distance > 0 ? `${d.day} · ${(d.distance / 1000).toFixed(1)} km` : `${d.day} · ${d.activities.length}`)
+                : undefined}
             >
               {d.day > 0 && (
                 <div className="relative flex items-center justify-center">
@@ -181,8 +183,15 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
                         </svg>
                       )
                     }
-                    // No track (rest day, or no-GPS activity): original circle + label.
+                    // No track (rest day, or no-GPS activity).
+                    const hasActivity = d.activities.length > 0
                     const circleSize = getCircleSize(d.distance)
+                    // Zero-distance activity day: mark it with a small neutral dot, no distance text.
+                    if (hasActivity && d.distance <= 0) {
+                      return (
+                        <div className="h-[18px] w-[18px] rounded-full bg-[var(--color-accent)]/25" />
+                      )
+                    }
                     return (
                       <>
                         {circleSize > 0 && (
@@ -194,13 +203,13 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
                         <span className={`relative text-[10px] font-medium leading-none transition-all ${
                           isHovered
                             ? 'text-[var(--color-text)]'
-                            : d.activities.length > 0
+                            : hasActivity
                               ? 'text-[var(--color-accent)]'
                               : 'text-[var(--color-muted)]'
                         }`}>
                           {isHovered
                             ? d.day
-                            : d.activities.length > 0
+                            : hasActivity
                               ? `${(d.distance / 1000).toFixed(0)}k`
                               : d.day}
                         </span>
