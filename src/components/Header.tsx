@@ -156,16 +156,15 @@ function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className={`h-8 flex items-center gap-1 rounded-lg px-2 hover:bg-[var(--color-card)] transition-colors max-w-[140px] ${
+        className={`w-8 h-8 flex items-center justify-center rounded-lg transition-colors ${
           open ? 'text-[var(--color-accent)]' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
         }`}
         title={triggerLabel}
         aria-label={triggerLabel}
       >
-        <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 018 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
         </svg>
-        <span className="text-xs font-medium truncate hidden sm:inline">{triggerLabel}</span>
       </button>
       {open && (
         <div className="absolute right-0 top-10 w-40 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg py-1 z-50">
