@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import * as polyline from '@mapbox/polyline'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -16,17 +17,49 @@ interface MarathonPageProps {
 }
 
 // Long-distance milestone thresholds (km) per sport type.
-const THRESHOLDS: { type: string; km: number; zh: string; en: string; color: string; icon: string }[] = [
-  { type: 'Run', km: 21, zh: '跑步 21km+', en: 'Run 21km+', color: '#f97316', icon: '🏃' },
-  { type: 'Ride', km: 40, zh: '骑行 40km+', en: 'Ride 40km+', color: '#3b82f6', icon: '🚴' },
-  { type: 'Hike', km: 10, zh: '徒步 10km+', en: 'Hike 10km+', color: '#22c55e', icon: '🥾' },
+const THRESHOLDS: { type: string; km: number; zh: string; en: string; color: string }[] = [
+  { type: 'Run', km: 21, zh: '跑步 21km+', en: 'Run 21km+', color: '#f97316' },
+  { type: 'Ride', km: 40, zh: '骑行 40km+', en: 'Ride 40km+', color: '#3b82f6' },
+  { type: 'Hike', km: 10, zh: '徒步 10km+', en: 'Hike 10km+', color: '#22c55e' },
 ]
 
 function typeColor(type: string): string {
   return THRESHOLDS.find(t => t.type === type)?.color ?? 'var(--color-accent)'
 }
-function typeIcon(type: string): string {
-  return THRESHOLDS.find(t => t.type === type)?.icon ?? '📌'
+
+// Line-art icon for a sport type.
+function TypeIcon({ type, className = 'w-3.5 h-3.5', style }: { type: string; className?: string; style?: CSSProperties }) {
+  const common = { className, style, fill: 'none', viewBox: '0 0 24 24', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
+  if (type === 'Run') {
+    return (
+      <svg {...common}>
+        <circle cx="17" cy="4" r="2" />
+        <path d="M13 8l-3 4 3 2-2 6M10 12l-3 1M13 14l4 1 1 4" />
+      </svg>
+    )
+  }
+  if (type === 'Ride') {
+    return (
+      <svg {...common}>
+        <circle cx="6" cy="17" r="3.5" />
+        <circle cx="18" cy="17" r="3.5" />
+        <path d="M6 17l4-7 3 7M10 10h4l2 4M14 10l1-3h3" />
+      </svg>
+    )
+  }
+  if (type === 'Hike') {
+    return (
+      <svg {...common}>
+        <path d="M4 20l5-14 3 6 2-3 6 11M4 20h16" />
+      </svg>
+    )
+  }
+  return (
+    <svg {...common}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  )
 }
 
 function renderTrackSVG(summaryPolyline: string, size = 120): string {
@@ -95,8 +128,8 @@ function TrackMapModal({ activity, dark, onClose }: { activity: Activity; dark?:
       <div className="flex h-[80vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-2xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
           <div className="min-w-0">
-            <p className="text-sm font-semibold truncate text-[var(--color-text)]">
-              {typeIcon(activity.type)} {activity.name || activity.type}
+            <p className="text-sm font-semibold truncate text-[var(--color-text)] flex items-center gap-1.5">
+              <TypeIcon type={activity.type} className="w-4 h-4" style={{ color: typeColor(activity.type) }} /> {activity.name || activity.type}
             </p>
             <p className="text-[11px] text-[var(--color-muted)] mt-0.5">
               {fmtDate(activity, locale)} · {(activity.distance / 1000).toFixed(2)} km
@@ -154,7 +187,7 @@ export function MarathonPage({ activities, dark, onBack, onSelectActivity }: Mar
         <div className="flex items-center gap-2 text-xs text-[var(--color-muted)] flex-wrap">
           {THRESHOLDS.map(t => (
             <span key={t.type} className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] px-2 py-0.5">
-              <span style={{ color: t.color }}>{t.icon}</span>
+              <TypeIcon type={t.type} style={{ color: t.color }} />
               {locale === 'zh' ? t.zh : t.en}
             </span>
           ))}
@@ -172,7 +205,7 @@ export function MarathonPage({ activities, dark, onBack, onSelectActivity }: Mar
             <button key={t.type} onClick={() => setTypeFilter(typeFilter === t.type ? null : t.type)}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${typeFilter === t.type ? 'text-white border-transparent' : 'border-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}
               style={typeFilter === t.type ? { backgroundColor: t.color } : {}}>
-              {t.icon} {locale === 'zh' ? (t.type === 'Run' ? '跑步' : t.type === 'Ride' ? '骑行' : '徒步') : t.type} · {counts[t.type]}
+              <span className="inline-flex items-center gap-1"><TypeIcon type={t.type} style={{ color: typeFilter === t.type ? '#fff' : t.color }} />{locale === 'zh' ? (t.type === 'Run' ? '跑步' : t.type === 'Ride' ? '骑行' : '徒步') : t.type} · {counts[t.type]}</span>
             </button>
           ))}
         </div>
@@ -195,13 +228,25 @@ export function MarathonPage({ activities, dark, onBack, onSelectActivity }: Mar
                 className="group text-left rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-3 transition-all hover:border-[var(--color-accent)]/60 hover:shadow-lg"
               >
                 <div className="relative flex h-[120px] items-center justify-center rounded-lg bg-[var(--color-bg)] overflow-hidden">
-                  <svg width={120} height={120} viewBox="0 0 120 120" aria-hidden="true">
+                  {/* Map-like backdrop: grid texture + soft vignette */}
+                  <svg width={120} height={120} viewBox="0 0 120 120" className="absolute inset-0" aria-hidden="true">
+                    <defs>
+                      <pattern id={`grid-${a.run_id}`} width="12" height="12" patternUnits="userSpaceOnUse">
+                        <path d="M12 0H0V12" fill="none" stroke="var(--color-border)" strokeWidth="0.5" opacity="0.5" />
+                      </pattern>
+                    </defs>
+                    <rect width="120" height="120" fill={`url(#grid-${a.run_id})`} />
+                  </svg>
+                  <svg width={120} height={120} viewBox="0 0 120 120" className="relative" aria-hidden="true">
                     {points && (
-                      <polyline points={points} fill="none" stroke={typeColor(a.type)} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                      <>
+                        <polyline points={points} fill="none" stroke={typeColor(a.type)} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" opacity={0.18} />
+                        <polyline points={points} fill="none" stroke={typeColor(a.type)} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                      </>
                     )}
                   </svg>
-                  <span className="absolute top-1.5 left-1.5 inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-bold text-white" style={{ backgroundColor: typeColor(a.type) }}>
-                    {typeIcon(a.type)}
+                  <span className="absolute top-1.5 left-1.5 inline-flex items-center justify-center rounded p-1 text-white" style={{ backgroundColor: typeColor(a.type) }}>
+                    <TypeIcon type={a.type} className="w-3.5 h-3.5" />
                   </span>
                 </div>
                 <div className="mt-2.5">
