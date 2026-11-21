@@ -4,7 +4,7 @@ import type { SportFilter, Activity } from '../types'
 import { useLocale } from '../hooks/useLocale'
 import { useGitHubAuthContext } from '../hooks/useGitHubAuthContext'
 
-type Page = 'home' | 'tracks'
+type Page = 'home' | 'tracks' | 'marathon'
 
 interface HeaderProps {
   typeFilters: SportFilter[]
@@ -213,6 +213,7 @@ export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activit
   const navItems: { label: string; page: Page }[] = [
     { label: t('home'), page: 'home' },
     { label: t('tracks'), page: 'tracks' },
+    { label: 'Memory', page: 'marathon' },
   ]
 
   return (

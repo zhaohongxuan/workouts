@@ -14,12 +14,13 @@ import { CalendarWidget } from './components/CalendarWidget'
 import { ProfileCard } from './components/ProfileCard'
 import { PersonalBest } from './components/PersonalBest'
 import { TracksPage } from './components/TracksPage'
+import { MarathonPage } from './components/MarathonPage'
 import { ChinaMap } from './components/ChinaMap'
 import rawActivities from './static/activities.json'
 
 const activities = rawActivities as Activity[]
 
-type Page = 'home' | 'tracks'
+type Page = 'home' | 'tracks' | 'marathon'
 
 export default function App() {
   const { dark, toggle } = useTheme()
@@ -66,6 +67,13 @@ export default function App() {
         <TracksPage
           activities={filtered}
           filter={filter}
+          onSelectActivity={setSelectedActivity}
+          onBack={() => setPage('home')}
+        />
+      ) : page === 'marathon' ? (
+        <MarathonPage
+          activities={filtered}
+          dark={dark}
           onSelectActivity={setSelectedActivity}
           onBack={() => setPage('home')}
         />
