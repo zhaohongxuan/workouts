@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import * as polyline from '@mapbox/polyline'
 import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { formatDuration, formatPace } from '../hooks/useActivities'
@@ -52,6 +53,40 @@ function typeColor(type: string): string {
     WaterSport:     '#06b6d4',
   }
   return colors[type] ?? 'var(--color-accent)'
+}
+
+// Sport-specific color for the track thumbnail.
+function trackColor(type: string): string {
+  if (type === 'Run') return '#f97316'
+  if (type === 'Ride') return '#3b82f6'
+  if (type === 'Hike') return '#22c55e'
+  if (type === 'Swim') return '#06b6d4'
+  return 'var(--color-accent)'
+}
+
+// Build an SVG polyline "points" string for a small track thumbnail.
+function renderTrackSVG(summaryPolyline: string | null, size = 26): string {
+  if (!summaryPolyline) return ''
+  try {
+    const coords = polyline.decode(summaryPolyline)
+    if (coords.length < 2) return ''
+    const lats = coords.map(c => c[0])
+    const lngs = coords.map(c => c[1])
+    const minLat = Math.min(...lats), maxLat = Math.max(...lats)
+    const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
+    const latRange = maxLat - minLat || 0.001
+    const lngRange = maxLng - minLng || 0.001
+    const scale = Math.min((size - 6) / lngRange, (size - 6) / latRange)
+    const offsetX = (size - lngRange * scale) / 2
+    const offsetY = (size - latRange * scale) / 2
+    return coords.map(([lat, lng]) => {
+      const x = (lng - minLng) * scale + offsetX
+      const y = size - ((lat - minLat) * scale + offsetY)
+      return `${x.toFixed(1)},${y.toFixed(1)}`
+    }).join(' ')
+  } catch {
+    return ''
+  }
 }
 
 function parseTimeSecs(t: string): number {
@@ -230,7 +265,33 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                     : 'hover:bg-[var(--color-bg)]'
                 }`}
               >
-                <td className="py-3 text-[var(--color-muted)]">{a.start_date_local.slice(0, 16).replace('T', ' ')}</td>
+                <td className="py-3 text-[var(--color-muted)]">
+                  <div className="flex items-center gap-2 whitespace-nowrap">
+                    <span>{a.start_date_local.slice(0, 16).replace('T', ' ')}</span>
+                    {(() => {
+                      const points = renderTrackSVG(a.summary_polyline)
+                      if (!points) return null
+                      return (
+                        <svg
+                          width={26}
+                          height={26}
+                          viewBox="0 0 26 26"
+                          className="shrink-0 rounded bg-[var(--color-bg)]"
+                          aria-hidden="true"
+                        >
+                          <polyline
+                            points={points}
+                            fill="none"
+                            stroke={trackColor(a.type)}
+                            strokeWidth={1.4}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      )
+                    })()}
+                  </div>
+                </td>
                 <td className="py-3">
                   {isGym ? (
                     <span className="text-xs font-medium px-1.5 py-0.5 rounded-full" style={{ backgroundColor: typeColor(a.type) + '22', color: typeColor(a.type) }}>
