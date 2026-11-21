@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import * as polyline from '@mapbox/polyline'
 import type { Activity } from '../types'
-import { WORKOUT_TYPES } from '../types'
 import { formatDistance } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 
@@ -35,7 +34,59 @@ function trackColor(type: string): string {
   if (type === 'Ride') return '#3b82f6'
   if (type === 'Hike') return '#22c55e'
   if (type === 'Swim') return '#06b6d4'
-  return 'var(--color-accent)'
+  // Gym sub-types: use their own accent colors.
+  if (type === 'WeightTraining') return '#f97316'
+  if (type === 'Workout') return '#c026d3'
+  if (type === 'StairStepper') return '#3b82f6'
+  if (type === 'WaterSport') return '#06b6d4'
+  return '#c026d3'
+}
+
+// Line icon for a sport type (used for indoor / no-GPS activity days).
+function TypeGlyph({ type, size = 18 }: { type: string; size?: number }) {
+  const stroke = trackColor(type)
+  const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke, strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true }
+  if (type === 'Run') {
+    return (
+      <svg {...common}>
+        <circle cx="14.5" cy="4.5" r="1.8" />
+        <path d="M12.5 8.5l-2.5 2 1.5 3M12.5 8.5l3 1 1.5 2.5" />
+        <path d="M8 20l2.5-4 2-2M12.5 14l1.5 3 1.5 3" />
+        <path d="M6 12l3-1" />
+      </svg>
+    )
+  }
+  if (type === 'Ride') {
+    return (
+      <svg {...common}>
+        <circle cx="6" cy="17" r="3.5" />
+        <circle cx="18" cy="17" r="3.5" />
+        <path d="M6 17l4-7 3 7M10 10h4l2 4M14 10l1-3h3" />
+      </svg>
+    )
+  }
+  if (type === 'Hike') {
+    return (
+      <svg {...common}>
+        <path d="M4 20l5-14 3 6 2-3 6 11M4 20h16" />
+      </svg>
+    )
+  }
+  if (type === 'Swim') {
+    return (
+      <svg {...common}>
+        <path d="M2 16c1.5-1.5 3-1.5 4.5 0s3 1.5 4.5 0 3-1.5 4.5 0 3 1.5 4.5 0" />
+        <circle cx="16" cy="7" r="1.6" />
+        <path d="M12 12l3-3 4 2" />
+      </svg>
+    )
+  }
+  // Gym / default: barbell
+  return (
+    <svg {...common}>
+      <path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11M3.5 12h3M17.5 12h3" />
+    </svg>
+  )
 }
 
 interface CalendarWidgetProps {
@@ -108,16 +159,6 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
     else setViewMonth(viewMonth + 1)
   }
 
-  // 4 tiers: returns px size of circle
-  const getCircleSize = (dist: number): number => {
-    if (!dist) return 0
-    const km = dist / 1000
-    if (km < 5) return 20
-    if (km < 10) return 26
-    if (km < 20) return 32
-    return 38
-  }
-
   const dayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
   const monthStr = `${String(viewMonth + 1).padStart(2, '0')}/${viewYear}`
 
@@ -184,47 +225,20 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
                         </svg>
                       )
                     }
-                    // No track (rest day, or no-GPS activity).
+                    // No track (rest day, or indoor / no-GPS activity).
                     const hasActivity = d.activities.length > 0
-                    const circleSize = getCircleSize(d.distance)
-                    // Zero-distance activity day.
-                    if (hasActivity && d.distance <= 0) {
-                      const isGym = d.activities.some(a => (WORKOUT_TYPES as string[]).includes(a.type))
-                      if (isGym) {
-                        // Gym: show a barbell icon.
-                        return (
-                          <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11M3.5 12h3M17.5 12h3" />
-                          </svg>
-                        )
-                      }
-                      // Other no-GPS activities: small neutral dot.
-                      return (
-                        <div className="h-[18px] w-[18px] rounded-full bg-[var(--color-accent)]/25" />
-                      )
+                    if (hasActivity) {
+                      // Dominant type of the day → show its sport icon.
+                      const domType = d.activities[0].type
+                      return <TypeGlyph type={domType} size={20} />
                     }
+                    // Rest day: show the day number.
                     return (
-                      <>
-                        {circleSize > 0 && (
-                          <div
-                            className="absolute rounded-full bg-[var(--color-accent)]/25 transition-all duration-200"
-                            style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
-                          />
-                        )}
-                        <span className={`relative text-[10px] font-medium leading-none transition-all ${
-                          isHovered
-                            ? 'text-[var(--color-text)]'
-                            : hasActivity
-                              ? 'text-[var(--color-accent)]'
-                              : 'text-[var(--color-muted)]'
-                        }`}>
-                          {isHovered
-                            ? d.day
-                            : hasActivity
-                              ? `${(d.distance / 1000).toFixed(0)}k`
-                              : d.day}
-                        </span>
-                      </>
+                      <span className={`relative text-[10px] font-medium leading-none ${
+                        isHovered ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)]'
+                      }`}>
+                        {d.day}
+                      </span>
                     )
                   })()}
                 </div>
