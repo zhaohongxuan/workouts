@@ -120,6 +120,66 @@ function GitHubAuthDropdown() {
   )
 }
 
+function SportFilterDropdown({ filter, setFilter, tabs, onPick }: {
+  filter: SportFilter
+  setFilter: (f: SportFilter) => void
+  tabs: { label: string; value: SportFilter }[]
+  onPick: () => void
+}) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  const current = tabs.find((t) => t.value === filter) ?? tabs[0]
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors"
+      >
+        <svg className="w-3.5 h-3.5 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 018 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
+        </svg>
+        <span className="font-medium">{current?.label}</span>
+        <svg className={`w-3 h-3 text-[var(--color-muted)] transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute right-0 top-10 w-36 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg py-1 z-50">
+          {tabs.map((tab) => {
+            const active = tab.value === filter
+            return (
+              <button
+                key={tab.value}
+                onClick={() => { setFilter(tab.value); setOpen(false); onPick() }}
+                className={`w-full flex items-center justify-between px-3 py-2 text-sm transition-colors ${
+                  active ? 'text-[var(--color-accent)] font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-border)]/40'
+                }`}
+              >
+                <span>{tab.label}</span>
+                {active && (
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function Header({ filter, setFilter, dark, toggleTheme, activities, page, onNavigate }: HeaderProps) {
   const { locale, setLocale, t } = useLocale()
 
@@ -155,25 +215,19 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
           </span>
         </div>
 
-        {/* Sport filter tabs */}
-        <div className="flex items-center gap-1">
-          {tabs.map((tab) => (
-            <button
-              key={tab.value}
-              onClick={() => { setFilter(tab.value); onNavigate('home') }}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                filter === tab.value && page === 'home'
-                  ? 'bg-[var(--color-accent)] text-white'
-                  : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        {/* Spacer to keep right cluster aligned */}
+        <div className="flex-1" />
 
         {/* Right nav */}
         <div className="flex items-center gap-4">
+          {/* Sport filter dropdown */}
+          <SportFilterDropdown
+            filter={filter}
+            setFilter={setFilter}
+            tabs={tabs}
+            onPick={() => onNavigate('home')}
+          />
+
           {/* Page nav */}
           {navItems.map((item) => (
             <span
