@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
 import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
@@ -90,10 +90,42 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
   // yearWindowEnd: index into allYears of the last visible year (0-based, most-recent-first)
   const [yearWindowEnd, setYearWindowEnd] = useState(Math.min(MAX_VISIBLE_YEARS - 1, allYears.length - 1))
   const captureRef = useRef<HTMLDivElement>(null)
+  // Day selector popup for days with multiple activities.
+  // Position is viewport-fixed (from getBoundingClientRect) so it can overflow the card.
+  const [daySelector, setDaySelector] = useState<{ date: string; activities: Activity[]; x: number; y: number; openBy: 'hover' | 'click' } | null>(null)
+  const closeTimer = useRef<number | null>(null)
   const [exporting, setExporting] = useState(false)
 
   const isGym = filter === 'Gym'
   const isAll = filter === 'all'
+
+  const cancelClose = () => {
+    if (closeTimer.current !== null) {
+      window.clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }
+  const scheduleClose = () => {
+    cancelClose()
+    closeTimer.current = window.setTimeout(() => setDaySelector(null), 160)
+  }
+  const openSelector = (el: HTMLElement, date: string, acts: Activity[], openBy: 'hover' | 'click') => {
+    cancelClose()
+    const rect = el.getBoundingClientRect()
+    setDaySelector({ date, activities: acts, x: rect.left + rect.width / 2, y: rect.top, openBy })
+  }
+  const selectFromSelector = (a: Activity) => {
+    onSelectActivity?.(a)
+    setDaySelector(null)
+  }
+
+  // Close on Escape / outside scroll for the hover popup.
+  useEffect(() => {
+    if (!daySelector) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setDaySelector(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [daySelector])
 
   function buildYearGrid(yr: number, acts: Activity[]) {
     const yearActivities = acts.filter((a) => new Date(a.start_date_local).getFullYear() === yr)
@@ -441,7 +473,9 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                       : isAll
                         ? getColorAll(day.typeRatio, day.domType)
                         : getColor(day.distance, max, filter)
-                    const titleText = day.activities.length === 0 ? day.date
+                    const count = day.activities.length
+                    const isMulti = count > 1
+                    const titleText = count === 0 ? day.date
                       : isGym ? `${day.date}: ${day.distance} session(s)`
                       : day.domType === 'Training'
                         ? `${day.date}: ${Math.round(day.timeSecs / 60)}min`
@@ -449,11 +483,25 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                     return (
                       <div
                         key={di}
-                        className="w-3 h-3 rounded-sm transition-colors hover:ring-1 hover:ring-[var(--color-muted)] cursor-pointer"
+                        className={`relative w-3 h-3 rounded-sm transition-colors cursor-pointer ${
+                          isMulti ? 'hover:ring-2 hover:ring-[var(--color-accent)]' : 'hover:ring-1 hover:ring-[var(--color-muted)]'
+                        }`}
                         style={{ backgroundColor: bgColor }}
-                        title={titleText}
-                        onClick={() => { if (day.activities.length > 0) onSelectActivity?.(day.activities[0]) }}
-                      />
+                        title={isMulti ? undefined : titleText}
+                        onMouseEnter={(e) => { if (isMulti) openSelector(e.currentTarget, day.date, day.activities, 'hover') }}
+                        onMouseLeave={() => { if (isMulti) scheduleClose() }}
+                        onClick={(e) => {
+                          if (count === 0) return
+                          if (isMulti) openSelector(e.currentTarget, day.date, day.activities, 'click')
+                          else onSelectActivity?.(day.activities[0])
+                        }}
+                      >
+                        {isMulti && (
+                          <span className="absolute inset-0 flex items-center justify-center text-[7px] font-bold leading-none text-white pointer-events-none select-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
+                            {count}
+                          </span>
+                        )}
+                      </div>
                     )
                   })}
                 </div>
@@ -603,6 +651,45 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                 <span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ backgroundColor: gymTypeColors[t] }} />
                 {typeLabel(t, locale)}
               </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Day selector popup: choose which activity to view on a multi-activity day */}
+      {daySelector && (
+        <div
+          data-export-hidden
+          className="fixed z-50 min-w-[180px] max-w-[240px] rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg p-1.5"
+          style={{
+            left: daySelector.x,
+            top: daySelector.y,
+            transform: 'translate(-50%, calc(-100% - 8px))',
+          }}
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="px-1.5 pb-1 text-[10px] text-[var(--color-muted)] flex items-center justify-between gap-2">
+            <span>{daySelector.date}</span>
+            <span>{daySelector.activities.length} {locale === 'zh' ? '个活动' : 'activities'}</span>
+          </div>
+          <div className="flex flex-col gap-0.5 max-h-[220px] overflow-y-auto">
+            {daySelector.activities.map((a) => (
+              <button
+                key={a.run_id}
+                onClick={() => selectFromSelector(a)}
+                className="flex items-center gap-2 px-1.5 py-1 rounded text-left text-xs hover:bg-[var(--color-border)]/40 transition-colors"
+              >
+                <span className="shrink-0">{typeIcon(a.type)}</span>
+                <span className="flex-1 min-w-0 truncate text-[var(--color-text)]">{a.name}</span>
+                <span className="shrink-0 text-[10px] text-[var(--color-muted)] tabular-nums">
+                  {a.type === 'WeightTraining' || a.type === 'Workout' || a.type === 'StairStepper' || a.type === 'WaterSport'
+                    ? `${Math.round(parseMovingTime(a.moving_time) / 60)}min`
+                    : a.distance > 0
+                      ? `${(a.distance / 1000).toFixed(1)} km`
+                      : `${Math.round(parseMovingTime(a.moving_time) / 60)}min`}
+                </span>
+              </button>
             ))}
           </div>
         </div>
