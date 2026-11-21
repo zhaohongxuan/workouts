@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import * as polyline from '@mapbox/polyline'
 import type { Activity } from '../types'
+import { WORKOUT_TYPES } from '../types'
 import { formatDistance } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 
@@ -186,8 +187,18 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
                     // No track (rest day, or no-GPS activity).
                     const hasActivity = d.activities.length > 0
                     const circleSize = getCircleSize(d.distance)
-                    // Zero-distance activity day: mark it with a small neutral dot, no distance text.
+                    // Zero-distance activity day.
                     if (hasActivity && d.distance <= 0) {
+                      const isGym = d.activities.some(a => (WORKOUT_TYPES as string[]).includes(a.type))
+                      if (isGym) {
+                        // Gym: show a barbell icon.
+                        return (
+                          <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11M3.5 12h3M17.5 12h3" />
+                          </svg>
+                        )
+                      }
+                      // Other no-GPS activities: small neutral dot.
                       return (
                         <div className="h-[18px] w-[18px] rounded-full bg-[var(--color-accent)]/25" />
                       )
