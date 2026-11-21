@@ -337,7 +337,9 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                     </td>
                     <td className="py-3 text-[var(--color-muted)]">{formatDuration(a.moving_time)}</td>
                     <td className="py-3 text-[var(--color-muted)]">
-                      {a.type === 'Run' ? formatPace(a.average_speed) : `${(a.average_speed * 3.6).toFixed(1)} km/h`}
+                      {a.average_speed > 0
+                        ? (a.type === 'Run' ? formatPace(a.average_speed) : `${(a.average_speed * 3.6).toFixed(1)} km/h`)
+                        : '--'}
                     </td>
                     <td className="py-3 text-[var(--color-muted)]">{a.average_heartrate ? Math.round(a.average_heartrate) : '--'}</td>
                   </>
