@@ -78,6 +78,8 @@ export default function App() {
               selectedActivity={selectedActivity}
               onSelectActivity={setSelectedActivity}
               filter={filter}
+              selectedProvince={selectedProvince}
+              onClearProvince={() => { setSelectedProvince(null); setSelectedActivity(null) }}
             />
           </div>
 

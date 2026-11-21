@@ -12,6 +12,8 @@ interface ActivityLogProps {
   selectedActivity?: Activity | null
   onSelectActivity?: (a: Activity | null) => void
   filter?: SportFilter
+  selectedProvince?: string | null
+  onClearProvince?: () => void
 }
 
 const PAGE_SIZE = 16
@@ -68,7 +70,7 @@ function formatSecs(secs: number): string {
   return `${m}m`
 }
 
-export function ActivityLog({ activities, years, year, setYear, selectedActivity, onSelectActivity, filter = 'all' }: ActivityLogProps) {
+export function ActivityLog({ activities, years, year, setYear, selectedActivity, onSelectActivity, filter = 'all', selectedProvince, onClearProvince }: ActivityLogProps) {
   const { t, locale } = useLocale()
   const [page, setPage] = useState(0)
   const [distFilter, setDistFilter] = useState<DistanceFilter>('all')
@@ -126,6 +128,27 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
           {t('showing')} {page * PAGE_SIZE + 1}-{Math.min((page + 1) * PAGE_SIZE, sorted.length)} {t('of')} {sorted.length}
         </span>
       </div>
+
+      {/* Active filter chips */}
+      {selectedProvince && (
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <span className="text-xs text-[var(--color-muted)]">{locale === 'zh' ? '当前筛选' : 'Filtered by'}</span>
+          <button
+            onClick={() => onClearProvince?.()}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-accent)]/15 text-[var(--color-accent)] hover:bg-[var(--color-accent)]/25 transition-colors"
+            title={locale === 'zh' ? '清除筛选' : 'Clear filter'}
+          >
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {selectedProvince}
+            <svg className="w-3 h-3 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       {/* Year tabs */}
       <div className="flex items-center gap-2 mb-3 flex-wrap">
