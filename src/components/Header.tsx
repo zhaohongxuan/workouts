@@ -1,15 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import { LogOut } from 'lucide-react'
 import type { SportFilter, Activity } from '../types'
-import { WORKOUT_TYPES } from '../types'
 import { useLocale } from '../hooks/useLocale'
 import { useGitHubAuthContext } from '../hooks/useGitHubAuthContext'
 
 type Page = 'home' | 'tracks'
 
 interface HeaderProps {
-  filter: SportFilter
-  setFilter: (f: SportFilter) => void
+  typeFilters: SportFilter[]
+  setTypeFilters: (f: SportFilter[]) => void
   dark: boolean
   toggleTheme: () => void
   activities: Activity[]
@@ -120,11 +119,10 @@ function GitHubAuthDropdown() {
   )
 }
 
-function SportFilterDropdown({ filter, setFilter, tabs, onPick }: {
-  filter: SportFilter
-  setFilter: (f: SportFilter) => void
+function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
+  typeFilters: SportFilter[]
+  setTypeFilters: (f: SportFilter[]) => void
   tabs: { label: string; value: SportFilter }[]
-  onPick: () => void
 }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -137,36 +135,52 @@ function SportFilterDropdown({ filter, setFilter, tabs, onPick }: {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  const current = tabs.find((t) => t.value === filter) ?? tabs[0]
+  const active = (v: SportFilter) => typeFilters.includes(v)
+  const allActive = typeFilters.filter(v => v !== 'all').length === 0
+  const triggerLabel = allActive
+    ? tabs.find(t => t.value === 'all')?.label ?? 'All'
+    : tabs.filter(t => active(t.value) && t.value !== 'all').map(t => t.label).join(', ')
+
+  const toggle = (v: SportFilter) => {
+    if (v === 'all') {
+      setTypeFilters(['all'])
+      return
+    }
+    const concrete = typeFilters.filter(x => x !== 'all')
+    const next = concrete.includes(v) ? concrete.filter(x => x !== v) : [...concrete, v]
+    // Empty selection falls back to "all".
+    setTypeFilters(next.length === 0 ? ['all'] : next)
+  }
 
   return (
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className={`w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--color-card)] transition-colors ${
+        className={`h-8 flex items-center gap-1 rounded-lg px-2 hover:bg-[var(--color-card)] transition-colors max-w-[140px] ${
           open ? 'text-[var(--color-accent)]' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
         }`}
-        title={current?.label}
-        aria-label={current?.label}
+        title={triggerLabel}
+        aria-label={triggerLabel}
       >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 018 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
         </svg>
+        <span className="text-xs font-medium truncate hidden sm:inline">{triggerLabel}</span>
       </button>
       {open && (
-        <div className="absolute right-0 top-10 w-36 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg py-1 z-50">
+        <div className="absolute right-0 top-10 w-40 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg py-1 z-50">
           {tabs.map((tab) => {
-            const active = tab.value === filter
+            const checked = tab.value === 'all' ? allActive : active(tab.value)
             return (
               <button
                 key={tab.value}
-                onClick={() => { setFilter(tab.value); setOpen(false); onPick() }}
+                onClick={() => toggle(tab.value)}
                 className={`w-full flex items-center justify-between px-3 py-2 text-sm transition-colors ${
-                  active ? 'text-[var(--color-accent)] font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-border)]/40'
+                  checked ? 'text-[var(--color-accent)] font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-border)]/40'
                 }`}
               >
                 <span>{tab.label}</span>
-                {active && (
+                {checked && (
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
@@ -180,11 +194,10 @@ function SportFilterDropdown({ filter, setFilter, tabs, onPick }: {
   )
 }
 
-export function Header({ filter, setFilter, dark, toggleTheme, activities, page, onNavigate }: HeaderProps) {
+export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activities, page, onNavigate }: HeaderProps) {
   const { locale, setLocale, t } = useLocale()
 
   const existingTypes = new Set(activities.map((a) => a.type))
-  const hasGym = WORKOUT_TYPES.some((t) => existingTypes.has(t))
 
   const allTabs: { label: string; value: SportFilter }[] = [
     { label: t('all'), value: 'all' },
@@ -192,11 +205,9 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
     { label: t('ride'), value: 'Ride' },
     { label: t('hike'), value: 'Hike' },
     { label: t('swim'), value: 'Swim' },
-    { label: t('gym'), value: 'Gym' },
   ]
   const tabs = allTabs.filter((tab) => {
     if (tab.value === 'all') return true
-    if (tab.value === 'Gym') return hasGym
     return existingTypes.has(tab.value)
   })
 
@@ -237,10 +248,9 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
 
           {/* Sport filter dropdown */}
           <SportFilterDropdown
-            filter={filter}
-            setFilter={setFilter}
+            typeFilters={typeFilters}
+            setTypeFilters={setTypeFilters}
             tabs={tabs}
-            onPick={() => onNavigate('home')}
           />
 
           {/* Theme toggle */}

@@ -23,14 +23,20 @@ type Page = 'home' | 'tracks'
 
 export default function App() {
   const { dark, toggle } = useTheme()
-  const [filter, setFilter] = useState<SportFilter>('all')
+  // Top-level sport type filter — multi-select. Default: Run only.
+  const [typeFilters, setTypeFilters] = useState<SportFilter[]>(['Run'])
   const [year, setYear] = useState<number | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null)
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null)
   const [page, setPage] = useState<Page>('home')
 
+  // Effective single-value filter for legacy consumers (accent color, goal copy,
+  // units). Only when exactly one concrete type is selected; otherwise 'all'.
+  const concreteFilters = typeFilters.filter(f => f !== 'all')
+  const filter: SportFilter = concreteFilters.length === 1 ? concreteFilters[0] : 'all'
+
   const years = getAvailableYears(activities)
-  const filtered = useFilteredActivities(activities, filter, year)
+  const filtered = useFilteredActivities(activities, typeFilters, year)
   const heatmapYear = year ?? years[0] ?? new Date().getFullYear()
 
   // Activities filtered to the selected province (for RouteMap)
@@ -47,8 +53,8 @@ export default function App() {
       <GitHubAuthProvider>
         <div className="min-h-screen bg-[var(--color-bg)]" data-filter={filter}>
       <Header
-        filter={filter}
-        setFilter={setFilter}
+        typeFilters={typeFilters}
+        setTypeFilters={setTypeFilters}
         dark={dark}
         toggleTheme={toggle}
         activities={activities}
