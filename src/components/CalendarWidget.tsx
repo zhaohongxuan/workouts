@@ -49,7 +49,7 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
   const [viewMonth, setViewMonth] = useState(now.getMonth())
   const [hoveredDay, setHoveredDay] = useState<number | null>(null)
 
-  const { days, monthDistance, monthCount, monthTrack } = useMemo(() => {
+  const { days, monthDistance, monthCount } = useMemo(() => {
     const firstDaySun = new Date(viewYear, viewMonth, 1).getDay() // 0=Sun
     const firstDay = (firstDaySun + 6) % 7 // convert to Mon=0
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate()
@@ -67,31 +67,35 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
 
     let totalDist = 0
     let totalCount = 0
-    // Representative track for the header: the longest activity with a polyline this month.
-    let monthTrack: { polyline: string; type: string } | null = null
-    let trackDist = -1
     for (const acts of dayActivities.values()) {
       totalCount += acts.length
       totalDist += acts.reduce((s, a) => s + a.distance, 0)
-      for (const a of acts) {
-        if (a.summary_polyline && a.summary_polyline.length > 20 && a.distance > trackDist) {
-          trackDist = a.distance
-          monthTrack = { polyline: a.summary_polyline, type: a.type }
-        }
-      }
     }
 
-    const days: { day: number; activities: Activity[]; distance: number }[] = []
+    // Per-day representative track: longest activity that has a polyline.
+    const dayTrack = (acts: Activity[]): { polyline: string; type: string } | null => {
+      let best: { polyline: string; type: string } | null = null
+      let bestDist = -1
+      for (const a of acts) {
+        if (a.summary_polyline && a.summary_polyline.length > 20 && a.distance > bestDist) {
+          bestDist = a.distance
+          best = { polyline: a.summary_polyline, type: a.type }
+        }
+      }
+      return best
+    }
+
+    const days: { day: number; activities: Activity[]; distance: number; track: { polyline: string; type: string } | null }[] = []
     for (let i = 0; i < firstDay; i++) {
-      days.push({ day: 0, activities: [], distance: 0 })
+      days.push({ day: 0, activities: [], distance: 0, track: null })
     }
     for (let d = 1; d <= daysInMonth; d++) {
       const acts = dayActivities.get(d) || []
       const dist = acts.reduce((s, a) => s + a.distance, 0)
-      days.push({ day: d, activities: acts, distance: dist })
+      days.push({ day: d, activities: acts, distance: dist, track: dayTrack(acts) })
     }
 
-    return { days, monthDistance: totalDist, monthCount: totalCount, monthTrack }
+    return { days, monthDistance: totalDist, monthCount: totalCount }
   }, [activities, viewYear, viewMonth])
 
   const prevMonth = () => {
@@ -120,25 +124,11 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
     <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-4 w-full min-w-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
+        <div>
           <span className="text-lg font-bold">{monthStr}</span>
-          {(() => {
-            const w = 64, h = 40
-            const points = monthTrack ? renderTrackSVG(monthTrack.polyline, w, h) : ''
-            if (!points) return null
-            return (
-              <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="rounded bg-[var(--color-border)]/25" aria-hidden="true">
-                <polyline
-                  points={points}
-                  fill="none"
-                  stroke={trackColor(monthTrack!.type)}
-                  strokeWidth={1.6}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )
-          })()}
+          <span className="text-sm text-[var(--color-muted)] ml-3">
+            {formatDistance(monthDistance)} km
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={prevMonth} className="text-[var(--color-muted)] hover:text-[var(--color-text)] px-1">←</button>
@@ -156,7 +146,6 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
       {/* Calendar grid — fixed height so 5-row and 6-row months are identical */}
       <div className="grid grid-cols-7 gap-0.5" style={{ height: '240px', gridAutoRows: '1fr' }}>
         {days.map((d, i) => {
-          const circleSize = getCircleSize(d.distance)
           const isHovered = hoveredDay === i && d.distance > 0
           return (
             <div
@@ -164,35 +153,55 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
               onClick={() => { if (d.activities.length > 0) onSelectActivity(d.activities[0]) }}
               onMouseEnter={() => d.distance > 0 && setHoveredDay(i)}
               onMouseLeave={() => setHoveredDay(null)}
-              className={`flex items-center justify-center relative ${
+              className={`flex items-center justify-center relative rounded transition-colors ${
                 d.day === 0 ? '' : d.activities.length > 0 ? 'cursor-pointer' : ''
-              }`}
+              } ${isHovered ? 'ring-1 ring-[var(--color-accent)]' : ''}`}
+              title={d.day > 0 && d.activities.length > 0 ? `${d.day} · ${(d.distance / 1000).toFixed(1)} km` : undefined}
             >
-              {d.day > 0 && (
-                <>
-                  {/* Sized circle */}
-                  {circleSize > 0 && (
-                    <div
-                      className="absolute rounded-full bg-[var(--color-accent)]/25 transition-all duration-200"
-                      style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
-                    />
-                  )}
-                  {/* Label: show km by default, show date on hover */}
-                  <span className={`relative text-[10px] font-medium leading-none transition-all ${
-                    isHovered
-                      ? 'text-[var(--color-text)]'
-                      : d.activities.length > 0
-                        ? 'text-[var(--color-accent)]'
-                        : 'text-[var(--color-muted)]'
-                  }`}>
-                    {isHovered
-                      ? d.day
-                      : d.activities.length > 0
-                        ? `${(d.distance / 1000).toFixed(0)}k`
-                        : d.day}
-                  </span>
-                </>
-              )}
+              {d.day > 0 && (() => {
+                const size = 30
+                const points = d.track ? renderTrackSVG(d.track.polyline, size, size) : ''
+                if (points) {
+                  // Day has a GPS track: show its thumbnail.
+                  return (
+                    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+                      <polyline
+                        points={points}
+                        fill="none"
+                        stroke={trackColor(d.track!.type)}
+                        strokeWidth={1.5}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )
+                }
+                // No track (rest day, or no-GPS activity): original circle + label.
+                const circleSize = getCircleSize(d.distance)
+                return (
+                  <>
+                    {circleSize > 0 && (
+                      <div
+                        className="absolute rounded-full bg-[var(--color-accent)]/25 transition-all duration-200"
+                        style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
+                      />
+                    )}
+                    <span className={`relative text-[10px] font-medium leading-none transition-all ${
+                      isHovered
+                        ? 'text-[var(--color-text)]'
+                        : d.activities.length > 0
+                          ? 'text-[var(--color-accent)]'
+                          : 'text-[var(--color-muted)]'
+                    }`}>
+                      {isHovered
+                        ? d.day
+                        : d.activities.length > 0
+                          ? `${(d.distance / 1000).toFixed(0)}k`
+                          : d.day}
+                    </span>
+                  </>
+                )
+              })()}
             </div>
           )
         })}
