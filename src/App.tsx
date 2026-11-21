@@ -72,7 +72,7 @@ export default function App() {
         />
       ) : page === 'marathon' ? (
         <MarathonPage
-          activities={filtered}
+          activities={activities}
           dark={dark}
           onSelectActivity={setSelectedActivity}
           onBack={() => setPage('home')}
