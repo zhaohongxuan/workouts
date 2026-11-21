@@ -131,6 +131,7 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
     { label: t('run'), value: 'Run' },
     { label: t('ride'), value: 'Ride' },
     { label: t('hike'), value: 'Hike' },
+    { label: t('swim'), value: 'Swim' },
     { label: t('gym'), value: 'Gym' },
   ]
   const tabs = allTabs.filter((tab) => {
