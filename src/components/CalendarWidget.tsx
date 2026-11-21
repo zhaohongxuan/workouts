@@ -213,12 +213,6 @@ export function CalendarWidget({ activities, onSelectActivity }: CalendarWidgetP
           )
         })}
       </div>
-
-      {/* Summary */}
-      <div className="mt-3 pt-3 border-t border-[var(--color-border)] flex items-center justify-between text-xs text-[var(--color-muted)]">
-        <span>{monthCount} {t('calendarActivities')}</span>
-        <span>{formatDistance(monthDistance)} km</span>
-      </div>
     </div>
   )
 }
