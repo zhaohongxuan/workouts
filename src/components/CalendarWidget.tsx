@@ -42,51 +42,15 @@ function trackColor(type: string): string {
   return '#c026d3'
 }
 
-// Line icon for a sport type (used for indoor / no-GPS activity days).
+// Emoji for a sport type (used for indoor / no-GPS activity days).
 function TypeGlyph({ type, size = 18 }: { type: string; size?: number }) {
-  const stroke = trackColor(type)
-  const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke, strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true }
-  if (type === 'Run') {
-    return (
-      <svg {...common}>
-        <circle cx="14.5" cy="4.5" r="1.8" />
-        <path d="M12.5 8.5l-2.5 2 1.5 3M12.5 8.5l3 1 1.5 2.5" />
-        <path d="M8 20l2.5-4 2-2M12.5 14l1.5 3 1.5 3" />
-        <path d="M6 12l3-1" />
-      </svg>
-    )
-  }
-  if (type === 'Ride') {
-    return (
-      <svg {...common}>
-        <circle cx="6" cy="17" r="3.5" />
-        <circle cx="18" cy="17" r="3.5" />
-        <path d="M6 17l4-7 3 7M10 10h4l2 4M14 10l1-3h3" />
-      </svg>
-    )
-  }
-  if (type === 'Hike') {
-    return (
-      <svg {...common}>
-        <path d="M4 20l5-14 3 6 2-3 6 11M4 20h16" />
-      </svg>
-    )
-  }
-  if (type === 'Swim') {
-    return (
-      <svg {...common}>
-        <path d="M2 16c1.5-1.5 3-1.5 4.5 0s3 1.5 4.5 0 3-1.5 4.5 0 3 1.5 4.5 0" />
-        <circle cx="16" cy="7" r="1.6" />
-        <path d="M12 12l3-3 4 2" />
-      </svg>
-    )
-  }
-  // Gym / default: barbell
-  return (
-    <svg {...common}>
-      <path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11M3.5 12h3M17.5 12h3" />
-    </svg>
-  )
+  const emoji =
+    type === 'Run' ? '🏃' :
+    type === 'Ride' ? '🚴' :
+    type === 'Hike' ? '🥾' :
+    type === 'Swim' ? '🏊' :
+    '🏋️'
+  return <span style={{ fontSize: size }} className="leading-none" aria-hidden="true">{emoji}</span>
 }
 
 interface CalendarWidgetProps {
