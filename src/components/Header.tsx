@@ -143,14 +143,14 @@ function SportFilterDropdown({ filter, setFilter, tabs, onPick }: {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors"
+        className={`w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--color-card)] transition-colors ${
+          open ? 'text-[var(--color-accent)]' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
+        }`}
+        title={current?.label}
+        aria-label={current?.label}
       >
-        <svg className="w-3.5 h-3.5 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 018 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
-        </svg>
-        <span className="font-medium">{current?.label}</span>
-        <svg className={`w-3 h-3 text-[var(--color-muted)] transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
@@ -220,14 +220,6 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
 
         {/* Right nav */}
         <div className="flex items-center gap-4">
-          {/* Sport filter dropdown */}
-          <SportFilterDropdown
-            filter={filter}
-            setFilter={setFilter}
-            tabs={tabs}
-            onPick={() => onNavigate('home')}
-          />
-
           {/* Page nav */}
           {navItems.map((item) => (
             <span
@@ -242,6 +234,14 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
               {item.label}
             </span>
           ))}
+
+          {/* Sport filter dropdown */}
+          <SportFilterDropdown
+            filter={filter}
+            setFilter={setFilter}
+            tabs={tabs}
+            onPick={() => onNavigate('home')}
+          />
 
           {/* Theme toggle */}
           <button
