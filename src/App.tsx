@@ -39,6 +39,9 @@ export default function App() {
     return filtered.filter(a => extractProvince(a.location_country) === selectedProvince)
   }, [filtered, selectedProvince])
 
+  // Year options follow the province selection so the log's year set stays consistent.
+  const provinceYears = useMemo(() => getAvailableYears(provinceFiltered), [provinceFiltered])
+
   return (
     <LocaleProvider>
       <GitHubAuthProvider>
@@ -68,8 +71,8 @@ export default function App() {
             <StatsCards activities={filtered} allActivities={activities} year={year} filter={filter} onSelectActivity={setSelectedActivity} />
             <ContributionHeatmap activities={filtered} year={heatmapYear} filter={filter} onSelectActivity={setSelectedActivity} />
             <ActivityLog
-              activities={filtered}
-              years={years}
+              activities={provinceFiltered}
+              years={provinceYears}
               year={year}
               setYear={setYear}
               selectedActivity={selectedActivity}
