@@ -16,6 +16,7 @@ Usage:
 """
 
 import argparse
+import base64
 import datetime
 import json
 import os
@@ -49,6 +50,57 @@ LIST_HEADERS = {
     "accept": "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript",
     "x-requested-with": "XMLHttpRequest",
 }
+
+
+def jwt_expiry(jwt):
+    """Return (expires_at_unix, days_left) for a strava_remember_token JWT.
+
+    Returns (None, None) if the token cannot be decoded.
+    """
+    try:
+        payload = jwt.split(".")[1]
+        payload += "=" * (-len(payload) % 4)
+        data = json.loads(base64.urlsafe_b64decode(payload))
+        exp = data.get("exp")
+        if not exp:
+            return None, None
+        days_left = (exp - time.time()) / 86400.0
+        return exp, days_left
+    except Exception:
+        return None, None
+
+
+def _check_jwt(jwt, warn_days=7):
+    """Pre-flight check of the strava_remember_token.
+
+    Raises SystemExit with a clear message when the token is already expired,
+    and prints a warning when it will expire soon.
+    """
+    exp, days_left = jwt_expiry(jwt)
+    if exp is None:
+        print(
+            "WARNING: could not decode strava_remember_token JWT; "
+            "cannot determine expiry. Assuming it is still valid."
+        )
+        return
+    if days_left is not None and days_left <= 0:
+        print(
+            "\nERROR: strava_remember_token has EXPIRED "
+            f"({datetime.datetime.fromtimestamp(exp).isoformat()}).\n"
+            "Strava web login uses an email one-time-code and cannot be "
+            "refreshed automatically.\n"
+            "To fix:\n"
+            "  1. Log in to strava.com in your browser.\n"
+            "  2. Copy the value of the 'strava_remember_token' cookie.\n"
+            "  3. Update the STRAVA_JWT secret (see scripts/refresh_strava_jwt.sh).\n"
+        )
+        sys.exit(2)
+    if days_left is not None and days_left <= warn_days:
+        print(
+            f"WARNING: strava_remember_token expires in {days_left:.1f} day(s) "
+            f"({datetime.datetime.fromtimestamp(exp).isoformat()}). "
+            "Consider refreshing it soon."
+        )
 
 
 def _polyline_encode(latlng_list):
@@ -155,6 +207,7 @@ def _fetch_streams(client, aid):
 
 
 def run_strava_web_sync(jwt, days=7, only_run=False):
+    _check_jwt(jwt)
     client = WebClient(jwt=jwt)
     print("Web login ok")
 

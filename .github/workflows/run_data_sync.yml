@@ -1,4 +1,4 @@
-﻿name: Run Data Sync
+name: Run Data Sync
 
 on:
   workflow_dispatch:
@@ -100,6 +100,46 @@ jobs:
 
       # Strava web sync: uses the strava_remember_token JWT (web endpoints) instead of the
       # OAuth2 API, for when the API application is inactive. --days controls lookback.
+      #
+      # The strava_remember_token expires after ~30 days and cannot be auto-refreshed
+      # (Strava login now uses an email one-time-code behind reCAPTCHA). This step fails
+      # loudly when the token is expired so the run surfaces the problem, and prints a
+      # warning when it is close to expiring. To renew: log in to strava.com, copy the
+      # 'strava_remember_token' cookie, then run scripts/refresh_strava_jwt.sh locally.
+      - name: Check Strava web token expiry
+        if: env.RUN_TYPE == 'strava_web'
+        env:
+          STRAVA_JWT: ${{ secrets.STRAVA_JWT }}
+        run: |
+          python scripts/strava_jwt_check.py "$STRAVA_JWT"
+
+      # Send a Feishu (Lark) bot message when the token is within 7 days of
+      # expiring (or already expired), so the owner can refresh it before sync
+      # breaks. The webhook URL is stored in the FEISHU_WEBHOOK secret.
+      - name: Notify on Strava token expiry
+        if: env.RUN_TYPE == 'strava_web'
+        env:
+          STRAVA_JWT: ${{ secrets.STRAVA_JWT }}
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+        run: |
+          DAYS_LEFT="$(python scripts/strava_jwt_check.py --days-left "$STRAVA_JWT")"
+          echo "strava_remember_token days left: $DAYS_LEFT"
+          if [ -z "$FEISHU_WEBHOOK" ]; then
+            echo "FEISHU_WEBHOOK secret not set; skipping notification."
+            exit 0
+          fi
+          # Bash cannot compare floats directly; use awk.
+          SHOULD_NOTIFY="$(awk -v d="$DAYS_LEFT" 'BEGIN { print (d <= 7) ? "yes" : "no" }')"
+          if [ "$SHOULD_NOTIFY" = "yes" ]; then
+            MSG="Strava token 即将过期（剩余 ${DAYS_LEFT} 天），请登录 strava.com 复制新的 strava_remember_token 并运行 scripts/refresh_strava_jwt.sh 更新。"
+            curl -sS -X POST "$FEISHU_WEBHOOK" \
+              -H 'Content-Type: application/json' \
+              -d "{\"msg_type\":\"text\",\"content\":{\"text\":\"$MSG\"}}"
+            echo "Feishu notification sent."
+          else
+            echo "Token still valid; no notification needed."
+          fi
+
       - name: Run sync Strava web script
         if: env.RUN_TYPE == 'strava_web'
         run: |
