@@ -33,9 +33,11 @@ function TypeIcon({ type, className = 'w-3.5 h-3.5', style }: { type: string; cl
   if (type === 'Run') {
     return (
       <svg {...common}>
-        {/* footprints — clear running/walking cue */}
-        <ellipse cx="8.5" cy="8" rx="2.6" ry="4" transform="rotate(-25 8.5 8)" />
-        <ellipse cx="15.5" cy="16" rx="2.6" ry="4" transform="rotate(-25 15.5 16)" />
+        {/* running person */}
+        <circle cx="14.5" cy="4.5" r="1.8" />
+        <path d="M12.5 8.5l-2.5 2 1.5 3M12.5 8.5l3 1 1.5 2.5" />
+        <path d="M8 20l2.5-4 2-2M12.5 14l1.5 3 1.5 3" />
+        <path d="M6 12l3-1" />
       </svg>
     )
   }
