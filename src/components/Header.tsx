@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
-import { LogOut } from 'lucide-react'
+import { LogOut, Footprints, Bike, Mountain, Waves, LayoutGrid, Dumbbell, Filter } from 'lucide-react'
 import type { SportFilter, Activity } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { useLocale } from '../hooks/useLocale'
 import { useGitHubAuthContext } from '../hooks/useGitHubAuthContext'
 
-type Page = 'home' | 'tracks' | 'checkin'
+type Page = 'home' | 'tracks' | 'marathon'
 
 interface HeaderProps {
-  filter: SportFilter
-  setFilter: (f: SportFilter) => void
+  typeFilters: SportFilter[]
+  setTypeFilters: (f: SportFilter[]) => void
   dark: boolean
   toggleTheme: () => void
   activities: Activity[]
@@ -120,19 +120,106 @@ function GitHubAuthDropdown() {
   )
 }
 
-export function Header({ filter, setFilter, dark, toggleTheme, activities, page, onNavigate }: HeaderProps) {
+function SportFilterDropdown({ typeFilters, setTypeFilters, tabs }: {
+  typeFilters: SportFilter[]
+  setTypeFilters: (f: SportFilter[]) => void
+  tabs: { label: string; value: SportFilter; icon: typeof Footprints; color: string }[]
+}) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  const active = (v: SportFilter) => typeFilters.includes(v)
+  const allActive = typeFilters.filter(v => v !== 'all').length === 0
+  const selectedTabs = tabs.filter(t => t.value !== 'all' && active(t.value))
+  const triggerLabel = allActive
+    ? tabs.find(t => t.value === 'all')?.label ?? 'All'
+    : selectedTabs.map(t => t.label).join(', ')
+  // All → ALL icon; single type → that type's icon; multiple → funnel.
+  const allTab = tabs.find(t => t.value === 'all')
+  const singleTab = !allActive && selectedTabs.length === 1 ? selectedTabs[0] : null
+  const TriggerIcon = allActive ? (allTab?.icon ?? Filter) : singleTab ? singleTab.icon : Filter
+  const triggerColor = allActive ? 'var(--color-accent)' : singleTab ? singleTab.color : undefined
+
+  const toggle = (v: SportFilter) => {
+    if (v === 'all') {
+      setTypeFilters(['all'])
+      return
+    }
+    const concrete = typeFilters.filter(x => x !== 'all')
+    const next = concrete.includes(v) ? concrete.filter(x => x !== v) : [...concrete, v]
+    // Empty selection falls back to "all".
+    setTypeFilters(next.length === 0 ? ['all'] : next)
+  }
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className={`w-8 h-8 flex items-center justify-center rounded-lg transition-colors ${
+          open ? 'text-[var(--color-accent)]' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
+        }`}
+        title={triggerLabel}
+        aria-label={triggerLabel}
+      >
+        <TriggerIcon
+          className="w-4 h-4"
+          strokeWidth={2}
+          style={{ color: triggerColor }}
+        />
+      </button>
+      {open && (
+        <div className="absolute right-0 top-10 w-40 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg py-1 z-50">
+          {tabs.map((tab) => {
+            const checked = tab.value === 'all' ? allActive : active(tab.value)
+            const Icon = tab.icon
+            return (
+              <button
+                key={tab.value}
+                onClick={() => toggle(tab.value)}
+                className={`w-full flex items-center justify-between gap-2 px-3 py-2 text-sm transition-colors ${
+                  checked ? 'font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-border)]/40'
+                }`}
+                style={checked ? { color: tab.color } : undefined}
+              >
+                <span className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 shrink-0" style={{ color: tab.color }} />
+                  {tab.label}
+                </span>
+                {checked && (
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activities, page, onNavigate }: HeaderProps) {
   const { locale, setLocale, t } = useLocale()
 
   const existingTypes = new Set(activities.map((a) => a.type))
-  const hasGym = WORKOUT_TYPES.some((t) => existingTypes.has(t))
+  const hasGym = WORKOUT_TYPES.some((wt) => existingTypes.has(wt))
 
-  const allTabs: { label: string; value: SportFilter }[] = [
-    { label: t('all'), value: 'all' },
-    { label: t('run'), value: 'Run' },
-    { label: t('ride'), value: 'Ride' },
-    { label: t('hike'), value: 'Hike' },
-    { label: t('swim'), value: 'Swim' },
-    { label: t('gym'), value: 'Gym' },
+  const allTabs: { label: string; value: SportFilter; icon: typeof Footprints; color: string }[] = [
+    { label: t('all'), value: 'all', icon: LayoutGrid, color: 'var(--color-accent)' },
+    { label: t('run'), value: 'Run', icon: Footprints, color: '#f97316' },
+    { label: t('ride'), value: 'Ride', icon: Bike, color: '#3b82f6' },
+    { label: t('hike'), value: 'Hike', icon: Mountain, color: '#22c55e' },
+    { label: t('swim'), value: 'Swim', icon: Waves, color: '#06b6d4' },
+    { label: t('gym'), value: 'Gym', icon: Dumbbell, color: '#c026d3' },
   ]
   const tabs = allTabs.filter((tab) => {
     if (tab.value === 'all') return true
@@ -141,37 +228,26 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
   })
 
   const navItems: { label: string; page: Page }[] = [
-    { label: t('home'), page: 'home' },
     { label: t('tracks'), page: 'tracks' },
-    { label: t('checkin'), page: 'checkin' },
+    { label: 'Memory', page: 'marathon' },
   ]
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/70 backdrop-blur-md">
       <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
+        {/* Logo — click to go home */}
+        <button
+          onClick={() => onNavigate('home')}
+          className="flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-80"
+          aria-label={t('home')}
+        >
           <span className="text-xl font-bold text-[var(--color-text)]">
             WORKOUT<span className="text-[var(--color-run)]">.</span>LOG
           </span>
-        </div>
+        </button>
 
-        {/* Sport filter tabs */}
-        <div className="flex items-center gap-1">
-          {tabs.map((tab) => (
-            <button
-              key={tab.value}
-              onClick={() => { setFilter(tab.value); if (page === 'checkin') onNavigate('home') }}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                filter === tab.value && page === 'home'
-                  ? 'bg-[var(--color-accent)] text-white'
-                  : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        {/* Spacer to keep right cluster aligned */}
+        <div className="flex-1" />
 
         {/* Right nav */}
         <div className="flex items-center gap-4">
@@ -189,6 +265,13 @@ export function Header({ filter, setFilter, dark, toggleTheme, activities, page,
               {item.label}
             </span>
           ))}
+
+          {/* Sport filter dropdown */}
+          <SportFilterDropdown
+            typeFilters={typeFilters}
+            setTypeFilters={setTypeFilters}
+            tabs={tabs}
+          />
 
           {/* Theme toggle */}
           <button

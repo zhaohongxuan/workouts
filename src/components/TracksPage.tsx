@@ -7,6 +7,7 @@ import type { Activity } from '../types'
 import { getAvailableYears, formatDistance, parseMovingTime, formatPace } from '../hooks/useActivities'
 import { useLocale } from '../hooks/useLocale'
 import { BrandingBar } from './BrandingBar'
+import { HighlightActivities } from './HighlightActivities'
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmVuLTI5IiwiYSI6ImNrZ3Q4Ym9mMDBqMGYyeXFvODV2dWl6YzQifQ.gSKoWF-fMjhzU67TuDezJQ'
 
@@ -143,11 +144,10 @@ function getColor(a: Activity): string {
   return '#a855f7'
 }
 
-export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageProps) {
+export function TracksPage({ activities, filter, onBack, onSelectActivity }: TracksPageProps) {
   const { locale } = useLocale()
   const allYears = getAvailableYears(activities)
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
-  const [sportFilter, setSportFilter] = useState<SportType | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null)
   const [sortBy, setSortBy] = useState<'date' | 'distance'>('date')
 
@@ -164,10 +164,9 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
   // Determine which sport types exist
   const hasSport = (t: SportType) => activities.some(a => a.type === t)
 
-  // Filtered base (year + sport)
+  // Filtered base (year only — sport type is controlled by the top-level filter)
   const base = activities.filter(a => {
     if (selectedYear !== null && new Date(a.start_date_local).getFullYear() !== selectedYear) return false
-    if (sportFilter !== null && a.type !== sportFilter) return false
     return true
   })
 
@@ -220,19 +219,12 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
       setClustering(false)
     }, 0)
     return () => clearTimeout(id)
-  }, [withPolyline.length, selectedYear, sportFilter])
+  }, [withPolyline.length, selectedYear])
 
   const handleSelectTrack = (a: Activity) => {
     setSelectedActivity(prev => prev?.run_id === a.run_id ? null : a)
     onSelectActivity?.(a)
   }
-
-  const allSportTabs: { label: string; value: SportType; color: string }[] = [
-    { label: locale === 'zh' ? '跑步' : 'Run', value: 'Run', color: '#f97316' },
-    { label: locale === 'zh' ? '骑行' : 'Ride', value: 'Ride', color: '#3b82f6' },
-    { label: locale === 'zh' ? '徒步' : 'Hike', value: 'Hike', color: '#22c55e' },
-    { label: locale === 'zh' ? '游泳' : 'Swim', value: 'Swim', color: '#06b6d4' },
-  ]
 
   return (
     <div className="max-w-[1400px] mx-auto px-6 py-6">
@@ -250,6 +242,14 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
       <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-5 items-start">
         {/* Left: stats + map */}
         <div className="flex flex-col gap-4">
+          {/* Highlights — milestones + user-pinned, drives the map on click.
+              Uses the full activity set so milestones/pins are all-time, not tied to the year/sport filter. */}
+          <HighlightActivities
+            activities={activities}
+            onSelect={handleSelectTrack}
+            selectedActivity={selectedActivity}
+          />
+
           {/* Stats card */}
           <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-4">
             <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wider mb-3">
@@ -367,20 +367,8 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
                 ›
               </button>
             )}
-            {/* Sport filter — right side */}
+            {/* Export — right side (sport type is controlled by the top-level filter) */}
             <div className="flex items-center gap-1.5 ml-auto">
-              <button onClick={() => setSportFilter(null)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${sportFilter === null ? 'bg-[var(--color-accent)] text-white border-transparent' : 'border-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}>
-                {locale === 'zh' ? '全部' : 'All'}
-              </button>
-              {allSportTabs.filter(t => hasSport(t.value)).map(({ label, value, color }) => (
-                <button key={value} onClick={() => setSportFilter(sportFilter === value ? null : value)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${sportFilter === value ? 'text-white border-transparent' : 'border-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}
-                  style={sportFilter === value ? { backgroundColor: color } : {}}>
-                  {label}
-                </button>
-              ))}
-              <span className="w-px h-3 bg-[var(--color-border)] mx-1" />
               <button
                 onClick={async () => {
                   if (!captureRef.current || exporting) return
@@ -460,13 +448,13 @@ export function TracksPage({ activities, onBack, onSelectActivity }: TracksPageP
           {/* Legend + sort */}
           {!clustering && clusteredTracks.length > 0 && (
             <div className="mt-4 pt-3 border-t border-[var(--color-border)] flex items-center gap-4 text-xs text-[var(--color-muted)] flex-wrap">
-              {sportFilter === null || sportFilter === 'Run' ? <>
+              {filter === 'all' || filter === 'Run' ? <>
                 <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#f97316] rounded" />{locale === 'zh' ? '跑步' : 'Run'}</span>
                 <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#ef4444] rounded" />{locale === 'zh' ? '跑步 >20km' : 'Run >20km'}</span>
               </> : null}
-              {(sportFilter === null || sportFilter === 'Ride') && hasSport('Ride') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#3b82f6] rounded" />{locale === 'zh' ? '骑行' : 'Ride'}</span>}
-              {(sportFilter === null || sportFilter === 'Hike') && hasSport('Hike') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#22c55e] rounded" />{locale === 'zh' ? '徒步' : 'Hike'}</span>}
-              {(sportFilter === null || sportFilter === 'Swim') && hasSport('Swim') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#06b6d4] rounded" />{locale === 'zh' ? '游泳' : 'Swim'}</span>}
+              {(filter === 'all' || filter === 'Ride') && hasSport('Ride') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#3b82f6] rounded" />{locale === 'zh' ? '骑行' : 'Ride'}</span>}
+              {(filter === 'all' || filter === 'Hike') && hasSport('Hike') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#22c55e] rounded" />{locale === 'zh' ? '徒步' : 'Hike'}</span>}
+              {(filter === 'all' || filter === 'Swim') && hasSport('Swim') && <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-[#06b6d4] rounded" />{locale === 'zh' ? '游泳' : 'Swim'}</span>}
               <div className="ml-auto flex items-center gap-1">
                 <span>{clusteredTracks.length} {locale === 'zh' ? '条路线' : 'routes'}</span>
                 <span className="mx-1.5 text-[var(--color-border)]">·</span>

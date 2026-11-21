@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import * as polyline from '@mapbox/polyline'
+import { Calendar, Rows3, Tag, Route, Clock, Gauge, Heart } from 'lucide-react'
 import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
 import { formatDuration, formatPace } from '../hooks/useActivities'
@@ -12,6 +14,8 @@ interface ActivityLogProps {
   selectedActivity?: Activity | null
   onSelectActivity?: (a: Activity | null) => void
   filter?: SportFilter
+  selectedProvince?: string | null
+  onClearProvince?: () => void
 }
 
 const PAGE_SIZE = 16
@@ -42,6 +46,13 @@ function typeLabel(type: string, locale: string): string {
   return map[type]?.[locale as 'zh' | 'en'] ?? type
 }
 
+// lucide icon for table headers.
+function HeaderIcon({ kind }: { kind: 'date' | 'type' | 'name' | 'distance' | 'duration' | 'pace' | 'hr' }) {
+  const map = { date: Calendar, type: Rows3, name: Tag, distance: Route, duration: Clock, pace: Gauge, hr: Heart }
+  const Icon = map[kind]
+  return <Icon className="w-3 h-3 shrink-0" strokeWidth={2} aria-hidden="true" />
+}
+
 function typeColor(type: string): string {
   const colors: Record<string, string> = {
     WeightTraining: '#f97316',
@@ -50,6 +61,40 @@ function typeColor(type: string): string {
     WaterSport:     '#06b6d4',
   }
   return colors[type] ?? 'var(--color-accent)'
+}
+
+// Sport-specific color for the track thumbnail.
+function trackColor(type: string): string {
+  if (type === 'Run') return '#f97316'
+  if (type === 'Ride') return '#3b82f6'
+  if (type === 'Hike') return '#22c55e'
+  if (type === 'Swim') return '#06b6d4'
+  return 'var(--color-accent)'
+}
+
+// Build an SVG polyline "points" string for a small track thumbnail.
+function renderTrackSVG(summaryPolyline: string | null, size = 26): string {
+  if (!summaryPolyline) return ''
+  try {
+    const coords = polyline.decode(summaryPolyline)
+    if (coords.length < 2) return ''
+    const lats = coords.map(c => c[0])
+    const lngs = coords.map(c => c[1])
+    const minLat = Math.min(...lats), maxLat = Math.max(...lats)
+    const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
+    const latRange = maxLat - minLat || 0.001
+    const lngRange = maxLng - minLng || 0.001
+    const scale = Math.min((size - 6) / lngRange, (size - 6) / latRange)
+    const offsetX = (size - lngRange * scale) / 2
+    const offsetY = (size - latRange * scale) / 2
+    return coords.map(([lat, lng]) => {
+      const x = (lng - minLng) * scale + offsetX
+      const y = size - ((lat - minLat) * scale + offsetY)
+      return `${x.toFixed(1)},${y.toFixed(1)}`
+    }).join(' ')
+  } catch {
+    return ''
+  }
 }
 
 function parseTimeSecs(t: string): number {
@@ -68,7 +113,7 @@ function formatSecs(secs: number): string {
   return `${m}m`
 }
 
-export function ActivityLog({ activities, years, year, setYear, selectedActivity, onSelectActivity, filter = 'all' }: ActivityLogProps) {
+export function ActivityLog({ activities, years, year, setYear, selectedActivity, onSelectActivity, filter = 'all', selectedProvince, onClearProvince }: ActivityLogProps) {
   const { t, locale } = useLocale()
   const [page, setPage] = useState(0)
   const [distFilter, setDistFilter] = useState<DistanceFilter>('all')
@@ -127,6 +172,27 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
         </span>
       </div>
 
+      {/* Active filter chips */}
+      {selectedProvince && (
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <span className="text-xs text-[var(--color-muted)]">{locale === 'zh' ? '当前筛选' : 'Filtered by'}</span>
+          <button
+            onClick={() => onClearProvince?.()}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-accent)]/15 text-[var(--color-accent)] hover:bg-[var(--color-accent)]/25 transition-colors"
+            title={locale === 'zh' ? '清除筛选' : 'Clear filter'}
+          >
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {selectedProvince}
+            <svg className="w-3 h-3 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
+
       {/* Year tabs */}
       <div className="flex items-center gap-2 mb-3 flex-wrap">
         <button
@@ -178,20 +244,20 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-[var(--color-muted)] border-b border-[var(--color-border)]">
-              <th className="pb-3 font-medium">{t('date')}</th>
-              <th className="pb-3 font-medium">{t('type')}</th>
-              <th className="pb-3 font-medium">{t('name')}</th>
+              <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="date" />{t('date')}</span></th>
+              <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="type" />{t('type')}</span></th>
+              <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="name" />{t('name')}</span></th>
               {isGym ? (
                 <>
-                  <th className="pb-3 font-medium">{t('duration')}</th>
-                  <th className="pb-3 font-medium">{t('hr')}</th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="duration" />{t('duration')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="hr" />{t('hr')}</span></th>
                 </>
               ) : (
                 <>
-                  <th className="pb-3 font-medium">{t('distance')}</th>
-                  <th className="pb-3 font-medium">{t('duration')}</th>
-                  <th className="pb-3 font-medium">{t('pace')}</th>
-                  <th className="pb-3 font-medium">{t('hr')}</th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="distance" />{t('distance')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="duration" />{t('duration')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="pace" />{t('pace')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="hr" />{t('hr')}</span></th>
                 </>
               )}
             </tr>
@@ -207,7 +273,36 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                     : 'hover:bg-[var(--color-bg)]'
                 }`}
               >
-                <td className="py-3 text-[var(--color-muted)]">{a.start_date_local.slice(0, 16).replace('T', ' ')}</td>
+                <td className="py-3 text-[var(--color-muted)]">
+                  <div className="flex items-center gap-2 whitespace-nowrap">
+                    <span className="tabular-nums">{a.start_date_local.slice(0, 16).replace('T', ' ')}</span>
+                    {/* Fixed-width slot so rows without a track keep the same alignment */}
+                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center">
+                      {(() => {
+                        const points = renderTrackSVG(a.summary_polyline, 28)
+                        if (!points) return null
+                        return (
+                          <svg
+                            width={28}
+                            height={28}
+                            viewBox="0 0 28 28"
+                            className="rounded bg-[var(--color-border)]/25"
+                            aria-hidden="true"
+                          >
+                            <polyline
+                              points={points}
+                              fill="none"
+                              stroke={trackColor(a.type)}
+                              strokeWidth={1.5}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        )
+                      })()}
+                    </span>
+                  </div>
+                </td>
                 <td className="py-3">
                   {isGym ? (
                     <span className="text-xs font-medium px-1.5 py-0.5 rounded-full" style={{ backgroundColor: typeColor(a.type) + '22', color: typeColor(a.type) }}>
@@ -226,11 +321,15 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
                 ) : (
                   <>
                     <td className="py-3 font-mono font-medium">
-                      {(a.distance / 1000).toFixed(1)}<span className="text-[var(--color-muted)] ml-1 font-normal text-xs">km</span>
+                      {a.distance > 0
+                        ? <>{(a.distance / 1000).toFixed(1)}<span className="text-[var(--color-muted)] ml-1 font-normal text-xs">km</span></>
+                        : <span className="text-[var(--color-muted)]">--</span>}
                     </td>
                     <td className="py-3 text-[var(--color-muted)]">{formatDuration(a.moving_time)}</td>
                     <td className="py-3 text-[var(--color-muted)]">
-                      {a.type === 'Run' ? formatPace(a.average_speed) : `${(a.average_speed * 3.6).toFixed(1)} km/h`}
+                      {a.average_speed > 0
+                        ? (a.type === 'Run' ? formatPace(a.average_speed) : `${(a.average_speed * 3.6).toFixed(1)} km/h`)
+                        : '--'}
                     </td>
                     <td className="py-3 text-[var(--color-muted)]">{a.average_heartrate ? Math.round(a.average_heartrate) : '--'}</td>
                   </>

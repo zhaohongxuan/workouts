@@ -47,15 +47,21 @@ export function extractProvince(loc: string | null): string | null {
 
 export function useFilteredActivities(
   activities: Activity[],
-  filter: SportFilter,
+  filters: SportFilter[],
   year: number | null
 ) {
   return useMemo(() => {
+    // Empty selection or containing 'all' means no type filtering.
+    const active = filters.filter((f) => f !== 'all')
     let filtered = activities
-    if (filter === 'Gym') {
-      filtered = filtered.filter((a) => (WORKOUT_TYPES as string[]).includes(a.type))
-    } else if (filter !== 'all') {
-      filtered = filtered.filter((a) => a.type === filter)
+    if (active.length > 0) {
+      const wantsGym = active.includes('Gym')
+      const sports = active.filter((f) => f !== 'Gym')
+      filtered = filtered.filter((a) => {
+        if (sports.some((s) => s === a.type)) return true
+        if (wantsGym && (WORKOUT_TYPES as string[]).includes(a.type)) return true
+        return false
+      })
     }
     if (year) {
       filtered = filtered.filter((a) => {
@@ -64,7 +70,7 @@ export function useFilteredActivities(
       })
     }
     return filtered
-  }, [activities, filter, year])
+  }, [activities, filters, year])
 }
 
 export function parseMovingTime(time: string): number {

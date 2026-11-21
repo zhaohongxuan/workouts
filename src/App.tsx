@@ -14,24 +14,30 @@ import { CalendarWidget } from './components/CalendarWidget'
 import { ProfileCard } from './components/ProfileCard'
 import { PersonalBest } from './components/PersonalBest'
 import { TracksPage } from './components/TracksPage'
+import { MarathonPage } from './components/MarathonPage'
 import { ChinaMap } from './components/ChinaMap'
-import { CheckinPage } from './components/CheckinPage'
 import rawActivities from './static/activities.json'
 
 const activities = rawActivities as Activity[]
 
-type Page = 'home' | 'tracks' | 'checkin'
+type Page = 'home' | 'tracks' | 'marathon'
 
 export default function App() {
   const { dark, toggle } = useTheme()
-  const [filter, setFilter] = useState<SportFilter>('all')
+  // Top-level sport type filter — multi-select. Default: Run only.
+  const [typeFilters, setTypeFilters] = useState<SportFilter[]>(['all'])
   const [year, setYear] = useState<number | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null)
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null)
   const [page, setPage] = useState<Page>('home')
 
+  // Effective single-value filter for legacy consumers (accent color, goal copy,
+  // units). Only when exactly one concrete type is selected; otherwise 'all'.
+  const concreteFilters = typeFilters.filter(f => f !== 'all')
+  const filter: SportFilter = concreteFilters.length === 1 ? concreteFilters[0] : 'all'
+
   const years = getAvailableYears(activities)
-  const filtered = useFilteredActivities(activities, filter, year)
+  const filtered = useFilteredActivities(activities, typeFilters, year)
   const heatmapYear = year ?? years[0] ?? new Date().getFullYear()
 
   // Activities filtered to the selected province (for RouteMap)
@@ -40,13 +46,16 @@ export default function App() {
     return filtered.filter(a => extractProvince(a.location_country) === selectedProvince)
   }, [filtered, selectedProvince])
 
+  // Year options follow the province selection so the log's year set stays consistent.
+  const provinceYears = useMemo(() => getAvailableYears(provinceFiltered), [provinceFiltered])
+
   return (
     <LocaleProvider>
       <GitHubAuthProvider>
         <div className="min-h-screen bg-[var(--color-bg)]" data-filter={filter}>
       <Header
-        filter={filter}
-        setFilter={setFilter}
+        typeFilters={typeFilters}
+        setTypeFilters={setTypeFilters}
         dark={dark}
         toggleTheme={toggle}
         activities={activities}
@@ -61,8 +70,13 @@ export default function App() {
           onSelectActivity={setSelectedActivity}
           onBack={() => setPage('home')}
         />
-      ) : page === 'checkin' ? (
-        <CheckinPage />
+      ) : page === 'marathon' ? (
+        <MarathonPage
+          activities={activities}
+          dark={dark}
+          onSelectActivity={setSelectedActivity}
+          onBack={() => setPage('home')}
+        />
       ) : (
       <main className="max-w-[1400px] mx-auto px-6 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] xl:grid-cols-[1fr_380px] gap-6 items-start">
@@ -71,27 +85,24 @@ export default function App() {
             <StatsCards activities={filtered} allActivities={activities} year={year} filter={filter} onSelectActivity={setSelectedActivity} />
             <ContributionHeatmap activities={filtered} year={heatmapYear} filter={filter} onSelectActivity={setSelectedActivity} />
             <ActivityLog
-              activities={filtered}
-              years={years}
+              activities={provinceFiltered}
+              years={provinceYears}
               year={year}
               setYear={setYear}
               selectedActivity={selectedActivity}
               onSelectActivity={setSelectedActivity}
               filter={filter}
+              selectedProvince={selectedProvince}
+              onClearProvince={() => { setSelectedProvince(null); setSelectedActivity(null) }}
             />
           </div>
 
           {/* Right column */}
           <div className="flex flex-col gap-6 min-w-0 overflow-hidden">
             <ProfileCard activities={activities} filter={filter} />
-            <ChinaMap
+            <CalendarWidget
               activities={filtered}
-              filter={filter}
-              selectedProvince={selectedProvince}
-              onSelectProvince={(p) => {
-                setSelectedProvince(p)
-                setSelectedActivity(null)
-              }}
+              onSelectActivity={setSelectedActivity}
             />
             <RouteMap
               activities={provinceFiltered}
@@ -100,9 +111,14 @@ export default function App() {
               onClearSelection={() => setSelectedActivity(null)}
             />
             <PersonalBest activities={activities} onSelectActivity={setSelectedActivity} />
-            <CalendarWidget
+            <ChinaMap
               activities={filtered}
-              onSelectActivity={setSelectedActivity}
+              filter={filter}
+              selectedProvince={selectedProvince}
+              onSelectProvince={(p) => {
+                setSelectedProvince(p)
+                setSelectedActivity(null)
+              }}
             />
           </div>
         </div>

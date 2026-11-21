@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.0] - 2026-11-21
+
+### Added
+- **Memory page** — new top-level tab showcasing long-distance milestone tracks with per-sport thresholds (Run > 21km, Ride > 40km, Hike > 10km)
+  - Card grid with map-style textured track thumbnails, distance/pace/date
+  - Click a card to open a full Mapbox track in a modal
+  - Type filter chips with counts; ignores the global type filter
+- **Calendar track thumbnails** — each day with GPS activity shows its route thumbnail; indoor/no-GPS days show a sport icon
+  - Hover a day to see a detail popup (type, name, distance, duration, pace)
+  - Month total activity count shown in the header
+- **Highlights module** on the Tracks page — auto milestones (longest distance, most climb, fastest pace, longest streak, distance PRs) plus user-pinned activities (persisted in localStorage)
+- **Multi-select sport filter** in the header, defaulting to All; shows the selected type's icon when a single type is chosen, funnel for multiple, grid icon for All
+- **Gym filter option** in the header type filter
+- **Activity log enhancements** — track thumbnails after the date; icons on table headers; `--` shown for missing distance/pace instead of 0
+- **Heatmap export preview** — exporting now opens a preview modal with Download and Copy-to-clipboard actions
+- **Map-frame UI** — map/province selection now filters the activity log, with an active filter chip
+- lucide-react icons used consistently across filter and type UI
+
+### Changed
+- Activity log now follows the selected province on the map
+- Calendar moved above the map in the right column
+- Sport type filter dropdown moved left of the theme toggle (icon-only trigger)
+
+### Removed
+- **Habit Check-in module** (Habits tab, check-in components and hook, related i18n keys)
+- Home nav link (clicking the WORKOUT.LOG logo returns home)
+
+---
+
 ## [3.0.0] - 2026-05-18
 
 ### Added
