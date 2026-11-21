@@ -25,7 +25,7 @@ type Page = 'home' | 'tracks' | 'marathon'
 export default function App() {
   const { dark, toggle } = useTheme()
   // Top-level sport type filter — multi-select. Default: Run only.
-  const [typeFilters, setTypeFilters] = useState<SportFilter[]>(['Run'])
+  const [typeFilters, setTypeFilters] = useState<SportFilter[]>(['all'])
   const [year, setYear] = useState<number | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null)
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null)

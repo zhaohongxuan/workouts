@@ -211,7 +211,6 @@ export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activit
   })
 
   const navItems: { label: string; page: Page }[] = [
-    { label: t('home'), page: 'home' },
     { label: t('tracks'), page: 'tracks' },
     { label: 'Memory', page: 'marathon' },
   ]
@@ -219,12 +218,16 @@ export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activit
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/70 backdrop-blur-md">
       <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
+        {/* Logo — click to go home */}
+        <button
+          onClick={() => onNavigate('home')}
+          className="flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-80"
+          aria-label={t('home')}
+        >
           <span className="text-xl font-bold text-[var(--color-text)]">
             WORKOUT<span className="text-[var(--color-run)]">.</span>LOG
           </span>
-        </div>
+        </button>
 
         {/* Spacer to keep right cluster aligned */}
         <div className="flex-1" />
