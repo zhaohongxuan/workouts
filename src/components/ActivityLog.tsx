@@ -45,6 +45,24 @@ function typeLabel(type: string, locale: string): string {
   return map[type]?.[locale as 'zh' | 'en'] ?? type
 }
 
+// Small inline icon for table headers.
+function HeaderIcon({ kind }: { kind: 'date' | 'type' | 'name' | 'distance' | 'duration' | 'pace' | 'hr' }) {
+  const paths: Record<typeof kind, string> = {
+    date: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+    type: 'M4 6h16M4 12h16M4 18h10',
+    name: 'M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z',
+    distance: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
+    duration: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+    pace: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+    hr: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  }
+  return (
+    <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d={paths[kind]} />
+    </svg>
+  )
+}
+
 function typeColor(type: string): string {
   const colors: Record<string, string> = {
     WeightTraining: '#f97316',
@@ -236,20 +254,20 @@ export function ActivityLog({ activities, years, year, setYear, selectedActivity
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-[var(--color-muted)] border-b border-[var(--color-border)]">
-              <th className="pb-3 font-medium">{t('date')}</th>
-              <th className="pb-3 font-medium">{t('type')}</th>
-              <th className="pb-3 font-medium">{t('name')}</th>
+              <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="date" />{t('date')}</span></th>
+              <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="type" />{t('type')}</span></th>
+              <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="name" />{t('name')}</span></th>
               {isGym ? (
                 <>
-                  <th className="pb-3 font-medium">{t('duration')}</th>
-                  <th className="pb-3 font-medium">{t('hr')}</th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="duration" />{t('duration')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="hr" />{t('hr')}</span></th>
                 </>
               ) : (
                 <>
-                  <th className="pb-3 font-medium">{t('distance')}</th>
-                  <th className="pb-3 font-medium">{t('duration')}</th>
-                  <th className="pb-3 font-medium">{t('pace')}</th>
-                  <th className="pb-3 font-medium">{t('hr')}</th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="distance" />{t('distance')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="duration" />{t('duration')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="pace" />{t('pace')}</span></th>
+                  <th className="pb-3 font-medium"><span className="inline-flex items-center gap-1"><HeaderIcon kind="hr" />{t('hr')}</span></th>
                 </>
               )}
             </tr>
