@@ -35,11 +35,7 @@ function trackColor(type: string): string {
   if (type === 'Ride') return '#3b82f6'
   if (type === 'Hike') return '#22c55e'
   if (type === 'Swim') return '#06b6d4'
-  // Gym sub-types: use their own accent colors.
-  if (type === 'WeightTraining') return '#f97316'
-  if (type === 'Workout') return '#c026d3'
-  if (type === 'StairStepper') return '#3b82f6'
-  if (type === 'WaterSport') return '#06b6d4'
+  // Gym (all workout sub-types) uses the gym accent color.
   return '#c026d3'
 }
 

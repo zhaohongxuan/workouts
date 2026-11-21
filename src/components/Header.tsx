@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
-import { LogOut, Footprints, Bike, Mountain, Waves, LayoutGrid } from 'lucide-react'
+import { LogOut, Footprints, Bike, Mountain, Waves, LayoutGrid, Dumbbell } from 'lucide-react'
 import type { SportFilter, Activity } from '../types'
+import { WORKOUT_TYPES } from '../types'
 import { useLocale } from '../hooks/useLocale'
 import { useGitHubAuthContext } from '../hooks/useGitHubAuthContext'
 
@@ -202,6 +203,7 @@ export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activit
   const { locale, setLocale, t } = useLocale()
 
   const existingTypes = new Set(activities.map((a) => a.type))
+  const hasGym = WORKOUT_TYPES.some((wt) => existingTypes.has(wt))
 
   const allTabs: { label: string; value: SportFilter; icon: typeof Footprints; color: string }[] = [
     { label: t('all'), value: 'all', icon: LayoutGrid, color: 'var(--color-accent)' },
@@ -209,9 +211,11 @@ export function Header({ typeFilters, setTypeFilters, dark, toggleTheme, activit
     { label: t('ride'), value: 'Ride', icon: Bike, color: '#3b82f6' },
     { label: t('hike'), value: 'Hike', icon: Mountain, color: '#22c55e' },
     { label: t('swim'), value: 'Swim', icon: Waves, color: '#06b6d4' },
+    { label: t('gym'), value: 'Gym', icon: Dumbbell, color: '#c026d3' },
   ]
   const tabs = allTabs.filter((tab) => {
     if (tab.value === 'all') return true
+    if (tab.value === 'Gym') return hasGym
     return existingTypes.has(tab.value)
   })
 
