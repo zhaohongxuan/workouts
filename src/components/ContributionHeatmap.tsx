@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
 import type { Activity, SportFilter } from '../types'
 import { WORKOUT_TYPES } from '../types'
@@ -56,24 +56,6 @@ function getColorAll(typeRatio: number, displayType: string): string {
   return palette[level - 1] ?? palette[0]
 }
 
-// Solid accent color for a display type (mid intensity of its palette).
-function segmentColor(type: string): string {
-  const palette = TYPE_PALETTES[type] ?? TYPE_PALETTES.Training
-  return palette[2] ?? palette[0]
-}
-
-// CSS background for a day split into at most 2 count-based bands.
-// Returns a linear-gradient string, or null when there's nothing to split.
-function multiSegmentBackground(segments: { type: string; start: number; end: number }[]): string | null {  if (!segments || segments.length < 2) return null
-  const stops: string[] = []
-  for (const s of segments) {
-    const c = segmentColor(s.type)
-    stops.push(`${c} ${(s.start * 100).toFixed(1)}%`)
-    stops.push(`${c} ${(s.end * 100).toFixed(1)}%`)
-  }
-  return `linear-gradient(to bottom, ${stops.join(', ')})`
-}
-
 function typeIcon(type: string): string {
   const icons: Record<string, string> = {
     Run: '🏃',
@@ -106,28 +88,6 @@ function dominantDisplayType(acts: Activity[]): 'Run' | 'Ride' | 'Hike' | 'Swim'
   return toDisplayType(sorted[0].type)
 }
 
-// Segment a day's activities by display type into at most 2 bands (by count).
-// Returns cumulative percentage bands plus the activities each band maps to:
-//   [{ type:'Run', start:0, end:0.8, acts:[...] }, { type:'Ride', start:0.8, end:1, acts:[...] }]
-function buildSegments(acts: Activity[]): { type: string; start: number; end: number; acts: Activity[] }[] {
-  if (acts.length === 0) return []
-  const grouped = new Map<string, Activity[]>()
-  for (const a of acts) {
-    const t = toDisplayType(a.type)
-    if (!grouped.has(t)) grouped.set(t, [])
-    grouped.get(t)!.push(a)
-  }
-  const sorted = [...grouped.entries()].sort((a, b) => b[1].length - a[1].length)
-  const total = acts.length
-  const top = sorted.slice(0, 2)
-  let acc = 0
-  return top.map(([type, groupActs]) => {
-    const start = acc
-    acc += groupActs.length / total
-    return { type, start, end: acc, acts: groupActs }
-  })
-}
-
 export function ContributionHeatmap({ activities, year: defaultYear, filter, onSelectActivity }: HeatmapProps) {
   const { t, locale } = useLocale()
   const allYears = getAvailableYears(activities)
@@ -135,10 +95,42 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
   // yearWindowEnd: index into allYears of the last visible year (0-based, most-recent-first)
   const [yearWindowEnd, setYearWindowEnd] = useState(Math.min(MAX_VISIBLE_YEARS - 1, allYears.length - 1))
   const captureRef = useRef<HTMLDivElement>(null)
+  // Day selector popup for days with multiple activities.
+  // Position is viewport-fixed (from getBoundingClientRect) so it can overflow the card.
+  const [daySelector, setDaySelector] = useState<{ date: string; activities: Activity[]; x: number; y: number; openBy: 'hover' | 'click' } | null>(null)
+  const closeTimer = useRef<number | null>(null)
   const [exporting, setExporting] = useState(false)
 
   const isGym = filter === 'Gym'
   const isAll = filter === 'all'
+
+  const cancelClose = () => {
+    if (closeTimer.current !== null) {
+      window.clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }
+  const scheduleClose = () => {
+    cancelClose()
+    closeTimer.current = window.setTimeout(() => setDaySelector(null), 160)
+  }
+  const openSelector = (el: HTMLElement, date: string, acts: Activity[], openBy: 'hover' | 'click') => {
+    cancelClose()
+    const rect = el.getBoundingClientRect()
+    setDaySelector({ date, activities: acts, x: rect.left + rect.width / 2, y: rect.top, openBy })
+  }
+  const selectFromSelector = (a: Activity) => {
+    onSelectActivity?.(a)
+    setDaySelector(null)
+  }
+
+  // Close the popup on Escape.
+  useEffect(() => {
+    if (!daySelector) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setDaySelector(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [daySelector])
 
   function buildYearGrid(yr: number, acts: Activity[]) {
     const yearActivities = acts.filter((a) => new Date(a.start_date_local).getFullYear() === yr)
@@ -186,7 +178,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
 
     const startDate = new Date(yr, 0, 1)
     const startDay = startDate.getDay()
-    const grid: { date: string; distance: number; timeSecs: number; activities: Activity[]; domType: string; typeRatio: number; segments: { type: string; start: number; end: number; acts: Activity[] }[] }[][] = []
+    const grid: { date: string; distance: number; timeSecs: number; activities: Activity[]; domType: string; typeRatio: number }[][] = []
     const monthPositions: { label: string; weekIdx: number }[] = []
     let currentMonth = -1
     const totalDays = Math.round((new Date(yr, 11, 31).getTime() - startDate.getTime()) / 86400000) + 1
@@ -203,8 +195,7 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
         ? (dayTimeMap.get(key) || 0)
         : dayActs.reduce((s, a) => s + (a.distance > 0 ? a.distance : 0), 0)
       const typeRatio = typeValue / (typeMaxMap[domType] ?? 1)
-      const segments = isAll ? buildSegments(dayActs) : []
-      grid[weekIdx].push({ date: key, distance: dist, timeSecs: dayTimeMap.get(key) || 0, activities: dayActs, domType, typeRatio, segments })
+      grid[weekIdx].push({ date: key, distance: dist, timeSecs: dayTimeMap.get(key) || 0, activities: dayActs, domType, typeRatio })
       if (date.getMonth() !== currentMonth) {
         currentMonth = date.getMonth()
         monthPositions.push({ label: `${currentMonth + 1}`, weekIdx })
@@ -364,19 +355,6 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
           transform: scale(1.4);
           z-index: 20;
         }
-        .heatmap-multi .heatmap-cell:hover {
-          transform: scale(1.8);
-          z-index: 30;
-        }
-        .heatmap-multi {
-          width: 12px;
-          height: 12px;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          border-radius: 2px;
-          overflow: visible;
-        }
         .exporting,
         .exporting *,
         .exporting *::before,
@@ -507,49 +485,39 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
               {grid.map((week, wi) => (
                 <div key={wi} className="flex flex-col gap-[3px]">
                   {week.map((day, di) => {
-                    const multiBg = day.distance !== 0 && isAll ? multiSegmentBackground(day.segments) : null
                     const bgColor = day.distance === 0
                       ? 'var(--color-border)'
-                      : multiBg
-                        ?? (isAll
-                          ? getColorAll(day.typeRatio, day.domType)
-                          : getColor(day.distance, max, filter))
-                    // Whole-day summary (single cells / no multi split)
-                    const wholeDayText = day.activities.length === 0 ? day.date
+                      : isAll
+                        ? getColorAll(day.typeRatio, day.domType)
+                        : getColor(day.distance, max, filter)
+                    const count = day.activities.length
+                    const isMulti = count > 1
+                    // Whole-day summary tooltip (single-activity / non-multi days).
+                    const titleText = count === 0 ? day.date
                       : isGym ? `${day.date}: ${day.distance} session(s)`
-                      : `${day.date}: ${day.activities.length === 1
-                          ? (day.domType === 'Training'
-                            ? `${Math.round(day.timeSecs / 60)}min`
-                            : `${(day.activities[0].distance / 1000).toFixed(1)} km`)
-                          : `${(day.activities.reduce((s, a) => s + a.distance, 0) / 1000).toFixed(1)} km · ${day.segments.map(s => `${typeLabel(s.type, locale)}×${s.acts.length}`).join(' + ')}`}`
-                    // Per-band tooltip: date + this band's sport only.
-                    const bandTitle = (s: { type: string; acts: Activity[] }) =>
-                      `${day.date}: ${s.acts.map(a => a.name || typeLabel(a.type, locale)).join('、')}`
-                    const cellCls = "heatmap-cell rounded-sm cursor-pointer"
-                    // Multi-sport day: two independently clickable bands.
-                    if (multiBg && day.segments.length > 1) {
-                      return (
-                        <div key={di} className="heatmap-multi rounded-sm overflow-visible">
-                          {day.segments.map((s, si) => (
-                            <div
-                              key={si}
-                              className={cellCls}
-                              style={{ flexBasis: `${(s.end - s.start) * 100}%`, backgroundColor: segmentColor(s.type) }}
-                              title={bandTitle(s)}
-                              onClick={() => { if (s.acts.length > 0) onSelectActivity?.(s.acts[0]) }}
-                            />
-                          ))}
-                        </div>
-                      )
-                    }
+                      : day.domType === 'Training'
+                        ? `${day.date}: ${Math.round(day.timeSecs / 60)}min`
+                        : `${day.date}: ${(day.activities.reduce((s, a) => s + a.distance, 0) / 1000).toFixed(1)} km`
                     return (
                       <div
                         key={di}
-                        className={cellCls}
-                        style={multiBg ? { backgroundImage: multiBg } : { backgroundColor: bgColor }}
-                        title={wholeDayText}
-                        onClick={() => { if (day.activities.length > 0) onSelectActivity?.(day.activities[0]) }}
-                      />
+                        className="relative heatmap-cell rounded-sm cursor-pointer"
+                        style={{ backgroundColor: bgColor }}
+                        title={isMulti ? undefined : titleText}
+                        onMouseEnter={(e) => { if (isMulti) openSelector(e.currentTarget, day.date, day.activities, 'hover') }}
+                        onMouseLeave={() => { if (isMulti) scheduleClose() }}
+                        onClick={(e) => {
+                          if (count === 0) return
+                          if (isMulti) openSelector(e.currentTarget, day.date, day.activities, 'click')
+                          else onSelectActivity?.(day.activities[0])
+                        }}
+                      >
+                        {isMulti && (
+                          <span className="absolute inset-0 flex items-center justify-center text-[7px] font-bold leading-none text-white pointer-events-none select-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
+                            {count}
+                          </span>
+                        )}
+                      </div>
                     )
                   })}
                 </div>
@@ -699,6 +667,45 @@ export function ContributionHeatmap({ activities, year: defaultYear, filter, onS
                 <span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ backgroundColor: gymTypeColors[t] }} />
                 {typeLabel(t, locale)}
               </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Day selector popup: choose which activity to view on a multi-activity day */}
+      {daySelector && (
+        <div
+          data-export-hidden
+          className="fixed z-50 min-w-[180px] max-w-[240px] rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] shadow-lg p-1.5"
+          style={{
+            left: daySelector.x,
+            top: daySelector.y,
+            transform: 'translate(-50%, calc(-100% - 8px))',
+          }}
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="px-1.5 pb-1 text-[10px] text-[var(--color-muted)] flex items-center justify-between gap-2">
+            <span>{daySelector.date}</span>
+            <span>{daySelector.activities.length} {locale === 'zh' ? '个活动' : 'activities'}</span>
+          </div>
+          <div className="flex flex-col gap-0.5 max-h-[220px] overflow-y-auto">
+            {daySelector.activities.map((a) => (
+              <button
+                key={a.run_id}
+                onClick={() => selectFromSelector(a)}
+                className="flex items-center gap-2 px-1.5 py-1 rounded text-left text-xs hover:bg-[var(--color-border)]/40 transition-colors"
+              >
+                <span className="shrink-0">{typeIcon(a.type)}</span>
+                <span className="flex-1 min-w-0 truncate text-[var(--color-text)]">{a.name}</span>
+                <span className="shrink-0 text-[10px] text-[var(--color-muted)] tabular-nums">
+                  {a.type === 'WeightTraining' || a.type === 'Workout' || a.type === 'StairStepper' || a.type === 'WaterSport'
+                    ? `${Math.round(parseMovingTime(a.moving_time) / 60)}min`
+                    : a.distance > 0
+                      ? `${(a.distance / 1000).toFixed(1)} km`
+                      : `${Math.round(parseMovingTime(a.moving_time) / 60)}min`}
+                </span>
+              </button>
             ))}
           </div>
         </div>
