@@ -51886,5 +51886,21 @@
 "elevation_gain": 11.0,
 "source": "strava",
 "streak": 48
+},
+{
+"run_id": 21078811592,
+"name": "Morning Weight Training",
+"distance": 0.0,
+"moving_time": "0:25:22",
+"type": "WeightTraining",
+"start_date": "2026-11-21T22:56:10+0000",
+"start_date_local": "2026-11-22 06:56:10",
+"location_country": "",
+"summary_polyline": "",
+"average_heartrate": 68.76949152542373,
+"average_speed": 0.0,
+"elevation_gain": 0.0,
+"source": "strava",
+"streak": 49
 }
 ]
